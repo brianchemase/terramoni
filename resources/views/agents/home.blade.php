@@ -7,7 +7,7 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Good Morning! </strong> Dashboard</h1>
+					<h1 class="h3 mb-3"><strong>{{$salutation}}! </strong> Dashboard</h1>
 					<h4 class="h4 mb-3"><strong>Hi USername, </strong> Welcome to TerraMoni</h4>
 					
 
@@ -21,8 +21,10 @@
 										</div>
 
 										<div class="col-auto">
-											<div class="stat text-primary">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-light">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -42,16 +44,18 @@
 											<h5 class="card-title">Total Agents</h5>
 										</div>
 
-										<div class="col-auto">
-											<div class="stat text-primary">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag align-middle"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-											</div>
-										</div>
+													<div class="col-auto">
+														<div class="avatar">
+															<div class="avatar-title rounded-circle bg-primary-light">
+																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+															</div>
+														</div>
+													</div>
 									</div>
 								
-									<h1 class="mt-1 mb-3"> 150</h1>
+									<h1 class="mt-1 mb-3"> {{ number_format($agentCount) }}</h1>
 									<div class="mb-0">
-										<span class="text-muted"><a href="#">View More</a></span>
+										<span class="text-muted"><a href="{{route('agentstab')}}">View More</a></span>
 									</div>
 								</div>
 							</div>
@@ -65,8 +69,10 @@
 										</div>
 
 										<div class="col-auto">
-											<div class="stat text-primary">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity align-middle"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-light">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -74,7 +80,7 @@
 									
 									<div class="mb-0">
 										
-										<span class="text-muted"><a href="#">View More</a></span>
+										<span class="text-muted"><a href="{{route('aggregatorslist')}}">View More</a></span>
 									</div>
 								</div>
 							</div>
@@ -88,8 +94,10 @@
 										</div>
 
 										<div class="col-auto">
-											<div class="stat text-primary">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-light">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smartphone align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -97,7 +105,7 @@
 									<h1 class="mt-1 mb-3">600</h1>
 									<div class="mb-0">
 										
-										<span class="text-muted"><a href="#">View More</a></span>
+										<span class="text-muted"><a href="{{route('posterminalslist')}}">View More</a></span>
 									</div>
 								</div>
 							</div>

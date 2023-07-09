@@ -10,13 +10,35 @@
 				<h1 class="h3 mb-3"><strong>Agents</strong> List</h1>
 				<p>This is a list of all agents</p>
 
+				@if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+				@endif
+
+				@if (count($errors) > 0)
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Agents Registration Tab</h5>
 								</div>
 								<div class="card-body">
+								
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
+										Register Agent
+									</button>
+									@include('agents.modals.registeragent')
+								
 								</div>
 							</div>
 						</div>
@@ -24,15 +46,14 @@
 
 					<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Agents List</h5>
-									<h6 class="card-subtitle text-muted">This extension provides a framework with common options that can be used with
-										DataTables. See official documentation <a href="https://datatables.net/extensions/buttons/" target="_blank"
-											rel="noopener noreferrer">here</a>.</h6>
+									<h5 class="card-title"><strong>Agents List</strong></h5>
+									
 								</div>
 								<div class="card-body">
 									<table id="datatables-buttons" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
+												<th>#</th>
 												<th>Agent ID</th>
 												<th>Agent Details</th>
 												<th>Location</th>
@@ -43,40 +64,31 @@
 										</thead>
 										<tbody>
 										<tr>
-												<td>Tiger Nixon <br> 18th July 2023</td>
-												<td>System Architect <br> Phone</td>
-												<td>Edinburgh, Country</td>
+										@foreach($agents as $data)
+												<td>{{ $loop->iteration }} </td>
+												<td>{{ $data->national_id_no }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
+												<td>{{ $data->first_name }} {{ $data->last_name }}<br> {{ $data->phone }}</td>
+												<td>{{ $data->location }}, {{ $data->country }}</td>
 												<td>Samsung <br> SRN</td>
-												<td><span class="badge bg-danger">Suspended</span></td>
 												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
+													@if($data->status == 'approved')
+														<span class="badge bg-success">Active</span>
+													@elseif($data->status == 'suspended')
+														<span class="badge bg-danger">Suspended</span>
+													@elseif($data->status == 'inactive')
+														<span class="badge bg-info">Inactive</span>
+													@endif
+												</td>
+												<td>
+												<a href="#viewAgentModal{{$data->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
+												
+                                                @include('agents.modals.agentView')
+												<a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
 												
 												</td>
 											</tr>
-											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td><span class="badge bg-success">Active</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
-											</tr>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td><span class="badge bg-info">Inactive</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
+											@endforeach
+											
 											</tr>
 										</tbody>
 									</table>

@@ -2,15 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AgentsController extends Controller
 {
     //
     public function dashboard()
     {
+        $currentHour = Carbon::now()->hour;
+        $salutation = '';
 
-        return view ('agents.home');
+        if ($currentHour >= 0 && $currentHour < 12) {
+            $salutation = 'Good Morning';
+        } elseif ($currentHour >= 12 && $currentHour < 18) {
+            $salutation = 'Good Afternoon';
+        } else {
+            $salutation = 'Good Evening';
+        }
+
+        //count all the agents
+        $agentCount = DB::table('tbl_agents')->count();
+
+        $data = [
+            'salutation' => $salutation,// salutations
+            'agentCount' => $agentCount,// counts number of agents
+            // Add more data to the array as needed
+        ];
+
+        return view ('agents.home')->with($data);;
     }
 
     public function form()
@@ -43,7 +66,10 @@ class AgentsController extends Controller
 
     public function agentstab()
     {
-        return view ('agents.agentstable');
+        $agents = DB::table('tbl_agents')->get();
+
+       // return $agents;
+        return view ('agents.agentstable', compact('agents'));
     }
 
     public function aggregatorstab()
