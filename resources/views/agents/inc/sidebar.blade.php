@@ -16,7 +16,6 @@
 					</li>
 
 					
-
 					
 
 					<li class="sidebar-item">
@@ -31,7 +30,7 @@
 					</li>
 
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('requestform')}}">
+						<a class="sidebar-link" href="{{route('posterminalslist')}}">
                             <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">POS Terminal</span>
                         </a>
 					</li>
@@ -50,6 +49,19 @@
 					<li class="sidebar-header">
 						Other
 					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('musicattempt')}}">
+                            <i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="{{route('musicattempt')}}">
+                            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Settings</span>
+                        </a>
+					</li>
+
+
                    
 
 					<li class="sidebar-item">

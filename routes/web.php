@@ -36,8 +36,8 @@ Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('a
 Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
 
 
-// submit a request
-Route::get('/SubmitRequestform', [AgentsController::class, 'requests_submition'])->name('requestform');
+// view list of all POS Terminals
+Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
 
 // upload music attempt
 Route::get('/SubmitAttempt', [AgentsController::class, 'upload_attempt'])->name('musicattempt');

@@ -51,9 +51,9 @@ class AgentsController extends Controller
         return view ('agents.aggregatorstable');
     }
 
-    public function requests_submition()
+    public function postterminalstab()
     {
-        return view ('agents.requestform');
+        return view ('agents.posstable');
     }
 
     public function upload_attempt()
