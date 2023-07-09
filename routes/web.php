@@ -31,6 +31,7 @@ Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->
 //
 // my view agents list
 Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
+Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
 
 // view aggregators list
 Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');

@@ -8,7 +8,7 @@
 												</div>
 												<div class="modal-body m-3">
 													
-											<form class="row g-3" action="" method="post">
+											<form class="row g-3" action="{{route('saveagentdata')}}" method="post" enctype="multipart/form-data">
 											@csrf
 												<div class="col-md-4">
 													<label for="validationDefault01" class="form-label">First name</label>
@@ -16,11 +16,11 @@
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Middle name</label>
-													<input type="text" class="form-control" id="validationDefault02" name="fname" placeholder="Enter Middle name (optional)" >
+													<input type="text" class="form-control" id="validationDefault02" name="mname" placeholder="Enter Middle name (optional)" >
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Last name</label>
-													<input type="text" class="form-control" id="validationDefault02" name="fname" placeholder="Enter Last name" required>
+													<input type="text" class="form-control" id="validationDefault02" name="lname" placeholder="Enter Last name" required>
 												</div>
 												
 												<div class="col-md-4">

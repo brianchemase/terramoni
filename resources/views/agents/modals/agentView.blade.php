@@ -16,6 +16,16 @@
             <h5 >Phone: {{$data->phone}}</h5>
             <h5 >Gender: {{$data->gender}}</h5> 
             <h5 >Location: {{$data->location}}</h5>
+            <h5 >Location: {{$data->country}}</h5>
+            <h5 >Registration Date: {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</h5>
+
+            @if($data->status == 'approved')
+            <h5 >Status:   <span class="badge bg-success">Active</span></h5> 
+            @elseif($data->status == 'suspended')
+            <h5 >Status:   <span class="badge bg-danger">Suspended</span></h5> 
+            @elseif($data->status == 'pending')
+            <h5 >Status:  <span class="badge bg-warning">Pending</span></h5> 
+            @endif
           
         </div>
         <div class="modal-footer">

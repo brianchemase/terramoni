@@ -75,8 +75,8 @@
 														<span class="badge bg-success">Active</span>
 													@elseif($data->status == 'suspended')
 														<span class="badge bg-danger">Suspended</span>
-													@elseif($data->status == 'inactive')
-														<span class="badge bg-info">Inactive</span>
+													@elseif($data->status == 'pending')
+														<span class="badge bg-warning">Pending</span>
 													@endif
 												</td>
 												<td>
@@ -94,7 +94,6 @@
 									</table>
 								</div>
 							</div>
-
 				</div>
 				
 			</main>
