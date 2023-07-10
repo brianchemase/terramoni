@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Mail;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 use App\Mail\DemoMail;
 
 
@@ -158,6 +160,48 @@ class AgentsController extends Controller
     public function agentselfregistration()
     {
         return view ('selfregportal.register');
+    }
+
+    public function storeTransaction(Request $request)
+    {
+
+        $input = request()->all();
+    // return $input;
+        // Validate the request data if needed
+         // Validate the request data
+         $validatedData = $request->validate([
+            'Id' => 'required|string|max:10',
+            'Name' => 'required|string|max:255',
+            'BillerName' => 'required|string|max:255',
+            'ConsumerIdField' => 'required|string|max:255',
+            'Code' => 'required|string|max:10',
+            'BillerType' => 'required|string|max:10',
+            'ItemFee' => 'required|string|max:10',
+            'Amount' => 'required|string|max:10',
+            'BillerId' => 'required|string|max:10',
+            'BillerCategoryId' => 'required|string|max:10',
+            'CurrencyCode' => 'required|string|max:10',
+            'CurrencySymbol' => 'required|string|max:10',
+            'ItemCurrencySymbol' => 'nullable|string|max:10',
+            'IsAmountFixed' => 'required|boolean',
+            'SortOrder' => 'required|integer',
+            'PictureId' => 'required|integer',
+            'PaymentCode' => 'required|string|max:10',
+            'UssdShortCode' => 'required|string|max:255',
+            'AmountType' => 'required|integer',
+            'PaydirectItemCode' => 'required|string|max:10',
+        ]);
+
+        // Insert the data into the tbl_transactions table
+        $result = DB::table('tbl_transactions')->insert($validatedData);
+
+        if ($result) {
+            // Return a success response
+            return response()->json(["status_code" => 201,"success" => true, 'message' => 'Transaction stored successfully'], Response::HTTP_CREATED);
+        } else {
+            // Return an error response
+            return response()->json(["success" => false, 'message' => 'Failed to store transaction'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     public function user_profile()

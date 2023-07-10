@@ -35,7 +35,7 @@
 								<div class="card-body">
 								
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
-										Register Agent
+									<i class="fa fa-users" aria-hidden="true"></i> Register Individual Agent
 									</button>
 									@include('agents.modals.registeragent')
 								
