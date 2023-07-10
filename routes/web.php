@@ -25,6 +25,10 @@ Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
 Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
 Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
 
+Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
+
+
+Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
 // view available music
 Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
 

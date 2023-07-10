@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Mail;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mail\DemoMail;
 
 
 class AgentsController extends Controller
@@ -153,9 +155,9 @@ class AgentsController extends Controller
         return view ('agents.posstable');
     }
 
-    public function upload_attempt()
+    public function agentselfregistration()
     {
-        return view ('agents.uploadattemptform');
+        return view ('selfregportal.register');
     }
 
     public function user_profile()
@@ -166,5 +168,17 @@ class AgentsController extends Controller
     public function musicpage()
     {
         return view ('agents.viewmusicpage');
+    }
+
+    public function mailtest()
+    {
+        $mailData = [
+            'title' => 'Mail from ItSolutionStuff.com',
+            'body' => 'This is for testing email using smtp.'
+        ];
+         
+        Mail::to('brianchemo@gmail.com')->send(new DemoMail($mailData));
+           
+        dd("Email is sent successfully.");
     }
 }
