@@ -28,6 +28,8 @@ class AgentsController extends Controller
             $salutation = 'Good Evening';
         }
 
+        $transactions = DB::table('tbl_transactions')->get();
+
         //count all the agents
         $agentCount = DB::table('tbl_agents')->count();
         //count all the POS
@@ -37,6 +39,7 @@ class AgentsController extends Controller
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents
             'POSCount' => $POSCount,// counts number of POS
+            'transactions' => $transactions,// Transactions lists
             // Add more data to the array as needed
         ];
 

@@ -241,13 +241,14 @@
 										</tr>
 									</thead>
 									<tbody>
+									@foreach($transactions as $data)
 										<tr>
-											<td>1</td>
-											<td>Project Apollo</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
+											<td>{{ $loop->iteration }}</td>
+											<td>{{ $data->Name }} </td>
+											<td class="d-none d-xl-table-cell">{{ $data->BillerName }}</td>
+											<td class="d-none d-xl-table-cell">{{ $data->ConsumerIdField }}</td>
+											<td class="d-none d-xl-table-cell">{{ $data->BillerType }}</td>
+											<td class="d-none d-xl-table-cell">{{ $data->ItemFee }}</td>
 										
 											
 											<td>
@@ -257,38 +258,10 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Project Fireball</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
-									
-											<td>
-											<span class="badge bg-danger">Cancelled</span>
-                                                <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-											</td>
-										</tr>
+										@endforeach
 										
-										<tr>
-											<td>3</td>
-											<td>Project Nitro</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
-											<td class="d-none d-xl-table-cell">15,000</td>
-			
-											<td>
-											<span class="badge bg-warning">Processing</span>
-                                                <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-											</td>
-										</tr>
 										
+																				
 										
 									</tbody>
 								</table>
