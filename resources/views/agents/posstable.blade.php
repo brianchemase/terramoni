@@ -56,6 +56,7 @@
 									<table id="datatables-buttons" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
+												<th>#</th>
 												<th>Device ID</th>
 												<th>Device S/N</th>
 												<th>Device OS</th>
@@ -65,42 +66,37 @@
 											</tr>
 										</thead>
 										<tbody>
-										<tr>
-												<td>Tiger Nixon <br> 18th July 2023</td>
-												<td>System Architect <br> Phone</td>
-												<td>Edinburgh, Country</td>
-												<td>Samsung <br> SRN</td>
-												<td><span class="badge bg-danger">Suspended</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
-											</tr>
+										@foreach($pos_terminals as $data)
 											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td><span class="badge bg-success">Active</span></td>
+											<td>{{ $loop->iteration }} </td>
+										
+												<td>{{ $data->device_name }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
+												<td>{{ $data->serial_no }} <br> {{ $data->device_os }}</td>
+												<td>{{ $data->device_os }}</td>
+												<td>{{ $data->owner_name }} <br> {{ $data->owner_type }}</td>
+
+
+
+												<td>
+													@if($data->status == 'Assigned')
+														<span class="badge bg-success">Active</span>
+													@elseif($data->status == 'faulty')
+														<span class="badge bg-danger">Faulty</span>
+													@elseif($data->status == 'available')
+														<span class="badge bg-warning">Inactive</span>
+													@endif
+												
+
+												</td>
 												<td>
 												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
                                                 <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
 												
 												</td>
 											</tr>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td><span class="badge bg-info">Inactive</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
-											</tr>
+											@endforeach
+											
+										
 										</tbody>
 									</table>
 								</div>

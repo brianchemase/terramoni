@@ -36,7 +36,7 @@
 					</li>
 
                     <li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('musicattempt')}}">
+						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Reports</span>
                         </a>
 					</li>
@@ -50,13 +50,13 @@
 						Other
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('musicattempt')}}">
+						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
                         </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('musicattempt')}}">
+						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Settings</span>
                         </a>
 					</li>

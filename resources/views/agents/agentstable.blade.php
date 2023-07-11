@@ -63,8 +63,9 @@
 											</tr>
 										</thead>
 										<tbody>
-										<tr>
 										@foreach($agents as $data)
+												<tr>
+										
 												<td>{{ $loop->iteration }} </td>
 												<td>{{ $data->national_id_no }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
 												<td>{{ $data->first_name }} {{ $data->last_name }}<br> {{ $data->phone }}</td>

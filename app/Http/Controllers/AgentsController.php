@@ -30,10 +30,13 @@ class AgentsController extends Controller
 
         //count all the agents
         $agentCount = DB::table('tbl_agents')->count();
+        //count all the POS
+        $POSCount = DB::table('tbl_pos_terminals')->count();
 
         $data = [
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents
+            'POSCount' => $POSCount,// counts number of POS
             // Add more data to the array as needed
         ];
 
@@ -154,7 +157,18 @@ class AgentsController extends Controller
 
     public function postterminalstab()
     {
-        return view ('agents.posstable');
+        $pos_terminals = DB::table('tbl_pos_terminals')->get();
+
+        //return $pos_terminals;
+        return view ('agents.posstable', compact('pos_terminals'));
+    }
+
+    public function savepostterminal()
+    {
+        $pos_terminals = DB::table('tbl_pos_terminals')->get();
+
+        //return $pos_terminals;
+        return view ('agents.posstable', compact('pos_terminals'));
     }
 
     public function agentselfregistration()

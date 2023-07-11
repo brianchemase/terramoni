@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\AuthOtpController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +18,23 @@ use App\Http\Controllers\AgentsController;
 //     return view('welcome');
 // });
 
+// Route::controller(AuthOtpController::class)->group(function(){
+//     Route::get('/otp/login', 'login')->name('otp.login');
+//     Route::any('/otp/generate', 'generate')->name('otp.generate');
+//     Route::get('/otp/verification/{user_id}', 'verification')->name('otp.verification');
+//     Route::post('/otp/login', 'loginWithOtp')->name('otp.getlogin');
+// });
+
+Route::get('/otp/login', [AuthOtpController::class, 'login'])->name('otp.login');
+Route::any('/otp/generate', [AuthOtpController::class, 'generate'])->name('otp.generate');
+Route::any('/otp/verification/{user_id}', [AuthOtpController::class, 'verification'])->name('otp.verification');
+Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.getlogin');
+// Route::get('/validateOtp', [AuthOtpController::class, 'validateotp'])->name('validateotp');
+
 
 
 Route::get('/', [AgentsController::class, 'dashboard'])->name('musicdash');
-Route::get('/musiclist', [AgentsController::class, 'tables'])->name('musiclist');
+//Route::get('/musiclist', [AgentsController::class, 'tables'])->name('musiclist');
 Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
 Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
 Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
@@ -43,6 +57,7 @@ Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])-
 
 // view list of all POS Terminals
 Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
+Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
 
 // upload music attempt
 Route::get('/SubmitAttempt', [AgentsController::class, 'upload_attempt'])->name('musicattempt');

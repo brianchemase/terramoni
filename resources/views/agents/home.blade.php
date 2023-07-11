@@ -102,7 +102,7 @@
 										</div>
 									</div>
 								
-									<h1 class="mt-1 mb-3">600</h1>
+									<h1 class="mt-1 mb-3">{{ number_format($POSCount) }}</h1>
 									<div class="mb-0">
 										
 										<span class="text-muted"><a href="{{route('posterminalslist')}}">View More</a></span>
