@@ -50,6 +50,8 @@ Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->
 // my view agents list
 Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
 Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
+//pending agents table
+Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
 
 // view aggregators list
 Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
@@ -59,8 +61,9 @@ Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])-
 Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
 Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
 
-// upload music attempt
-Route::get('/SubmitAttempt', [AgentsController::class, 'upload_attempt'])->name('musicattempt');
+// POS Allocation to agents t
+Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
+Route::get('/giveAllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('assignagentspos');
 
 // user profile
 Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');

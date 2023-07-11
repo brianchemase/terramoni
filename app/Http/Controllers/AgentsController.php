@@ -82,6 +82,33 @@ class AgentsController extends Controller
         return view ('agents.agentstable', compact('agents'));
     }
 
+    public function compliance_agentstab()
+    {
+        $agents = DB::table('tbl_agents')
+            ->where('status', '!=', 'approved')
+            ->get();
+
+
+       // return $agents;
+        return view ('agents.pendingagentstable', compact('agents'));
+    }
+
+    public function agentsposallocation()
+    {
+        $agents = DB::table('tbl_agents')
+            ->where('status', 'approved')
+            ->get();
+
+
+        $pos_terminals = DB::table('tbl_pos_terminals')
+            ->where('status', 'available')
+            ->get();
+
+
+       //return $pos_terminals;
+        return view ('agents.posallocation', compact('agents','pos_terminals'));
+    }
+
     public function savenewagent(Request $request)
 	{
         $input = request()->all();

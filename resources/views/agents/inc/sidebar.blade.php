@@ -41,19 +41,36 @@
                         </a>
 					</li>
 
-				
-
-				
-
 
 					<li class="sidebar-header">
 						Other
 					</li>
+					
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('blankpage')}}">
-                            <i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
-                        </a>
+						<a data-target="#compliance" data-toggle="collapse" class="sidebar-link collapsed">
+							<i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
+						</a>
+						<ul id="compliance" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('complianceagentstab')}}">Agents</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Aggregators</a></li>
+							
+						</ul>
 					</li>
+					<li class="sidebar-header">
+						Allocations
+					</li>
+
+					<li class="sidebar-item">
+						<a data-target="#allocations" data-toggle="collapse" class="sidebar-link collapsed">
+							<i class="align-middle" data-feather="award"></i> <span class="align-middle"> Allocations</span>
+						</a>
+						<ul id="allocations" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('agentsposallocation')}}">Agents Allocation</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">POS Allocation</a></li>
+							
+						</ul>
+					</li>
+
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
