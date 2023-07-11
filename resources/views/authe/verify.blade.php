@@ -10,13 +10,13 @@
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="{{asset('clientsdash/img/icons/icon-48x48.png')}}" />
+	<link rel="shortcut icon" href="{{asset('dash/img/icons/icon-48x48.png')}}" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
 
-	<title>Verify | SISDO CLIENTS</title>
+	<title>Verify Login</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{asset('clientsdash/css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -38,7 +38,7 @@
 							<div class="card-body">
 								<div class="m-sm-4">
 									
-									<form action="{{route('validateotp')}}" methot="POST">
+									<form action="{{route('otp.getlogin')}}" methot="POST">
 									@if(Session::has('success'))
                                                 <div class="alert alert-success">{{Session::get('success')}}</div>
                                             @endif
@@ -48,8 +48,8 @@
 										@csrf
 										<div class="mb-3">
 											<label class="form-label">Enter OTP</label>
-											<input type="hidden" name="client_id" value="{{ session('clientloggingid') }}"> 
-											<input class="form-control form-control-lg" type="text" name="OTP" placeholder="Key in your OTP" />
+											<input type="hidden" name="user_id" value="{{ session('clientloggingid') }}"> 
+											<input class="form-control form-control-lg" type="text" name="otp" placeholder="Key in your OTP" />
 										</div>
 										
 										
@@ -67,7 +67,7 @@
 		</div>
 	</main>
 
-    <script src="{{asset('clientsdash/js/app.js')}}"></script>
+    <script src="{{asset('dash/js/app.js')}}"></script>
 
 </body>
 

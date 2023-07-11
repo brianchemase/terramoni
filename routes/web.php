@@ -26,7 +26,7 @@ use App\Http\Controllers\AuthOtpController;
 // });
 
 Route::get('/otp/login', [AuthOtpController::class, 'login'])->name('otp.login');
-Route::any('/otp/generate', [AuthOtpController::class, 'generate'])->name('otp.generate');
+Route::get('/otp/generate', [AuthOtpController::class, 'generate'])->name('otp.generate');
 Route::any('/otp/verification/{user_id}', [AuthOtpController::class, 'verification'])->name('otp.verification');
 Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.getlogin');
 // Route::get('/validateOtp', [AuthOtpController::class, 'validateotp'])->name('validateotp');
