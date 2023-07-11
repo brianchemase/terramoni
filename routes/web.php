@@ -40,6 +40,7 @@ Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
 Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
 
 Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
+Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'])->name('agentsselfregister');
 
 
 Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
@@ -50,6 +51,8 @@ Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->
 // my view agents list
 Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
 Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
+
+
 //pending agents table
 Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
 

@@ -180,6 +180,54 @@ class AgentsController extends Controller
 		}
 	}
 
+    public function storeselfregagent(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'first_name' => 'required|max:50',
+            //'mid_name' => 'required|max:50',
+            'last_name' => 'required|max:50',
+            'phone' => 'required|max:50',
+            'email' => 'required|max:50',
+            'gender' => 'required|max:50',
+            'location' => 'required|max:225',
+            'country' => 'required|max:225',
+            'BVN' => 'required|max:50',
+            'national_id_no' => 'required|max:50',
+            //'passport' => 'required|max:225',
+           // 'birth_date' => 'required|date',
+            // Add additional validation rules for other fields
+        ]);
+
+        // Store the agent record in the database using DB facade
+        $agentData = [
+            'first_name' => $validatedData['first_name'],
+            //'mid_name' => $validatedData['mid_name'],
+            'last_name' => $validatedData['last_name'],
+            'phone' => $validatedData['phone'],
+            'email' => $validatedData['email'],
+            'gender' => $validatedData['gender'],
+            'location' => $validatedData['location'],
+            'country' => $validatedData['country'],
+            'status' => 'pending',
+            'BVN' => $validatedData['BVN'],
+            'national_id_no' => $validatedData['national_id_no'],
+            //'passport' => $validatedData['passport'],
+            'registration_date' => date('Y-m-d'),
+            'validation_date' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        $inserted = DB::table('tbl_agents')->insert($agentData);
+
+        if ($inserted) {
+            return Redirect::back()->with('success', 'Agent data saved successfully!');
+        } else {
+            return Redirect::back()->with('error', 'Error occurred while saving agent data. Please try again.');
+        }
+    }
+
     public function aggregatorstab()
     {
         return view ('agents.aggregatorstable');
