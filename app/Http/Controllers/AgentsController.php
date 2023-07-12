@@ -240,14 +240,30 @@ class AgentsController extends Controller
         //return $pos_terminals;
         return view ('agents.posstable', compact('pos_terminals'));
     }
-
-    public function savepostterminal()
+    public function savePosData(Request $request)
     {
-        $pos_terminals = DB::table('tbl_pos_terminals')->get();
+        $deviceName = $request->input('device_name');
+        $serialNo = $request->input('serialno');
+        $deviceOS = $request->input('device_os');
+        $status="available";
+        $owner_type="Store";
+        $registration_date= Carbon::now();
 
-        //return $pos_terminals;
-        return view ('agents.posstable', compact('pos_terminals'));
+        // Insert data into the tbl_pos_terminals table
+        DB::table('tbl_pos_terminals')->insert([
+            'device_name' => $deviceName,
+            'serial_no' => $serialNo,
+            'device_os' => $deviceOS,
+            'status' => $status,
+            'owner_type' => $owner_type,
+            'registration_date' => $registration_date,
+        ]);
+
+        // Redirect back or to a success page
+        return redirect()->back()->with('success', 'POS data saved successfully.');
     }
+
+   
 
     public function agentselfregistration()
     {
