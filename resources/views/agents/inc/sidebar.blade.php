@@ -9,7 +9,8 @@
 						System Tabs
 					</li>
 
-					<li class="sidebar-item ">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'admindash' ? 'active' : '' }}">
+					<!-- <li class="sidebar-item "> -->
 						<a class="sidebar-link" href="{{route('admindash')}}">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                         </a>
@@ -18,24 +19,24 @@
 					
 					
 
-					<li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'agentstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentstab')}}">
                             <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
                         </a>
 					</li>
-                    <li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'aggregatorslist' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('aggregatorslist')}}">
                             <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Aggregators</span>
                         </a>
 					</li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item {{ Route::currentRouteName() === 'posterminalslist' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('posterminalslist')}}">
                             <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">POS Terminal</span>
                         </a>
 					</li>
 
-                    <li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Reports</span>
                         </a>
@@ -46,7 +47,7 @@
 						Other
 					</li>
 					
-					<li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
 						<a data-target="#compliance" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
 						</a>
@@ -60,7 +61,7 @@
 						Allocations
 					</li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'agentsposallocation' ? 'active' : '' }}">
 						<a data-target="#allocations" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="award"></i> <span class="align-middle"> Allocations</span>
 						</a>
@@ -72,7 +73,7 @@
 					</li>
 
 
-					<li class="sidebar-item">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Settings</span>
                         </a>
