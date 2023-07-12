@@ -16,6 +16,7 @@
 									<h5 class="card-title mb-0">Under Contruction</h5>
 								</div>
 								<div class="card-body">
+									<img src="{{asset('dash/img/avatars/excited.gif')}}" width="1000" alt="USername" />
 								</div>
 							</div>
 						</div>
