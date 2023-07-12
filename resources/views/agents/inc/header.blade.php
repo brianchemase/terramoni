@@ -18,10 +18,10 @@
 								<img src="{{asset('dash/img/avatars/avatar.jpg')}}" class="avatar img-fluid rounded mr-1" alt="USername" /> <span class="text-dark">Username</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="{{route('userprofilepage')}}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
 								<a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1" data-feather="settings"></i> Settings &
+								<a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="settings"></i> Settings &
 									Privacy</a>
 								<a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>

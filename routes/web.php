@@ -14,9 +14,9 @@ use App\Http\Controllers\AuthOtpController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route::controller(AuthOtpController::class)->group(function(){
 //     Route::get('/otp/login', 'login')->name('otp.login');
@@ -32,15 +32,17 @@ Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.
 // Route::get('/validateOtp', [AuthOtpController::class, 'validateotp'])->name('validateotp');
 
 
+Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
+Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'])->name('agentsselfregister');
 
-Route::get('/', [AgentsController::class, 'dashboard'])->name('musicdash');
-//Route::get('/musiclist', [AgentsController::class, 'tables'])->name('musiclist');
+Route::group(['prefix' => 'admins'], function() {
+
+Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
 Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
 Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
 Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
 
-Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
-Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'])->name('agentsselfregister');
+
 
 
 Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
@@ -63,6 +65,7 @@ Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])-
 // view list of all POS Terminals
 Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
 Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
+Route::post('/savePOS', [AgentsController::class, 'savenewpos'])->name('saveposdata');// save pos data
 
 // POS Allocation to agents t
 Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
@@ -73,3 +76,4 @@ Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('use
 
 // user profile
 Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
+});

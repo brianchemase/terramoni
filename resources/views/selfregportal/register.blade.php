@@ -20,17 +20,17 @@
                 <div class="signup-img">
                     <img src="registration/images/signup-img.jpg" alt="">
                 </div>
- @if(session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
+                    @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
 
                 <div class="signup-form">
