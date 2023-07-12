@@ -7,13 +7,13 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Under Constraction</h1>
+					<h1 class="h3 mb-3">Under Contruction</h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Under Constraction</h5>
+									<h5 class="card-title mb-0">Under Contruction</h5>
 								</div>
 								<div class="card-body">
 								</div>
