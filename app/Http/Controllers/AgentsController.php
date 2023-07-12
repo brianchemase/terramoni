@@ -304,6 +304,42 @@ class AgentsController extends Controller
         }
     }
 
+    public function storeSms(Request $request)
+    {
+        $json = $request->getContent();
+
+        $data = json_decode($json, true);
+
+        $messageData = $data['SMSMessageData'];
+        $recipient = $messageData['Recipients'][0];
+
+        $agent_id = rand(1, 899);
+        $agent = DB::table('tbl_agents')
+            ->select('first_name', 'last_name')
+            ->where('id', $agent_id)
+            ->first();
+
+        $agent_names = null;
+        if ($agent) {
+            $agent_names = $agent->first_name . ' ' . $agent->last_name;
+        }
+
+
+        $insertData = [
+            'Name' => $messageData['Message'],
+            //'recipient_status' => $recipient['status'],
+            'BillerName' => $recipient['number'],
+           // 'recipient_message_id' => $recipient['messageId'],
+            'ConsumerIdField' => $agent_names,
+            'BillerType' => 'SMS Purchase',
+            'ItemFee' => $recipient['cost'],
+        ];
+
+        DB::table('tbl_transactions')->insert($insertData);
+
+        return response()->json(['success' => true]);
+    }
+
     public function user_profile()
     {
         return view ('agents.userprofile');
