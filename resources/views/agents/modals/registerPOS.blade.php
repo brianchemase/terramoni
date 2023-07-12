@@ -12,11 +12,11 @@
 			@csrf
 				<div class="col-md-4">
 					<label for="validationDefault01" class="form-label">Device name</label>
-					<input type="text" class="form-control" id="validationDefault01" name="device_name" placeholder="Enter Device Name" required>
+					<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="device_name" placeholder="Enter Device Name" required>
 				</div>
 				<div class="col-md-4">
 					<label for="validationDefault02" class="form-label">Serial No</label>
-					<input type="text" class="form-control" id="validationDefault02" name="serialno" placeholder="Enter Device Serial No" >
+					<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="serialno" placeholder="Enter Device Serial No" >
 				</div>
 				
 				<div class="col-md-4">

@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <h4 class="text-center"><img src="{{ url('storage/ppts/'.$data->passport) }}"  style="height: 400px; width: 350px;"> </h4>
+            <h4 class="text-center"><img src="{{ asset('storage/ppts/'.$data->passport) }}"  style="height: 400px; width: 350px;"> </h4>
             <h4 class="text-center">Client number: {{$data->id}} </h4>
             <h5 >Name: {{$data->first_name}} {{$data->last_name}}</h5>
             <h5 >ID Number: {{$data->national_id_no}}</h5>

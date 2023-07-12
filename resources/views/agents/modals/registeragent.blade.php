@@ -12,15 +12,15 @@
 											@csrf
 												<div class="col-md-4">
 													<label for="validationDefault01" class="form-label">First name</label>
-													<input type="text" class="form-control" id="validationDefault01" name="fname" placeholder="Enter Fitst name" required>
+													<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="fname" placeholder="Enter Fitst name" required>
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Middle name</label>
-													<input type="text" class="form-control" id="validationDefault02" name="mname" placeholder="Enter Middle name (optional)" >
+													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="mname" placeholder="Enter Middle name (optional)" >
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Last name</label>
-													<input type="text" class="form-control" id="validationDefault02" name="lname" placeholder="Enter Last name" required>
+													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="lname" placeholder="Enter Last name" required>
 												</div>
 												
 												<div class="col-md-4">
@@ -45,7 +45,7 @@
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault05" class="form-label">BVN No</label>
-													<input type="text" class="form-control" id="validationDefault05" name="bvn" placeholder="Enter Valid BVN No" required>
+													<input type="text" class="form-control" id="validationDefault05" name="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Valid BVN No" required>
 												</div>
 
 												<div class="col-md-4">

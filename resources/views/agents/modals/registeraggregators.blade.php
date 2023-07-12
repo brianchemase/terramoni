@@ -12,15 +12,15 @@
 			@csrf
 				<div class="col-md-6">
 					<label for="validationDefault01" class="form-label">Company name</label>
-					<input type="text" class="form-control" id="validationDefault01" name="fname" placeholder="Enter Company name" required>
+					<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="cname" placeholder="Enter Company name" required>
 				</div>
 				<div class="col-md-6">
 					<label for="validationDefault02" class="form-label">Tax ID</label>
-					<input type="text" class="form-control" id="validationDefault02" name="mname" placeholder="Enter TAX ID" >
+					<input type="text" class="form-control" id="validationDefault02" name="mname" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter TAX ID" >
 				</div>
 				<div class="col-md-4">
 					<label for="validationDefault02" class="form-label">Registration No </label>
-					<input type="text" class="form-control" id="validationDefault02" name="lname" placeholder="Enter Company Registration No" required>
+					<input type="text" class="form-control" id="validationDefault02" name="lname" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Company Registration No" required>
 				</div>
 
 				<div class="col-md-4">

@@ -130,12 +130,18 @@ class AgentsController extends Controller
 	   if ($request->hasFile('ppt')) {
 
 		$request->validate([
-			'image' => 'mimes:png,jpg,jpeg|max:2048' // Only allow .jpg, .bmp and .png file types.
+			'ppt' => 'mimes:png,jpg,jpeg|max:2048' // Only allow .jpg, .bmp and .png file types.
 		]);
 
 
 		 // Save the file locally in the storage/public/ folder under a new folder named /ppts
 		 $request->ppt->store('ppts', 'public');
+
+         if ($request->file('ppt')->isValid()) {
+            $path = $request->file('ppt')->store('ppts', 'public');
+        
+            //return $path;
+        }
 
 
       $save= DB::table('tbl_agents')->insert([
@@ -154,20 +160,6 @@ class AgentsController extends Controller
             'validation_date' => null, // Assuming the validation date is initially null
         ]);
         
-
-		//Insert data into database
-		// $new_client = new ClientsData;
-		// $new_client->first_name = $request->fname;
-		// $new_client->middle_name = $request->mname;
-		// $new_client->last_name = $request->lname;
-		// //$new_client->station = $request->station;
-		// $new_client->email = $request->email;
-		// $new_client->phone = $request->phone;
-		// $new_client->gender = $request->gender;
-		// $new_client->location = $request->location;
-		// $new_client->id_number = $request->id_number;
-		// $new_client->passport = $request->ppt->hashName();
-		// $save = $new_client->save();
 
 
 		 if($save){
