@@ -133,7 +133,7 @@ class AgentsController extends Controller
 			'ppt' => 'mimes:png,jpg,jpeg|max:2048' // Only allow .jpg, .bmp and .png file types.
 		]);
 
-
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
 		 // Save the file locally in the storage/public/ folder under a new folder named /ppts
 		 $request->ppt->store('ppts', 'public');
 
