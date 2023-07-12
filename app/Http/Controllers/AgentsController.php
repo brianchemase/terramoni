@@ -52,7 +52,7 @@ class AgentsController extends Controller
     }
     public function blank()
     {
-        return view ('agents.blank');
+        return view ('agents.underconstraction');
     }
 
 
