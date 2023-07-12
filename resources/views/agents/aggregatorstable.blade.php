@@ -20,26 +20,10 @@
 
 								<!-- BEGIN primary modal -->
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
-										Register Aggregators
+									<i class="fa fa-tasks" aria-hidden="true"></i> Register Aggregator
 									</button>
-									<div class="modal fade" id="defaultModalPrimary" tabindex="-1" aria-hidden="true" style="display: none;">
-										<div class="modal-dialog" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title">Register aggregators</h5>
-													<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-												</div>
-												<div class="modal-body m-3">
-													<p class="mb-0">Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user
-														notifications, or completely custom content.</p>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="button" class="btn btn-primary">Save changes</button>
-												</div>
-											</div>
-										</div>
-									</div>
+									@include('agents.modals.registeraggregators')
+								
 									<!-- END primary modal -->
 								</div>
 							</div>

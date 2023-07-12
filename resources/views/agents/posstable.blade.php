@@ -44,7 +44,7 @@
 								<div class="card-body">
 									
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
-									<i class="fa fa-tasks" aria-hidden="true"></i> Register POS Terminal
+									<i class="fa fa-mobile" aria-hidden="true"></i> Register POS Terminal
 									</button>
 									@include('agents.modals.registerPOS')
 								</div>

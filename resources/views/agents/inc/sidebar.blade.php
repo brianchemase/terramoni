@@ -9,7 +9,7 @@
 						System Tabs
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item ">
 						<a class="sidebar-link" href="{{route('admindash')}}">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                         </a>
