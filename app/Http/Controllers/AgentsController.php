@@ -340,6 +340,10 @@ class AgentsController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function complianceform()
+    {
+        return view ('agents.complianceform');
+    }
     public function user_profile()
     {
         return view ('agents.userprofile');

@@ -57,6 +57,8 @@ Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('save
 
 //pending agents table
 Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
+// kyc form
+Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 
 // view aggregators list
 Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
