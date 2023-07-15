@@ -17,10 +17,7 @@ class AirtimeController extends Controller
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
-        $ip_add = $_SERVER['REMOTE_ADDR'];
-        return $ip_add;
-
-        $url = "https:/clients.primeairtime.com//api/topup/exec/$phoneNumber";
+        $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
         $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk2MDkwNDQ2NjF9.oXthjBundp0Zq-4MOCghUkZ9mEEg6EndfThQGdqjBBs";
         $data = [
@@ -36,6 +33,8 @@ class AirtimeController extends Controller
         //     "Authorization" => $authorization
         // ])->post($url, $data);
 
+        //return $response;
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -49,19 +48,20 @@ class AirtimeController extends Controller
 
         $response = curl_exec($ch);
 
-        //return $response;
-
         // if ($response->failed()) {
         //     return response()->json(['error' => 'API Request Failed'], 500);
         // }
 
         // return response()->json(['response' => $response->json()], 200);
 
-        if ($response=== false) {
+        if ($response === false) {
+            
             return $response;
-            //return response()->json(['error' => 'API Request Failed'], 500);
+           // return response()->json(['error' => 'API Request Failed'], 500);
         }
+
         return $response;
-        //return response()->json(['response' => $response->json()], 200);
+       // return response()->json(['response' => $response->json()], 200);
+        
     }
 }
