@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 
 class AirtimeController extends Controller
@@ -62,6 +63,22 @@ class AirtimeController extends Controller
 
        // Process the API response
     $responseData = json_decode($response, true);
+
+     // Extract the desired data from the API response
+     $productId = $responseData['product_id'];
+     $target = $responseData['target'];
+     $topupAmount = $responseData['topup_amount'];
+     $paidCurrency = $responseData['paid_currency'];
+ 
+     // Store the data into the tbl_transactions table using the DB facade
+     DB::table('tbl_transactions')->insert([
+         'Name' => $productId,
+         'BillerName' => $target,
+         'ItemFee' => $topupAmount,
+         'CurrencySymbol' => $paidCurrency,
+         'BillerType' => 'Airtime Top up',
+     ]);
+
 
     // Return the API response in a well-structured manner
     return response()->json($responseData, 200);
