@@ -14,6 +14,8 @@ class AirtimeController extends Controller
     {
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
 
         $url = "https:/clients.primeairtime.com//api/topup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
@@ -23,15 +25,36 @@ class AirtimeController extends Controller
             "denomination" => $denomination,
             "send_sms" => false,
             "sms_text" => "",
-            "customer_reference" => "myref204020020e2e30dk"
+            "customer_reference" => $refnumber
         ];
 
-        $response = Http::withHeaders([
-            "Content-Type" => "application/json",
-            "Authorization" => $authorization
-        ])->post($url, $data);
+        // $response = Http::withHeaders([
+        //     "Content-Type" => "application/json",
+        //     "Authorization" => $authorization
+        // ])->post($url, $data);
 
-        if ($response->failed()) {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type: application/json",
+            "Authorization: $authorization"
+        ));
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        //return $response;
+
+        // if ($response->failed()) {
+        //     return response()->json(['error' => 'API Request Failed'], 500);
+        // }
+
+        // return response()->json(['response' => $response->json()], 200);
+
+        if ($response=== false) {
             return response()->json(['error' => 'API Request Failed'], 500);
         }
 
