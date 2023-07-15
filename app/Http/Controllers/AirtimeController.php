@@ -17,6 +17,9 @@ class AirtimeController extends Controller
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
+        $ip_add = $_SERVER['REMOTE_ADDR'];
+        return $ip_add;
+
         $url = "https:/clients.primeairtime.com//api/topup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
         $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk2MDkwNDQ2NjF9.oXthjBundp0Zq-4MOCghUkZ9mEEg6EndfThQGdqjBBs";
