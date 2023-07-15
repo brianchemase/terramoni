@@ -29,13 +29,6 @@ class AirtimeController extends Controller
             "customer_reference" => $refnumber
         ];
 
-        // $response = Http::withHeaders([
-        //     "Content-Type" => "application/json",
-        //     "Authorization" => $authorization
-        // ])->post($url, $data);
-
-        //return $response;
-
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -49,17 +42,24 @@ class AirtimeController extends Controller
 
         $response = curl_exec($ch);
 
-        // if ($response->failed()) {
-        //     return response()->json(['error' => 'API Request Failed'], 500);
-        // }
-
-        // return response()->json(['response' => $response->json()], 200);
-
         if ($response === false) {
             
             return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
            // return response()->json(['error' => 'API Request Failed'], 500);
         }
+
+
+        $agent_id = rand(1, 899);
+        $agent = DB::table('tbl_agents')
+            ->select('first_name', 'last_name')
+            ->where('id', $agent_id)
+            ->first();
+
+        $agent_names = null;
+        if ($agent) {
+            $agent_names = $agent->first_name . ' ' . $agent->last_name;
+        }
+        
 
        // Process the API response
     $responseData = json_decode($response, true);
@@ -74,6 +74,7 @@ class AirtimeController extends Controller
      DB::table('tbl_transactions')->insert([
          'Name' => $productId,
          'BillerName' => $target,
+         'ConsumerIdField' => $agent_names,
          'ItemFee' => $topupAmount,
          'CurrencySymbol' => $paidCurrency,
          'BillerType' => 'Airtime Top up',
@@ -82,7 +83,6 @@ class AirtimeController extends Controller
 
     // Return the API response in a well-structured manner
     return response()->json($responseData, 200);
-       // return response()->json(['response' => $response->json()], 200);
         
     }
 }
