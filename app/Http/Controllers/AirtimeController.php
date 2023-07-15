@@ -55,9 +55,10 @@ class AirtimeController extends Controller
         // return response()->json(['response' => $response->json()], 200);
 
         if ($response=== false) {
-            return response()->json(['error' => 'API Request Failed'], 500);
+            return $response;
+            //return response()->json(['error' => 'API Request Failed'], 500);
         }
-
-        return response()->json(['response' => $response->json()], 200);
+        return $response;
+        //return response()->json(['response' => $response->json()], 200);
     }
 }
