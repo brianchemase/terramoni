@@ -20,8 +20,6 @@
 									<img src="{{asset('dash/img/avatars/avatar-4.jpg')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
 									<h5 class="card-title mb-0">Client Names</h5>
 									<div class="text-muted mb-2">Location</div>
-
-									
 								</div>
 								
 								<hr class="my-0" />
@@ -58,10 +56,7 @@
 									<img src="{{asset('dash/img/avatars/avatar-4.jpg')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
 									<h5 class="card-title mb-0">Client Names</h5>
 									<div class="text-muted mb-2">Location</div>
-
-									
 								</div>
-								
 								<hr class="my-0" />
 								<div class="card-body">
 									<h5 class="h6 card-title">Shared Details</h5>
@@ -83,15 +78,10 @@
 									
 													<img src="{{asset('dash/img/photos/holder.png')}}" width="1250" height="500" class="img-fluid pr-2" alt="Unsplash">
 									</div>
-								
 								</div>
 							</div>
 						</div>
-
-						
 					</div>
-
-
 				</div>
 			</main>
 @endsection
