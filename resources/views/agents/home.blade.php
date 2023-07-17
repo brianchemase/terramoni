@@ -229,6 +229,7 @@
 									<thead>
 										<tr>
 											<th>#</th>
+											<th>Date</th>
 											<th>Transaction</th>
 											<th class="d-none d-xl-table-cell">Customer</th>
 											<th class="d-none d-xl-table-cell">Agent</th>
@@ -244,7 +245,9 @@
 									@foreach($transactions as $data)
 										<tr>
 											<td>{{ $loop->iteration }}</td>
+											<td>{{ \Carbon\Carbon::parse($data->transaction_date)->format('jS M Y H:i:s') }} </td>
 											<td>{{ $data->Name }} </td>
+											
 											<td class="d-none d-xl-table-cell">{{ $data->BillerName }}</td>
 											<td class="d-none d-xl-table-cell">{{ $data->ConsumerIdField }}</td>
 											<td class="d-none d-xl-table-cell">{{ $data->BillerType }}</td>

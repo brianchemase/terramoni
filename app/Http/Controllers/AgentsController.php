@@ -28,7 +28,10 @@ class AgentsController extends Controller
             $salutation = 'Good Evening';
         }
 
-        $transactions = DB::table('tbl_transactions')->get();
+        //$transactions = DB::table('tbl_transactions')->get();
+        $transactions = DB::table('tbl_transactions')
+                ->orderBy('Id', 'desc')
+                ->get();
 
         //count all the agents
         $agentCount = DB::table('tbl_agents')->count();
