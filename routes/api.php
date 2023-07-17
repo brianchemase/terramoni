@@ -27,4 +27,6 @@ Route::post('/smstransactions', [AgentsController::class, 'storeSms']);
 
 Route::post('/AirtimeTopup', [AirtimeController::class, 'topup']);
 
+Route::post('/DataTopup', [AirtimeController::class, 'datatopup']);
+
 
