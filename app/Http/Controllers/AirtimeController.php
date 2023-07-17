@@ -20,7 +20,7 @@ class AirtimeController extends Controller
 
         $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
-        $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc0MjkxNTB9.lsfMoDtnwNGoQJqCRVGSSzsqVJDLYC4VzlZyhJHvg2I";
+        $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc1MzA4ODd9.TDwvq6TXVXhATAr_Z_vI5yHqDDAFoNenPfSIZ544LQw";
         $data = [
             "product_id" => "MFIN-5-OR",
             "denomination" => $denomination,
