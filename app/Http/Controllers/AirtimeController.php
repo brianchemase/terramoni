@@ -99,7 +99,7 @@ class AirtimeController extends Controller
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
         $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk2MDkwNDQ2NjF9.oXthjBundp0Zq-4MOCghUkZ9mEEg6EndfThQGdqjBBs";
         $data = [
-            "product_id" => "MFIN-5-OR",
+            "product_id" => "D-MFIN-5-50",
             "denomination" => $denomination,
             "send_sms" => false,
             "sms_text" => "",
@@ -119,7 +119,7 @@ class AirtimeController extends Controller
 
         $response = curl_exec($ch);
 
-        return $response;
+       // return $response;
 
         if ($response === false) {
             
