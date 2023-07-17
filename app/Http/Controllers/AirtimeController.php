@@ -119,7 +119,7 @@ class AirtimeController extends Controller
 
         $response = curl_exec($ch);
 
-       // return $response;
+       return $response;
 
         if ($response === false) {
             
