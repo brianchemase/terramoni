@@ -119,6 +119,8 @@ class AirtimeController extends Controller
 
         $response = curl_exec($ch);
 
+        return $response;
+
         if ($response === false) {
             
             return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
