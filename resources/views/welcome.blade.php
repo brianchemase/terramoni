@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
-    <title>Chain App Dev - App Landing Page HTML5 Template</title>
+    <title>TerraMoni</title>
 
     <!-- Bootstrap core CSS -->
     <link href="landing/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -174,7 +174,7 @@ https://templatemo.com/tm-570-chain-app-dev
               <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h2>Get The Latest App From App Stores</h2>
+                    <h2>Welcome to TerraMoni</h2>
                     <p>Chain App Dev is an app landing page HTML5 template based on Bootstrap v5.1.3 CSS layout provided by TemplateMo, a great website to download free CSS templates.</p>
                   </div>
                   <div class="col-lg-12">

@@ -71,7 +71,7 @@ Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('savepos
 
 // POS Allocation to agents t
 Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
-Route::get('/giveAllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('assignagentspos');
+Route::get('/giveAllocationToAgents', [AgentsController::class, 'updateagentposallocation'])->name('assignagentspos');
 
 // user profile
 Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');

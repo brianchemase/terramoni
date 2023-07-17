@@ -112,6 +112,50 @@ class AgentsController extends Controller
         return view ('agents.posallocation', compact('agents','pos_terminals'));
     }
 
+    public function updateagentposallocation(Request $request)
+    {
+
+        $input = $request->all();
+      
+
+         // Retrieve the selected agent ID from the form
+    $agentId = $request->input('agentid');
+
+    // Retrieve the selected POS IDs from the form
+    $posIds = $request->input('posid');
+    $posCount = count($posIds);
+
+    $agentNames = DB::table('tbl_agents')
+        ->whereIn('id', [$agentId])
+        ->pluck(DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+        ->first();
+
+       // return $agentNames;
+
+    // Perform any necessary validation or processing here
+
+   $allocate= DB::table('tbl_pos_terminals')
+    ->whereIn('id', $posIds)
+    ->update([
+        'agent_id' => $agentId,
+        'owner_name' => $agentNames,
+        'owner_type' => 'Agent',
+        'status' => 'Assigned'
+    ]);
+
+
+   // return $input;
+
+   if($allocate){
+    //Mail::to($email)->send(new AccountRegistration($fname,$username));
+    return back()->with('success','$posCount POS Terminal(s) has been successfuly assigned to $agentNames ');
+  }else{
+      return back()->with('fail','Something went wrong, try again later or contact system admin');
+  }
+
+        
+    }
+
     public function savenewagent(Request $request)
 	{
         $input = request()->all();

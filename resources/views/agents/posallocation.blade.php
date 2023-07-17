@@ -69,31 +69,39 @@
 									<h5 class="card-title">Multiple Allocations</h5>
 									<h6 class="card-subtitle text-muted">A vanilla, lightweight, configurable select box/text input plugin.</h6>
 								</div>
-								<div class="card-body">
-									<div class="mb-3">
-									<label for="validationDefault04" class="form-label">Available Agents for assignment</label>
-										<select class="form-control choices-single">
-											<option selected disabled value="">Choose...</option>
-													@forelse ($agents as $data)
-												<option value="{{ $data->id }},{{ $data->id }}">{{ $data->first_name }} {{ $data->last_name }} - {{ $data->national_id_no }}</option>
-													@empty
-												<option value="" disabled>No Active Agent</option>
-													@endforelse
-										</select>
-									</div>
-
-									<div>
-									<label for="validationDefault04" class="form-label">POS Available for assignment</label>
-										<select class="form-control choices-multiple" multiple>
-											@forelse ($pos_terminals as $data)		
-												<option value="{{ $data->id }}">{{ $data->device_name }} - {{ $data->serial_no }} - {{ $data->device_os }} </option>
-											@empty
-												<option value="" disabled>No Available POS</option>
-											@endforelse
-										</select>
-										
-									</div>
+						<form class="row g-3" action="{{ route('assignagentspos') }}" enctype="multipart/form-data">
+							<div class="card-body">
+								<div class="mb-3">
+								<label for="validationDefault04" class="form-label">Available Agents for assignment</label>
+									<select name="agentid" class="form-control  choices-single">
+										<option selected disabled value="">Choose...</option>
+												@forelse ($agents as $data)
+											<option value="{{ $data->id }}">{{ $data->first_name }} {{ $data->last_name }} - {{ $data->national_id_no }}</option>
+												@empty
+											<option value="" disabled>No Active Agent</option>
+												@endforelse
+									</select>
 								</div>
+
+								<div>
+								<label for="validationDefault04" class="form-label">POS Available for assignment</label>
+									<select name="posid[]"class="form-control choices-multiple" multiple>
+										@forelse ($pos_terminals as $data)		
+											<option value="{{ $data->id }}">{{ $data->device_name }} - {{ $data->serial_no }} - {{ $data->device_os }} </option>
+										@empty
+											<option value="" disabled>No Available POS</option>
+										@endforelse
+									</select>
+									
+								</div>
+								<br>
+
+								<div class="col-12">
+											<button class="btn btn-primary" type="submit">Assign POS</button>
+								</div>
+							</div>
+
+						</form>
 							</div>
 						</div>
 					</div>
