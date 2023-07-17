@@ -148,7 +148,9 @@ class AgentsController extends Controller
 
    if($allocate){
     //Mail::to($email)->send(new AccountRegistration($fname,$username));
-    return back()->with('success','$posCount POS Terminal(s) has been successfuly assigned to $agentNames ');
+    //return back()->with('success','$posCount POS Terminal(s) has been successfuly assigned to $agentNames ');
+    return back()->with('success', $posCount . ' POS Terminal(s) have been successfully assigned to ' . $agentNames);
+
   }else{
       return back()->with('fail','Something went wrong, try again later or contact system admin');
   }
