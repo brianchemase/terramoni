@@ -31,9 +31,14 @@ Route::any('/otp/verification/{user_id}', [AuthOtpController::class, 'verificati
 Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.getlogin');
 // Route::get('/validateOtp', [AuthOtpController::class, 'validateotp'])->name('validateotp');
 
+Route::get('/AgentTab', [AgentsController::class, 'agentselection'])->name('SelfRegisterLanding');
+
 
 Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
 Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'])->name('agentsselfregister');
+
+
+Route::get('/CompSelfcare', [AgentsController::class, 'merchantagentselfregistration'])->name('CompSelfRegister');
 
 Route::group(['prefix' => 'admins'], function() {
 

@@ -119,41 +119,41 @@ class AgentsController extends Controller
       
 
          // Retrieve the selected agent ID from the form
-    $agentId = $request->input('agentid');
+        $agentId = $request->input('agentid');
 
-    // Retrieve the selected POS IDs from the form
-    $posIds = $request->input('posid');
-    $posCount = count($posIds);
+        // Retrieve the selected POS IDs from the form
+        $posIds = $request->input('posid');
+        $posCount = count($posIds);
 
-    $agentNames = DB::table('tbl_agents')
-        ->whereIn('id', [$agentId])
-        ->pluck(DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
-        ->first();
+        $agentNames = DB::table('tbl_agents')
+            ->whereIn('id', [$agentId])
+            ->pluck(DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+            ->first();
 
        // return $agentNames;
 
-    // Perform any necessary validation or processing here
+        // Perform any necessary validation or processing here
 
-   $allocate= DB::table('tbl_pos_terminals')
-    ->whereIn('id', $posIds)
-    ->update([
-        'agent_id' => $agentId,
-        'owner_name' => $agentNames,
-        'owner_type' => 'Agent',
-        'status' => 'Assigned'
-    ]);
+        $allocate= DB::table('tbl_pos_terminals')
+            ->whereIn('id', $posIds)
+            ->update([
+                'agent_id' => $agentId,
+                'owner_name' => $agentNames,
+                'owner_type' => 'Agent',
+                'status' => 'Assigned'
+            ]);
 
 
-   // return $input;
+        // return $input;
 
-   if($allocate){
-    //Mail::to($email)->send(new AccountRegistration($fname,$username));
-    //return back()->with('success','$posCount POS Terminal(s) has been successfuly assigned to $agentNames ');
-    return back()->with('success', $posCount . ' POS Terminal(s) have been successfully assigned to ' . $agentNames);
+        if($allocate){
+            //Mail::to($email)->send(new AccountRegistration($fname,$username));
+            //return back()->with('success','$posCount POS Terminal(s) has been successfuly assigned to $agentNames ');
+            return back()->with('success', $posCount . ' POS Terminal(s) have been successfully assigned to ' . $agentNames);
 
-  }else{
-      return back()->with('fail','Something went wrong, try again later or contact system admin');
-  }
+        }else{
+            return back()->with('fail','Something went wrong, try again later or contact system admin');
+        }
 
         
     }
@@ -323,6 +323,15 @@ class AgentsController extends Controller
     public function agentselfregistration()
     {
         return view ('selfregportal.register');
+    }
+
+    public function merchantagentselfregistration()
+    {
+        return view ('selfregportal.companyregister');
+    }
+    public function agentselection()
+    {
+        return view ('selfregportal.landing');
     }
 
     public function storeTransaction(Request $request)
