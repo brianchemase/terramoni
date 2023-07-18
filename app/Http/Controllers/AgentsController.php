@@ -8,6 +8,7 @@ use Mail;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
 
@@ -46,7 +47,7 @@ class AgentsController extends Controller
             // Add more data to the array as needed
         ];
 
-        return view ('agents.home')->with($data);;
+        return view ('agents.home')->with($data);
     }
 
     public function form()
@@ -416,6 +417,80 @@ class AgentsController extends Controller
     {
         return view ('agents.complianceform');
     }
+
+    public function complianceformcheck(Request $request, $id)
+    {
+        
+        $status = DB::table('tbl_agents')->where('id', $id)->value('status');
+        if ($status && $status !== 'active') {
+            // Call your function here
+           
+            $first_name = DB::table('tbl_agents')->where('id', $id)->value('first_name');
+        $mid_name = DB::table('tbl_agents')->where('id', $id)->value('mid_name');
+        $last_name = DB::table('tbl_agents')->where('id', $id)->value('last_name');
+        $gender = DB::table('tbl_agents')->where('id', $id)->value('gender');
+        $status = DB::table('tbl_agents')->where('id', $id)->value('status');
+        $BVN = DB::table('tbl_agents')->where('id', $id)->value('BVN');
+        $doc_no = DB::table('tbl_agents')->where('id', $id)->value('doc_no');
+        $doc_type = DB::table('tbl_agents')->where('id', $id)->value('doc_type');
+        $location = DB::table('tbl_agents')->where('id', $id)->value('location');
+        $email = DB::table('tbl_agents')->where('id', $id)->value('email');
+        $phone = DB::table('tbl_agents')->where('id', $id)->value('phone');
+        $passport = DB::table('tbl_agents')->where('id', $id)->value('passport');
+        
+
+        $data = [
+            'first_name' => $first_name,
+            'mid_name' => $mid_name,
+            'last_name' => $last_name,
+            'gender' => $gender,
+            'phone' => $phone,
+            'status' => $status,
+            'BVN' => $BVN,
+            'doc_no' => $doc_no,
+            'doc_type' => $doc_type,
+            'location' => $location,
+            'email' => $email, 
+            'passport' => $passport, 
+            'agent_id' => $id,         
+        ];
+
+        return view ('agents.agentscomplianceform')->with($data);
+        }
+
+        $agents = DB::table('tbl_agents')
+            ->where('status', '!=', 'approved')
+            ->get();
+
+
+       // return $agents;
+        return view ('agents.pendingagentstable', compact('agents'));
+
+       // return view ('agents.agentscomplianceform');
+
+        
+    }
+
+    public function approveagent(Request $request)
+    {
+        $input= $request->all();
+
+        $agentId = $input['agent_id'];
+        $approvalDate = $input['approval_Date'];
+
+        DB::table('tbl_agents')
+            ->where('id', $agentId)
+            ->update([
+                'status' => 'active',
+                'registration_date' => $approvalDate
+            ]);
+
+
+            return Redirect::route('complianceagentstab')->with('success', 'Agent successfully approved. Ready for POS Allocation');
+    }
+
+
+
     public function user_profile()
     {
         return view ('agents.userprofile');

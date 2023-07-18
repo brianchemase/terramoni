@@ -8,22 +8,31 @@
 				<div class="container-fluid p-0">
 
 				<h1 class="h3 mb-3"><strong>Agents</strong> List</h1>
-				<p>This is a list of all agents</p>
+				<p>This is a list of all pending agents</p>
 
 				@if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <strong>{{ $message }}</strong>
-                </div>
+                <div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>{{ $message }}</strong> 
+					</div>
+				</div>
 				@endif
 
 				@if (count($errors) > 0)
-					<div class="alert alert-danger">
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>
 						<ul>
 							@foreach ($errors->all() as $error)
 							<li>{{ $error }}</li>
 							@endforeach
 						</ul>
+						</strong> 
 					</div>
+				</div>	
+				
 				@endif
 
 					<div class="row">
@@ -84,8 +93,8 @@
 												<a href="#viewAgentModal{{$data->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
 												
                                                 @include('agents.modals.agentView')
+												<a href="{{ url('admins/KYCagentscompliance/' . $data->id) }}" class="btn btn-warning"> <i class="fa fa-check"></i></a>
 												<a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
 												</td>
 											</tr>
 											@endforeach

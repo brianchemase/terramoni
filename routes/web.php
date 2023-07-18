@@ -65,6 +65,9 @@ Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_age
 // kyc form
 Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 
+Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
+Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
+
 // view aggregators list
 Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
 
