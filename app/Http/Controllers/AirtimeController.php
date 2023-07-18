@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Dotenv\Dotenv;
 
 
 class AirtimeController extends Controller
@@ -19,7 +20,17 @@ class AirtimeController extends Controller
         $refnumber = $todayDate . rand(1, 50000);
 
         $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
-        $authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
+
+        // Load the .env file
+        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+
+        // Retrieve the PRIME_BEARER_TOKEN value from the .env file
+        $primeBearerToken = $_ENV['PRIME_BEARER_TOKEN'];
+
+        // Replace the hardcoded authorization value with the retrieved token
+        $authorization = "Bearer " . $primeBearerToken;
+        //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
         //$authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc1MzA4ODd9.TDwvq6TXVXhATAr_Z_vI5yHqDDAFoNenPfSIZ544LQw";
         $data = [
             "product_id" => "MFIN-5-OR",
