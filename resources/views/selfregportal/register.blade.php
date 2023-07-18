@@ -41,15 +41,15 @@
     <div class="form-row">
         <div class="form-group">
             <label for="first_name">First Name :</label>
-            <input type="text" name="first_name" id="first_name" required/>
+            <input type="text" name="first_name" onkeyup="this.value = this.value.toUpperCase();" id="first_name" required/>
         </div>
         <div class="form-group">
             <label for="mid_name">Mid Name :</label>
-            <input type="text" name="mid_name" id="mid_name" required/>
+            <input type="text" name="mid_name" onkeyup="this.value = this.value.toUpperCase();" id="mid_name" required/>
         </div>
         <div class="form-group">
             <label for="last_name">Last Name :</label>
-            <input type="text" name="last_name" id="last_name" required/>
+            <input type="text" name="last_name" onkeyup="this.value = this.value.toUpperCase();" id="last_name" required/>
         </div>
     </div>
     <div class="form-group">
@@ -65,12 +65,25 @@
         <input type="date" name="birth_date" id="birth_date">
     </div>
     <div class="form-group">
-        <label for="national_id_no">National ID No :</label>
-        <input type="text" name="national_id_no" id="national_id_no">
+            <label for="doc_type">Doc Type :</label>
+            <div class="form-select">
+                <select name="doc_type" id="doc_type">
+                    
+                    <option value="NIN">NIN</option>
+                    <option value="DL">Driving Licence</option>
+                    <option value="VotingCard">Voters Card</option>
+                    <option value="Passport">International Passport</option>
+                </select>
+                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+            </div>
+        </div>
+    <div class="form-group">
+        <label for="doc_no">Doc No :</label>
+        <input type="text" name="doc_no" id="doc_no" required>
     </div>
     <div class="form-group">
         <label for="bvn">BVN No :</label>
-        <input type="text" name="bvn" id="bvn">
+        <input type="text" name="bvn" id="bvn" required>
     </div>
     <div class="form-radio">
         <label for="gender" class="radio-label">Gender :</label>

@@ -12,7 +12,8 @@
             <h4 class="text-center"><img src="{{ asset('storage/ppts/'.$data->passport) }}"  style="height: 400px; width: 350px;"> </h4>
             <h4 class="text-center">Client number: {{$data->id}} </h4>
             <h5 >Name: {{$data->first_name}} {{$data->last_name}}</h5>
-            <h5 >ID Number: {{$data->national_id_no}}</h5>
+            <h5 >Doc Type: {{$data->doc_type}}</h5>
+            <h5 >Doc Number: {{$data->doc_no}}</h5>
             <h5 >Phone: {{$data->phone}}</h5>
             <h5 >Gender: {{$data->gender}}</h5> 
             <h5 >Location: {{$data->location}}</h5>

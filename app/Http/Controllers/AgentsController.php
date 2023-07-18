@@ -205,7 +205,8 @@ class AgentsController extends Controller
             'country' => $input['country'],
             'status' => 'active', // Assuming you want to set the default status
             'BVN' => $input['bvn'],
-            'national_id_no' => $input['id_no'],
+            'doc_type' => $input['doc_type'],
+            'doc_no' => $input['doc_no'],
             'passport' => $request->ppt->hashName(),
             'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
             'validation_date' => null, // Assuming the validation date is initially null
@@ -260,7 +261,8 @@ class AgentsController extends Controller
             'phone' => $input['phone'],
             'email' => $input['email'],
             'dob' => $input['birth_date'],
-            'national_id_no' => $input['national_id_no'],
+            'doc_type' => $input['doc_type'],
+            'doc_no' => $input['doc_no'],
             'bvn' => $input['bvn'],
             'gender' => $input['gender'],
             'location' => $input['state'],

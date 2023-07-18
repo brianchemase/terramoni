@@ -12,15 +12,15 @@
 											@csrf
 												<div class="col-md-4">
 													<label for="validationDefault01" class="form-label">First name</label>
-													<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="fname" placeholder="Enter Fitst name" required>
+													<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="fname" placeholder="Enter First Name" required>
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Middle name</label>
-													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="mname" placeholder="Enter Middle name (optional)" >
+													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="mname" placeholder="Enter Middle Name (optional)" >
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault02" class="form-label">Last name</label>
-													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="lname" placeholder="Enter Last name" required>
+													<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="lname" placeholder="Enter Last Name" required>
 												</div>
 												
 												<div class="col-md-4">
@@ -46,8 +46,19 @@
 													</select>
 												</div>
 												<div class="col-md-4">
-													<label for="validationDefault05" class="form-label">National ID No</label>
-													<input type="text" class="form-control" id="validationDefault05" name="id_no" placeholder="Enter Enter ID No" required>
+													<label for="validationDefault04" class="form-label">Doc Type</label>
+													<select class="form-select" id="validationDefault04" name="doc_type" required>
+														<option selected disabled value="">Choose...</option>
+														<option value="NIN">NIN</option>
+														<option value="DL">Driving Licence</option>
+														<option value="VotingCard">Voters Card</option>
+														<option value="Passport">International Passport</option>
+														
+													</select>
+												</div>
+												<div class="col-md-4">
+													<label for="validationDefault05" class="form-label">Doc No</label>
+													<input type="text" class="form-control" id="validationDefault05" name="doc_no" placeholder="Enter DOC No" required>
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault05" class="form-label">BVN No</label>
