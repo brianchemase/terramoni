@@ -50,7 +50,7 @@
 									<select name="agentid" class="form-control  choices-single">
 										<option selected disabled value="">Choose...</option>
 												@forelse ($agents as $data)
-											<option value="{{ $data->id }}">{{ $data->first_name }} {{ $data->last_name }} - {{ $data->national_id_no }}</option>
+											<option value="{{ $data->id }}">{{ $data->first_name }} {{ $data->last_name }} - {{ $data->doc_no }}</option>
 												@empty
 											<option value="" disabled>No Active Agent</option>
 												@endforelse
