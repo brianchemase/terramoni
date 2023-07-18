@@ -24,9 +24,15 @@
 												</div>
 												
 												<div class="col-md-4">
+													<label for="validationDefault03" class="form-label">DOB</label>
+													<input type="date" class="form-control" id="validationDefault03" name="birth_date" required>
+												</div>
+
+												<div class="col-md-4">
 													<label for="validationDefault03" class="form-label">Phone</label>
 													<input type="text" class="form-control" id="validationDefault03" name="phone" placeholder="Enter Phone" required>
 												</div>
+
 												<div class="col-md-4">
 													<label for="validationDefault03" class="form-label">Email</label>
 													<input type="text" class="form-control" id="validationDefault03" name="email" placeholder="Enter Email" required>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('first_name', 50);
             $table->string('mid_name', 50);
             $table->string('last_name', 50);
+            $table->string('dob', 50);
             $table->string('phone', 50);
             $table->string('email', 50);
             $table->string('gender', 50);

@@ -195,7 +195,9 @@ class AgentsController extends Controller
 
       $save= DB::table('tbl_agents')->insert([
             'first_name' => $input['fname'],
+            'mid_name' => $input['mname'],
             'last_name' => $input['lname'],
+            'dob' => $input['birth_date'],
             'phone' => $input['phone'],
             'email' => $input['email'],
             'gender' => $input['gender'],
@@ -225,25 +227,30 @@ class AgentsController extends Controller
     {
 
         $input = $request->all();
-        return $input;
-        // // Validate the form data
-        // $validatedData = $request->validate([
-        //     'first_name' => 'required|max:50',
-        //     //'mid_name' => 'required|max:50',
-        //     'last_name' => 'required|max:50',
-        //     'phone' => 'required|max:50',
-        //     'email' => 'required|max:50',
-        //     'gender' => 'required|max:50',
-        //     'location' => 'required|max:225',
-        //     'country' => 'required|max:225',
-        //     'bvn' => 'required|max:50',
-        //     'national_id_no' => 'required|max:50',
-        //     //'passport' => 'required|max:225',
-        //    // 'birth_date' => 'required|date',
-        //     // Add additional validation rules for other fields
-        // ]);
+       // return $input;
 
-        return $validatedData;
+        $request->validate([
+			'first_name'=>'required',
+			//'mname'=>'required',
+			'last_name'=>'required',
+			//'email'=>'required|email|unique:clients_data',
+			'gender'=>'required',
+			'phone'=>'required',
+			'bvn'=>'required',
+			//'station'=>'required',
+			//'id_number'=>'required|unique:clients_data|min:5|max:12'
+	   ]);
+
+        if ($request->hasFile('passport')) {
+
+            $request->validate([
+                'passport' => 'mimes:png,jpg,jpeg|max:2048' // Only allow .jpg, .bmp and .png file types.
+            ]);
+    
+            $finfo = new \finfo(FILEINFO_MIME_TYPE);
+             // Save the file locally in the storage/public/ folder under a new folder named /ppts
+             $request->passport->store('ppts', 'public');
+        }
 
         // Store the agent record in the database using DB facade
         $inserted = DB::table('tbl_agents')->insertGetId([
@@ -252,21 +259,25 @@ class AgentsController extends Controller
             'last_name' => $input['last_name'],
             'phone' => $input['phone'],
             'email' => $input['email'],
-            'birth_date' => $input['birth_date'],
+            'dob' => $input['birth_date'],
             'national_id_no' => $input['national_id_no'],
             'bvn' => $input['bvn'],
             'gender' => $input['gender'],
-            'state' => $input['state'],
-            'city' => $input['city'],
-            'passport' => $passportPath
+            'location' => $input['state'],
+            'country' => $input['city'],
+            'status' => "pending",
+            'passport' => $request->passport->hashName(),
+            'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
         ]);
 
        // $inserted = DB::table('tbl_agents')->insert($agentData);
 
         if ($inserted) {
-            return Redirect::back()->with('success', 'Agent data saved successfully!');
+            
+            return back()->with('success','Year Agent data saved successfully!');
         } else {
-            return Redirect::back()->with('error', 'Error occurred while saving agent data. Please try again.');
+           
+            return back()->with('error','Something went wrong, try again later or contact system admin');
         }
     }
 
