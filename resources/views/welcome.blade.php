@@ -62,8 +62,8 @@ https://templatemo.com/tm-570-chain-app-dev
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <!-- <li class="scroll-to-section"><a href="#services">Services</a></li>
+              <li class="scroll-to-section"><a href="#about">About</a></li> -->
               <li class="scroll-to-section"><a href="#pricing">Agents</a></li>
               <li class="scroll-to-section"><a href="{{route('SelfRegisterLanding')}}">Agents Register</a></li>
               <li><div class="gradient-button"><a href="{{route('admindash')}}"><i class="fa fa-sign-in-alt"></i> Sign In Now</a></div></li> 
@@ -175,7 +175,7 @@ https://templatemo.com/tm-570-chain-app-dev
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Welcome to TerraMoni</h2>
-                    <p>Chain App Dev is an app landing page HTML5 template based on Bootstrap v5.1.3 CSS layout provided by TemplateMo, a great website to download free CSS templates.</p>
+                    <p>We are your number one service provider in POS lending and account registration.</p>
                   </div>
                   <div class="col-lg-12">
                     <div class="white-button first-button scroll-to-section">
@@ -199,7 +199,7 @@ https://templatemo.com/tm-570-chain-app-dev
     </div>
   </div>
 
-  <div id="services" class="services section">
+  <!-- <div id="services" class="services section">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -307,7 +307,7 @@ https://templatemo.com/tm-570-chain-app-dev
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   
   <div id="pricing" class="pricing-tables">

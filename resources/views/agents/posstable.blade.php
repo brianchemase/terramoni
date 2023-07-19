@@ -46,6 +46,11 @@
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
 									<i class="fa fa-mobile" aria-hidden="true"></i> Register POS Terminal
 									</button>
+
+
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadpos">
+									<i class="fa fa-mobile" aria-hidden="true"></i> Upload POS Terminal
+									</button>
 									@include('agents.modals.registerPOS')
 								</div>
 							</div>

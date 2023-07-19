@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AuthOtpController;
+use App\Http\Controllers\PosTerminalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +77,9 @@ Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])-
 Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
 Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
 Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+
+// import terminals
+Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
 
 // POS Allocation to agents t
 Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');

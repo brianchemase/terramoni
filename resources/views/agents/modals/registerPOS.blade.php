@@ -53,3 +53,36 @@
 		</div>
 	</div>
 	<!-- END primary modal -->
+
+
+
+
+	<!-- BEGIN primary modal -->
+<div class="modal fade" id="uploadpos" tabindex="-1" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Upload Register POS</h5>
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="modal-body m-3">
+					
+			<form class="row g-3" action="{{route('import.terminals')}}" method="post" enctype="multipart/form-data">
+			@csrf
+				<div class="col-md-4">
+					<label for="validationDefault01" class="form-label">Upload Excel file</label>
+					<input type="file" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="file" required>
+				</div>
+				
+				
+						
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Upload POS terminals</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<!-- END primary modal -->
