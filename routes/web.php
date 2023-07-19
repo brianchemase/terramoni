@@ -41,6 +41,10 @@ Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'
 
 Route::get('/CompSelfcare', [AgentsController::class, 'merchantagentselfregistration'])->name('CompSelfRegister');
 
+Auth::routes();
+// Route::middleware(['auth','user-role:admin'])->group(function()
+// {
+// Route::group(['prefix' => 'admins'], function() {
 Route::group(['prefix' => 'admins'], function() {
 
 Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
@@ -91,6 +95,8 @@ Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('use
 // user profile
 Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
 });
+
+//}); // end of auth
 
 Auth::routes();
 

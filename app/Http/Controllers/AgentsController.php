@@ -328,6 +328,7 @@ class AgentsController extends Controller
 
     public function merchantagentselfregistration()
     {
+        return view ('selfregportal.compreg');
         return view ('selfregportal.companyregister');
     }
     public function agentselection()

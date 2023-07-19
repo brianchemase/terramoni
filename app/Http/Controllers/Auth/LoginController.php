@@ -53,7 +53,7 @@ class LoginController extends Controller
             {
               return redirect()->route('admindash');
             }
-            else if (auth()->user()->role == 'editor') 
+            else if (auth()->user()->role == 'aggregator') 
             {
               return redirect()->route('editor.home');
             }

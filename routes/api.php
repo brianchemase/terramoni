@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AirtimeController;
+use App\Http\Controllers\BillersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ use App\Http\Controllers\AirtimeController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
+
 
 
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
