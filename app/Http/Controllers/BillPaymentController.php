@@ -131,6 +131,8 @@ class BillPaymentController extends Controller
         // Execute the cURL request
         $response = curl_exec($ch);
 
+        return $response;
+
         // Check for cURL errors
         if (curl_errno($ch)) {
             return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
