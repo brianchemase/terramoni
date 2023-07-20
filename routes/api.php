@@ -6,6 +6,7 @@ use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillersController;
 use App\Http\Controllers\BillPaymentController;
+use App\Http\Controllers\AuthOtpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,11 @@ use App\Http\Controllers\BillPaymentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//agents auth api
+
+Route::post('/AgentsAuth', [AuthOtpController::class, 'Appauthenticate']);//billers API
 
 
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API

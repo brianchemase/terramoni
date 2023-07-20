@@ -237,4 +237,46 @@ class AuthOtpController extends Controller
 
         return redirect()->route('otp.login')->with('error', 'Your Otp is not correct');
     }
+
+    public function Appauthenticate(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'phone' => 'required',
+            'pin' => 'required',
+        ]);
+
+        // Check if the phone and pin combination exist in the database
+        $agent = DB::table('tbl_agents')
+            ->where('phone', $request->input('phone'))
+            ->where('access_pin', $request->input('pin'))
+            ->first();
+
+        // If no matching record found, return an error response
+        if (!$agent) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+
+         // If no matching record found, return an error response
+        // If no matching record found or the account is not active, return an error response
+        if (!$agent || $agent->status !== "active") {
+            return response()->json(['error' => 'Invalid credentials or account not activated'], 401);
+        }
+
+        // If authentication is successful, return the selected fields as a response
+        $responseFields = [
+            'agent_id' => $agent->id,
+            'fname' => $agent->first_name,
+            'mname' => $agent->mid_name,
+            'lname' => $agent->last_name,
+            'email' => $agent->email,
+            'gender' => $agent->gender,
+            'location' => $agent->location,
+            'bvn_no' => $agent->BVN,
+            // Add other fields you want to include in the response
+        ];
+
+        return response()->json($responseFields, 200);
+    }
 }
