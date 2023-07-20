@@ -100,13 +100,47 @@ class BillPaymentController extends Controller
             'ConsumerIdField' => $agent_names,
             'ItemFee' => $topupAmount,
             'CurrencySymbol' => $paidCurrency,
-            'BillerType' => 'Airtime Top up',
+            'BillerType' => 'Electrical Bill',
         ]);
 
 
         // Return the API response in a well-structured manner
         return response()->json($responseData, 200);
 
+
+    }
+
+    public function getElectricityData()
+    {
+        // Replace these variables with your actual values
+        $apiUrl = 'https:/clients.primeairtime.com/api/billpay/country/NG/electricity';
+        //$accessToken = 'YOUR_BEARER_TOKEN';
+        $authorization = "Bearer " . $this->authorization; // Retrieve the bearer token from the construct
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
 
     }
 }
