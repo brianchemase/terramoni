@@ -41,4 +41,4 @@ Route::post('/DataTopup', [AirtimeController::class, 'datatopup']);
 Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']);
 
 //list electricity services
-Route::post('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
+Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
