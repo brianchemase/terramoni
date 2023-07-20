@@ -268,6 +268,7 @@ class AuthOtpController extends Controller
          // If authentication is successful, get the agent's terminals
          $terminals = DB::table('tbl_pos_terminals')
          ->where('agent_id', $agent->id)
+         ->select('serial_no', 'status', 'assignment_date') // Specify the columns you want to fetch
          ->get();
 
 
