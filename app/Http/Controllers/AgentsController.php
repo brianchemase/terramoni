@@ -204,6 +204,8 @@ class AgentsController extends Controller
             'gender' => $input['gender'],
             'location' => $input['location'],
             'country' => $input['country'],
+            'bank_name' => $input['bank_name'],
+            'bank_acc_no' => $input['bank_acc_no'],
             'status' => 'pending', // Assuming you want to set the default status
             'BVN' => $input['bvn'],
             'doc_type' => $input['doc_type'],

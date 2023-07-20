@@ -61,6 +61,21 @@
 													<input type="text" class="form-control" id="validationDefault05" name="doc_no" placeholder="Enter DOC No" required>
 												</div>
 												<div class="col-md-4">
+													<label for="validationDefault04" class="form-label">Bank Name</label>
+													<select class="form-select" id="validationDefault04" name="bank_name" required>
+														<option selected disabled value="">Choose...</option>
+														<option value="001">Ecobank Nigeria Limited</option>
+														<option value="002">Fidelity Bank Plc.</option>
+														<option value="003">First Bank of Nigeria Limited</option>
+														<option value="004">First City Monument Bank Limited</option>
+														
+													</select>
+												</div>
+												<div class="col-md-4">
+													<label for="validationDefault05" class="form-label">Bank Acc No</label>
+													<input type="text" class="form-control" id="validationDefault05" name="bank_acc_no" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Valid BVN No" required>
+												</div>
+												<div class="col-md-4">
 													<label for="validationDefault05" class="form-label">BVN No</label>
 													<input type="text" class="form-control" id="validationDefault05" name="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Valid BVN No" required>
 												</div>
