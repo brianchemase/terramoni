@@ -109,7 +109,7 @@ class AgentsController extends Controller
             ->get();
 
 
-       //return $pos_terminals;
+       //return $agents;
         return view ('agents.posallocation', compact('agents','pos_terminals'));
     }
 
@@ -482,7 +482,7 @@ class AgentsController extends Controller
         DB::table('tbl_agents')
             ->where('id', $agentId)
             ->update([
-                'status' => 'active',
+                'status' => 'approved',
                 'access_pin' => '1234',
                 'registration_date' => $approvalDate
             ]);

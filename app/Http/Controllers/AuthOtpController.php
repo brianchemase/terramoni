@@ -258,11 +258,18 @@ class AuthOtpController extends Controller
         }
 
 
+
          // If no matching record found, return an error response
         // If no matching record found or the account is not active, return an error response
-        if (!$agent || $agent->status !== "active") {
+        if (!$agent || $agent->status !== "approved") {
             return response()->json(['error' => 'Invalid credentials or account not activated'], 401);
         }
+
+         // If authentication is successful, get the agent's terminals
+         $terminals = DB::table('tbl_pos_terminals')
+         ->where('agent_id', $agent->id)
+         ->get();
+
 
         // If authentication is successful, return the selected fields as a response
         $responseFields = [
@@ -274,6 +281,9 @@ class AuthOtpController extends Controller
             'gender' => $agent->gender,
             'location' => $agent->location,
             'bvn_no' => $agent->BVN,
+            'doc_type' => $agent->doc_type,
+            'doc_no' => $agent->doc_no,
+            'terminals' => $terminals,
             // Add other fields you want to include in the response
         ];
 
