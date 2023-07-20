@@ -483,6 +483,7 @@ class AgentsController extends Controller
             ->where('id', $agentId)
             ->update([
                 'status' => 'active',
+                'access_pin' => '1234',
                 'registration_date' => $approvalDate
             ]);
 
