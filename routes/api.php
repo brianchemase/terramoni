@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillersController;
+use App\Http\Controllers\BillPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::post('/AirtimeTopup', [AirtimeController::class, 'topup']);
 Route::post('/DataTopup', [AirtimeController::class, 'datatopup']);
 
 
+//bill payments
+// pay electricity
+Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']);

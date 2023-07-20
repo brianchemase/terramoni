@@ -8,7 +8,7 @@
 				<div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3"><strong>{{$salutation}}! </strong> Dashboard</h1>
-					<h4 class="h4 mb-3"><strong>Hi USername, </strong> Welcome to TerraMoni</h4>
+					<h4 class="h4 mb-3"><strong>Hi {{ Auth::user()->name }}, </strong> Welcome to TerraMoni</h4>
 					
 
 					<div class="row">

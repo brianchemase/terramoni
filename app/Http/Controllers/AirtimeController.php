@@ -15,7 +15,7 @@ class AirtimeController extends Controller
     public function __construct()
     {
         // Assign initial value to $authorization
-        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc1MzA4ODd9.TDwvq6TXVXhATAr_Z_vI5yHqDDAFoNenPfSIZ544LQw';
+        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTAwMTkxMDY4MjN9.gAH4kJCvceltZnN-QSRmv1rUuTYfSgonVY_1WWNbVVQ';
     }
 
 
@@ -77,27 +77,27 @@ class AirtimeController extends Controller
         
 
        // Process the API response
-    $responseData = json_decode($response, true);
+        $responseData = json_decode($response, true);
 
-     // Extract the desired data from the API response
-     $productId = $responseData['product_id'];
-     $target = $responseData['target'];
-     $topupAmount = $responseData['topup_amount'];
-     $paidCurrency = $responseData['paid_currency'];
- 
-     // Store the data into the tbl_transactions table using the DB facade
-     DB::table('tbl_transactions')->insert([
-         'Name' => $productId,
-         'BillerName' => $target,
-         'ConsumerIdField' => $agent_names,
-         'ItemFee' => $topupAmount,
-         'CurrencySymbol' => $paidCurrency,
-         'BillerType' => 'Airtime Top up',
-     ]);
+        // Extract the desired data from the API response
+        $productId = $responseData['product_id'];
+        $target = $responseData['target'];
+        $topupAmount = $responseData['topup_amount'];
+        $paidCurrency = $responseData['paid_currency'];
+    
+        // Store the data into the tbl_transactions table using the DB facade
+        DB::table('tbl_transactions')->insert([
+            'Name' => $productId,
+            'BillerName' => $target,
+            'ConsumerIdField' => $agent_names,
+            'ItemFee' => $topupAmount,
+            'CurrencySymbol' => $paidCurrency,
+            'BillerType' => 'Airtime Top up',
+        ]);
 
 
-    // Return the API response in a well-structured manner
-    return response()->json($responseData, 200);
+        // Return the API response in a well-structured manner
+        return response()->json($responseData, 200);
         
     }
 
