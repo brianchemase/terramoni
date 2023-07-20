@@ -115,7 +115,7 @@ class BillPaymentController extends Controller
         // Replace these variables with your actual values
         $apiUrl = 'https:/clients.primeairtime.com/api/billpay/country/NG/electricity';
         //$accessToken = 'YOUR_BEARER_TOKEN';
-        $authorization = "Bearer " . $this->authorization; // Retrieve the bearer token from the construct
+        $authorization = $this->authorization; // Retrieve the bearer token from the construct
 
         // Initialize cURL session
         $ch = curl_init();
