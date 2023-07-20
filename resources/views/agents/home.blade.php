@@ -238,7 +238,7 @@
 											
 											<th>Amount</th>
 											
-											<th>Action</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -256,9 +256,9 @@
 											
 											<td>
 											<span class="badge bg-success">Successful</span>
-                                                <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
+                                                <!-- <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
                                                 <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
+												 -->
 											</td>
 										</tr>
 										@endforeach
