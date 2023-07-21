@@ -73,7 +73,7 @@
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault05" class="form-label">Bank Acc No</label>
-													<input type="text" class="form-control" id="validationDefault05" name="bank_acc_no" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Valid BVN No" required>
+													<input type="text" class="form-control" id="validationDefault05" name="bank_acc_no" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter Acc No" required>
 												</div>
 												<div class="col-md-4">
 													<label for="validationDefault05" class="form-label">BVN No</label>

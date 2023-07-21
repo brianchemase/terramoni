@@ -11,7 +11,7 @@
 					<h4 class="h4 mb-3"><strong>Hi {{ Auth::user()->name }}, </strong> Welcome to TerraMoni</h4>
 					
 
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-sm-6 col-xl-3">
 							<div class="card">
 								<div class="card-body">
@@ -44,13 +44,13 @@
 											<h5 class="card-title">Total Agents</h5>
 										</div>
 
-													<div class="col-auto">
-														<div class="avatar">
-															<div class="avatar-title rounded-circle bg-primary-light">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-															</div>
-														</div>
-													</div>
+										<div class="col-auto">
+											<div class="avatar">
+												<div class="avatar-title rounded-circle bg-primary-light">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+												</div>
+											</div>
+										</div>
 									</div>
 								
 									<h1 class="mt-1 mb-3"> {{ number_format($agentCount) }}</h1>
@@ -110,7 +110,86 @@
 								</div>
 							</div>
 						</div>
+					</div> -->
+					
+					<div class="col-md-12">
+						<div class="row ">
+							<div class="col-xl-3 col-lg-6">
+								<div class="card l-bg-cherry">
+									<div class="card-statistic-3 p-4">
+										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
+										<div class="mb-4">
+											<h5 class="card-title mb-0" style="color: white;">Total Transactions</h5>
+										</div>
+										<div class="row align-items-center mb-2 d-flex">
+											<div class="col-8">
+												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+													NGN 3,243
+												</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6">
+								<div class="card l-bg-blue-dark">
+									<div class="card-statistic-3 p-4">
+										<div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+										<div class="mb-4">
+											<h5 class="card-title mb-0" style="color: white;">Agents</h5>
+										</div>
+										<div class="row align-items-center mb-2 d-flex">
+											<div class="col-8">
+												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+												{{ number_format($agentCount) }}
+												</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6">
+								<div class="card l-bg-green-dark">
+									<div class="card-statistic-3 p-4">
+										<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+										<div class="mb-4">
+											<h5 class="card-title mb-0" style="color: white;">Aggregators</h5>
+										</div>
+										<div class="row align-items-center mb-2 d-flex">
+											<div class="col-8">
+												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+													578
+												</h2>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6">
+								<div class="card l-bg-orange-dark">
+									<div class="card-statistic-3 p-4">
+										<div class="card-icon card-icon-large"><i class="fas fa-mobile-alt"></i></div>
+										<div class="mb-4">
+											<h5 class="card-title mb-0" style="color: white;">POS Terminals</h5>
+										</div>
+										<div class="row align-items-center mb-2 d-flex">
+											<div class="col-8">
+												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+												{{ number_format($POSCount) }}
+												</h2>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+					
+			
 
 
 					<h1 class="h3 mb-3"><strong>Transaction Report </strong> </h1>

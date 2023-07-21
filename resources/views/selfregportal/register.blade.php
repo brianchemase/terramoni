@@ -64,11 +64,12 @@
         <label for="birth_date">DOB :</label>
         <input type="date" name="birth_date" id="birth_date">
     </div>
+    <div class="form-row">
     <div class="form-group">
             <label for="doc_type">Doc Type :</label>
             <div class="form-select">
                 <select name="doc_type" id="doc_type">
-                    
+                    <option selected disabled value="">Choose...</option>
                     <option value="NIN">NIN</option>
                     <option value="DL">Driving Licence</option>
                     <option value="VotingCard">Voters Card</option>
@@ -80,6 +81,27 @@
     <div class="form-group">
         <label for="doc_no">Doc No :</label>
         <input type="text" name="doc_no" id="doc_no" required>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group">
+            <label for="doc_type">Bank Name :</label>
+            <div class="form-select">
+                <select name="bank_name" id="doc_type">
+                    
+                <option selected disabled value="">Choose...</option>
+                <option value="001">Ecobank Nigeria Limited</option>
+                <option value="002">Fidelity Bank Plc.</option>
+                <option value="003">First Bank of Nigeria Limited</option>
+                <option value="004">First City Monument Bank Limited</option>
+                </select>
+                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+            </div>
+        </div>
+    <div class="form-group">
+        <label for="acc_no">Bank Acc No :</label>
+        <input type="text" name="bank_acc_no" id="acc_no" required>
+    </div>
     </div>
     <div class="form-group">
         <label for="bvn">BVN No :</label>

@@ -6,7 +6,7 @@
                 </a>
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
-						System Tabs
+						MAIN
 					</li>
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'admindash' ? 'active' : '' }}">
@@ -30,11 +30,7 @@
                         </a>
 					</li>
 
-                    <li class="sidebar-item {{ Route::currentRouteName() === 'posterminalslist' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('posterminalslist')}}">
-                            <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">POS Terminal</span>
-                        </a>
-					</li>
+                    
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
@@ -42,22 +38,60 @@
                         </a>
 					</li>
 
+					<li class="sidebar-header">
+						POS DEVICES
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'posterminalslist' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('posterminalslist')}}">
+                            <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">Inventory</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'agentsposallocation' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('agentsposallocation')}}">
+                            <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">Allocations</span>
+                        </a>
+					</li>
+
 
 					<li class="sidebar-header">
-						Other
+						COMPLIANCE
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('complianceagentstab')}}">
+                            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Agents Pending</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
+						<a class="sidebar-link" href="#">
+                            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Aggregators Pending</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceformpage' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('complianceformpage')}}">
+                            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">KYC Review (Form)</span>
+                        </a>
+					</li>
+
+
+
+					<li class="sidebar-header">
+						Settings
 					</li>
 					
 					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
 						<a data-target="#compliance" data-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="award"></i> <span class="align-middle">Compliance</span>
+							<i class="align-middle" data-feather="award"></i> <span class="align-middle">Settings</span>
 						</a>
 						<ul id="compliance" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="{{route('complianceagentstab')}}">Agents</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Aggregators</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Users (Under Construction)</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Configurations (Under Construction)</a></li>
 							
 						</ul>
 					</li>
-					<li class="sidebar-header">
+					<!-- <li class="sidebar-header">
 						Allocations
 					</li>
 
@@ -73,18 +107,14 @@
 					</li>
 
 
-					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceformpage' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('complianceformpage')}}">
-                            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">KYC Form</span>
-                        </a>
-					</li>
+					
 
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Settings</span>
                         </a>
-					</li>
+					</li> -->
 
 
                    

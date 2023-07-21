@@ -270,6 +270,8 @@ class AgentsController extends Controller
             'gender' => $input['gender'],
             'location' => $input['state'],
             'country' => $input['city'],
+            'bank_name' => $input['bank_name'],
+            'bank_acc_no' => $input['bank_acc_no'],
             'status' => "pending",
             'passport' => $request->passport->hashName(),
             'registration_date' => date('Y-m-d'), // Assuming you want to set the current date

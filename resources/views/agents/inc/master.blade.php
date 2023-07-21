@@ -18,7 +18,10 @@
 
 	<!-- <link href="css/app.css" rel="stylesheet"> -->
     <link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
+	<link href="{{asset('dash/css/dash.css')}}" rel="stylesheet">
 	<!-- BEGIN SETTINGS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
 
 	<!-- BEGIN SETTINGS -->
 	<script src="{{asset('dash/js/settings.js')}}"></script>
