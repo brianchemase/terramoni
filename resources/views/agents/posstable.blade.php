@@ -48,8 +48,8 @@
 									</button>
 
 
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadpos">
-									<i class="fa fa-mobile" aria-hidden="true"></i> Upload POS Terminal
+									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#uploadpos">
+									<i class="fa fa-upload" aria-hidden="true"></i> Import POS Terminal
 									</button>
 									@include('agents.modals.registerPOS')
 								</div>
@@ -59,10 +59,8 @@
 
 					<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">POS Terminals List</h5>
-									<h6 class="card-subtitle text-muted">This extension provides a framework with common options that can be used with
-										DataTables. See official documentation <a href="https://datatables.net/extensions/buttons/" target="_blank"
-											rel="noopener noreferrer">here</a>.</h6>
+									<h1 class="card-title">POS Terminals List</h1>
+									
 								</div>
 								<div class="card-body">
 									<table id="datatables-buttons" class="table table-striped" style="width:100%">

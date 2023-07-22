@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PosTerminalsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 use Box\Spout\Common\Type;
@@ -14,40 +16,18 @@ class PosTerminalController extends Controller
     public function import(Request $request)
     {
 
-    $currentDate = Carbon::now();
-    $file = $request->file('file');
-    $path = $file->getPathname();
+        // Validate the uploaded file (if needed)
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
 
-//return $path;
+        // Get the uploaded file
+        $file = $request->file('file');
 
-   $reader = ReaderEntityFactory::createReaderFromFile($path);
-   $reader->open($path);
+        // Use the Excel facade to import the data from the file
+        Excel::import(new PosTerminalsImport, $file);
 
-
-
-
-    $data = [];
-    foreach ($reader->getSheetIterator() as $sheet) {
-        foreach ($sheet->getRowIterator() as $row) {
-            $rowValues = $row->toArray();
-            $data[] = [
-                'device_name' => $rowValues[0],
-                'serial_no' => $rowValues[1],
-                'device_os' => $rowValues[2],
-                'status' => "available",
-                'owner_type' => "Store",
-                'registration_date' => $currentDate,
-                
-                // Add more columns as needed
-            ];
-        }
-    }
-
-    $reader->close();
-
-   // PosTerminal::insert($data);
-   DB::table('tbl_pos_terminals')->insert($data);
-
-    return redirect()->back()->with('success', 'Terminals imported successfully!');
+        // Optionally, you can return a response or redirect back
+        return redirect()->back()->with('success', 'POS Excel file imported successfully into the system.');
     }
 }

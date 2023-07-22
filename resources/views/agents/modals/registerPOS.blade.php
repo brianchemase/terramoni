@@ -73,6 +73,40 @@
 					<label for="validationDefault01" class="form-label">Upload Excel file</label>
 					<input type="file" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="file" required>
 				</div>
+
+				<div class="col-md-10">
+				<label for="validationDefault01" class="form-label">Excel Sample</label>
+				<table class="table">
+				<thead>
+					<tr>
+					<th scope="col">Device_name</th>
+					<th scope="col">serial_no</th>
+					<th scope="col">device_no</th>
+					
+					</tr>
+				</thead>
+						<tbody>
+							<tr>
+							<th scope="row">Name 1</th>
+							<td>S1234567</td>
+							<td>Samsung</td>
+							
+							</tr>
+							<tr>
+							<th scope="row">Name 2</th>
+							<td>S1234567</td>
+							<td>Techno</td>
+							
+							</tr>
+							<tr>
+							<th scope="row">Name 3</th>
+							<td>S1234567</td>
+							<td>Motorola</td>
+							
+							</tr>
+						</tbody>
+				</table>
+				</div>
 				
 				
 						

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Mail;
 
-
+use App\Imports\PosTerminalsImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
