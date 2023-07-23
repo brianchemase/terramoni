@@ -92,12 +92,14 @@ class BillPaymentController extends Controller
         $target = $responseData['target'];
         $topupAmount = $responseData['topup_amount'];
         $paidCurrency = $responseData['paid_currency'];
+        $customer_reference = $responseData['customer_reference'];
     
         // Store the data into the tbl_transactions table using the DB facade
         DB::table('tbl_transactions')->insert([
             'Name' => $productId,
             'BillerName' => $target,
             'ConsumerIdField' => $agent_names,
+            'customer_reference' => $customer_reference,
             'ItemFee' => $topupAmount,
             'CurrencySymbol' => $paidCurrency,
             'BillerType' => 'Electrical Bill',
