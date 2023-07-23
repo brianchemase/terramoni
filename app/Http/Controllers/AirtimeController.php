@@ -15,7 +15,7 @@ class AirtimeController extends Controller
     public function __construct()
     {
         // Assign initial value to $authorization
-        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTAwMTkxMDY4MjN9.gAH4kJCvceltZnN-QSRmv1rUuTYfSgonVY_1WWNbVVQ';
+        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTAyOTQ2NTM4MjN9.EPDN9gI9b0kUd34d_XKlPYhBB85iqwUjXDIPp92AR1A';
     }
 
 
