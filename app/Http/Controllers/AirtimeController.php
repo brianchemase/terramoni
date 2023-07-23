@@ -173,6 +173,7 @@ class AirtimeController extends Controller
          'Name' => $productId,
          'BillerName' => $target,
          'ConsumerIdField' => $agent_names,
+         'customer_reference' => $customer_reference,
          'ItemFee' => $topupAmount,
          'CurrencySymbol' => $paidCurrency,
          'BillerType' => 'Data Top up',
