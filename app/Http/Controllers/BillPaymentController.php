@@ -62,7 +62,7 @@ class BillPaymentController extends Controller
 
         $response = curl_exec($ch);
 
-        return $response;
+        //return $response;
         
 
         if ($response === false) {
