@@ -37,7 +37,7 @@
                 <form method="POST" class="register-form" id="register-form" action="{{ route('agentsselfregister') }}" enctype="multipart/form-data">
     @csrf
     <h2>Agents Self Registration Portal</h2>
-    <h3>Individual Portal</h3>
+    <h2>Individual Portal</h2>
     <div class="form-row">
         <div class="form-group">
             <label for="first_name">First Name :</label>
