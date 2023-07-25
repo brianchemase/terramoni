@@ -56,7 +56,7 @@ https://templatemo.com/tm-570-chain-app-dev
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
-              <img src="landing/assets/images/log.png" width="16" height="130" alt="Tera">
+              <img src="landing/assets/images/tsp-logo.png" width="16" height="130" alt="Tera">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->

@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="{{route('admindash')}}">
-                    <!-- <img src="{{asset('logo/sisdologo.png')}}" alt="Ndururumo" width="50" height="60"> -->
+                    <img src="{{asset('logo/tsp-logo.png')}}" alt="TeraLogo" width="50" height="60">
                     <span class="align-middle">TerraMoni </span>
                 </a>
 				<ul class="sidebar-nav">
