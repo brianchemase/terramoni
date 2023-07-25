@@ -65,7 +65,7 @@ https://templatemo.com/tm-570-chain-app-dev
               <!-- <li class="scroll-to-section"><a href="#services">Services</a></li>
               <li class="scroll-to-section"><a href="#about">About</a></li> -->
               <li class="scroll-to-section"><a href="#pricing">Agents</a></li>
-              <li class="scroll-to-section"><a href="{{route('SelfRegisterLanding')}}">Agents Register</a></li>
+              <!-- <li class="scroll-to-section"><a href="{{route('SelfRegisterLanding')}}">Agents Register</a></li> -->
               <li><div class="gradient-button"><a href="{{route('admindash')}}"><i class="fa fa-sign-in-alt"></i> Sign In Now</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
@@ -353,7 +353,7 @@ https://templatemo.com/tm-570-chain-app-dev
     </div>
   </div> 
 
-  <footer id="newsletter">
+  <!-- <footer id="newsletter">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -438,7 +438,7 @@ https://templatemo.com/tm-570-chain-app-dev
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
 
 
   <!-- Scripts -->
