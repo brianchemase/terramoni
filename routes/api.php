@@ -26,7 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //agents auth api
 
-Route::post('/AgentsAuth', [AuthOtpController::class, 'Appauthenticate']);//billers API
+Route::post('/AgentsAuth', [AuthOtpController::class, 'Appauthenticate']);//agents Login API
+
+//agents registration api
+Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//agents Register API
 
 
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API

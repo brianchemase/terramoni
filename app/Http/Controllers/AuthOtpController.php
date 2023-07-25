@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 
 class AuthOtpController extends Controller
@@ -289,5 +290,38 @@ class AuthOtpController extends Controller
         ];
 
         return response()->json($responseFields, 200);
+    }
+
+    public function agentsregister(Request $request)
+    {
+        // Validate the incoming registration data
+        $validatedData = $request->validate([
+            'first_name' => 'required',
+            'mid_name' => 'required',
+            'last_name' => 'required',
+            'dob' => 'required',
+            'phone' => 'required|unique:tbl_agents|max:50',
+            'email' => 'required|email|unique:tbl_agents|max:50',
+            'gender' => 'required',
+            'location' => 'required',
+            'country' => 'required',
+            'status' => ['nullable', 'string', 'max:9', Rule::in(['active', 'inactive'])],
+            'BVN' => 'required',
+            'doc_type' => 'required',
+            'doc_no' => 'required',
+            //'passport' => 'nullable|string|max:255',
+            'bank_name' => 'required',
+            'bank_acc_no' => 'required',
+            'agent_code' => 'required',
+            'access_pin' => 'required',
+            'registration_date' => 'required',
+            //'validation_date' => 'nullable|date',
+        ]);
+
+        // Insert the agent's data into the database
+        $agentId = DB::table('tbl_agents')->insertGetId($validatedData);
+
+        // Return a response with the agent ID or any other relevant data
+        return response()->json(['agent_id' => $agentId], 201);
     }
 }
