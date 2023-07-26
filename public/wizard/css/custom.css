@@ -1,0 +1,34 @@
+/* Style the dropdown arrow for elements with the "custom-select" class */
+.custom-select {
+    /* Add some padding to make room for the arrow */
+    padding: 5px;
+    /* Set a custom background color */
+    background-color: #f2f2f2;
+    /* Set a custom border */
+    border: 1px solid #ccc;
+    /* Add rounded corners */
+    border-radius: 4px;
+    /* Set a custom font */
+    font-family: Arial, sans-serif;
+    /* Adjust the width */
+    width: 200px;
+    /* Remove the default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  /* Style the options for elements with the "custom-select" class */
+  .custom-select option {
+    /* Set a custom background color */
+    background-color: #fff;
+    /* Set a custom font color */
+    color: #333;
+  }
+  
+  /* Style the dropdown when it's open for elements with the "custom-select" class */
+  .custom-select:hover, .custom-select:focus {
+    /* Set a custom background color */
+    background-color: #e0e0e0;
+  }
+  

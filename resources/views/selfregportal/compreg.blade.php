@@ -11,9 +11,12 @@
     <!-- Font Icon -->
     <link rel="stylesheet" href="wizard/fonts/material-icon/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="wizard/vendor/nouislider/nouislider.min.css">
+    
 
     <!-- Main css -->
     <link rel="stylesheet" href="wizard/css/style.css">
+    <link rel="stylesheet" href="wizard/css/custom.css">
+    
 </head>
 
 <body>
@@ -29,27 +32,84 @@
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
                         <div class="fieldset-content">
                              <div class="form-group">
-                                <label for="email" class="form-label">Comapny Name</label>
-                                <input type="email" name="email" id="email" placeholder="Enter your Company name as registered" />
+                                <label for="cname" class="form-label">Company Name</label>
+                                <input type="cname" name="cname" id="cname" placeholder="Enter your Company name as registered" />
                                 <span class="text-input">Enter Your Company name as registered with the authorities</span>
                             </div>
                             <div class="form-row">
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="text" name="first_name" id="first_name" />
+                                        <input type="text" name="cphone" id="cphone" />
                                         <span class="text-input">Enter Company Phone</span>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
+                                        <input type="text" name="cemail" id="cemail" />
                                         <span class="text-input">Enter Company Email</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label">Company Location</label>
+                                <div class="form-flex">
+                               
+                                    <div class="form-group">
+                                    <select name="state" id="state" onchange="toggleLGA(this);" class="custom-select">
+                                    <option value="" selected="selected">- Select -</option>
+                                        <option value="Abia">Abia</option>
+                                        <option value="Adamawa">Adamawa</option>
+                                        <option value="AkwaIbom">AkwaIbom</option>
+                                        <option value="Anambra">Anambra</option>
+                                        <option value="Bauchi">Bauchi</option>
+                                        <option value="Bayelsa">Bayelsa</option>
+                                        <option value="Benue">Benue</option>
+                                        <option value="Borno">Borno</option>
+                                        <option value="Cross River">Cross River</option>
+                                        <option value="Delta">Delta</option>
+                                        <option value="Ebonyi">Ebonyi</option>
+                                        <option value="Edo">Edo</option>
+                                        <option value="Ekiti">Ekiti</option>
+                                        <option value="Enugu">Enugu</option>
+                                        <option value="FCT">FCT</option>
+                                        <option value="Gombe">Gombe</option>
+                                        <option value="Imo">Imo</option>
+                                        <option value="Jigawa">Jigawa</option>
+                                        <option value="Kaduna">Kaduna</option>
+                                        <option value="Kano">Kano</option>
+                                        <option value="Katsina">Katsina</option>
+                                        <option value="Kebbi">Kebbi</option>
+                                        <option value="Kogi">Kogi</option>
+                                        <option value="Kwara">Kwara</option>
+                                        <option value="Lagos">Lagos</option>
+                                        <option value="Nasarawa">Nasarawa</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Ogun">Ogun</option>
+                                        <option value="Ondo">Ondo</option>
+                                        <option value="Osun">Osun</option>
+                                        <option value="Oyo">Oyo</option>
+                                        <option value="Plateau">Plateau</option>
+                                        <option value="Rivers">Rivers</option>
+                                        <option value="Sokoto">Sokoto</option>
+                                        <option value="Taraba">Taraba</option>
+                                        <option value="Yobe">Yobe</option>
+                                        <option value="Zamfara">Zamafara</option>
+                                    </select>
+                                        <span class="text-input">Select Company State</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <select name="city" id="lga" class="custom-select" required>
+                                        
+                                    </select>
+                                        <span class="text-input">Select Company LGA</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="phone" class="form-label">Location</label>
+                                <label for="location" class="form-label">Location</label>
                                 <input type="text" name="phone" id="phone" />
                             </div>
 
@@ -77,7 +137,7 @@
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                    <select name="doc_type" id="doc_type">
+                                    <select name="doc_type" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
@@ -101,7 +161,7 @@
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                    <select name="doc_type" id="doc_type">
+                                    <select name="doc_type" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
@@ -125,7 +185,7 @@
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                    <select name="doc_type" id="doc_type">
+                                    <select name="doc_type" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
@@ -177,6 +237,7 @@
     </div>
 
     <!-- JS -->
+   
     <script src="wizard/vendor/jquery/jquery.min.js"></script>
     <script src="wizard/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="wizard/vendor/jquery-validation/dist/additional-methods.min.js"></script>
@@ -185,6 +246,7 @@
     <script src="wizard/vendor/nouislider/nouislider.min.js"></script>
     <script src="wizard/vendor/wnumb/wNumb.js"></script>
     <script src="wizard/js/main.js"></script>
+    <script src="wizard/js/lga.min.js"></script>
 </body>
 
 </html>
