@@ -24,10 +24,35 @@
 <body>
 
     <div class="main">
+    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                        <!-- {{ $message }} -->
+
+                            <script>
+                                window.addEventListener('DOMContentLoaded', function() {
+                                    swal("Submited!", "Application Submited successfully.", "success");
+                                });
+                            </script>
+                        </div>
+                    @endif
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+                        </div>
+                    <script>
+                        window.addEventListener('DOMContentLoaded', function() {
+                            swal("Error!", "An error happened. Contact Admin.", "error");
+                        });
+                    </script>
+                    @endif
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="#">
-                <div>
+            <form method="POST" id="signup-form" class="signup-form" action="{{ route('compagentsselfregister') }}" enctype="multipart/form-data">
+            @csrf    
+            <div>
                     <h3>Company info</h3>
                     <fieldset>
                         <h2>Company information</h2>
@@ -35,19 +60,29 @@
                         <div class="fieldset-content">
                              <div class="form-group">
                                 <label for="cname" class="form-label">Company Name</label>
-                                <input type="cname" name="cname" id="cname" placeholder="Enter your Company name as registered" />
+                                <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Company name as registered" />
                                 <span class="text-input">Enter Your Company name as registered with the authorities</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxid" class="form-label">TAX ID</label>
+                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Company TAX ID" />
+                                <span class="text-input">Enter Your Company Tax ID</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxid" class="form-label">Company BVN No</label>
+                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Company BVN No" />
+                                <span class="text-input">Enter Your Company BVN No</span>
                             </div>
                             <div class="form-row">
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="text" name="cphone" id="cphone" />
+                                        <input type="text" name="phone" id="cphone" />
                                         <span class="text-input">Enter Company Phone</span>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" name="cemail" id="cemail" />
+                                        <input type="text" name="email" id="cemail" />
                                         <span class="text-input">Enter Company Email</span>
                                     </div>
                                 </div>
@@ -112,12 +147,16 @@
                             
                             <div class="form-group">
                                 <label for="location" class="form-label">Business Type</label>
-                                
-                                <select name="doc_type" id="doc_type" class="custom-select">
-                                        <option value="NIN">NIN</option>
-                                        <option value="DL">Driving Licence</option>
-                                        <option value="VotingCard">Voters Card</option>
-                                        <option value="Passport">International Passport</option>
+                                    <select name="doc_type" id="doc_type" class="custom-select">
+                                        <option selected disabled value="">Choose...</option>
+                                        <option value="1">Private Limited Liability </option>
+                                        <option value="2">Public Limited Liability </option>
+                                        <option value="3">Non-Government Organization </option>
+                                        <option value="4">Proprietor/Partnership</option>
+                                        <option value="5">General Collection </option>
+                                        <option value="6">Starter Business/SMEs</option>
+                                        <option value="7">Betting/Lottery </option>
+                                        <option value="8">Payment/Finance</option> 
                                     </select>
                             </div>     
 
@@ -134,74 +173,52 @@
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                    <select name="doc_type" id="doc_type" class="custom-select">
+                                    <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Enter Company Phone</span>
+                                        <span class="text-input">Select Identification Document</span>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
+                                        <input type="text" name="directordoc[]" id="directordoc" />
+                                        <span class="text-input">Enter Document Number</span>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
+                                        <input type="text" name="directorBVN[]" id="directorBVN" />
+                                        <span class="text-input">Enter Director BVN No</span>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-row">
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                    <select name="doc_type" id="doc_type" class="custom-select">
+                                    <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Enter Company Phone</span>
+                                        <span class="text-input">Select Identification Document</span>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
+                                        <input type="text" name="directordoc[]" id="directordoc" />
+                                        <span class="text-input">Enter Document Number</span>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
+                                        <input type="text" name="directorBVN[]" id="directorBVN" />
+                                        <span class="text-input">Enter Director BVN No</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <label class="form-label">Company Contact details</label>
-                                <div class="form-flex">
-                                    <div class="form-group">
-                                    <select name="doc_type" id="doc_type" class="custom-select">
-                                        <option value="NIN">NIN</option>
-                                        <option value="DL">Driving Licence</option>
-                                        <option value="VotingCard">Voters Card</option>
-                                        <option value="Passport">International Passport</option>
-                                    </select>
-                                        <span class="text-input">Enter Company Phone</span>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" name="last_name" id="last_name" />
-                                        <span class="text-input">Enter Company Email</span>
-                                    </div>
-                                </div>
-                            </div>
+                           
                             
                     </fieldset>
 
@@ -214,7 +231,7 @@
                                 <label class="form-label">Company Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
+                                        <input type="file"  name="cert_of_coop" id="cert_of_coop" />
                                         <span class="text-input">Certificate of Incooperation</span>
                                     </div>
                                     
@@ -226,32 +243,19 @@
 
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
+                                        <input type="file" name="memandart" id="memandart" />
                                         <span class="text-input">Mem & Articles</span>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="file" name="address_proof" id="address_proof" />
+                                        <input type="file" name="stateofreturn" id="stateofreturn" />
                                         <span class="text-input">Statement of Return</span>
                                     </div>
                                 </div>
-
-                                <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
-                                        <span class="text-input">Mem & Articles</span>
+                                         <button type="submit" class="custom-btn">Upload</button>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <input type="file" name="address_proof" id="address_proof" />
-                                        <span class="text-input">Statement of Return</span>
-                                    </div>
-                                </div>
-                            </div>
-                        
-
-                            
-                           
+                            </div>                           
                         </div>
                     </fieldset>
                 </div>

@@ -40,6 +40,7 @@ Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'
 
 
 Route::get('/CompSelfcare', [AgentsController::class, 'merchantagentselfregistration'])->name('CompSelfRegister');
+Route::post('/RegisterSelfCompanyAgent', [AgentsController::class, 'storecompanyselfreg'])->name('compagentsselfregister');
 
 Auth::routes();
 Route::middleware(['auth','user-role:admin'])->group(function()

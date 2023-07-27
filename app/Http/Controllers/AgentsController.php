@@ -299,6 +299,103 @@ class AgentsController extends Controller
         }
     }
 
+    public function storecompanyselfreg(Request $request)
+    {
+
+        $input = $request->all();
+       // return $input;
+
+        $request->validate([
+			'cname'=>'required',
+			//'mname'=>'required',
+			//'last_name'=>'required',
+			'email'=>'required|email|unique:tbl_agents',
+			//'gender'=>'required',
+			'phone'=>'required',
+			'bvn'=>'required',
+			//'station'=>'required',
+			//'id_number'=>'required|unique:clients_data|min:5|max:12'
+	   ]);
+
+        // if ($request->hasFile('passport')) {
+
+        //     $request->validate([
+        //         'passport' => 'mimes:png,jpg,jpeg|max:2048' // Only allow .jpg, .bmp and .png file types.
+        //     ]);
+    
+        //     $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        //      // Save the file locally in the storage/public/ folder under a new folder named /ppts
+        //      $request->passport->store('ppts', 'public');
+        // }
+
+          // Process the other_attachment
+            if ($request->hasFile('address_proof')) {
+                $request->validate([
+                    'address_proof' => 'mimes:png,jpg,jpeg|max:2048',
+                ]);
+                $request->address_proof->store('address', 'public');
+            }
+
+
+
+            $docTypes = $request->input('doc_type');
+            $docNumbers = $request->input('directordoc');
+            $directorBVNs = $request->input('directorBVN');
+            $tax_id = $request->input('taxid');
+            $cname = $request->input('cname');
+
+            // Assuming you have a "tbl_agents" table in your database
+            $insertedIds = [];
+            foreach ($docTypes as $key => $docType) {
+                $insertedId = DB::table('tbl_company_directors')->insertGetId([
+                    'company_names' => $cname,
+                    'tax_id' => $tax_id,
+                    'doc_type' => $docType,
+                    'doc_no' => $docNumbers[$key],
+                    'dir_bvn_no' => $directorBVNs[$key],
+                    // Add other fields here as needed
+                ]);
+                $insertedIds[] = $insertedId;
+            }
+
+
+
+
+
+        // Store the agent record in the database using DB facade
+        $inserted = DB::table('tbl_agents')->insertGetId([
+            'first_name' => $input['cname'],
+            //'mid_name' => $input['mid_name'],
+            //'last_name' => $input['last_name'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+           // 'dob' => $input['birth_date'],
+            //'doc_type' => $input['doc_type'],
+            //'doc_no' => $input['doc_no'],
+            'tax_id' => $input['taxid'],
+            'bvn' => $input['bvn'],
+            //'gender' => $input['gender'],
+            'location' => $input['state'],
+            'country' => $input['city'],
+           // 'bank_name' => $input['bank_name'],
+           // 'bank_acc_no' => $input['bank_acc_no'],
+            'status' => "pending",
+            //'passport' => $request->passport->hashName(),
+            'address_proff' => $request->address_proof->hashName(),
+            'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
+        ]);
+
+       // $inserted = DB::table('tbl_agents')->insert($agentData);
+
+        if ($inserted) {
+            
+            return back()->with('success','Year Agent data saved successfully!');
+        } else {
+           
+            return back()->with('error','Something went wrong, try again later or contact system admin');
+        }
+    }
+
     public function aggregatorstab()
     {
         return view ('agents.aggregatorstable');
