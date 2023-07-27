@@ -9,6 +9,7 @@
     <!-- Font Icon -->
     <link rel="stylesheet" href="registration/fonts/material-icon/css/material-design-iconic-font.min.css">
 
+    <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
     <!-- Main css -->
     <link rel="stylesheet" href="registration/css/style.css">
 </head>
@@ -20,17 +21,35 @@
                 <div class="signup-img">
                     <img src="registration/images/signup-img.jpg" alt="">
                 </div>
-                    @if(session('status'))
+                    @if ($message = Session::get('success'))
                         <div class="alert alert-success">
-                            {{ session('status') }}
+                        <!-- {{ $message }} -->
+
+                            <script>
+                                window.addEventListener('DOMContentLoaded', function() {
+                                    swal("Submited!", "Application Submited successfully.", "success");
+                                });
+                            </script>
                         </div>
                     @endif
 
-                    @if(session('error'))
+                    @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            {{ session('error') }}
+                        @foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
                         </div>
+                    <script>
+                        window.addEventListener('DOMContentLoaded', function() {
+                            swal("Error!", "An error happened. Contact Admin.", "error");
+                        });
+                    </script>
                     @endif
+
+                    <div class="alert alert-success"  id="b2">
+                    
+                 
+                    </div>
 
 
                 <div class="signup-form">
@@ -52,17 +71,25 @@
             <input type="text" name="last_name" onkeyup="this.value = this.value.toUpperCase();" id="last_name" required/>
         </div>
     </div>
-    <div class="form-group">
-        <label for="phone">Phone :</label>
-        <input type="text" name="phone" id="phone" required/>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="phone">Phone :</label>
+            <input type="text" name="phone" id="phone" required/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address :</label>
+            <input type="email" name="email" id="email" required/>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="email">Email Address :</label>
-        <input type="email" name="email" id="email" required/>
-    </div>
+    <div class="form-row">
     <div class="form-group">
         <label for="birth_date">DOB :</label>
         <input type="date" name="birth_date" id="birth_date">
+    </div>
+    <div class="form-group">
+        <label for="taxid">TAX ID</label>
+        <input type="text" name="taxid" id="taxid">
+    </div>
     </div>
     <div class="form-row">
     <div class="form-group">
@@ -179,9 +206,16 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="passport">Passport:</label>
-        <input type="file" name="passport" id="passport" accept="image/*" />
+    <div class="form-row">
+        <div class="form-group">
+            <label for="passport">Passport:</label>
+            <input type="file" name="passport" id="passport" accept="image/*" required />
+        </div>
+
+        <div class="form-group">
+            <label for="address_proof">Proff of Address:</label>
+            <input type="file" name="address_proof" id="address_proof" accept="image/*" required />
+        </div>
     </div>
     <div class="form-submit">
         <input type="reset" value="Reset All" class="submit" name="reset" id="reset" />
@@ -196,8 +230,10 @@
     </div>
 
     <!-- JS -->
+    <script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
     <script src="registration/vendor/jquery/jquery.min.js"></script>
     <script src="registration/js/main.js"></script>
     <script src="registration/js/lga.min.js"></script>
+    <script src="registration/js/alert.js"></script>
 </body>
 </html>

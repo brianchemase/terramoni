@@ -238,7 +238,7 @@ class AgentsController extends Controller
 			'first_name'=>'required',
 			//'mname'=>'required',
 			'last_name'=>'required',
-			//'email'=>'required|email|unique:clients_data',
+			'email'=>'required|email|unique:tbl_agents',
 			'gender'=>'required',
 			'phone'=>'required',
 			'bvn'=>'required',
@@ -257,6 +257,14 @@ class AgentsController extends Controller
              $request->passport->store('ppts', 'public');
         }
 
+          // Process the other_attachment
+            if ($request->hasFile('address_proof')) {
+                $request->validate([
+                    'address_proof' => 'mimes:png,jpg,jpeg|max:2048',
+                ]);
+                $request->address_proof->store('address', 'public');
+            }
+
         // Store the agent record in the database using DB facade
         $inserted = DB::table('tbl_agents')->insertGetId([
             'first_name' => $input['first_name'],
@@ -267,6 +275,7 @@ class AgentsController extends Controller
             'dob' => $input['birth_date'],
             'doc_type' => $input['doc_type'],
             'doc_no' => $input['doc_no'],
+            'tax_id' => $input['taxid'],
             'bvn' => $input['bvn'],
             'gender' => $input['gender'],
             'location' => $input['state'],
@@ -275,6 +284,7 @@ class AgentsController extends Controller
             'bank_acc_no' => $input['bank_acc_no'],
             'status' => "pending",
             'passport' => $request->passport->hashName(),
+            'address_proff' => $request->address_proof->hashName(),
             'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
         ]);
 

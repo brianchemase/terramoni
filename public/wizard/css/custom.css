@@ -1,34 +1,49 @@
-/* Style the dropdown arrow for elements with the "custom-select" class */
+/* Style the dropdown container */
 .custom-select {
-    /* Add some padding to make room for the arrow */
-    padding: 5px;
-    /* Set a custom background color */
-    background-color: #f2f2f2;
-    /* Set a custom border */
-    border: 1px solid #ccc;
-    /* Add rounded corners */
-    border-radius: 4px;
-    /* Set a custom font */
-    font-family: Arial, sans-serif;
-    /* Adjust the width */
-    width: 200px;
-    /* Remove the default dropdown arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
-  
-  /* Style the options for elements with the "custom-select" class */
-  .custom-select option {
-    /* Set a custom background color */
-    background-color: #fff;
-    /* Set a custom font color */
-    color: #333;
-  }
-  
-  /* Style the dropdown when it's open for elements with the "custom-select" class */
-  .custom-select:hover, .custom-select:focus {
-    /* Set a custom background color */
-    background-color: #e0e0e0;
-  }
-  
+  /* Add Bootstrap form control styles */
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Style the dropdown arrow icon */
+.custom-select::after {
+  content: '\25BE'; /* Unicode code for downward arrow */
+  position: absolute;
+  top: 50%;
+  right: 12px; /* Adjust the positioning to your preference */
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Style the options for elements with the "custom-select" class */
+.custom-select option {
+  /* Set a custom background color */
+  background-color: #fff;
+  /* Set a custom font color */
+  color: #333;
+}
+
+/* Style the dropdown when it's open for elements with the "custom-select" class */
+.custom-select:hover, .custom-select:focus {
+  /* Add Bootstrap form control hover/focus styles */
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Style the dropdown when an option is selected for elements with the "custom-select" class */
+.custom-select:active {
+  /* Add Bootstrap form control active styles */
+  background-color: #e9ecef;
+}

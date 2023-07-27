@@ -11,7 +11,9 @@
     <!-- Font Icon -->
     <link rel="stylesheet" href="wizard/fonts/material-icon/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="wizard/vendor/nouislider/nouislider.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+		integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
 
     <!-- Main css -->
     <link rel="stylesheet" href="wizard/css/style.css">
@@ -56,7 +58,7 @@
                                 <div class="form-flex">
                                
                                     <div class="form-group">
-                                    <select name="state" id="state" onchange="toggleLGA(this);" class="custom-select">
+                                    <select   onchange="toggleLGA(this);" id="state"  name="state" class="custom-select">
                                     <option value="" selected="selected">- Select -</option>
                                         <option value="Abia">Abia</option>
                                         <option value="Adamawa">Adamawa</option>
@@ -100,7 +102,7 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <select name="city" id="lga" class="custom-select" required>
+                                    <select name="city" id="lga" class="custom-select select-lga">
                                         
                                     </select>
                                         <span class="text-input">Select Company LGA</span>
@@ -109,21 +111,16 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="location" class="form-label">Location</label>
-                                <input type="text" name="phone" id="phone" />
-                            </div>
+                                <label for="location" class="form-label">Business Type</label>
+                                
+                                <select name="doc_type" id="doc_type" class="custom-select">
+                                        <option value="NIN">NIN</option>
+                                        <option value="DL">Driving Licence</option>
+                                        <option value="VotingCard">Voters Card</option>
+                                        <option value="Passport">International Passport</option>
+                                    </select>
+                            </div>     
 
-                            <div class="form-group">
-                                <label for="state" class="form-label">State</label>
-                                <input type="text" name="state" id="state" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Country" class="form-label">Country</label>
-                                <input type="text" name="Country" id="Country" />
-                            </div>
-                            
-                            
                            
                         </div>
                     </fieldset>
@@ -213,20 +210,47 @@
                         <h2>Upload Your Organization documents</h2>
                         <p class="desc">Upload your documents from here</p>
                         <div class="fieldset-content">
-                        <div class="form-group">
-                                <label for="ssn" class="form-label">Certificate of Incooperation</label>
-                                <input type="file" name="ssn" id="ssn" />
-                            </div>
-                            <div class="form-group">
-                                <label for="ssn" class="form-label">Proof of address</label>
-                                <input type="file" name="ssn" id="ssn" />
-                            </div>
+                        <div class="form-row">
+                                <label class="form-label">Company Contact details</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
+                                        <span class="text-input">Certificate of Incooperation</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="file" name="address_proof" id="address_proof" />
+                                        <span class="text-input">Proof of address</span>
+                                    </div>
+                                </div>
 
-                        <div class="form-group">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" />
-                                <span class="text-input">Example  :<span>  Jeff@gmail.com</span></span>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
+                                        <span class="text-input">Mem & Articles</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="file" name="address_proof" id="address_proof" />
+                                        <span class="text-input">Statement of Return</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                        <input type="file" name="cert_of_coop" id="cert_of_coop" />
+                                        <span class="text-input">Mem & Articles</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="file" name="address_proof" id="address_proof" />
+                                        <span class="text-input">Statement of Return</span>
+                                    </div>
+                                </div>
                             </div>
+                        
+
+                            
                            
                         </div>
                     </fieldset>
@@ -237,6 +261,8 @@
     </div>
 
     <!-- JS -->
+    <script src="wizard/js/lga.min.js"></script>
+    <!-- <script src="wizard/js/lga.js"></script> -->
    
     <script src="wizard/vendor/jquery/jquery.min.js"></script>
     <script src="wizard/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -246,7 +272,10 @@
     <script src="wizard/vendor/nouislider/nouislider.min.js"></script>
     <script src="wizard/vendor/wnumb/wNumb.js"></script>
     <script src="wizard/js/main.js"></script>
-    <script src="wizard/js/lga.min.js"></script>
+    
+    <script src='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js'></script>
+
+        
 </body>
 
 </html>
