@@ -634,8 +634,8 @@ class AgentsController extends Controller
         //$phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
         $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
 
-        $phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
-        $toNumber="+2347067281296";
+        $toNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
+        //$toNumber="+2347067281296";
 
         $response = $this->sendSMS($toNumber, $message);
        // return $response;
