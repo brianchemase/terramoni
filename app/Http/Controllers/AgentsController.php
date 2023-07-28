@@ -634,7 +634,7 @@ class AgentsController extends Controller
         $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
 
         $phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
-        $phoneNumber="2347067281296";
+        $phoneNumber="2349095873432";
 
         $url = "https:/clients.primeairtime.com/api/sms/$phoneNumber";
         //$authorization = "Bearer " . $this->authorization;
