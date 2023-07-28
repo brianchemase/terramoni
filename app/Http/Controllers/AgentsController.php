@@ -625,8 +625,36 @@ class AgentsController extends Controller
             // Add any other relevant fields here (e.g., role, status, etc.)
         ];
 
+        
+
         // Insert the user data into the users table using the DB facade
         DB::table('users')->insert($userData);
+        $fname = DB::table('tbl_agents')->where('id', $agentId)->value('first_name');
+        //$phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
+        $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
+
+        $phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
+        $phoneNumber="2347067281296";
+
+        $url = "https:/clients.primeairtime.com/api/sms/$phoneNumber";
+        //$authorization = "Bearer " . $this->authorization;
+        $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTA3MjAyMDMxNzl9.mBhCclvX7-1oS-cMonOZlxJ2PGOAV0yN5CsKy5zn_KA";
+            $data = [
+                          "message" => $message,
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "Content-Type: application/json",
+                "Authorization: $authorization"
+            ));
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec($ch);
 
 
 
