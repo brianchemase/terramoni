@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\PosTerminalController;
+use App\Http\Controllers\AgentsDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,60 +46,76 @@ Route::post('/RegisterSelfCompanyAgent', [AgentsController::class, 'storecompany
 Auth::routes();
 Route::middleware(['auth','user-role:admin'])->group(function()
  {
- Route::group(['prefix' => 'admins'], function() {
-//Route::group(['prefix' => 'admins'], function() {
+    Route::group(['prefix' => 'admins'], function() {
+    //Route::group(['prefix' => 'admins'], function() {
 
-Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
-Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
-Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
-Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
-
-
+    Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
+    Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
+    Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
+    Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
 
 
-Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
-// view available music
-Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
+    Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
+    // view available music
+    Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
 
-//
-// my view agents list
-Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
-Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
-
-
-//pending agents table
-Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
-// kyc form
-Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
-
-Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
-Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
-
-// view aggregators list
-Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
+    //
+    // my view agents list
+    Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
+    Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
 
 
-// view list of all POS Terminals
-Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
-Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
-Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+    //pending agents table
+    Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
+    // kyc form
+    Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 
-// import terminals
-Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
+    Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
+    Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
 
-// POS Allocation to agents t
-Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
-Route::get('/giveAllocationToAgents', [AgentsController::class, 'updateagentposallocation'])->name('assignagentspos');
+    // view aggregators list
+    Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
 
-// user profile
-Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');
 
-// user profile
-Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
-});
+    // view list of all POS Terminals
+    Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
+    Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
+    Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+
+    // import terminals
+    Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
+
+    // POS Allocation to agents t
+    Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
+    Route::get('/giveAllocationToAgents', [AgentsController::class, 'updateagentposallocation'])->name('assignagentspos');
+
+    // user profile
+    Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');
+
+    // user profile
+    Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
+    });
 
 }); // end of auth
 
 Auth::routes();
+
+Route::middleware(['auth','user-role:agent'])->group(function()
+ {
+
+    Route::group(['prefix' => 'agents'], function() {
+
+        Route::get('/', [AgentsDashboardController::class, 'dashboard'])->name('agentsdash');
+        Route::get('/tables', [AgentsDashboardController::class, 'tables'])->name('agentsmusictable');
+        Route::get('/blank', [AgentsDashboardController::class, 'blank'])->name('agentsblankpage');
+        Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');
+
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
+
+
+    });
+
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
