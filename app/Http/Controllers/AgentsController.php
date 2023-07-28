@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
+use Illuminate\Support\Facades\Hash;
 
 
 class AgentsController extends Controller
@@ -600,6 +601,33 @@ class AgentsController extends Controller
                 'access_pin' => '1234',
                 'registration_date' => $approvalDate
             ]);
+
+
+            // Retrieve agent details from tbl_agents using the agent_id
+        $agent = DB::table('tbl_agents')->where('id', $agentId)->first();
+
+        if (!$agent) {
+           // return response()->json(['error' => 'Agent not found.'], 404);
+            return Redirect::route('complianceagentstab')->with('error', 'an error happened. Reachout to the admins');
+        }
+
+        // Create a new user record in users table using agent details
+        $userData = [
+            'name' => $agent->first_name." ".$agent->mid_name." ".$agent->last_name,
+            'username' => $agent->first_name." ".$agent->last_name,
+            'mobile_no' => $agent->phone,
+            'email' => $agent->email,
+            'role' => '0',
+            'password' => Hash::make('123456'), // Replace 'your_default_password' with the desired default password
+            'email_verified_at' => $approvalDate,
+            'created_at' => $approvalDate,
+            'updated_at' => $approvalDate,
+            // Add any other relevant fields here (e.g., role, status, etc.)
+        ];
+
+        // Insert the user data into the users table using the DB facade
+        DB::table('users')->insert($userData);
+
 
 
             return Redirect::route('complianceagentstab')->with('success', 'Agent successfully approved. Ready for POS Allocation');
