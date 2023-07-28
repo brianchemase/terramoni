@@ -550,6 +550,7 @@ class AgentsController extends Controller
         $email = DB::table('tbl_agents')->where('id', $id)->value('email');
         $phone = DB::table('tbl_agents')->where('id', $id)->value('phone');
         $passport = DB::table('tbl_agents')->where('id', $id)->value('passport');
+        $address_proff = DB::table('tbl_agents')->where('id', $id)->value('address_proff');
         
 
         $data = [
@@ -565,6 +566,7 @@ class AgentsController extends Controller
             'location' => $location,
             'email' => $email, 
             'passport' => $passport, 
+            'address_proff' => $address_proff,
             'agent_id' => $id,         
         ];
 
