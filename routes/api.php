@@ -28,6 +28,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/AgentsAuth', [AuthOtpController::class, 'Appauthenticate']);//agents Login API
 
+
+//agents change pinauth api
+
+Route::post('/AgentsUpdatePin', [AuthOtpController::class, 'agentupdatePin']);//change agent pin
+
 //agents registration api
 Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//agents Register API
 

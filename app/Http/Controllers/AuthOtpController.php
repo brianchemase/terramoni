@@ -292,6 +292,7 @@ class AuthOtpController extends Controller
         return response()->json($responseFields, 200);
     }
 
+
     public function agentsregister(Request $request)
     {
         // Validate the incoming registration data
@@ -324,4 +325,30 @@ class AuthOtpController extends Controller
         // Return a response with the agent ID or any other relevant data
         return response()->json(['agent_id' => $agentId], 201);
     }
+
+    public function agentupdatePin(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'phone' => 'required',
+            'pin1' => 'required',
+            'pin2' => 'required|same:pin1',
+        ]);
+
+        $phone = $request->input('phone');
+        $pin1 = $request->input('pin1');
+
+        // Check if the agent with the given phone number exists in the database
+        $existingAgent = DB::table('tbl_agents')->where('phone', $phone)->first();
+
+        if (!$existingAgent) {
+            return response()->json(['error' => 'Agent with the given phone number does not exist.'], 404);
+        }
+
+        // Update the pin in the database using DB facade
+        DB::table('tbl_agents')->where('phone', $phone)->update(['access_pin' => $pin1]);
+
+        return response()->json(['message' => 'Access PIN updated successfully.'], 200);
+    }
+    
 }
