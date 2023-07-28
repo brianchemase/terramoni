@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 
 class AgentsController extends Controller
@@ -634,27 +635,12 @@ class AgentsController extends Controller
         $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
 
         $phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
-        $phoneNumber="2349095873432";
+        $toNumber="+2347067281296";
 
-        $url = "https:/clients.primeairtime.com/api/sms/$phoneNumber";
-        //$authorization = "Bearer " . $this->authorization;
-        $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTA3MjAyMDMxNzl9.mBhCclvX7-1oS-cMonOZlxJ2PGOAV0yN5CsKy5zn_KA";
-            $data = [
-                          "message" => $message,
-            ];
+        $response = $this->sendSMS($toNumber, $message);
+       // return $response;
 
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                "Content-Type: application/json",
-                "Authorization: $authorization"
-            ));
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $response = curl_exec($ch);
+       
 
 
 
@@ -683,5 +669,62 @@ class AgentsController extends Controller
         Mail::to('brianchemo@gmail.com')->send(new DemoMail($mailData));
            
         dd("Email is sent successfully.");
+    }
+
+    private function sendSMS(string $toNumber, string $message)
+    {
+        // Replace these with your actual credentials
+        $apiKey = '4e3f3b621a7b0aabb13f1691729e83f0eff6ab05dbaa6173f46d9cc7f6d56dc5';
+        $username = "dennis.mwebia";
+        $authorization = base64_encode($username . ':' . $apiKey);
+
+        
+        // URL to the API endpoint
+        $url = 'https://api.africastalking.com/version1/messaging';
+
+        // Request data
+        $data = [
+            'username' => $username,
+            'to' => $toNumber,
+            'message' => $message,
+           //'from' => 'myShortCode', // Change this if needed
+        ];
+
+        
+        // Set the API key in the headers
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'apiKey' => $apiKey,
+        ];
+
+         // Initialize cURL session
+        // Create cURL resource
+            $ch = curl_init();
+
+            // Set cURL options
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Accept: application/json',
+                'Content-Type: application/x-www-form-urlencoded',
+                'apiKey: ' . $apiKey
+            ));
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // Execute the cURL request and store the response
+            $response = curl_exec($ch);
+
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL error: ' . curl_error($ch);
+            }
+
+            // Close cURL resource
+            curl_close($ch);
+
+            // Output the response from the API
+            echo $response;
     }
 }
