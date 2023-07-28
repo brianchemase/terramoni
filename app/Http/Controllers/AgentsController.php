@@ -640,10 +640,6 @@ class AgentsController extends Controller
         $response = $this->sendSMS($toNumber, $message);
        // return $response;
 
-       
-
-
-
             return Redirect::route('complianceagentstab')->with('success', 'Agent successfully approved. Ready for POS Allocation');
     }
 
