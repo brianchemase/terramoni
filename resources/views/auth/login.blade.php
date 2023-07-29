@@ -63,8 +63,7 @@
                     <div class="control__indicator"></div>
                   </label>
                   <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-                </div>
-                
+                </div>      
 
                 <input type="submit" value="Log In" class="btn btn-block btn-primary">
 
@@ -74,11 +73,8 @@
         </div>
       </div>
     </div>
-
     
-  </div>
-    
-    
+  </div> 
 
     <script src="auth/js/jquery-3.3.1.min.js"></script>
     <script src="auth/js/popper.min.js"></script>
