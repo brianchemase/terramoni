@@ -310,7 +310,8 @@ class AuthOtpController extends Controller
             'BVN' => 'required',
             'doc_type' => 'required',
             'doc_no' => 'required',
-            //'passport' => 'nullable|string|max:255',
+            'passport' => 'required',
+            'address_proff' => 'required',
             'bank_name' => 'required',
             'bank_acc_no' => 'required',
             'agent_code' => 'required',
@@ -318,6 +319,33 @@ class AuthOtpController extends Controller
             'registration_date' => 'required',
             //'validation_date' => 'nullable|date',
         ]);
+
+        //$image_path = $request->file('image')->store('image', 'public');
+
+
+        if ($request->hasFile('passport')) {
+            $request->validate([
+                'passport' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->passport->store('ppts', 'public');
+
+             // Add the passport path to the validated data
+            $validatedData['passport'] = $request->passport->hashName();
+        }
+
+        if ($request->hasFile('address_proff')) {
+            $request->validate([
+                'address_proff' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->address_proff->store('address', 'public');
+
+             // Add the passport path to the validated data
+            $validatedData['address_proff'] = $request->address_proff->hashName();
+        }
+
+
+           // return $validatedData;
+        //'address_proff' => $request->address_proof->hashName(),
 
         // Insert the agent's data into the database
         $agentId = DB::table('tbl_agents')->insertGetId($validatedData);
