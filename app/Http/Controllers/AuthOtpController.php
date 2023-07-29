@@ -285,6 +285,7 @@ class AuthOtpController extends Controller
             'bvn_no' => $agent->BVN,
             'doc_type' => $agent->doc_type,
             'doc_no' => $agent->doc_no,
+            'passport' => $agent->passport,
             'terminals' => $terminals,
             // Add other fields you want to include in the response
         ];
