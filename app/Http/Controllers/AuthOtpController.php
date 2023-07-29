@@ -306,7 +306,7 @@ class AuthOtpController extends Controller
             'gender' => 'required',
             'location' => 'required',
             'country' => 'required',
-            'status' => ['nullable', 'string', 'max:9', Rule::in(['active', 'inactive'])],
+           // 'status' => ['nullable', 'string', 'max:9', Rule::in(['active', 'pending'])],
             'BVN' => 'required',
             'doc_type' => 'required',
             'doc_no' => 'required',
@@ -342,7 +342,7 @@ class AuthOtpController extends Controller
              // Add the passport path to the validated data
             $validatedData['address_proff'] = $request->address_proff->hashName();
         }
-
+        $validatedData['status']="pending";
 
            // return $validatedData;
         //'address_proff' => $request->address_proof->hashName(),
@@ -351,7 +351,13 @@ class AuthOtpController extends Controller
         $agentId = DB::table('tbl_agents')->insertGetId($validatedData);
 
         // Return a response with the agent ID or any other relevant data
-        return response()->json(['agent_id' => $agentId], 201);
+       // return response()->json(['agent_id' => $agentId], 201);
+
+        return response()->json([
+            'agent_id' => $agentId,
+            'Data' => $validatedData,
+            'message' => 'Agent registration successful.'
+        ], 201);
     }
 
     public function agentupdatePin(Request $request)
