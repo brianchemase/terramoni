@@ -7,6 +7,7 @@ use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\BillersController;
 use App\Http\Controllers\BillPaymentController;
 use App\Http\Controllers\AuthOtpController;
+use App\Http\Controllers\TransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//a
 
 
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
+
+//agents registration api
+Route::get('/RegAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
 
 
 
