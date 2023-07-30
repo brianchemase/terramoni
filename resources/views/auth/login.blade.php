@@ -25,7 +25,7 @@
     <div class="bg" style="background-image: url('auth/images/bg.jpg');"></div>
     <div class="contents">
 
-      <div class="container" data-tilt>
+      <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="form-block mx-auto">
