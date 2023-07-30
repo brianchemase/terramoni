@@ -41,7 +41,7 @@ Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//a
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
 
 //agents registration api
-Route::get('/RegAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
+Route::get('/getAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
 
 
 
