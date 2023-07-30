@@ -33,7 +33,8 @@
                     <div class="text-center">
 						<img src="logo/tsp-logo.png" alt="Logo" class="img-fluid" width="132" height="132" data-tilt />
 					</div>
-              <h3>Login to <strong>TerraMoni</strong></h3>
+                    <br>
+              <h3>Login to <strong>TerraMoni Portal</strong></h3>
               <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
               </div>
               <form action="{{ route('login') }}" method="post">
