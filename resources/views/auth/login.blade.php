@@ -35,6 +35,11 @@
 					</div>
                     <br>
               <h3>Login to <strong>TerraMoni Portal</strong></h3>
+              @if(Session::get('error'))
+               <div class="alert alert-danger">
+                  {{ Session::get('error') }}
+               </div>
+            @endif
               <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
               </div>
               <form action="{{ route('login') }}" method="post">
