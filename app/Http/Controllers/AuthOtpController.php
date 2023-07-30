@@ -272,7 +272,7 @@ class AuthOtpController extends Controller
          ->select('serial_no', 'status', 'assignment_date') // Specify the columns you want to fetch
          ->get();
 
-
+$passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         // If authentication is successful, return the selected fields as a response
         $responseFields = [
             'agent_id' => $agent->id,
@@ -286,6 +286,7 @@ class AuthOtpController extends Controller
             'doc_type' => $agent->doc_type,
             'doc_no' => $agent->doc_no,
             'passport' => $agent->passport,
+            'passport_url' => $passport,
             'terminals' => $terminals,
             // Add other fields you want to include in the response
         ];
