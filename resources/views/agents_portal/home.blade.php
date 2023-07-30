@@ -23,7 +23,7 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
 												<h2 class="d-flex align-items-center mb-0" style="color: white;">
-													NGN 3,243
+													NGN {{ number_format($walletBalance) }}
 												</h2>
 											</div>
 										</div>
@@ -40,7 +40,7 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
 												<h2 class="d-flex align-items-center mb-0" style="color: white;">
-													NGN 5578
+													NGN {{ number_format($CommisionEarned) }}
 												</h2>
 											</div>
 											

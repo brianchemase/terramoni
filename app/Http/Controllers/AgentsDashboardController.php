@@ -30,21 +30,29 @@ class AgentsDashboardController extends Controller
 
         //$transactions = DB::table('tbl_transactions')->get();
         $POSCount = DB::table('tbl_pos_terminals')->count();
-        $transactions = DB::table('tbl_transactions')
-                ->orderBy('Id', 'desc')
-                ->get();
+       
 
-        $POSCount= $agentCount="0";
+        $agentCount="0";
         $mobile=Auth::user()->mobile_no;
         $agent_id = DB::table('tbl_agents')->where('phone', $mobile)->value('id');
         $POSCount = DB::table('tbl_pos_terminals')->where('agent_id', $agent_id)->count();
+
+        $transactions = DB::table('tbl_transactions')
+        ->orderBy('Id', 'desc')
+        ->where('agent_id', $agent_id)
+        ->get();
        // return $agent_id;
+
+       $walletBalance=rand(1, 100000);
+       $CommisionEarned=rand(1, 10000);
 
 
         $data = [
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents
             'POSCount' => $POSCount,// counts number of POS
+            'walletBalance' => $walletBalance,// Balance
+            'CommisionEarned' => $CommisionEarned,// commision
             'transactions' => $transactions,// Transactions lists
             // Add more data to the array as needed
         ];

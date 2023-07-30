@@ -91,6 +91,7 @@ class AirtimeController extends Controller
             'Name' => $productId,
             'BillerName' => $target,
             'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
             'customer_reference' => $customer_reference,
             'ItemFee' => $topupAmount,//customer_reference
             'CurrencySymbol' => $paidCurrency,
@@ -174,6 +175,7 @@ class AirtimeController extends Controller
          'Name' => $productId,
          'BillerName' => $target,
          'ConsumerIdField' => $agent_names,
+         'agent_id' => $agent_id,
          'customer_reference' => $customer_reference,
          'ItemFee' => $topupAmount,
          'CurrencySymbol' => $paidCurrency,
