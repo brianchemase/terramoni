@@ -13,7 +13,7 @@
 					
 					<div class="col-md-12">
 						<div class="row ">
-							<div class="col-xl-4 col-lg-6">
+							<div class="col-xl-4 col-lg-6" data-tilt>
 								<div class="card l-bg-cherry">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
@@ -30,7 +30,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-lg-6">
+							<div class="col-xl-4 col-lg-6" data-tilt>
 								<div class="card l-bg-cherry">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
@@ -53,7 +53,7 @@
 
 							
 
-							<div class="col-xl-4 col-lg-6">
+							<div class="col-xl-4 col-lg-6" data-tilt>
 								<div class="card l-bg-orange-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-mobile-alt"></i></div>

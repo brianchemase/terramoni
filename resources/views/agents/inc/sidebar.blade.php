@@ -80,17 +80,24 @@
 					<li class="sidebar-header">
 						Settings
 					</li>
-					
-					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
-						<a data-target="#compliance" data-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="award"></i> <span class="align-middle">Settings</span>
-						</a>
-						<ul id="compliance" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Users (Under Construction)</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Configurations (Under Construction)</a></li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="#">
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Users (Under Construction)</span>
 							
-						</ul>
+						</a>
 					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="#">
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Configurations (Under Construction)</span>
+							
+						</a>
+					</li>
+
+					
+					
+					
 					<!-- <li class="sidebar-header">
 						Allocations
 					</li>
