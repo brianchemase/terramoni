@@ -327,7 +327,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
 
         if ($request->hasFile('passport')) {
             $request->validate([
-                'passport' => 'mimes:png,jpg,jpeg|max:2048',
+                'passport' => 'mimes:png,jpg,jpeg|max:20480',
             ]);
             $request->passport->store('ppts', 'public');
 
@@ -337,7 +337,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
 
         if ($request->hasFile('address_proff')) {
             $request->validate([
-                'address_proff' => 'mimes:png,jpg,jpeg|max:2048',
+                'address_proff' => 'mimes:png,jpg,jpeg|max:20480',
             ]);
             $request->address_proff->store('address', 'public');
 
