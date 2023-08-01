@@ -5,6 +5,7 @@ use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\PosTerminalController;
 use App\Http\Controllers\AgentsDashboardController;
+use App\Http\Controllers\ChangePasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,8 @@ Route::post('/RegisterSelfagents', [AgentsController::class, 'storeselfregagent'
 
 Route::get('/CompSelfcare', [AgentsController::class, 'merchantagentselfregistration'])->name('CompSelfRegister');
 Route::post('/RegisterSelfCompanyAgent', [AgentsController::class, 'storecompanyselfreg'])->name('compagentsselfregister');
+
+Route::post('/ChangePasswordFunction', [ChangePasswordController::class, 'changePassword'])->name('change.password');
 
 Auth::routes();
 Route::middleware(['auth','user-role:admin'])->group(function()
@@ -92,6 +95,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     // user profile
     Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');
 
+    // user change password
+    Route::get('/ChangeAdminPass', [AgentsController::class, 'ChangeAdminPass'])->name('changepasspage');
+
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
     });
@@ -112,6 +118,9 @@ Route::middleware(['auth','user-role:agent'])->group(function()
 
          // view list of all POS Terminals
         Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
+
+         // user change password
+         Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
 
 
     });

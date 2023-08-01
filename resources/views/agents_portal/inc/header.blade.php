@@ -19,7 +19,8 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<a class="dropdown-item" href="{{route('userprofilepage')}}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="{{route('Agentchangepasspage')}}"><i class="align-middle mr-1" data-feather="key"></i> Change Agent Password</a>
+								
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="settings"></i> Settings &
 									Privacy</a>

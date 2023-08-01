@@ -14,7 +14,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>TerraMoni</title>
+	<title>TerraMoni || Agents</title>
 
 	<!-- <link href="css/app.css" rel="stylesheet"> -->
     <link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
@@ -39,7 +39,7 @@
 
             <!-- top bar link -->
 
-            @include('agents.inc.header')
+            @include('agents_portal.inc.header')
 			
             <!-- end of top bar -->
 
@@ -47,7 +47,7 @@
 
 			
 
-            @include('agents.inc.footer')
+            @include('agents_portal.inc.footer')
             
 		</div>
 	</div>

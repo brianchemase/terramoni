@@ -650,6 +650,22 @@ class AgentsController extends Controller
         return view ('agents.userprofile');
     }
 
+    public function ChangeAdminPass()
+    {
+
+
+
+        return view ('agents.changeAdminPass');
+    }
+
+    public function ChangeAgentPass()
+    {
+
+
+
+        return view ('agents_portal.changeAdminPass');
+    }
+
     public function musicpage()
     {
         return view ('agents.viewmusicpage');
