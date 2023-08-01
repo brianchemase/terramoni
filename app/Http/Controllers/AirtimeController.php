@@ -103,7 +103,7 @@ class AirtimeController extends Controller
             'transaction_id' => $customer_reference,
             'agent_id' => $agent_id,
             'amount' => $topupAmount,
-            'commision' => $topupAmount*0.015,
+            'commission' => $topupAmount*0.015,
             'date' => $todayDate,
             'type' => 'Debit',
         ]);
@@ -196,7 +196,7 @@ class AirtimeController extends Controller
         'transaction_id' => $customer_reference,
         'agent_id' => $agent_id,
         'amount' => $topupAmount,
-        'commision' => $topupAmount*0.015,
+        'commission' => $topupAmount*0.015,
         'date' => $todayDate,
         'type' => 'Debit',
     ]);
