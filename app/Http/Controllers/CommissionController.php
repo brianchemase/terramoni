@@ -14,6 +14,8 @@ class CommissionController extends Controller
             ->where('agent_id', $agent_id)
             ->sum('commission');
 
-        return response()->json(['total_commission' => $totalCommission]);
+            $bankWallet="0";
+
+        return response()->json(['total_commission' => $totalCommission, 'bankWallet' => $bankWallet]);
     }
 }
