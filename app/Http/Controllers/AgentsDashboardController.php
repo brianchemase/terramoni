@@ -43,8 +43,12 @@ class AgentsDashboardController extends Controller
         ->get();
        // return $agent_id;
 
+       $CommisionEarned = DB::table('tbl_commissions')
+            ->where('agent_id', $agent_id)
+            ->sum('commission');
+
        $walletBalance=rand(1, 100000);
-       $CommisionEarned=rand(1, 10000);
+       //$CommisionEarned=rand(1, 10000);
 
 
         $data = [
