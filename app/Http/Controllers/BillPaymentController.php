@@ -18,12 +18,22 @@ class BillPaymentController extends Controller
     //
     public function pay_electricity(Request $request)
     {
+
+        $request->validate([
+            'meter' => 'required',
+            'product_id' => 'required',
+            'prepaid' => 'required',
+            'denomination' => 'required',
+            'agent_id' => 'required',
+        ]);
+
         $input = request()->all();
         
         $meter = $request->input('meter');
         $denomination = $request->input('denomination');
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
+        $agent_id = $request->input('agent_id');
 
         //return $meter;
 
@@ -72,7 +82,7 @@ class BillPaymentController extends Controller
         }
 
 
-        $agent_id = rand(1, 899);
+       // $agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
             ->select('first_name', 'last_name')
             ->where('id', $agent_id)

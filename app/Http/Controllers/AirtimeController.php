@@ -22,8 +22,15 @@ class AirtimeController extends Controller
     //
     public function topup(Request $request)
     {
+        $request->validate([
+            'phone_number' => 'required',
+            'denomination' => 'required',
+            'agent_id' => 'required',
+        ]);
+
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
+        $agent_id = $request->input('agent_id');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
@@ -64,7 +71,7 @@ class AirtimeController extends Controller
         }
 
 
-        $agent_id = rand(1, 899);
+        //$agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
             ->select('first_name', 'last_name')
             ->where('id', $agent_id)
@@ -117,8 +124,16 @@ class AirtimeController extends Controller
 
     public function datatopup(Request $request)
     {
+
+        $request->validate([
+            'phone_number' => 'required',
+            'denomination' => 'required',
+            'agent_id' => 'required',
+        ]);
+        
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
+        $agent_id = $request->input('agent_id');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
@@ -158,7 +173,7 @@ class AirtimeController extends Controller
         }
 
 
-        $agent_id = rand(1, 899);
+       // $agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
             ->select('first_name', 'last_name')
             ->where('id', $agent_id)
