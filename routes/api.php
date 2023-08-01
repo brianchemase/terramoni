@@ -8,6 +8,7 @@ use App\Http\Controllers\BillersController;
 use App\Http\Controllers\BillPaymentController;
 use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\CommissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']
 
 //list electricity services
 Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
+
+//list electricity services
+Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
