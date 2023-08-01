@@ -106,6 +106,15 @@ class BillPaymentController extends Controller
             'BillerType' => 'Electrical Bill',
         ]);
 
+        DB::table('tbl_commissions')->insert([
+            'transaction_id' => $customer_reference,
+            'agent_id' => $agent_id,
+            'amount' => $topupAmount,
+            'commision' => $topupAmount*0.015,
+            'date' => $todayDate,
+            'type' => 'Debit',
+        ]);
+
 
         // Return the API response in a well-structured manner
         return response()->json($responseData, 200);
