@@ -301,7 +301,7 @@
 							<div class="card flex-fill">
 								<div class="card-header">
 
-									<h5 class="card-title mb-0">Loan Details Available</h5>
+									<h5 class="card-title mb-0">Transaction Details Available</h5>
 								</div>
 								<div class="card-body">
 								<table id="datatables-buttons" class="table table-hover my-0">
