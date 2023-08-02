@@ -13,7 +13,7 @@ class BillPaymentController extends Controller
     public function __construct()
     {
         // Assign initial value to $authorization
-        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTA5NTgwNzQ0Njh9.7GwT99mzUWXpVn16S2DSKLAxC7jMTrx-CvsJWhbVKv4';
+        $this->authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTExMzI1NTg5OTF9._LjQxvobTKBmD5K1hOMoWG8HGYElYO9GX4Km9V7ib8s';
     }
     //
     public function pay_electricity(Request $request)
