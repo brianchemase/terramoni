@@ -39,7 +39,7 @@
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> BVN No : {{$BVN }}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Contact :{{$phone}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Location : {{$location}}</li>
-										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Country : {{$location}}</li>
+										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Country : {{$country}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Doc Type : {{$doc_type}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Doc No : {{$doc_no}}</li>
 										
