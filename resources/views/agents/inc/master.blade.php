@@ -56,6 +56,7 @@
     <script src="{{asset('dash/js/app.js')}}"></script>
 	<script src="{{asset('dash/js/datatables.js')}}"></script>
 	<script type="text/javascript" src="auth/js/vanilla-tilt.js"></script>
+	<script src="{{asset('registration/js/lga.min.js')}}"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {

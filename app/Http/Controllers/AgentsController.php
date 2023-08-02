@@ -196,6 +196,14 @@ class AgentsController extends Controller
             //return $path;
         }
 
+        // Process the other_attachment
+        if ($request->hasFile('address_proof')) {
+            $request->validate([
+                'address_proof' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->address_proof->store('address', 'public');
+        }
+
 
       $save= DB::table('tbl_agents')->insert([
             'first_name' => $input['fname'],
@@ -214,6 +222,7 @@ class AgentsController extends Controller
             'doc_type' => $input['doc_type'],
             'doc_no' => $input['doc_no'],
             'passport' => $request->ppt->hashName(),
+            'address_proff' => $request->address_proof->hashName(),
             'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
             'validation_date' => null, // Assuming the validation date is initially null
         ]);
