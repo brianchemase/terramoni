@@ -42,6 +42,8 @@ class AgentsController extends Controller
         //count all the POS
         $POSCount = DB::table('tbl_pos_terminals')->count();
 
+       
+
         $data = [
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents

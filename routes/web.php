@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\PosTerminalController;
 use App\Http\Controllers\AgentsDashboardController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\TokenUpdateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,8 @@ Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.
 // Route::get('/validateOtp', [AuthOtpController::class, 'validateotp'])->name('validateotp');
 
 Route::get('/AgentTab', [AgentsController::class, 'agentselection'])->name('SelfRegisterLanding');
+
+Route::get('/UpdateToken', [TokenUpdateController::class, 'generatenewtoken'])->name('newtoken');
 
 
 Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');

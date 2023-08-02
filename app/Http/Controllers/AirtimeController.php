@@ -36,7 +36,8 @@ class AirtimeController extends Controller
 
         $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
        // $authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
-        $authorization = "Bearer " . $this->authorization; // Retrieve the bearer token from the construct
+       $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
         //$authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc1MzA4ODd9.TDwvq6TXVXhATAr_Z_vI5yHqDDAFoNenPfSIZ544LQw";
         //$authorization = $this->authorization;
         //return $authorization;
@@ -140,8 +141,8 @@ class AirtimeController extends Controller
         $url = "https:/clients.primeairtime.com/api/datatopup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
        // $authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2ODk3ODc1MzA4ODd9.TDwvq6TXVXhATAr_Z_vI5yHqDDAFoNenPfSIZ544LQw";
-        //$authorization = $this->authorization;
-        $authorization = "Bearer " . $this->authorization; // Retrieve the bearer token from the construct
+       $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
         //return $authorization;
         $data = [
             "product_id" => "D-MFIN-5-50",
