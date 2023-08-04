@@ -238,6 +238,6 @@ class BillPaymentController extends Controller
             curl_close($ch);
 
             // Output the response from the API
-            echo $response;
+            //echo $response;
     }
 }

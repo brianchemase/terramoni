@@ -7,6 +7,7 @@ use App\Http\Controllers\PosTerminalController;
 use App\Http\Controllers\AgentsDashboardController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\TokenUpdateController;
+use App\Http\Controllers\TransactionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,6 +101,8 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
     // user change password
     Route::get('/ChangeAdminPass', [AgentsController::class, 'ChangeAdminPass'])->name('changepasspage');
+
+    Route::get('/TransactionTable', [TransactionsController::class, 'getTransactions'])->name('primetransactions');
 
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
