@@ -130,7 +130,7 @@ class BillPaymentController extends Controller
         $target = $responseData['target'];
         $pin_code = $responseData['pin_code'];
         $units = '';
-        if (preg_match('/Units\s*:\s*([\d.]+)/i', $data['pin_option1'], $matches)) {
+        if (preg_match('/Units\s*:\s*([\d.]+)/i', $responseData['pin_option1'], $matches)) {
             $units = $matches[1];
         }
         $topup_amount = $responseData['topup_amount'];
