@@ -325,7 +325,7 @@
 										<tr>
 											<td>{{ $loop->iteration }}</td>
 											<td>{{ \Carbon\Carbon::parse($data->transaction_date)->format('jS M Y H:i:s') }} </td>
-											<td>{{ $data->Name }} </td>
+											<td>{{ $data->customer_reference }} </td>
 											
 											<td class="d-none d-xl-table-cell">{{ $data->BillerName }}</td>
 											<td class="d-none d-xl-table-cell">{{ $data->ConsumerIdField }}</td>
