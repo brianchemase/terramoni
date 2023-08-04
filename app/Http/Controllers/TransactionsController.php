@@ -65,4 +65,40 @@ class TransactionsController extends Controller
         // Pass the $docs array to the view
         return view('agents.transactions', compact('docs'));
     }
+
+    public function retreiveTrans(Request $request, $trans_id)
+    {
+
+        $apiUrl = "https:/clients.primeairtime.com/api/topup/log/byref/$trans_id"; // The API endpoint URL
+       // return $apiUrl;
+
+        $accessToken = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+       
+
+            // Initialize cURL session
+            $ch = curl_init();
+
+            // Set the cURL options
+            curl_setopt($ch, CURLOPT_URL, $apiUrl);
+            curl_setopt($ch, CURLOPT_HTTPGET, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $accessToken, // Add the Bearer token to the request headers
+            ]);
+
+            // Execute the cURL request
+            $response = curl_exec($ch);
+
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL error: ' . curl_error($ch);
+            }
+
+            // Close the cURL session
+            curl_close($ch);
+
+            echo $response;
+
+
+    }
 }

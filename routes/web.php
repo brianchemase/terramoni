@@ -103,6 +103,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/ChangeAdminPass', [AgentsController::class, 'ChangeAdminPass'])->name('changepasspage');
 
     Route::get('/TransactionTable', [TransactionsController::class, 'getTransactions'])->name('primetransactions');
+    Route::get('/TransactionData/{trans_id}', [TransactionsController::class, 'retreiveTrans'])->name('retreiveTrans');
 
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
