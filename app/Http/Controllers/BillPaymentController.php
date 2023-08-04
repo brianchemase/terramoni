@@ -35,7 +35,7 @@ class BillPaymentController extends Controller
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
-        $$toNumber = $request->input('client_phone');
+        $toNumber = $request->input('client_phone');
 
         //return $meter;
 
