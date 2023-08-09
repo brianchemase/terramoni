@@ -81,9 +81,9 @@
 						Settings
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="#">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Users (Under Construction)</span>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'AllUsers' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('AllUsers')}}">
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Manage Users</span>
 							
 						</a>
 					</li>

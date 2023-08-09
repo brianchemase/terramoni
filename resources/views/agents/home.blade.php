@@ -334,7 +334,7 @@
 										
 											
 											<td>
-											<a href="{{ url('admins/TransactionData/' . $data->customer_reference) }}" class="btn btn-warning"> <i class="fa fa-eye"></i></a>
+											<a href="{{ url('admins/TransactionData/' . $data->customer_reference) }}" class="btn btn-info"> <i class="fa fa-eye"></i></a>
 											<span class="badge bg-success">Successful</span>
                                                 <!-- <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
                                                 <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>

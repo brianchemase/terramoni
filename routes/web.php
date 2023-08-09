@@ -8,6 +8,7 @@ use App\Http\Controllers\AgentsDashboardController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\TokenUpdateController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,6 +108,12 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
+
+
+     // user profile
+     Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+
+
     });
 
 }); // end of auth
