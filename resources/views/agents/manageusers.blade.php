@@ -57,7 +57,11 @@
 														<span class="badge bg-warning">Admin</span>
 													@endif
 												</td>
-												<td></td>
+												<td>
+												<a href="#viewAgentModal{{$user->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
+												
+                                                @include('agents.modals.manageusers')
+												</td>
 											</tr>
 										@endforeach
 									</tbody>
