@@ -560,6 +560,7 @@ class AgentsController extends Controller
         $doc_no = DB::table('tbl_agents')->where('id', $id)->value('doc_no');
         $doc_type = DB::table('tbl_agents')->where('id', $id)->value('doc_type');
         $location = DB::table('tbl_agents')->where('id', $id)->value('location');
+        $country = DB::table('tbl_agents')->where('id', $id)->value('country');
         $email = DB::table('tbl_agents')->where('id', $id)->value('email');
         $phone = DB::table('tbl_agents')->where('id', $id)->value('phone');
         $passport = DB::table('tbl_agents')->where('id', $id)->value('passport');
@@ -577,6 +578,7 @@ class AgentsController extends Controller
             'doc_no' => $doc_no,
             'doc_type' => $doc_type,
             'location' => $location,
+            'country' => $country,
             'email' => $email, 
             'passport' => $passport, 
             'address_proff' => $address_proff,
