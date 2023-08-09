@@ -153,8 +153,8 @@ class BillPaymentController extends Controller
         // Replace these variables with your actual values
         $apiUrl = 'https:/clients.primeairtime.com/api/billpay/country/NG/electricity';
         $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTE3NDQ0MDIzMjB9.s8aB4U1tqN0oJiyA8zsTGC-4-P4LC0-4eEsC4yVVYvA';
-        $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
-        $authorization = "Bearer " .$accessToken; // Retrieve the bearer token from the construct
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $authorization1 = "Bearer " .$accessToken; // Retrieve the bearer token from the construct
 
         //return $token;
 
