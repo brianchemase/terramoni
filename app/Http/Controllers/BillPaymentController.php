@@ -156,7 +156,7 @@ class BillPaymentController extends Controller
         $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
         $authorization = "Bearer " .$accessToken; // Retrieve the bearer token from the construct
 
-        return $token;
+        //return $token;
 
         // Initialize cURL session
         $ch = curl_init();
