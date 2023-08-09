@@ -175,14 +175,14 @@ https://templatemo.com/tm-570-chain-app-dev
                 <div class="row">
                   <div class="col-lg-12">
                     <h2>Welcome to TerraMoni</h2>
-                    <p>We are your number one service provider in POS lending and account registration.</p>
+                    <p>The Preferred One-Stop-Shop for Agency Banking Solutions.</p>
                   </div>
                   <div class="col-lg-12">
-                    <div class="white-button first-button scroll-to-section">
-                      <a href="#contact">Free Quote <i class="fab fa-apple"></i></a>
-                    </div>
+                    <!-- <div class="white-button first-button scroll-to-section">
+                      <a href="#contact">Download App Android <i class="fab fa-apple"></i></a>
+                    </div> -->
                     <div class="white-button scroll-to-section">
-                      <a href="#contact">Free Quote <i class="fab fa-google-play"></i></a>
+                      <a href="#contact">Download App Android <i class="fab fa-google-play"></i></a>
                     </div>
                   </div>
                 </div>

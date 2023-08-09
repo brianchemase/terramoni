@@ -687,7 +687,7 @@ class AgentsController extends Controller
     public function mailtest()
     {
         $mailData = [
-            'title' => 'Mail from ItSolutionStuff.com',
+            'title' => 'Mail Title',
             'body' => 'This is for testing email using smtp.'
         ];
          
