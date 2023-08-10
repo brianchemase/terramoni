@@ -53,7 +53,7 @@
 									<h5 class="card-title mb-0">KYC Details</h5>
 								</div>
 								<div class="card-body text-center">
-									<img src="{{asset('dash/img/avatars/avatar-4.jpg')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+									<img src="{{asset('dash/img/avatars/unnamed.jpg')}}" alt="Christina Mason" class="img-fluid mb-2" width="128" height="128" />
 									<h5 class="card-title mb-0">Client Names</h5>
 									<div class="text-muted mb-2">Location</div>
 								</div>
@@ -76,7 +76,7 @@
 									<br>
 									<div class="col-6 col-md-4 col-lg-4 col-xl-12">
 									
-													<img src="{{asset('dash/img/photos/holder.png')}}" width="1250" height="500" class="img-fluid pr-2" alt="Unsplash">
+													<img src="{{asset('dash/img/photos/id_card_sample.jpg')}}" width="1250" height="500" class="img-fluid pr-2" alt="Unsplash">
 									</div>
 								</div>
 							</div>
