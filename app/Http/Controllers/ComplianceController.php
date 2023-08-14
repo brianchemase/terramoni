@@ -121,11 +121,11 @@ class ComplianceController extends Controller
 
                 $v_dob = $data['nin']['birthdate'];
                 $ppt = $data['nin']['photo'];
-                $address= $data['nin']['residence']['address1'];
-                $lga= $data['nin']['residence']['lga'];
-                $state= $data['nin']['residence']['state'];
+                $v_address= $data['nin']['residence']['address1'];
+                $v_lga= $data['nin']['residence']['lga'];
+                $v_state= $data['nin']['residence']['state'];
 
-                return $state." ".$lga." ".$address;
+               // return $state." ".$lga." ".$address;
             
                
             
