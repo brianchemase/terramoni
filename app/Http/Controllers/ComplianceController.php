@@ -106,7 +106,33 @@ class ComplianceController extends Controller
 
             $response = $this->sendRequest($url, 'post', $data);
 
-            return $response;
+            //return $response;
+            $data = json_decode($response, true);
+
+            if ($data !== null) {
+                // Access different fields in the JSON data
+                $applicantFirstName = $data['applicant']['firstname'];
+                $applicantLastName = $data['applicant']['lastname'];
+                $status = $data['summary']['nin_check']['status'];
+                $nin = $data['nin']['nin'];
+                $v_firstname = $data['nin']['firstname'];
+                $v_lastname = $data['nin']['lastname'];
+                $v_middlename = $data['nin']['middlename'];
+
+                $v_dob = $data['nin']['birthdate'];
+                $ppt = $data['nin']['photo'];
+                $address= $data['nin']['residence']['address1'];
+                $lga= $data['nin']['residence']['lga'];
+                $state= $data['nin']['residence']['state'];
+
+                return $state." ".$lga." ".$address;
+            
+               
+            
+                // Access and use other fields as needed
+            } else {
+                echo "Failed to decode JSON data.";
+            }
 
         }
         elseif($id_type=="passport")
