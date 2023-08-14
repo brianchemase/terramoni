@@ -9,6 +9,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\TokenUpdateController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ComplianceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,7 +79,8 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     // kyc form
     Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 
-    Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
+   // Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
+    Route::get('/KYCagentscompliance/{id}', [ComplianceController::class, 'complianceformcheck'])->name('complianceagentformpage');
     Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
 
     // view aggregators list
