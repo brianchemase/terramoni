@@ -80,7 +80,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 
    // Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
-    Route::get('/KYCagentscompliance/{id}', [ComplianceController::class, 'complianceformcheck'])->name('complianceagentformpage');
+    Route::get('/KYCagentscompliance/{id}', [ComplianceController::class, 'queryIdentity'])->name('complianceagentformpage');
     Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
 
     // view aggregators list
