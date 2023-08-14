@@ -52,10 +52,10 @@ class ComplianceController extends Controller
 
         $id_type=$doc_type;
 
-        return $id_type;
+        //return $id_type;
 
 
-        if($id_type="DL")//DL Function
+        if($id_type=="DL")//DL Function
         {
             $licenseNumber = $doc_no; // Static license number
             $url = "https://api.qoreid.com/v1/ng/identities/drivers-license/$licenseNumber";
@@ -94,7 +94,7 @@ class ComplianceController extends Controller
             }
 
         }
-        elseif($id_type="NIN")
+        elseif($id_type=="NIN")
         {
             $nin_number = $doc_no;
             $url = "https://api.qoreid.com/v1/ng/identities/nin/$nin_number";
@@ -109,7 +109,7 @@ class ComplianceController extends Controller
             return $response;
 
         }
-        elseif($id_type="passport")
+        elseif($id_type=="passport")
         {
             $passport="";
             $url = "https://api.qoreid.com/v1/ng/identities/passport/$passport";
@@ -124,7 +124,7 @@ class ComplianceController extends Controller
             return $response;
             
         }
-        elseif($id_type="voters_card")
+        elseif($id_type=="voters_card")
         {
 
             $url = "https://api.qoreid.com/v1/ng/identities/drivers-license/$licenseNumber";
