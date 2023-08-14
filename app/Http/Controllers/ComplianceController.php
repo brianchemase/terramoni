@@ -11,8 +11,8 @@ class ComplianceController extends Controller
     //
     private function sendRequest($url, $method, $data = [])
     {
-        $yourAccessToken = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzaVgtaEFrS3RmNUlsYWhRcElrNWwwbFBRVlNmVnpBdG9WVWQ4UXZ1OHJFIn0.eyJleHAiOjE2OTIwMzE5NjgsImlhdCI6MTY5MjAyNDc2OCwianRpIjoiYThhNDM4NzQtOTRiOC00MjMyLTkwZDQtMzUzYjAwZWYwOTc1IiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnFvcmVpZC5jb20vYXV0aC9yZWFsbXMvcW9yZWlkIiwiYXVkIjpbInFvcmVpZGFwaSIsImFjY291bnQiXSwic3ViIjoiNGM3ZDVjZTUtZTIyMC00NmY4LTlkODgtNDMyZTg1NmFiODQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiME85VTA3VDY2WEJWWVI1R1dJR08iLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLXFvcmVpZCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InFvcmVpZGFwaSI6eyJyb2xlcyI6WyJ2ZXJpZnlfZHJpdmVyc19saWNlbnNlX3N1YiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW52aXJvbm1lbnQiOiJzYW5kYm94Iiwib3JnYW5pc2F0aW9uSWQiOjIwNjQyMywiY2xpZW50SG9zdCI6IjE5Mi4xNjguMTkzLjE0MCIsImNsaWVudElkIjoiME85VTA3VDY2WEJWWVI1R1dJR08iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC0wbzl1MDd0NjZ4YnZ5cjVnd2lnbyIsImFwcGxpY2F0aW9uSWQiOjE1Mzc5LCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC4xOTMuMTQwIn0.OpLKyn5NO1uL0WoeKvAh3eibzqmERFQNYq2hxB3MLDpKlEN4O4fETwv1TaPoT-wXu-RLO2c3e6iO20bU3D3H6VMfkUSqCyY_BEEWRTNXpmxq61xZhzIiVr5_3qMH034j4oNvOGPdirJOKHKnY4RiO6o7Dup5Piyo1KEmf9g30S2kCPXLoH15BcXzZR5k2oOnwrn6d3IZbe_pdWjeHVQn_j0fOhRswO6MoHQtH68HHBv2_d9hd2x6uhuIHOhKr81lflMhrwHl4QBQPN1t7bCpZMei85XLRCwFIQSA5A1Z169uM4KmTq3EJyy8RXo-WxpQYWgexHgjtynBsbfLfwI9WA'; // Replace with your actual token
-
+       // $yourAccessToken = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzaVgtaEFrS3RmNUlsYWhRcElrNWwwbFBRVlNmVnpBdG9WVWQ4UXZ1OHJFIn0.eyJleHAiOjE2OTIwNDAzNTEsImlhdCI6MTY5MjAzMzE1MSwianRpIjoiZDc5NTFiMDktZDYyYi00ZTE3LWFhNzctZmYyMDEwNjFkY2JlIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnFvcmVpZC5jb20vYXV0aC9yZWFsbXMvcW9yZWlkIiwiYXVkIjpbInFvcmVpZGFwaSIsImFjY291bnQiXSwic3ViIjoiNGM3ZDVjZTUtZTIyMC00NmY4LTlkODgtNDMyZTg1NmFiODQ1IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiME85VTA3VDY2WEJWWVI1R1dJR08iLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLXFvcmVpZCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InFvcmVpZGFwaSI6eyJyb2xlcyI6WyJ2ZXJpZnlfdmluX3N1YiIsInZlcmlmeV92aXJ0dWFsX25pbl9zdWIiLCJ2ZXJpZnlfZHJpdmVyc19saWNlbnNlX3N1YiIsInZlcmlmeV9uaW5fc3ViIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbnZpcm9ubWVudCI6InNhbmRib3giLCJvcmdhbmlzYXRpb25JZCI6MjA2NDIzLCJjbGllbnRIb3N0IjoiMTkyLjE2OC4yMjMuMjU1IiwiY2xpZW50SWQiOiIwTzlVMDdUNjZYQlZZUjVHV0lHTyIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LTBvOXUwN3Q2NnhidnlyNWd3aWdvIiwiYXBwbGljYXRpb25JZCI6MTUzNzksImNsaWVudEFkZHJlc3MiOiIxOTIuMTY4LjIyMy4yNTUifQ.PJ9vXx9XhEFBAHqhJCne3nxS9U8bSuxcGOYeyjHdLEgY4cBUwqm_SxcYkona-eokF4zdt7ggiOGDp_zim5Ih6LMQqi5cTICRq1A5RMj7nf8sZubiTb5T3ZR0MDNL_r9c1J4m4a_wyyVxD3PH8e9oVRFPaMudqNK9WsykIOs3pX0kamb8PvkNroom3VgL8TI8YIFpRzab5XF6vIiA0Z4bJa5ojdq1A-lDEIfRK11fExgjh6Gsnr7biFmCZXjj9J7AjrkQpp7qksOtQrH6WWMAsGcJxAYmI6IAvbUi7raAWyEVuPvTpruukzmbdE5BgRzF4N7okoTiBXgGS6zw_Zmirg'; // Replace with your actual token
+        $yourAccessToken = DB::table('tbl_qoreid_token')->select('token')->orderBy('id', 'desc')->value('token');
         $defaultHeaders = [
             'accept' => 'application/json',
             'authorization' => 'Bearer ' . $yourAccessToken,
@@ -47,14 +47,15 @@ class ComplianceController extends Controller
         $address_proff = DB::table('tbl_agents')->where('id', $id)->value('address_proff');
         
         
-        $firstname = $request->input('firstname');
-        $lastname = $request->input('lastname');
+        $firstname = $first_name;
+        $lastname = $last_name;
 
         $id_type=$doc_type;
 
+
         if($id_type="DL")//DL Function
         {
-            $licenseNumber = '63184876213'; // Static license number
+            $licenseNumber = $doc_no; // Static license number
             $url = "https://api.qoreid.com/v1/ng/identities/drivers-license/$licenseNumber";
 
             $data = [

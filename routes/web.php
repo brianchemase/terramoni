@@ -40,7 +40,8 @@ Route::any('/otp/login', [AuthOtpController::class, 'loginWithOtp'])->name('otp.
 
 Route::get('/AgentTab', [AgentsController::class, 'agentselection'])->name('SelfRegisterLanding');
 
-Route::get('/UpdateToken', [TokenUpdateController::class, 'generatenewtoken'])->name('newtoken');
+Route::get('/UpdateToken', [TokenUpdateController::class, 'generatenewtoken'])->name('newtoken');// prime airtime token
+Route::get('/UpdateQoreIdToken', [TokenUpdateController::class, 'generatenewqoreidtoken'])->name('newqoreidtoken');//qoreid token
 
 
 Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
