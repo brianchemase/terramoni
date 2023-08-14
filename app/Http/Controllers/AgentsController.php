@@ -551,7 +551,7 @@ class AgentsController extends Controller
         if ($status && $status !== 'active') {
             // Call your function here
            
-            $first_name = DB::table('tbl_agents')->where('id', $id)->value('first_name');
+        $first_name = DB::table('tbl_agents')->where('id', $id)->value('first_name');
         $mid_name = DB::table('tbl_agents')->where('id', $id)->value('mid_name');
         $last_name = DB::table('tbl_agents')->where('id', $id)->value('last_name');
         $gender = DB::table('tbl_agents')->where('id', $id)->value('gender');
