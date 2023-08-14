@@ -52,6 +52,8 @@ class ComplianceController extends Controller
 
         $id_type=$doc_type;
 
+        return $id_type;
+
 
         if($id_type="DL")//DL Function
         {
