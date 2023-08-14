@@ -94,7 +94,7 @@ class ComplianceController extends Controller
         }
         elseif($id_type="NIN")
         {
-            $nin_number = '18482561982';
+            $nin_number = $doc_no;
             $url = "https://api.qoreid.com/v1/ng/identities/nin/$nin_number";
 
             $data = [
@@ -139,7 +139,7 @@ class ComplianceController extends Controller
         }
         else
         {
-            $bvn="";
+            $bvn=$BVN;
             $url = "https://api.qoreid.com/v1/ng/identities/bvn-basic/$bvn";
 
             $data = [
