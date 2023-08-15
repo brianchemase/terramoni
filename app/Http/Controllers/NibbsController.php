@@ -69,6 +69,8 @@ class NibbsController extends Controller
             'transactionId' => $transactionId, // Use the generated transactionId
         );
 
+        $curl = curl_init();
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/balanceenquiry",
             CURLOPT_RETURNTRANSFER => true,
