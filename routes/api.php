@@ -70,3 +70,6 @@ Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'sho
 //nibs apis
 //get institutions
 Route::get('/nip/institutions', [NibbsController::class, 'getInstitutions']);
+
+//get balance
+Route::post('/nip/getbalance', [NibbsController::class, 'checkbalance']);
