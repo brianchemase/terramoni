@@ -10,6 +10,7 @@ use App\Http\Controllers\TokenUpdateController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
+use App\Http\Controllers\NibbsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,8 @@ Route::get('/AgentTab', [AgentsController::class, 'agentselection'])->name('Self
 Route::get('/UpdateToken', [TokenUpdateController::class, 'generatenewtoken'])->name('newtoken');// prime airtime token
 Route::get('/UpdateQoreIdToken', [TokenUpdateController::class, 'generatenewqoreidtoken'])->name('newqoreidtoken');//qoreid token
 Route::get('/UpdateNibbsToken', [TokenUpdateController::class, 'generatenibstoken'])->name('newnibstoken');//nibs token
+
+Route::get('/getNibbsToken', [NibbsController::class, 'nibstoken']);//nibs token
 
 
 Route::get('/Selfcare', [AgentsController::class, 'agentselfregistration'])->name('SelfRegister');
