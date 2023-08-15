@@ -9,6 +9,7 @@ use App\Http\Controllers\BillPaymentController;
 use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\NibbsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,8 @@ Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricity
 
 //list electricity services
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
+
+
+//nibs apis
+//get institutions
+Route::get('/nip/institutions', [NibbsController::class, 'getInstitutions']);
