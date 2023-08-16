@@ -38,6 +38,7 @@ class NibbsController extends Controller
         $request->validate([
             'dest_code' => 'required',
             'accountno' => 'required',
+            'bvn' => 'required',
            // 'agent_id' => 'required',
         ]);
 
@@ -47,6 +48,7 @@ class NibbsController extends Controller
 
         $destinationInstitutionCode=$request->input('dest_code');
         $accountno=$request->input('accountno');
+        $bvn=$request->input('bvn');
 
 
         $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
@@ -62,7 +64,7 @@ class NibbsController extends Controller
             'channelCode' => '1',
             'targetAccountName' => 'vee Test',
             'targetAccountNumber' => $accountno,
-            'targetBankVerificationNumber' => '33333333333',
+            'targetBankVerificationNumber' => $bvn,
             'authorizationCode' => 'MA-0112345678-2022315-53097',
             'destinationInstitutionCode' => $destinationInstitutionCode,
             'billerId' => 'ADC19BDC-7D3A-4C00-4F7B-08DA06684F59',
@@ -97,7 +99,79 @@ class NibbsController extends Controller
         } else {
            return $response;
         }
-        
+
+
+    }
+
+    public function fundstransfer(Request $request)
+    {
+
+        $apiUrl = "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/fundstransfer";
+
+        // Generate transactionId
+        $clientno = '000306'; // Replace with the actual client number
+        $today = date("ymd");
+        $time = date("His");
+        $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
+        $transactionId = $clientno . $today . $time . $randomnumber;
+        $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Prepare the request data
+        $requestData = array(
+            "sourceInstitutionCode" => "999998",
+            "amount" => 100,
+            "beneficiaryAccountName" => "Ake Mobolaji Temabo",
+            "beneficiaryAccountNumber" => "1780004070",
+            "beneficiaryBankVerificationNumber" => 22222222226,
+            "beneficiaryKYCLevel" => 1,
+            "channelCode" => 1,
+            "originatorAccountName" => "vee Test",
+            "originatorAccountNumber" => "0112345678",
+            "originatorBankVerificationNumber" => 33333333333,
+            "originatorKYCLevel" => 1,
+            "destinationInstitutionCode" => 999998,
+            "mandateReferenceNumber" => "MA-0112345678-2022315-53097",
+            "nameEnquiryRef" => "999999191106195503191106195503",
+            "originatorNarration" => "Payment from 0112345678 to 1780004070",
+            "paymentReference" => "NIPMINI/999999191106195503191106195503/6015007956/0231116887",
+            "transactionId" => $transactionId, // Use the generated transactionId
+            "transactionLocation" => "1.38716,3.05117",
+            "beneficiaryNarration" => "Payment to 0112345678 from 1780004070",
+            "billerId" => "ADC19BDC-7D3A-4C00-4F7B-08DA06684F59"
+        );
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $apiUrl,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($requestData), // Convert request data to JSON
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json", // Set content type to JSON
+                "Authorization: Bearer " . $token,
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            // Handle the API response
+            $responseData = json_decode($response, true); // Convert JSON response to associative array
+            // ... process and display the $responseData as needed ...
+            
+            echo $response;
+        }
+
 
 
 
