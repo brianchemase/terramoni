@@ -39,7 +39,7 @@ class NibbsController extends Controller
             'dest_code' => 'required',
             'accountno' => 'required',
             'bvn' => 'required',
-           // 'agent_id' => 'required',
+           'agent_id' => 'required',
         ]);
 
        // $phoneNumber = $request->input('phone_number');
@@ -49,6 +49,7 @@ class NibbsController extends Controller
         $destinationInstitutionCode=$request->input('dest_code');
         $accountno=$request->input('accountno');
         $bvn=$request->input('bvn');
+        $agent_id = $request->input('agent_id');
 
 
         $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
@@ -88,6 +89,8 @@ class NibbsController extends Controller
                 "Authorization: Bearer $token", // Add the bearer token here
             ),
         ));
+
+
         
         $response = curl_exec($curl);
         $err = curl_error($curl);
@@ -97,6 +100,16 @@ class NibbsController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
+            $todayDate = date("Ymd");
+
+            DB::table('tbl_commissions')->insert([
+                'transaction_id' => $transactionId,
+                'agent_id' => $agent_id,
+                'amount' => 0,
+                'commission' => 15,
+                'date' => $todayDate,
+                'type' => 'Debit',
+            ]);
            return $response;
         }
 
