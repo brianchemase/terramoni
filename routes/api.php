@@ -73,3 +73,6 @@ Route::get('/nip/institutions', [NibbsController::class, 'getInstitutions']);
 
 //get balance
 Route::post('/nip/getbalance', [NibbsController::class, 'checkbalance']);
+
+// do a fund transfer
+Route::post('/nip/TrasfterFund', [NibbsController::class, 'checkbalance']);

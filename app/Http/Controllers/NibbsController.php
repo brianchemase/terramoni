@@ -119,6 +119,22 @@ class NibbsController extends Controller
     public function fundstransfer(Request $request)
     {
 
+        $request->validate([
+            'sourceInstitutionCode' => 'required',
+            'originAccNo' => 'required',
+            'originAccName' => 'required',
+            'destAccNo' => 'required',
+            'destAccName' => 'required',
+           'agent_id' => 'required',
+        ]);
+
+        $sourceInstitutionCode=$request->input('sourceInstitutionCode');
+        $originAccNo=$request->input('originAccNo');
+        $originAccName=$request->input('originAccName');
+        $destAccNo=$request->input('destAccNo');
+        $destAccName=$request->input('destAccName');
+        $agent_id = $request->input('agent_id');
+
         $apiUrl = "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/fundstransfer";
 
         // Generate transactionId
@@ -129,27 +145,33 @@ class NibbsController extends Controller
         $transactionId = $clientno . $today . $time . $randomnumber;
         $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
 
+        // $sourceInstitutionCode="999998";
+        // $originAccNo="0112345678";
+        // $originAccName="vee Test";
+        // $destAccNo="1780004070";
+        // $destAccName="Ake Mobolaji Temabo";
+
         // Prepare the request data
         $requestData = array(
-            "sourceInstitutionCode" => "999998",
+            "sourceInstitutionCode" => $sourceInstitutionCode,
             "amount" => 100,
-            "beneficiaryAccountName" => "Ake Mobolaji Temabo",
-            "beneficiaryAccountNumber" => "1780004070",
+            "beneficiaryAccountName" => $destAccName,
+            "beneficiaryAccountNumber" => $destAccNo,
             "beneficiaryBankVerificationNumber" => 22222222226,
             "beneficiaryKYCLevel" => 1,
             "channelCode" => 1,
-            "originatorAccountName" => "vee Test",
-            "originatorAccountNumber" => "0112345678",
+            "originatorAccountName" => $originAccName,
+            "originatorAccountNumber" => $originAccNo,
             "originatorBankVerificationNumber" => 33333333333,
             "originatorKYCLevel" => 1,
             "destinationInstitutionCode" => 999998,
             "mandateReferenceNumber" => "MA-0112345678-2022315-53097",
             "nameEnquiryRef" => "999999191106195503191106195503",
-            "originatorNarration" => "Payment from 0112345678 to 1780004070",
+            "originatorNarration" => "Payment from $originAccNo to $destAccNo",
             "paymentReference" => "NIPMINI/999999191106195503191106195503/6015007956/0231116887",
             "transactionId" => $transactionId, // Use the generated transactionId
             "transactionLocation" => "1.38716,3.05117",
-            "beneficiaryNarration" => "Payment to 0112345678 from 1780004070",
+            "beneficiaryNarration" => "Payment to $originAccNo from $destAccNo",
             "billerId" => "ADC19BDC-7D3A-4C00-4F7B-08DA06684F59"
         );
 
