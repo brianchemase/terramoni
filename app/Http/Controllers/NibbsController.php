@@ -203,8 +203,19 @@ class NibbsController extends Controller
             // Handle the API response
             $responseData = json_decode($response, true); // Convert JSON response to associative array
             // ... process and display the $responseData as needed ...
+
+            $todayDate = date("Ymd");
+
+            DB::table('tbl_commissions')->insert([
+                'transaction_id' => $transactionId,
+                'agent_id' => $agent_id,
+                'amount' => 0,
+                'commission' => 15,
+                'date' => $todayDate,
+                'type' => 'Debit',
+            ]);
             
-            echo $response;
+            return $response;
         }
 
 
