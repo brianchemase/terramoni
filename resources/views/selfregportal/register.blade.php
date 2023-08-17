@@ -19,7 +19,7 @@
         <div class="container">
             <div class="signup-content">
                 <div class="signup-img">
-                    <img src="registration/images/signup-img.jpg" alt="">
+                    <img src="registration/images/signup-img.jpg" alt="" height="100%">
                 </div>
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
@@ -90,6 +90,10 @@
         <label for="taxid">TAX ID</label>
         <input type="text" name="taxid" id="taxid">
     </div>
+    <div class="form-group">
+        <label for="taxid">Address</label>
+        <input type="text" name="addres" id="address">
+    </div>
     </div>
     <div class="form-row">
     <div class="form-group">
@@ -109,6 +113,20 @@
         <label for="doc_no">Doc No :</label>
         <input type="text" name="doc_no" id="doc_no" required>
     </div>
+    <div class="form-group">
+            <label for="iddoc">ID Document:</label>
+            <input type="file" name="doc" id="doc" accept="image/*" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="issue">Issue Date :</label>
+            <input type="date" name="issuedate" id="issuedate" required/>
+        </div>
+        <div class="form-group">
+            <label for="issue">Expiry Date :</label>
+            <input type="date" name="expirydate" id="expirydate" required/>
+        </div>
     </div>
     <div class="form-row">
     <div class="form-group">
@@ -128,12 +146,21 @@
     <div class="form-group">
         <label for="acc_no">Bank Acc No :</label>
         <input type="text" name="bank_acc_no" id="acc_no" required>
+        <small id="bank description" class="form-text text-muted">This explains the purpose for the bank.</small>
     </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group">
+        <label for="bvn">Refferal Code :</label>
+        <input type="text" name="refcode" id="refcode" value="0">
+        <small id="bank description" class="form-text text-muted">If you have the agent referal code update the field.</small>
     </div>
     <div class="form-group">
         <label for="bvn">BVN No :</label>
         <input type="text" name="bvn" id="bvn" required>
     </div>
+    </div>
+    
     <div class="form-radio">
         <label for="gender" class="radio-label">Gender :</label>
         <div class="form-radio-item">
@@ -205,6 +232,10 @@
                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
             </div>
         </div>
+        <div class="form-group">
+        <label for="location">Location :</label>
+        <input type="text" name="location" id="location" >
+    </div>
     </div>
     <div class="form-row">
         <div class="form-group">
@@ -216,6 +247,7 @@
             <label for="address_proof">Proff of Address:</label>
             <input type="file" name="address_proof" id="address_proof" accept="image/*" required />
         </div>
+        
     </div>
     <div class="form-submit">
         <input type="reset" value="Reset All" class="submit" name="reset" id="reset" />

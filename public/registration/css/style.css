@@ -259,8 +259,13 @@ body {
   margin: 0 auto;
   background: #fff; }
 
-.signup-img, .signup-form {
-  width: 50%; }
+.signup-img {
+  width: 30%; 
+  object-fit: contain;
+}
+
+.signup-form {
+    width: 70%; }
 
 .signup-img {
   margin-bottom: -7px; }
