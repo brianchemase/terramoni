@@ -184,6 +184,10 @@
     </div>
     <div class="form-row">
         <div class="form-group">
+        <label for="location">Residential Address :</label>
+            <input type="text" name="location" id="location" >
+        </div>
+        <div class="form-group">
             <label for="state">State :</label>
             <div class="form-select">
                 <select onchange="toggleLGA(this);" name="state" id="state" class="form-control">
@@ -240,10 +244,7 @@
                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
             </div>
         </div>
-        <div class="form-group">
-        <label for="location">Residential Address :</label>
-        <input type="text" name="location" id="location" >
-    </div>
+        
     </div>
     <div class="form-row">
         <div class="form-group">
