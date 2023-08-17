@@ -63,7 +63,7 @@
             <input type="text" name="first_name" onkeyup="this.value = this.value.toUpperCase();" id="first_name" required/>
         </div>
         <div class="form-group">
-            <label for="mid_name">Mid Name :</label>
+            <label for="mid_name">Middle Name :</label>
             <input type="text" name="mid_name" onkeyup="this.value = this.value.toUpperCase();" id="mid_name" required/>
         </div>
         <div class="form-group">
@@ -82,22 +82,23 @@
         </div>
     </div>
     <div class="form-row">
-    <div class="form-group">
-        <label for="birth_date">DOB :</label>
-        <input type="date" name="birth_date" id="birth_date">
+        <div class="form-group">
+            <label for="birth_date">Date Of Birth :</label>
+            <input type="date" name="birth_date" id="birth_date">
+        </div>
+        <div class="form-group">
+            <label for="taxid">TAX ID</label>
+            <input type="text" name="taxid" id="taxid">
+        </div>
+        <div class="form-group">
+            <label for="taxid"> Business Address</label>
+            <input type="text" name="addres" id="address">
+        </div>
     </div>
-    <div class="form-group">
-        <label for="taxid">TAX ID</label>
-        <input type="text" name="taxid" id="taxid">
-    </div>
-    <div class="form-group">
-        <label for="taxid">Address</label>
-        <input type="text" name="addres" id="address">
-    </div>
-    </div>
+  
     <div class="form-row">
     <div class="form-group">
-            <label for="doc_type">Doc Type :</label>
+            <label for="doc_type">ID Type :</label>
             <div class="form-select">
                 <select name="doc_type" id="doc_type">
                     <option selected disabled value="">Choose...</option>
@@ -110,7 +111,7 @@
             </div>
         </div>
     <div class="form-group">
-        <label for="doc_no">Doc No :</label>
+        <label for="doc_no">ID No :</label>
         <input type="text" name="doc_no" id="doc_no" required>
     </div>
     <div class="form-group">
@@ -144,9 +145,9 @@
             </div>
         </div>
     <div class="form-group">
-        <label for="acc_no">Bank Acc No :</label>
+        <label for="acc_no">Bank Account No :</label>
         <input type="text" name="bank_acc_no" id="acc_no" required>
-        <small id="bank description" class="form-text text-muted">This explains the purpose for the bank.</small>
+        <small id="bank description" class="form-text text-muted">This is the Bank Account from which you will always fund your Wallet/Virtual Account.</small>
     </div>
     </div>
     <div class="form-row">
@@ -233,18 +234,18 @@
             </div>
         </div>
         <div class="form-group">
-        <label for="location">Location :</label>
+        <label for="location">Residential Address :</label>
         <input type="text" name="location" id="location" >
     </div>
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="passport">Passport:</label>
+            <label for="passport">Passport Photo:</label>
             <input type="file" name="passport" id="passport" accept="image/*" required />
         </div>
 
         <div class="form-group">
-            <label for="address_proof">Proff of Address:</label>
+            <label for="address_proof">Proof of Address:</label>
             <input type="file" name="address_proof" id="address_proof" accept="image/*" required />
         </div>
         
