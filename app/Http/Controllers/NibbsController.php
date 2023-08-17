@@ -72,6 +72,17 @@ class NibbsController extends Controller
             'transactionId' => $transactionId, // Use the generated transactionId
         );
 
+         //$agent_id = rand(1, 899);
+         $agent = DB::table('tbl_agents')
+         ->select('first_name', 'last_name')
+         ->where('id', $agent_id)
+         ->first();
+
+        $agent_names = null;
+        if ($agent) {
+            $agent_names = $agent->first_name . ' ' . $agent->last_name;
+        }
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -110,6 +121,19 @@ class NibbsController extends Controller
                 'date' => $todayDate,
                 'type' => 'Debit',
             ]);
+
+
+            // Store the data into the tbl_transactions table using the DB facade
+        DB::table('tbl_transactions')->insert([
+            'Name' => "Card Check Balance",
+            'BillerName' => $destinationInstitutionCode,
+            'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
+            'customer_reference' => $transactionId,
+            'ItemFee' => "10",//customer_reference
+            'CurrencySymbol' => 'NRN',
+            'BillerType' => 'Check Balance',
+        ]);
            return $response;
         }
 
@@ -175,6 +199,16 @@ class NibbsController extends Controller
             "billerId" => "ADC19BDC-7D3A-4C00-4F7B-08DA06684F59"
         );
 
+        $agent = DB::table('tbl_agents')
+        ->select('first_name', 'last_name')
+        ->where('id', $agent_id)
+        ->first();
+
+       $agent_names = null;
+       if ($agent) {
+           $agent_names = $agent->first_name . ' ' . $agent->last_name;
+       }
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -214,6 +248,19 @@ class NibbsController extends Controller
                 'date' => $todayDate,
                 'type' => 'Debit',
             ]);
+
+            
+            // Store the data into the tbl_transactions table using the DB facade
+            DB::table('tbl_transactions')->insert([
+            'Name' => "Card FT ",
+            'BillerName' => $originAccName,
+            'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
+            'customer_reference' => $transactionId,
+            'ItemFee' => "10",//customer_reference
+            'CurrencySymbol' => 'NRN',
+            'BillerType' => 'Fund Transfer',
+        ]);
             
             return $response;
         }
