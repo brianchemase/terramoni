@@ -13,6 +13,7 @@ class TransactionsController extends Controller
          // Perform the database query to fetch the transaction history for the given agent_id
          $transactionHistory = DB::table('tbl_transactions')
          ->where('agent_id', $agent_id)
+         ->orderBy('id', 'desc') 
          ->get();
 
      // Return the JSON response with the results
