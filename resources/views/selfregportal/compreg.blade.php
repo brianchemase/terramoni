@@ -228,7 +228,7 @@
                         <p class="desc">Upload your documents from here</p>
                         <div class="fieldset-content">
                         <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Bussiness Documents Uploades</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="file"  name="cert_of_coop" id="cert_of_coop" />
