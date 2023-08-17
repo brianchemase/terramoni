@@ -90,11 +90,29 @@
 													@endif
 												</td>
 												<td>
-												<a href="#viewAgentModal{{$data->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
+											
 												
-                                                @include('agents.modals.agentView')
-												<a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
 												
+												<div class="dropdown show">
+													<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<i class="align-middle" data-feather="menu"></i>
+													</a>
+
+													<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Client</a>
+														<a class="dropdown-item" href="#">DeActivate Agent</a>
+														<a class="dropdown-item" href="#">Wallet History</a>
+														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
+														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
+														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
+														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
+														<a class="dropdown-item" href="#">Transactions Rate</a>
+														<a class="dropdown-item" href="#">Edit Agent details</a>
+														<a class="dropdown-item" href="#">Reset Password</a>
+														<a class="dropdown-item" href="#" style="color: red;">Block Agent</a>
+													</div>
+												</div>
+												@include('agents.modals.agentView')
 												</td>
 											</tr>
 											@endforeach

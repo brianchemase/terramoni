@@ -20,6 +20,37 @@ class TransactionsController extends Controller
      return response()->json($transactionHistory);
     }
 
+    public function agentTransactions(Request $request, $id)
+    {
+
+
+         // Perform the database query to fetch the transaction history for the given agent_id
+         $transactionHistory = DB::table('tbl_transactions')
+         ->where('agent_id', $id)
+         ->orderBy('id', 'desc') 
+         ->get();
+
+
+         $first_name = DB::table('tbl_agents')->where('id', $id)->value('first_name');
+         $mid_name = DB::table('tbl_agents')->where('id', $id)->value('mid_name');
+         $last_name = DB::table('tbl_agents')->where('id', $id)->value('last_name');
+
+
+
+         $data = [
+            'first_name' => $first_name,
+            'mid_name' => $mid_name,
+            'last_name' => $last_name,
+            'transactions' => $transactionHistory,
+           
+        ];
+
+        //return $transactionHistory;
+        return view ('agents.agentsTranstable')->with($data);;
+
+      
+    }
+
     public function getTransactions()
     {
         // The API endpoint URL
