@@ -260,8 +260,17 @@ body {
   background: #fff; }
 
 .signup-img {
-  width: 30%; 
-  object-fit: contain;
+  top: 0;
+  left: 0;
+  
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+.signup-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .signup-form {
