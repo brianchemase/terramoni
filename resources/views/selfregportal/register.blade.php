@@ -83,6 +83,16 @@
     </div>
     <div class="form-row">
         <div class="form-group">
+            <label for="taxid"> Business Name: </label>
+            <input type="text" name="bname" id="address">
+        </div>
+        <div class="form-group">
+            <label for="email">Business Address :</label>
+            <input type="text" name="baddress" id="email" required/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
             <label for="birth_date">Date Of Birth :</label>
             <input type="date" name="birth_date" id="birth_date">
         </div>
@@ -90,10 +100,7 @@
             <label for="taxid">TAX ID</label>
             <input type="text" name="taxid" id="taxid">
         </div>
-        <div class="form-group">
-            <label for="taxid"> Business Address</label>
-            <input type="text" name="addres" id="address">
-        </div>
+        
     </div>
   
     <div class="form-row">
