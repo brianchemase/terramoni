@@ -64,7 +64,9 @@
 											<tr>
 												<th>#</th>
 												<th>Agent ID</th>
+												<th>Bussiness Name</th>
 												<th>Agent Details</th>
+												<th>Email</th>
 												<th>Location</th>
 												<th>POS</th>
 												<th>Status</th>
@@ -77,8 +79,11 @@
 										
 												<td>{{ $loop->iteration }} </td>
 												<td>{{ $data->doc_no }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
+												<td>{{ $data->first_name }} {{ $data->last_name }}</td>
 												<td>{{ $data->first_name }} {{ $data->last_name }}<br> {{ $data->phone }}</td>
+												<td>{{ $data->email }}</td>
 												<td>{{ $data->location }}, {{ $data->country }}</td>
+												
 												<td>Samsung <br> SRN</td>
 												<td>
 													@if($data->status == 'approved')
@@ -87,6 +92,8 @@
 														<span class="badge bg-danger">Suspended</span>
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
+													@else
+														<span class="badge bg-info">Unknown</span>
 													@endif
 												</td>
 												<td>

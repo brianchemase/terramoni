@@ -13,24 +13,51 @@
 					
 					<div class="col-md-12">
 						<div class="row ">
-							<div class="col-xl-3 col-lg-6" data-tilt>
+							<div class="col-xl-4 col-lg-6" data-tilt>
 								<div class="card l-bg-cherry">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
 										<div class="mb-4">
-											<h5 class="card-title mb-0" style="color: white;">Aggregated Wallet Balances</h5>
+											<h5 class="card-title mb-0" style="color: white;">Aggregated Wallet</h5>
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
-											<div class="col-8">
-												<h2 class="d-flex align-items-center mb-0" style="color: white;">
-													NGN 3,243
-												</h2>
+											<div class="col-12">
+												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												Balance	NGN 3,243
+												</h4>
+											</div>
+											<div class="col-12">
+												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												Earnings NGN 3,243
+												</h4>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-6" data-tilt data-tilt-reverse="true">
+							<div class="col-xl-4 col-lg-6" data-tilt>
+								<div class="card l-bg-cherry">
+									<div class="card-statistic-3 p-4">
+										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
+										<div class="mb-4">
+											<h5 class="card-title mb-0" style="color: white;">Transactions Summary</h5>
+										</div>
+										<div class="row align-items-center mb-2 d-flex">
+											<div class="col-12">
+												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												Count 3,243
+												</h4>
+											</div>
+											<div class="col-12">
+												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												Value NGN 3,243
+												</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
 								<div class="card l-bg-blue-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
@@ -38,16 +65,24 @@
 											<h5 class="card-title mb-0" style="color: white;">Agents</h5>
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
-											<div class="col-8">
-												<h2 class="d-flex align-items-center mb-0" style="color: white;">
-												{{ number_format($agentCount) }}
+											<div class="col-12">
+												<h2 class="d-flex align-items-center mb-1" style="color: white;">
+												Total {{ number_format($agentCount) }}
 												</h2>
 											</div>
+
+											<div class="col-12">
+												<h5 class="d-flex align-items-center mb-0" style="color: white;">
+												Active {{ number_format($agentCount) }} || InActive {{ number_format($agentCount) }} 
+												</h5>
+											</div>
+											
 										</div>
+										
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-6" data-tilt data-tilt-reverse="true">
+							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
 								<div class="card l-bg-green-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
@@ -56,17 +91,24 @@
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
-												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+												<h2 class="d-flex align-items-center mb-1" style="color: white;">
 													578
 												</h2>
 											</div>
+
+											<div class="col-12">
+												<h5 class="d-flex align-items-center mb-0" style="color: white;">
+												Active {{ number_format(452) }} || InActive {{ number_format($agentCount) }} 
+												</h5>
+											</div>
+											
 											
 										</div>
 										
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-6" data-tilt data-tilt-reverse="true">
+							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
 								<div class="card l-bg-orange-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-mobile-alt"></i></div>
@@ -75,9 +117,15 @@
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
-												<h2 class="d-flex align-items-center mb-0" style="color: white;">
+												<h2 class="d-flex align-items-center mb-1" style="color: white;">
 												{{ number_format($POSCount) }}
 												</h2>
+											</div>
+
+											<div class="col-12">
+												<h5 class="d-flex align-items-center mb-0" style="color: white;">
+												Active {{ number_format($POSCount) }} || InActive {{ number_format($POSCount) }} 
+												</h5>
 											</div>
 											
 										</div>
