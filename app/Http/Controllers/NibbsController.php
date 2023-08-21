@@ -273,7 +273,18 @@ class NibbsController extends Controller
 
     public function nameEnquiry(Request $request)
     {
-        
+
+        $request->validate([
+            'accountNumber' => 'required',
+            'channelCode' => 'required',
+            'destinationInstitutionCode' => 'required',
+            
+        ]);
+
+        $accountNumber=$request->input('accountNumber');
+        $channelCode=$request->input('channelCode');
+        $destinationInstitutionCode=$request->input('destinationInstitutionCode');
+
         $curl = curl_init();
 
         // Generate transactionId
@@ -284,10 +295,12 @@ class NibbsController extends Controller
         $transactionId = $clientno . $today . $time . $randomnumber;
         $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
 
+
+
         $data = array(
-            "accountNumber" => "0112345678",
-            "channelCode" => "1",
-            "destinationInstitutionCode" => "999998",
+            "accountNumber" => $accountNumber,
+            "channelCode" => $channelCode,
+            "destinationInstitutionCode" => $destinationInstitutionCode,
             "transactionId" => $transactionId // Use the generated transactionId
         );
 
@@ -316,7 +329,7 @@ class NibbsController extends Controller
         if ($err) {
         echo "cURL Error #:" . $err;
         } else {
-        echo $response;
+       return $response;
         }
 
     }
