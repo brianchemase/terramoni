@@ -233,6 +233,66 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <label class="form-label">Bussiness Contact details</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                    <select name="doc_type[]" id="doc_type" class="custom-select">
+                                        <option value="NIN">NIN</option>
+                                        <option value="DL">Driving Licence</option>
+                                        <option value="VotingCard">Voters Card</option>
+                                        <option value="Passport">International Passport</option>
+                                    </select>
+                                        <span class="text-input">Select Identification Document</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="text" name="directordoc[]" id="directordoc" />
+                                        <span class="text-input">Enter Document Number</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="directornamesc[]" id="directordoc" />
+                                        <span class="text-input">Enter Director Name</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="directorBVN[]" id="directorBVN" />
+                                        <span class="text-input">Enter Director BVN No</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-label">Bussiness Contact details</label>
+                                <div class="form-flex">
+                                    <div class="form-group">
+                                    <select name="doc_type[]" id="doc_type" class="custom-select">
+                                        <option value="NIN">NIN</option>
+                                        <option value="DL">Driving Licence</option>
+                                        <option value="VotingCard">Voters Card</option>
+                                        <option value="Passport">International Passport</option>
+                                    </select>
+                                        <span class="text-input">Select Identification Document</span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="text" name="directordoc[]" id="directordoc" />
+                                        <span class="text-input">Enter Document Number</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="directornamesc[]" id="directordoc" />
+                                        <span class="text-input">Enter Director Name</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="directorBVN[]" id="directorBVN" />
+                                        <span class="text-input">Enter Director BVN No</span>
+                                    </div>
+                                </div>
+                            </div>
                            
                             
                     </fieldset>
