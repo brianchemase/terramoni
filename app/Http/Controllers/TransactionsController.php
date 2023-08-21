@@ -51,6 +51,27 @@ class TransactionsController extends Controller
       
     }
 
+    public function FullTransactions()
+    {
+
+
+         // Perform the database query to fetch the transaction history for the given agent_id
+         $transactionHistory = DB::table('tbl_transactions')
+         //->where('agent_id', $id)
+         ->orderBy('id', 'desc') 
+         ->get();
+
+
+         $data = [            
+            'transactions' => $transactionHistory,
+        ];
+
+        //return $transactionHistory;
+        return view ('agents.FullTranstable')->with($data);;
+
+      
+    }
+
     public function getTransactions()
     {
         // The API endpoint URL

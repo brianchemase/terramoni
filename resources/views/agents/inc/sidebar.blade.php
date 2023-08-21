@@ -51,7 +51,7 @@
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Transaction Summary </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('totaltrans')}}">Transaction Summary </a></li>
 													
 						</ul>
 					</li>

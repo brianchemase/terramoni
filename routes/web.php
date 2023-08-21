@@ -116,6 +116,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     // agent transaction history
     Route::get('/AgentTransaction/{id}', [TransactionsController::class, 'agentTransactions'])->name('agenttrans');
 
+    // full transaction history
+    Route::get('/TotalTransaction', [TransactionsController::class, 'FullTransactions'])->name('totaltrans');
+
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
 
