@@ -38,6 +38,26 @@
                         </a>
 					</li>
 
+					<li class="sidebar-item">
+						<a data-target="#pages" data-toggle="collapse" class="sidebar-link collapsed">
+							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Reports</span>
+						</a>
+						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Overview Report</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">State Count Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Charge Back Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Terminal Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Transaction Summary </a></li>
+													
+						</ul>
+					</li>
+
+					
+
 					<li class="sidebar-header">
 						POS DEVICES
 					</li>
