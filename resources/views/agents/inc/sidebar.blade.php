@@ -95,6 +95,13 @@
 						</a>
 					</li>
 
+					<li class="sidebar-item {{ Route::currentRouteName() === 'permissionsmatrix' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('permissionsmatrix')}}">
+							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Access Matrix</span>
+							
+						</a>
+					</li>
+
 					
 					
 					

@@ -122,6 +122,8 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
      // user profile
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+        // permissions matrix
+     Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
 
 
     });

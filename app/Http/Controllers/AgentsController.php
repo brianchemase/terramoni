@@ -64,6 +64,23 @@ class AgentsController extends Controller
         return view ('agents.underconstraction');
     }
 
+    public function permissions()
+    {
+        $permissions = DB::table('tbl_permissions')
+                ->orderBy('id', 'desc')
+                ->get();
+
+               // return $permissions;
+
+                $data = [
+                    'permissions' => $permissions,// salutations
+                   
+                    // Add more data to the array as needed
+                ];
+
+        return view ('agents.permissionsmatrix')->with($data);
+    }
+
 
     public function tables()
     {
