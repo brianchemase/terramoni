@@ -39,14 +39,33 @@ class AgentsController extends Controller
 
         //count all the agents
         $agentCount = DB::table('tbl_agents')->count();
+        //active agents
+        $activeAgentsCount = DB::table('tbl_agents')->where('status', 'approved')->count();
+        // inactive agents
+        $inactiveAgentsCount = DB::table('tbl_agents')->where('status', '<>', 'approved')->count();
+
+
+
+
+
         //count all the POS
         $POSCount = DB::table('tbl_pos_terminals')->count();
+
+        //assisgned pos
+         $assignedPOSCount = DB::table('tbl_pos_terminals')->where('status', 'Assigned')->count();
+
+          //assisgned pos
+        $notassignedPOSCount = DB::table('tbl_pos_terminals')->where('status','<>', 'Assigned')->count();
 
        
 
         $data = [
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents
+            'activeAgentsCount' => $activeAgentsCount,// counts number of active agents
+            'inactiveAgentsCount' => $inactiveAgentsCount,// counts number of inactive agents
+            'assignedPOSCount' => $assignedPOSCount,// counts number of POS
+            'notassignedPOSCount' => $notassignedPOSCount,// counts number of POS
             'POSCount' => $POSCount,// counts number of POS
             'transactions' => $transactions,// Transactions lists
             // Add more data to the array as needed

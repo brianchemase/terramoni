@@ -73,7 +73,7 @@
 
 											<div class="col-12">
 												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format($agentCount) }} || InActive {{ number_format($agentCount) }} 
+												Active {{ number_format($activeAgentsCount) }} || InActive {{ number_format($inactiveAgentsCount) }} 
 												</h5>
 											</div>
 											
@@ -124,7 +124,7 @@
 
 											<div class="col-12">
 												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format($POSCount) }} || InActive {{ number_format($POSCount) }} 
+												Active {{ number_format($assignedPOSCount) }} || InActive {{ number_format($notassignedPOSCount) }} 
 												</h5>
 											</div>
 											
