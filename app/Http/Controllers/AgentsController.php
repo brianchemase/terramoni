@@ -64,6 +64,12 @@ class AgentsController extends Controller
        $walletBalance = rand(10000, 50000);
        $walletearningBalance = rand(10000, 50000);
 
+       $totalaggregators= rand(10000, 50000);
+      
+       $activeaggregators = rand(0, $totalaggregators);
+       $inactiveaggregators=$totalaggregators-$activeaggregators; 
+
+
 
         $data = [
             'salutation' => $salutation,// salutations
@@ -78,6 +84,9 @@ class AgentsController extends Controller
             'totalTransactionValue' => $totalTransactionValue,// Transactions lists
             'walletBalance' => $walletBalance,// wallet balance
             'walletearningBalance' => $walletearningBalance,// WAllet balance
+            'totalaggregators' => $totalaggregators,// total aggregators
+            'activeaggregators' => $activeaggregators,//active aggregators
+            'inactiveaggregators' => $inactiveaggregators,//inactive aggregators
             // Add more data to the array as needed
         ];
 

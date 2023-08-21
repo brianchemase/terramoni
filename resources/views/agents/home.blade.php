@@ -73,7 +73,7 @@
 
 											<div class="col-12">
 												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format($activeAgentsCount) }} || InActive {{ number_format($inactiveAgentsCount) }} 
+												Active {{ number_format($activeAgentsCount) }} || Inactive {{ number_format($inactiveAgentsCount) }} 
 												</h5>
 											</div>
 											
@@ -92,13 +92,13 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
 												<h2 class="d-flex align-items-center mb-1" style="color: white;">
-													578
+												Total {{ number_format($totalaggregators) }}
 												</h2>
 											</div>
 
 											<div class="col-12">
 												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format(452) }} || InActive {{ number_format($agentCount) }} 
+												Active {{ number_format($activeaggregators) }} || Inactive {{ number_format($inactiveaggregators) }} 
 												</h5>
 											</div>
 											
@@ -124,7 +124,7 @@
 
 											<div class="col-12">
 												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format($assignedPOSCount) }} || InActive {{ number_format($notassignedPOSCount) }} 
+												Active {{ number_format($assignedPOSCount) }} || Inactive {{ number_format($notassignedPOSCount) }} 
 												</h5>
 											</div>
 											
