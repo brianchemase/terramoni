@@ -146,20 +146,24 @@ class NibbsController extends Controller
         $request->validate([
             'sourceInstitutionCode' => 'required',
             'originAccNo' => 'required',
-            'originAccName' => 'required',
+            //'originAccName' => 'required',
+            'destinationInstitutionCode' => 'required',
             'destAccNo' => 'required',
-            'destAccName' => 'required',
+            //'destAccName' => 'required',
            'agent_id' => 'required',
         ]);
 
         $sourceInstitutionCode=$request->input('sourceInstitutionCode');
         $originAccNo=$request->input('originAccNo');
-        $originAccName=$request->input('originAccName');
+        //$originAccName=$request->input('originAccName');
+        $destinationInstitutionCode=$request->input('destinationInstitutionCode');
         $destAccNo=$request->input('destAccNo');
-        $destAccName=$request->input('destAccName');
+        //$destAccName=$request->input('destAccName');
         $agent_id = $request->input('agent_id');
 
         $apiUrl = "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/fundstransfer";
+
+        $channelCode="1";
 
         // Generate transactionId
         $clientno = '000306'; // Replace with the actual client number
@@ -168,6 +172,27 @@ class NibbsController extends Controller
         $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
         $transactionId = $clientno . $today . $time . $randomnumber;
         $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
+        
+        $destinationInstitutionCode=$sourceInstitutionCode;
+        $accountNumber=$originAccNo;
+
+        $originresponse = $this->sendNameEnquiryRequest($accountNumber, $channelCode, $destinationInstitutionCode);
+        //return $originresponse;
+        $originresponseData = json_decode($originresponse, true); // Convert JSON to associative array
+        $originatorBankVerificationNumber = $originresponseData['bankVerificationNumber'] ?? null;
+        $originAccName = $originresponseData['accountName'] ?? null;
+
+
+        $destinationInstitutionCode=$destinationInstitutionCode;
+        $accountNumber=$destAccNo;
+
+        $destinationresponse = $this->sendNameEnquiryRequest($accountNumber, $channelCode, $destinationInstitutionCode);
+        //return $destinationresponse;
+        $destinationresponseData = json_decode($destinationresponse, true); // Convert JSON to associative array
+        $destAccName = $destinationresponseData['accountName'] ?? null;
+        $destinationBankVerificationNumber = $destinationresponseData['bankVerificationNumber'] ?? null;
+       
+      // return $destAccNo;
 
         // $sourceInstitutionCode="999998";
         // $originAccNo="0112345678";
@@ -181,14 +206,14 @@ class NibbsController extends Controller
             "amount" => 100,
             "beneficiaryAccountName" => $destAccName,
             "beneficiaryAccountNumber" => $destAccNo,
-            "beneficiaryBankVerificationNumber" => 22222222226,
+            "beneficiaryBankVerificationNumber" => $destinationBankVerificationNumber,
             "beneficiaryKYCLevel" => 1,
             "channelCode" => 1,
             "originatorAccountName" => $originAccName,
             "originatorAccountNumber" => $originAccNo,
-            "originatorBankVerificationNumber" => 33333333333,
+            "originatorBankVerificationNumber" => $originatorBankVerificationNumber,
             "originatorKYCLevel" => 1,
-            "destinationInstitutionCode" => 999998,
+            "destinationInstitutionCode" => $destinationInstitutionCode,
             "mandateReferenceNumber" => "MA-0112345678-2022315-53097",
             "nameEnquiryRef" => "999999191106195503191106195503",
             "originatorNarration" => "Payment from $originAccNo to $destAccNo",
@@ -266,9 +291,6 @@ class NibbsController extends Controller
         }
 
 
-
-
-
     }
 
     public function nameEnquiry(Request $request)
@@ -332,6 +354,57 @@ class NibbsController extends Controller
        return $response;
         }
 
+    }
+
+    public function sendNameEnquiryRequest($accountNumber, $channelCode, $destinationInstitutionCode)
+    {
+        $curl = curl_init();
+
+        // Generate transactionId
+        $clientno = '000306'; // Replace with the actual client number
+        $today = date("ymd");
+        $time = date("His");
+        $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
+        $transactionId = $clientno . $today . $time . $randomnumber;
+        $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+       // return $destinationInstitutionCode;
+
+        $data = array(
+            "accountNumber" => $accountNumber,
+            "channelCode" => $channelCode,
+            "destinationInstitutionCode" => $destinationInstitutionCode,
+            "transactionId" => $transactionId // Use the generated transactionId
+        );
+
+        $jsonData = json_encode($data);
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/nameenquiry",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $jsonData,
+            CURLOPT_HTTPHEADER => array(
+                "authorization: Bearer ".$token,
+                "content-type: application/json"
+            ),
+            ));
+    
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            return $response;
+        }
     }
 
 
