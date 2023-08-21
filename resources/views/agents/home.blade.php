@@ -23,12 +23,12 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Balance	NGN 3,243
+												Balance	NGN {{ number_format($walletBalance) }}
 												</h4>
 											</div>
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Earnings NGN 3,243
+												Earnings NGN {{ number_format($walletearningBalance) }}
 												</h4>
 											</div>
 										</div>
@@ -45,12 +45,12 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Total Count 3,243
+												Total Count {{ number_format($totalTransactioncount) }}
 												</h4>
 											</div>
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Total Value NGN 3,243
+												Total Value NGN {{ number_format($totalTransactionValue) }}
 												</h4>
 											</div>
 										</div>

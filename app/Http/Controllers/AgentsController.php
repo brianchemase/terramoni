@@ -57,7 +57,13 @@ class AgentsController extends Controller
           //assisgned pos
         $notassignedPOSCount = DB::table('tbl_pos_terminals')->where('status','<>', 'Assigned')->count();
 
-       
+       $totalTransactioncount= rand(10000, 50000);
+       $totalTransactionValue= rand(10000, 50000);
+
+       // wallet earning
+       $walletBalance = rand(10000, 50000);
+       $walletearningBalance = rand(10000, 50000);
+
 
         $data = [
             'salutation' => $salutation,// salutations
@@ -68,6 +74,10 @@ class AgentsController extends Controller
             'notassignedPOSCount' => $notassignedPOSCount,// counts number of POS
             'POSCount' => $POSCount,// counts number of POS
             'transactions' => $transactions,// Transactions lists
+            'totalTransactioncount' => $totalTransactioncount,// Transactions lists
+            'totalTransactionValue' => $totalTransactionValue,// Transactions lists
+            'walletBalance' => $walletBalance,// wallet balance
+            'walletearningBalance' => $walletearningBalance,// WAllet balance
             // Add more data to the array as needed
         ];
 
