@@ -76,3 +76,6 @@ Route::post('/nip/getbalance', [NibbsController::class, 'checkbalance']);
 
 // do a fund transfer
 Route::post('/nip/TrasfterFund', [NibbsController::class, 'fundstransfer']);
+
+// query the name
+Route::post('/nip/NameEnquery', [NibbsController::class, 'nameEnquiry']);

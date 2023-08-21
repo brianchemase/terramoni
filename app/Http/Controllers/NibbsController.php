@@ -271,5 +271,55 @@ class NibbsController extends Controller
 
     }
 
+    public function nameEnquiry(Request $request)
+    {
+        
+        $curl = curl_init();
+
+        // Generate transactionId
+        $clientno = '000306'; // Replace with the actual client number
+        $today = date("ymd");
+        $time = date("His");
+        $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
+        $transactionId = $clientno . $today . $time . $randomnumber;
+        $token = DB::table('tbl_nibbs_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        $data = array(
+            "accountNumber" => "0112345678",
+            "channelCode" => "1",
+            "destinationInstitutionCode" => "999998",
+            "transactionId" => $transactionId // Use the generated transactionId
+        );
+
+        $jsonData = json_encode($data);
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://apitest.nibss-plc.com.ng/nipservice/v1/nip/nameenquiry",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => $jsonData,
+        CURLOPT_HTTPHEADER => array(
+            "authorization: Bearer ".$token,
+            "content-type: application/json"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+        echo "cURL Error #:" . $err;
+        } else {
+        echo $response;
+        }
+
+    }
+
 
 }
