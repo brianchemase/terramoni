@@ -18,7 +18,7 @@
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-concierge-bell"></i></div>
 										<div class="mb-4">
-											<h5 class="card-title mb-0" style="color: white;">Aggregated Wallet</h5>
+											<h5 class="card-title mb-0" style="color: white;">TerraSwitch Master Wallet</h5>
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-12">
@@ -40,17 +40,17 @@
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
 										<div class="mb-4">
-											<h5 class="card-title mb-0" style="color: white;">Transactions Summary</h5>
+											<h5 class="card-title mb-0" style="color: white;">Master Transaction Summary</h5>
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Count 3,243
+												Total Count 3,243
 												</h4>
 											</div>
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
-												Value NGN 3,243
+												Total Value NGN 3,243
 												</h4>
 											</div>
 										</div>
