@@ -53,43 +53,48 @@
             <form method="POST" id="signup-form" class="signup-form" action="{{ route('compagentsselfregister') }}" enctype="multipart/form-data">
             @csrf    
             <div>
-                    <h3>Bussiness info</h3>
+                    <h3>Business info</h3>
                     <fieldset>
-                        <h2>Bussiness information</h2>
+                        <h2>Business information</h2>
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
                         <div class="fieldset-content">
                              <div class="form-group">
-                                <label for="cname" class="form-label">Bussiness Name</label>
-                                <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Company name as registered" />
-                                <span class="text-input">Enter Your Bussiness name as registered with the authorities</span>
+                                <label for="cname" class="form-label">Business Name</label>
+                                <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Business name as registered" />
+                                <span class="text-input">Enter Your Business name as registered with the authorities</span>
                             </div>
                             <div class="form-group">
                                 <label for="taxid" class="form-label">TAX ID</label>
-                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Company TAX ID" />
-                                <span class="text-input">Enter Your Bussiness Tax ID</span>
+                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business TAX ID" />
+                                <span class="text-input">Enter Your Business Tax ID</span>
                             </div>
                             <div class="form-group">
-                                <label for="taxid" class="form-label">Bussiness BVN No</label>
-                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Company BVN No" />
-                                <span class="text-input">Enter Your Bussiness BVN No</span>
+                                <label for="taxid" class="form-label">Business BVN No</label>
+                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business registration No" />
+                                <span class="text-input">Enter Your Business BVN No</span>
                             </div>
                             <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Business Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="phone" id="cphone" />
-                                        <span class="text-input">Enter Bussiness Phone</span>
+                                        <span class="text-input">Enter Business Phone</span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <input type="text" name="email" id="cemail" />
-                                        <span class="text-input">Enter Bussiness Email</span>
+                                        <span class="text-input">Enter Business Email</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" name="address" id="add" />
+                                        <span class="text-input">Enter Business Physical address</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Location</label>
+                                <label class="form-label">Business Location</label>
                                 <div class="form-flex">
                                
                                     <div class="form-group">
@@ -188,6 +193,11 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <input type="text" name="directornamesc[]" id="directordoc" />
+                                        <span class="text-input">Enter Director Name</span>
+                                    </div>
+
+                                    <div class="form-group">
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
                                         <span class="text-input">Enter Director BVN No</span>
                                     </div>
@@ -213,6 +223,11 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <input type="text" name="directornamesc[]" id="directordoc" />
+                                        <span class="text-input">Enter Director Name</span>
+                                    </div>
+
+                                    <div class="form-group">
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
                                         <span class="text-input">Enter Director BVN No</span>
                                     </div>
@@ -228,7 +243,7 @@
                         <p class="desc">Upload your documents from here</p>
                         <div class="fieldset-content">
                         <div class="form-row">
-                                <label class="form-label">Bussiness Documents Uploades</label>
+                                <label class="form-label">Business Documents Uploades</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="file"  name="cert_of_coop" id="cert_of_coop" />
