@@ -64,7 +64,7 @@ class AgentsController extends Controller
        $walletBalance = rand(10000, 50000);
        $walletearningBalance = rand(10000, 50000);
 
-       $totalaggregators= rand(10000, 50000);
+       $totalaggregators= rand(0, 910);
       
        $activeaggregators = rand(0, $totalaggregators);
        $inactiveaggregators=$totalaggregators-$activeaggregators; 
