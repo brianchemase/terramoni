@@ -87,6 +87,26 @@ class AgentsController extends Controller
         ->limit(5)
         ->get();
 
+
+        // Retrieve data and sum up ItemFee
+            $monthlySum = DB::table('tbl_transactions')
+            ->selectRaw('MONTH(transaction_date) AS month, SUM(ItemFee) AS total_fee')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Format data for the chart
+        $Monthlabels = [];
+        $Monthlydata = [];
+
+        foreach ($monthlySum as $entry) {
+            $Monthlabels[] = date("M", mktime(0, 0, 0, $entry->month, 1));
+            $Monthlydata[] = $entry->total_fee;
+        }
+
+
+
+
         $data = [
             'salutation' => $salutation,// salutations
             'agentCount' => $agentCount,// counts number of agents
@@ -105,6 +125,8 @@ class AgentsController extends Controller
             'inactiveaggregators' => $inactiveaggregators,//inactive aggregators
 
             'topEarningAgents' => $topEarningAgents,//top 5 earning agents
+            'Monthlabels' => $Monthlabels,//monthly data
+            'Monthlydata' => $Monthlydata,//top 5 earning agents
             // Add more data to the array as needed
         ];
 

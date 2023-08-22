@@ -370,26 +370,13 @@
 			new Chart(document.getElementById("chart-transaction-line"), {
 				type: "line",
 				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					labels: {!! json_encode($Monthlabels) !!},
 					datasets: [{
 						label: "NGN ",
 						fill: true,
 						backgroundColor: gradient,
 						borderColor: window.theme.primary,
-						data: [
-							2115,
-							1562,
-							1584,
-							1892,
-							1587,
-							1923,
-							2566,
-							2448,
-							2805,
-							3438,
-							2917,
-							3327
-						]
+						data: {!! json_encode($Monthlydata) !!}
 					}]
 				},
 				options: {
