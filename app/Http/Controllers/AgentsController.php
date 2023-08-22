@@ -348,6 +348,8 @@ class AgentsController extends Controller
             'gender' => $input['gender'],
             'location' => $input['state'],
             'country' => $input['city'],
+            'agent_code' => $input['refcode'],
+            
             'bank_name' => $input['bank_name'],
             'bank_acc_no' => $input['bank_acc_no'],
             'status' => "pending",

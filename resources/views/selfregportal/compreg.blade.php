@@ -55,24 +55,25 @@
             <div>
                     <h3>Business info</h3>
                     <fieldset>
-                        <h2>Business information</h2>
+                        <h2>Business Information</h2>
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
                         <div class="fieldset-content">
                              <div class="form-group">
                                 <label for="cname" class="form-label">Business Name</label>
                                 <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Business name as registered" />
-                                <span class="text-input">Enter Your Business name as registered with the authorities</span>
+                                <span class="text-input">Enter your business name as registered with the authorities</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="taxid" class="form-label">Business Registration No</label>
+                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business registration No" />
+                                <span class="text-input">Enter Your Business Registration No</span>
                             </div>
                             <div class="form-group">
                                 <label for="taxid" class="form-label">TAX ID</label>
                                 <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business TAX ID" />
                                 <span class="text-input">Enter Your Business Tax ID</span>
                             </div>
-                            <div class="form-group">
-                                <label for="taxid" class="form-label">Business BVN No</label>
-                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business registration No" />
-                                <span class="text-input">Enter Your Business BVN No</span>
-                            </div>
+                            
                             <div class="form-row">
                                 <label class="form-label">Business Contact details</label>
                                 <div class="form-flex">
@@ -175,7 +176,7 @@
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
                     
                         <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Bussiness Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
@@ -205,7 +206,7 @@
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Bussiness Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
@@ -235,7 +236,7 @@
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Bussiness Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
@@ -265,7 +266,7 @@
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Contact details</label>
+                                <label class="form-label">Bussiness Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
                                     <select name="doc_type[]" id="doc_type" class="custom-select">

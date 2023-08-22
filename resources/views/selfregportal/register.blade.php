@@ -55,8 +55,8 @@
                 <div class="signup-form">
                 <form method="POST" class="register-form" id="register-form" action="{{ route('agentsselfregister') }}" enctype="multipart/form-data">
     @csrf
-    <h2>Agents Self Registration Portal</h2>
-    <h2>Individual Portal</h2>
+    <h2>Agent Self Registration - Individual </h2>
+   
     <div class="form-row">
         <div class="form-group">
             <label for="first_name">First Name :</label>
@@ -84,16 +84,16 @@
     <div class="form-row">
         <div class="form-group">
             <label for="taxid"> Business Name: </label>
-            <input type="text" name="bname" id="address">
+            <input type="text" name="bname" id="bname">
         </div>
         <div class="form-group">
             <label for="email">Business Address :</label>
-            <input type="text" name="baddress" id="email" required/>
+            <input type="text" name="baddress" id="baddress" required/>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="birth_date">Date Of Birth :</label>
+            <label for="birth_date">Date of Birth :</label>
             <input type="date" name="birth_date" id="birth_date">
         </div>
         <div class="form-group">
@@ -122,7 +122,7 @@
         <input type="text" name="doc_no" id="doc_no" required>
     </div>
     <div class="form-group">
-            <label for="iddoc">ID Document:</label>
+            <label for="iddoc">ID Document (Upload):</label>
             <input type="file" name="doc" id="doc" accept="image/*" required />
         </div>
     </div>
@@ -160,7 +160,7 @@
     <div class="form-row">
     <div class="form-group">
         <label for="bvn">Refferal Code :</label>
-        <input type="text" name="refcode" id="refcode" value="0">
+        <input type="text" name="refcode" id="refcode" placeholder="XYZ">
         <small id="bank description" class="form-text text-muted">If you have the agent referal code update the field.</small>
     </div>
     <div class="form-group">
@@ -248,12 +248,12 @@
     </div>
     <div class="form-row">
         <div class="form-group">
-            <label for="passport">Passport Photo:</label>
+            <label for="passport">Passport Photo (Upload):</label>
             <input type="file" name="passport" id="passport" accept="image/*" required />
         </div>
 
         <div class="form-group">
-            <label for="address_proof">Proof of Address:</label>
+            <label for="address_proof">Proof of Address (Upload):</label>
             <input type="file" name="address_proof" id="address_proof" accept="image/*" required />
         </div>
         
