@@ -38,7 +38,7 @@ class NibbsController extends Controller
         $request->validate([
             'dest_code' => 'required',
             'accountno' => 'required',
-            'bvn' => 'required',
+            //'bvn' => 'required',
            'agent_id' => 'required',
         ]);
 
@@ -48,7 +48,7 @@ class NibbsController extends Controller
 
         $destinationInstitutionCode=$request->input('dest_code');
         $accountno=$request->input('accountno');
-        $bvn=$request->input('bvn');
+       // $bvn=$request->input('bvn');
         $agent_id = $request->input('agent_id');
 
 
@@ -60,6 +60,14 @@ class NibbsController extends Controller
         $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
 
         $transactionId = $clientno . $today . $time . $randomnumber;
+
+        $destinationInstitutionCode=$destinationInstitutionCode;
+        $accountNumber=$accountno;
+
+        $originresponse = $this->sendNameEnquiryRequest($accountNumber, $channelCode, $destinationInstitutionCode);
+        //return $originresponse;
+        $originresponseData = json_decode($originresponse, true); // Convert JSON to associative array
+        $bvn = $originresponseData['bankVerificationNumber'] ?? null;
 
         $data = array(
             'channelCode' => '1',
