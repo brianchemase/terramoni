@@ -32,11 +32,11 @@
 
                     
 
-					<li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
+					<!-- <li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('blankpage')}}">
                             <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Reports</span>
                         </a>
-					</li>
+					</li> -->
 
 					<li class="sidebar-item">
 						<a data-target="#pages" data-toggle="collapse" class="sidebar-link collapsed">
