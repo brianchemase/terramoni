@@ -60,7 +60,7 @@ class NibbsController extends Controller
         $randomnumber = str_pad(mt_rand(0, 999999999999), 12, '0', STR_PAD_LEFT);
 
         $transactionId = $clientno . $today . $time . $randomnumber;
-
+        $channelCode="1";
         $destinationInstitutionCode=$destinationInstitutionCode;
         $accountNumber=$accountno;
 
