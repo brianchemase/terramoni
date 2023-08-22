@@ -110,7 +110,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="#">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Configurations (Under Construction)</span>
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions (Under Construction)</span>
 							
 						</a>
 					</li>

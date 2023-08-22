@@ -312,19 +312,23 @@
                                     
                                     <div class="form-group">
                                         <input type="file" name="address_proof" id="address_proof" />
-                                        <span class="text-input">Proof of address</span>
+                                        <span class="text-input">Proof of address(Utility Bill)</span>
                                     </div>
                                 </div>
 
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="file" name="memandart" id="memandart" />
-                                        <span class="text-input">Memorundam & Articles</span>
+                                        <span class="text-input">Memorandum & Articles of association</span>
                                     </div>
                                     
                                     <div class="form-group">
                                         <input type="file" name="stateofreturn" id="stateofreturn" />
-                                        <span class="text-input">Statement of Return</span>
+                                        <span class="text-input">Statement of Return on allotment of shares</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" name="operatinglicense" id="stateofreturn" />
+                                        <span class="text-input">Copy of Operating license</span>
                                     </div>
                                 </div>
                                     <div class="form-group">
