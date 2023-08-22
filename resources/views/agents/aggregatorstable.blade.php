@@ -33,16 +33,17 @@
 					<div class="card">
 								<div class="card-header">
 									<h5 class="card-title">Aggregators List</h5>
-									<h6 class="card-subtitle text-muted">This extension provides a framework with common options that can be used with
-										DataTables. See official documentation <a href="https://datatables.net/extensions/buttons/" target="_blank"
-											rel="noopener noreferrer">here</a>.</h6>
+									<h6 class="card-subtitle text-muted">List showing all the aggregators registered </h6>
 								</div>
 								<div class="card-body">
-									<table id="datatables-buttons" class="table table-striped" style="width:100%">
+								<table id="datatables-buttons" class="table table-striped" style="width:100%">
 										<thead>
 											<tr>
-												<th>Aggregators ID</th>
-												<th>Aggregators Details</th>
+												<th>#</th>
+												<th>Aggregator ID</th>
+												<th>Bussiness Name</th>
+												<th>Info Details</th>
+												<th>Email</th>
 												<th>Location</th>
 												<th>POS</th>
 												<th>Status</th>
@@ -50,41 +51,56 @@
 											</tr>
 										</thead>
 										<tbody>
-										<tr>
-												<td>Tiger Nixon <br> 18th July 2023</td>
-												<td>System Architect <br> Phone</td>
-												<td>Edinburgh, Country</td>
+										@foreach($aggregators as $data)
+												<tr>
+										
+												<td>{{ $loop->iteration }} </td>
+												<td>{{ $data->doc_no }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
+												<td>{{ $data->first_name }} {{ $data->last_name }}</td>
+												<td>{{ $data->first_name }} {{ $data->last_name }}<br> {{ $data->phone }}</td>
+												<td>{{ $data->email }}</td>
+												<td>{{ $data->location }}, {{ $data->country }}</td>
+												
 												<td>Samsung <br> SRN</td>
-												<td><span class="badge bg-danger">Suspended</span></td>
 												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
+													@if($data->status == 'approved')
+														<span class="badge bg-success">Active</span>
+													@elseif($data->status == 'suspended')
+														<span class="badge bg-danger">Suspended</span>
+													@elseif($data->status == 'pending')
+														<span class="badge bg-warning">Pending</span>
+													@else
+														<span class="badge bg-info">Unknown</span>
+													@endif
+												</td>
+												<td>
+											
 												
+												
+												<div class="dropdown show">
+													<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<i class="align-middle" data-feather="menu"></i>
+													</a>
+
+													<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Aggregator</a>
+														<a class="dropdown-item" href="#">DeActivate Agent</a>
+														<a class="dropdown-item" href="#">Wallet History</a>
+														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
+														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
+														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
+														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
+														<a class="dropdown-item" href="#">Transactions Rate</a>
+														<a class="dropdown-item" href="#">Edit Agent details</a>
+														<a class="dropdown-item" href="#">Reset Password</a>
+														<a class="dropdown-item" href="#" style="color: red;">Block Agent</a>
+													</div>
+												</div>
+												@include('agents.modals.agentView')
 												</td>
 											</tr>
-											<tr>
-												<td>Garrett Winters</td>
-												<td>Accountant</td>
-												<td>Tokyo</td>
-												<td>63</td>
-												<td><span class="badge bg-success">Active</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
-											</tr>
-											<tr>
-												<td>Ashton Cox</td>
-												<td>Junior Technical Author</td>
-												<td>San Francisco</td>
-												<td>66</td>
-												<td><span class="badge bg-info">Inactive</span></td>
-												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
-                                                <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
-												</td>
+											@endforeach
+											
 											</tr>
 										</tbody>
 									</table>

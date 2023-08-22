@@ -77,6 +77,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     // my view agents list
     Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
     Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
+    Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit');
+    Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
+    Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
 
 
     //pending agents table

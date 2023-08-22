@@ -140,11 +140,80 @@ class AgentsController extends Controller
 
     public function agentstab()
     {
-        $agents = DB::table('tbl_agents')->get();
+        $agents = DB::table('tbl_agents')->where('agent_role','agent')->get();
 
        // return $agents;
         return view ('agents.agentstable', compact('agents'));
     }
+
+    public function edit_agent($agent_id)
+    {
+        $agent = DB::table('tbl_agents')->where('id', $agent_id)->first();
+        //return $agent;
+
+        return view('agents.agentDetailsUpdate', compact('agent'));
+    }
+
+    public function update_agent(Request $request, $agent_id)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'bvn' => 'required',
+            'tax_id' => 'nullable',
+            'doc_type' => 'nullable',
+            'doc_no' => 'nullable',
+            'bank_name' => 'nullable',
+            'bank_acc_no' => 'nullable',
+            // Add validation rules for other fields
+        ]);
+
+        // Update agent's data
+        DB::table('tbl_agents')->where('id', $agent_id)->update([
+            'first_name' => $request->input('first_name'),
+            'mid_name' => $request->input('mid_name'),
+            'last_name' => $request->input('last_name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'bvn' => $request->input('bvn'),
+            'tax_id' => $request->input('tax_id'),
+            'doc_type' => $request->input('doc_type'),
+            'doc_no' => $request->input('doc_no'),
+            'bank_name' => $request->input('bank_name'),
+            'bank_acc_no' => $request->input('bank_acc_no'),
+            // Update other fields
+        ]);
+
+        return redirect()->route('agentstab', ['agent_id' => $agent_id])
+            ->with('success', 'Agent details updated successfully!');
+    }
+
+    public function suspend_agent($agent_id)
+    {
+
+       // Get agent's information
+       $agent = DB::table('tbl_agents')->where('id', $agent_id)->first();
+
+       if (!$agent) {
+           return back()->with('error', 'Agent not found!');
+       }
+
+       $agentRole = $agent->agent_role;
+
+       // Update agent's status to "suspended"
+       DB::table('tbl_agents')->where('id', $agent_id)->update(['status' => 'suspended']);
+
+       $message = ($agentRole === 'agent') ? 'Agent suspended' : 'Aggregator suspended';
+
+       return back()->with('success', $message . ' successfully!');
+
+
+    }
+
+
+
 
     public function compliance_agentstab()
     {
@@ -468,7 +537,9 @@ class AgentsController extends Controller
 
     public function aggregatorstab()
     {
-        return view ('agents.aggregatorstable');
+        $aggregators = DB::table('tbl_agents')->where('agent_role','aggregators')->get();
+
+        return view ('agents.aggregatorstable', compact('aggregators'));
     }
 
     public function postterminalstab()
