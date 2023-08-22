@@ -10,11 +10,36 @@
 				<h1 class="h3 mb-3"><strong>Aggregators</strong> List</h1>
 				<p>This is a list of all aggregators</p>
 
+				@if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>{{ $message }}</strong> 
+					</div>
+				</div>
+				@endif
+
+				@if (count($errors) > 0)
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+						</strong> 
+					</div>
+				</div>	
+				
+				@endif
+
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0"></h5>
 								</div>
 								<div class="card-body">
 
@@ -77,23 +102,23 @@
 											
 												
 												
-												<div class="dropdown show">
+												<div class="dropdown dropleft">
 													<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													<i class="align-middle" data-feather="menu"></i>
 													</a>
 
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Aggregator</a>
-														<a class="dropdown-item" href="#">DeActivate Agent</a>
+													<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
+														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Aggegator </a>
+														
 														<a class="dropdown-item" href="#">Wallet History</a>
 														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Transactions Rate</a>
-														<a class="dropdown-item" href="#">Edit Agent details</a>
+														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Aggegator details</a>
 														<a class="dropdown-item" href="#">Reset Password</a>
-														<a class="dropdown-item" href="#" style="color: red;">Block Agent</a>
+														<a class="dropdown-item" href="{{ route('suspend_agent', ['agent_id' => $data->id]) }}" style="color: red;">Suspend Aggegator</a>
 													</div>
 												</div>
 												@include('agents.modals.agentView')

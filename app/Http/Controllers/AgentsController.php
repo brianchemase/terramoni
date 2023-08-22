@@ -38,11 +38,11 @@ class AgentsController extends Controller
                 ->get();
 
         //count all the agents
-        $agentCount = DB::table('tbl_agents')->count();
+        $agentCount = DB::table('tbl_agents')->where('agent_role', 'agent')->count();
         //active agents
-        $activeAgentsCount = DB::table('tbl_agents')->where('status', 'approved')->count();
+        $activeAgentsCount = DB::table('tbl_agents')->where('agent_role', 'agent')->where('status', 'approved')->count();
         // inactive agents
-        $inactiveAgentsCount = DB::table('tbl_agents')->where('status', '<>', 'approved')->count();
+        $inactiveAgentsCount = DB::table('tbl_agents')->where('agent_role', 'agent')->where('status', '<>', 'approved')->count();
 
 
 
@@ -69,7 +69,21 @@ class AgentsController extends Controller
        $activeaggregators = rand(0, $totalaggregators);
        $inactiveaggregators=$totalaggregators-$activeaggregators; 
 
+        //count all the aggregators
+        $totalaggregators = DB::table('tbl_agents')->where('agent_role', 'aggregators')->count();
+        //active aggregators
+        $activeaggregators = DB::table('tbl_agents')->where('agent_role', 'aggregators')->where('status', 'approved')->count();
+        // inactive aggregators
+        $inactiveaggregators = DB::table('tbl_agents')->where('agent_role', 'aggregators')->where('status', '<>', 'approved')->count();
 
+
+        $topEarningAgents = DB::table('tbl_agents AS a')
+        ->select('a.first_name', 'a.last_name', 'a.email', 'a.location','a.passport','a.status', DB::raw('SUM(c.commission) AS earnings'))
+        ->join('tbl_commissions AS c', 'a.id', '=', 'c.agent_id')
+        ->groupBy('a.id')
+        ->orderByDesc('earnings')
+        ->limit(5)
+        ->get();
 
         $data = [
             'salutation' => $salutation,// salutations
@@ -87,6 +101,8 @@ class AgentsController extends Controller
             'totalaggregators' => $totalaggregators,// total aggregators
             'activeaggregators' => $activeaggregators,//active aggregators
             'inactiveaggregators' => $inactiveaggregators,//inactive aggregators
+
+            'topEarningAgents' => $topEarningAgents,//top 5 earning agents
             // Add more data to the array as needed
         ];
 
