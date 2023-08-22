@@ -143,12 +143,12 @@
 												</div> -->
 												<div class="col-md-6">
 													<label for="validationDefault05" class="form-label">Passport Photo</label>
-													<input type="file" class="form-control" id="validationDefault05" name="ppt" required>
+													<input class="form-control" type="file" id="validationDefault05" name="ppt" required>
 												</div>
 
 												<div class="col-md-6">
 													<label for="validationDefault05" class="form-label">Proof of addresses</label>
-													<input type="file" class="form-control" id="validationDefault05" name="address_proof" required>
+													<input class="form-control" type="file" id="validationDefault05" name="address_proof" required>
 												</div>
 												
 										

@@ -54,13 +54,13 @@ class AgentsController extends Controller
         //assisgned pos
          $assignedPOSCount = DB::table('tbl_pos_terminals')->where('status', 'Assigned')->count();
 
-          //non-assisgned pos
+          //assisgned pos
         $notassignedPOSCount = DB::table('tbl_pos_terminals')->where('status','<>', 'Assigned')->count();
 
        //$totalTransactioncount= rand(10000, 50000);
        $totalTransactioncount = DB::table('tbl_transactions')->count();
        //$totalTransactionValue= rand(10000, 50000);
-       $totalItemFee = DB::table('tbl_transactions')->sum('ItemFee');
+       $totalTransactionValue = DB::table('tbl_transactions')->sum('ItemFee');
 
        // wallet earning
        $walletBalance = rand(10000, 50000);
