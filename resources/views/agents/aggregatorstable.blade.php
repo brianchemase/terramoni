@@ -66,11 +66,11 @@
 											<tr>
 												<th>#</th>
 												<th>Aggregator ID</th>
-												<th>Bussiness Name</th>
+												<th>Business Name</th>
 												<th>Info Details</th>
 												<th>Email</th>
 												<th>Location</th>
-												<th>POS</th>
+												
 												<th>Status</th>
 												<th>Action</th>
 											</tr>
@@ -86,7 +86,7 @@
 												<td>{{ $data->email }}</td>
 												<td>{{ $data->location }}, {{ $data->country }}</td>
 												
-												<td>Samsung <br> SRN</td>
+												
 												<td>
 													@if($data->status == 'approved')
 														<span class="badge bg-success">Active</span>
