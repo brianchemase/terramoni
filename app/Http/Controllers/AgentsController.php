@@ -484,6 +484,15 @@ class AgentsController extends Controller
                 $request->address_proof->store('address', 'public');
             }
 
+
+            // Process the other_attachment
+            if ($request->hasFile('docimage')) {
+                $request->validate([
+                    'docimage' => 'mimes:png,jpg,jpeg|max:2048',
+                ]);
+                $request->docimage->store('address', 'public');
+            }
+
         // Store the agent record in the database using DB facade
         $inserted = DB::table('tbl_agents')->insertGetId([
             'first_name' => $input['first_name'],
@@ -506,6 +515,7 @@ class AgentsController extends Controller
             'status' => "pending",
             'passport' => $request->passport->hashName(),
             'address_proff' => $request->address_proof->hashName(),
+            'docimage' => $request->docimage->hashName(),
             'registration_date' => date('Y-m-d'), // Assuming you want to set the current date
         ]);
 

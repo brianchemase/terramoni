@@ -128,7 +128,7 @@
     </div>
     <div class="form-group">
             <label for="iddoc">ID Document (Upload):</label>
-            <input type="file" name="doc" id="doc" accept="image/*" required />
+            <input type="file" name="docimage" id="doc" accept="image/*" required />
         </div>
     </div>
     <div class="form-row">

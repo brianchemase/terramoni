@@ -48,6 +48,14 @@
 								</div>
 								<hr class="my-0" />
 								<div class="card-body">
+									<h5 class="h6 card-title">Document Uploaded</h5>
+									<br>
+									<div class="col-6 col-md-4 col-lg-4 col-xl-12">
+									
+													<img src="{{ asset('storage/address/'.$doc_image) }}" width="550" height="50" class="img-fluid pr-2" alt="Address Not Uploaded">
+									</div>
+									<br>
+
 									<h5 class="h6 card-title">Proof of Address</h5>
 									<br>
 									<div class="col-6 col-md-4 col-lg-4 col-xl-12">

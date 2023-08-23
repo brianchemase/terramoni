@@ -46,6 +46,9 @@ class ComplianceController extends Controller
         $phone = DB::table('tbl_agents')->where('id', $id)->value('phone');
         $passport = DB::table('tbl_agents')->where('id', $id)->value('passport');
         $address_proff = DB::table('tbl_agents')->where('id', $id)->value('address_proff');
+        $id_image = DB::table('tbl_agents')->where('id', $id)->value('docimage');
+
+       // return $address_proff;
         
         
         $firstname = $first_name;
@@ -239,6 +242,7 @@ class ComplianceController extends Controller
             'email' => $email, 
             'passport' => $passport, 
             'address_proff' => $address_proff,
+            'doc_image' => $id_image,
             'agent_id' => $id,  
             // from responce
                     'respfirst' => $applicantFirstName,
