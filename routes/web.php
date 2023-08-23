@@ -80,10 +80,14 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit');
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
     Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
+    Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent');//reject agent
 
 
     //pending agents table
     Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
+
+    //pending aggregators table
+    Route::get('/ViewmypendingaggregatorsList', [AgentsController::class, 'compliance_aggregatorstab'])->name('complianceaggregatorsstab');
     // kyc form
     Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
 

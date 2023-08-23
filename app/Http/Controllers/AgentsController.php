@@ -252,6 +252,36 @@ class AgentsController extends Controller
 
     }
 
+    public function reject_agent($agent_id)
+    {
+
+       // Get agent's information
+       $agent = DB::table('tbl_agents')->where('id', $agent_id)->first();
+
+       if (!$agent) {
+           return back()->with('error', 'Agent not found!');
+       }
+
+       $agentRole = $agent->agent_role;
+
+       // Update agent's status to "suspended"
+       DB::table('tbl_agents')->where('id', $agent_id)->update(['status' => 'rejected']);
+
+       $message = ($agentRole === 'agent') ? 'Agent Application Rejected' : 'Aggregator Application Rejected';
+
+       if ($agentRole=="agent"){
+
+         // return back()->with('success', $message . ' successfully!');
+       return Redirect::route('complianceagentstab')->with('error', $message . ' successfully!');
+       }
+       else{
+        return Redirect::route('complianceaggregatorsstab')->with('error', $message . ' successfully!');
+       }
+     
+
+
+    }
+
 
 
 
@@ -264,6 +294,18 @@ class AgentsController extends Controller
 
        // return $agents;
         return view ('agents.pendingagentstable', compact('agents'));
+    }
+
+    public function compliance_aggregatorstab()
+    {
+        $aggregators = DB::table('tbl_agents')
+            ->where('status', '!=', 'approved')
+            ->where('agent_role', 'aggregators')
+            ->get();
+
+
+       // return $aggregators;
+        return view ('agents.pendingaggregatorstable', compact('aggregators'));
     }
 
     public function agentsposallocation()

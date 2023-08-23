@@ -57,8 +57,8 @@
 
 									<div class="card-body" >
 
-									<a href="{{ route('suspend_agent', ['agent_id' => $agent_id]) }}" class="btn btn-danger">
-											<i class="fa fa-check" aria-hidden="true"></i> Reject Agent
+									<a href="{{ route('reject_agent', ['agent_id' => $agent_id]) }}" class="btn btn-danger">
+											<i class="fa fa-times" aria-hidden="true"></i> Reject Agent
 										</a>
 
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">

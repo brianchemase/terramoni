@@ -83,8 +83,8 @@
                         </a>
 					</li>
 
-					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
-						<a class="sidebar-link" href="#">
+					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceaggregatorsstab' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('complianceaggregatorsstab')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Aggregators Pending</span>
                         </a>
 					</li>

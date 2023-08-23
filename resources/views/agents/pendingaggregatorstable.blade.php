@@ -7,8 +7,8 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-				<h1 class="h3 mb-3"><strong>Agents</strong> List</h1>
-				<p>This is a list of all pending agents</p>
+				<h1 class="h3 mb-3"><strong>Aggregators</strong> List</h1>
+				<p>This is a list of all pending aggregators</p>
 
 				@if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -35,27 +35,11 @@
 				
 				@endif
 
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Agents Registration Tab</h5>
-								</div>
-								<div class="card-body">
-								
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
-									<i class="fa fa-users" aria-hidden="true"></i> Register Individual Agent
-									</button>
-									@include('agents.modals.registeragent')
-								
-								</div>
-							</div>
-						</div>
-					</div>
+					
 
 					<div class="card">
 								<div class="card-header">
-									<h5 class="card-title"><strong>Agents List</strong></h5>
+									<h5 class="card-title"><strong>Aggregators List</strong></h5>
 									
 								</div>
 								<div class="card-body">
@@ -63,8 +47,8 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Agent ID</th>
-												<th>Agent Details</th>
+												<th>Aggregator ID</th>
+												<th>Aggregator Details</th>
 												<th>Location</th>
 												<th>POS</th>
 												<th>Status</th>
@@ -72,7 +56,7 @@
 											</tr>
 										</thead>
 										<tbody>
-										@foreach($agents as $data)
+										@foreach($aggregators as $data)
 												<tr>
 										
 												<td>{{ $loop->iteration }} </td>
@@ -87,7 +71,7 @@
 														<span class="badge bg-danger">Suspended</span>
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
-													@else
+														@else
 														<span class="badge bg-info">Rejected</span>
 													@endif
 												</td>
