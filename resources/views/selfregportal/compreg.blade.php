@@ -183,122 +183,138 @@
                         <h2>Directors Data</h2>
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
                     
-                        <div class="form-row">
-                                <label class="form-label">Bussiness Director Contact details</label>
+                            <div class="form-row">
+                                <label class="form-label">1st Business Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                    <span class="form-label">Select Identification Document</span>
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Select Identification Document</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                        <span class="form-label">Enter Document Number</span>
                                         <input type="text" name="directordoc[]" id="directordoc" />
-                                        <span class="text-input">Enter Document Number</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director Name</span>
                                         <input type="text" name="directornamesc[]" id="directordoc" />
-                                        <span class="text-input">Enter Director Name</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director BVN No</span>
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
-                                        <span class="text-input">Enter Director BVN No</span>
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Director Contact details</label>
+                                <label class="form-label">2nd Business Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                    <span class="form-label">Select Identification Document</span>
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Select Identification Document</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                        <span class="form-label">Enter Document Number</span>
                                         <input type="text" name="directordoc[]" id="directordoc" />
-                                        <span class="text-input">Enter Document Number</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director Name</span>
                                         <input type="text" name="directornamesc[]" id="directordoc" />
-                                        <span class="text-input">Enter Director Name</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director BVN No</span>
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
-                                        <span class="text-input">Enter Director BVN No</span>
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Director Contact details</label>
+                                <label class="form-label">3rd Business Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                    <span class="form-label">Select Identification Document</span>
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Select Identification Document</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                        <span class="form-label">Enter Document Number</span>
                                         <input type="text" name="directordoc[]" id="directordoc" />
-                                        <span class="text-input">Enter Document Number</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director Name</span>
                                         <input type="text" name="directornamesc[]" id="directordoc" />
-                                        <span class="text-input">Enter Director Name</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director BVN No</span>
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
-                                        <span class="text-input">Enter Director BVN No</span>
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Bussiness Director Contact details</label>
+                                <label class="form-label">4th Business Director Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
+                                    <span class="form-label">Select Identification Document</span>
                                     <select name="doc_type[]" id="doc_type" class="custom-select">
                                         <option value="NIN">NIN</option>
                                         <option value="DL">Driving Licence</option>
                                         <option value="VotingCard">Voters Card</option>
                                         <option value="Passport">International Passport</option>
                                     </select>
-                                        <span class="text-input">Select Identification Document</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                        <span class="form-label">Enter Document Number</span>
                                         <input type="text" name="directordoc[]" id="directordoc" />
-                                        <span class="text-input">Enter Document Number</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director Name</span>
                                         <input type="text" name="directornamesc[]" id="directordoc" />
-                                        <span class="text-input">Enter Director Name</span>
+                                        
                                     </div>
 
                                     <div class="form-group">
+                                        <span class="form-label">Enter Director BVN No</span>
                                         <input type="text" name="directorBVN[]" id="directorBVN" />
-                                        <span class="text-input">Enter Director BVN No</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -315,13 +331,13 @@
                                 <!-- <label class="form-label">Business Documents Uploads</label> -->
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <span class="form-label">Certificate of Incooperation</span>
+                                        <span class="form-label"><b>Certificate of Incorporation</b></span>
                                         <input type="file"  name="cert_of_coop" id="cert_of_coop" />
                                         
                                     </div>
                                     
                                     <div class="form-group">
-                                         <span class="form-label">Proof of address(Utility Bill)</span>
+                                         <span class="form-label"><b>Proof of Address(Utility Bill)</b></span>
                                         <input type="file" name="address_proof" id="address_proof" />
                                         
                                     </div>
@@ -329,18 +345,18 @@
 
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <span class="form-label">Memorandum & Articles of association</span>
+                                        <span class="form-label"><b>Memorandum & Articles of Association</b></span>
                                         <input type="file" name="memandart" id="memandart" />
                                         
                                     </div>
                                     
                                     <div class="form-group">
-                                        <span class="form-label">Statement of Return on allotment of shares</span>
+                                        <span class="form-label"><b>Statement of Return on Allotment of Shares</b></span>
                                         <input type="file" name="stateofreturn" id="stateofreturn" />
                                         
                                     </div>
                                     <div class="form-group">
-                                        <span class="form-label">Copy of Operating license</span>
+                                        <span class="form-label"><b>Copy of Operating License</b></span>
                                         <input type="file" name="operatinglicense" id="stateofreturn" />
                                         
                                     </div>
