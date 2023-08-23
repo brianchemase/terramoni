@@ -8,13 +8,13 @@
 				<div class="container-fluid p-0">
 
 					
-					<h1 class="h3 mb-3">Compliance Check</h1>
+					<h1 class="h3 mb-3">KYC Review </h1>
 
 					<div class="row">
 						<div class="col-md-4 col-xl-6">
 							<div class="card mb-3">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Client Details</h5>
+									<h5 class="card-title mb-0">Details Submitted During Registration</h5>
 								</div>
 								<div class="card-body text-center">
 									<img src="{{ asset('storage/ppts/'.$passport) }}" alt="Passport Photo Missing" class="img-fluid" width="128" height="328" />
@@ -33,10 +33,10 @@
 								
 								<hr class="my-0" />
 								<div class="card-body">
-									<h5 class="h6 card-title">Shared Details</h5>
+									
 									<ul class="list-unstyled mb-0">
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Name : {{$first_name}} {{$mid_name}} {{$last_name}}</li>
-										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span>Birth Date : {{$dob }}</li>
+										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Birth Date : {{$dob }}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> BVN No : {{$BVN }}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Contact :{{$phone}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Location : {{$location}}</li>
@@ -48,7 +48,7 @@
 								</div>
 								<hr class="my-0" />
 								<div class="card-body">
-									<h5 class="h6 card-title">Proof Of address</h5>
+									<h5 class="h6 card-title">Proof of Address</h5>
 									<br>
 									<div class="col-6 col-md-4 col-lg-4 col-xl-12">
 									
@@ -57,9 +57,9 @@
 
 									<div class="card-body" >
 
-									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#defaultModalPrimary">
-										<i class="fa fa-check" aria-hidden="true"></i> Reject Agent
-									</button>
+									<a href="{{ route('suspend_agent', ['agent_id' => $agent_id]) }}" class="btn btn-danger">
+											<i class="fa fa-check" aria-hidden="true"></i> Reject Agent
+										</a>
 
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
 										<i class="fa fa-check" aria-hidden="true"></i> Approve Agent
@@ -73,19 +73,18 @@
 						<div class="col-md-4 col-xl-6">
 							<div class="card mb-3">
 								<div class="card-header">
-									<h5 class="card-title mb-0">KYC Details</h5>
+									<h5 class="card-title mb-0">Details from KYC Provider (QoreID)</h5>
 								</div>
 								<div class="card-body text-center">
 									<!-- <img src="{{asset('dash/img/avatars/unnamed.jpg')}}" alt="Christina Mason" class="img-fluid mb-2" width="128" height="128" /> -->
 									<img src="data:image/jpeg;base64,{{ $respninphoto }}" alt="No photo found" class="img-fluid mb-2" width="128" height="128" />
-									<h5 class="card-title mb-0">Client Names</h5>
-									<div class="text-muted mb-2">Location</div>
+									
 								</div>
 								<hr class="my-0" />
 								<div class="card-body">
-									<h5 class="h6 card-title">Shared Details</h5>
+									
 									<ul class="list-unstyled mb-0">
-									<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Name : {{$respfirst}} {{$respninmid}} {{$resplast}}</li>
+										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Name : {{$respfirst}} {{$respninmid}} {{$resplast}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Birth Date : {{$respnindob }}</li>
 										
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Doc Type : {{$doc_type}}</li>

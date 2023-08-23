@@ -89,11 +89,11 @@
                         </a>
 					</li>
 
-					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceformpage' ? 'active' : '' }}">
+					<!-- <li class="sidebar-item {{ Route::currentRouteName() === 'complianceformpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('complianceformpage')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">KYC Review (Form)</span>
                         </a>
-					</li>
+					</li> -->
 
 
 

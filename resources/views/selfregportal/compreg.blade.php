@@ -181,7 +181,7 @@
                     <h3>Directors Details</h3>
                     <fieldset>
                         <h2>Directors Data</h2>
-                        <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
+                        <p class="desc">Please enter your infomation and proceed to next step so we can build your account (For all directors with 5% or more shareholding)</p>
                     
                             <div class="form-row">
                                 <label class="form-label">1st Business Director Contact details</label>
