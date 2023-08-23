@@ -71,10 +71,10 @@ class ComplianceController extends Controller
 
             $response = $this->sendRequest($url, 'post', $data);
 
-           // return $response;
+          // return $response;
 
             $data = json_decode($response, true);
-            if ($data && isset($data['status']) && $data['status'] === 404) 
+            if ($data && isset($data['status']) && $data['status'] === 404 ) 
             {
                     $applicantFirstName="Null";
                     $applicantLastName="Null";
