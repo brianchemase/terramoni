@@ -21,7 +21,7 @@ class PosTerminalsImport implements ToModel, WithHeadingRow
             //
             'device_name'     => $row['device_name'],
             'serial_no'    => $row['serial_no'],
-            'device_os'    => $row['device_os'],
+            'device_model'    => $row['device_model'],
             'status' => 'available',
             'owner_type' => 'store', 
             'registration_date' => $currentDate, 

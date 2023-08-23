@@ -81,16 +81,7 @@
             <input type="email" name="email" id="email" required/>
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group">
-            <label for="taxid"> Business Name: </label>
-            <input type="text" name="bname" id="bname">
-        </div>
-        <div class="form-group">
-            <label for="email">Business Address :</label>
-            <input type="text" name="baddress" id="baddress" required/>
-        </div>
-    </div>
+    
     <div class="form-row">
         <div class="form-group">
             <label for="birth_date">Date of Birth :</label>
@@ -101,6 +92,19 @@
             <input type="text" name="taxid" id="taxid">
         </div>
         
+    </div>
+    <div class="form-radio">
+        <label for="gender" class="radio-label">Gender :</label>
+        <div class="form-radio-item">
+            <input type="radio" name="gender" id="male" value="male" checked>
+            <label for="male">Male</label>
+            <span class="check"></span>
+        </div>
+        <div class="form-radio-item">
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female">Female</label>
+            <span class="check"></span>
+        </div>
     </div>
   
     <div class="form-row">
@@ -158,30 +162,28 @@
     </div>
     </div>
     <div class="form-row">
-    <div class="form-group">
-        <label for="bvn">Refferal Code :</label>
-        <input type="text" name="refcode" id="refcode" placeholder="XYZ">
-        <small id="bank description" class="form-text text-muted">If you have the agent referal code update the field.</small>
+        <div class="form-group">
+            <label for="bvn">Referal Code :</label>
+            <input type="text" name="refcode" id="refcode" placeholder="XYZ">
+            <small id="bank description" class="form-text text-muted">If you have the agent referal code update the field.</small>
+        </div>
+        <div class="form-group">
+            <label for="bvn">BVN No :</label>
+            <input type="text" name="bvn" id="bvn" required>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="bvn">BVN No :</label>
-        <input type="text" name="bvn" id="bvn" required>
-    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="taxid"> Business Name (optional): </label>
+            <input type="text" name="bname" id="bname">
+        </div>
+        <div class="form-group">
+            <label for="email">Business Address :</label>
+            <input type="text" name="baddress" id="baddress" required/>
+        </div>
     </div>
     
-    <div class="form-radio">
-        <label for="gender" class="radio-label">Gender :</label>
-        <div class="form-radio-item">
-            <input type="radio" name="gender" id="male" value="male" checked>
-            <label for="male">Male</label>
-            <span class="check"></span>
-        </div>
-        <div class="form-radio-item">
-            <input type="radio" name="gender" id="female" value="female">
-            <label for="female">Female</label>
-            <span class="check"></span>
-        </div>
-    </div>
+    
     <div class="form-row">
         <div class="form-group">
         <label for="location">Residential Address :</label>
