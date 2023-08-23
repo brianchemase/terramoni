@@ -12,6 +12,7 @@
     <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
     <!-- Main css -->
     <link rel="stylesheet" href="registration/css/style.css">
+    
 </head>
 <body>
 
@@ -261,6 +262,7 @@
             <input type="text" name="baddress" id="baddress" required/>
         </div>
     </div>
+
     <div class="form-submit">
         <input type="reset" value="Reset All" class="submit" name="reset" id="reset" />
         <input type="submit" value="Register" class="submit" name="submit" id="submit" />
