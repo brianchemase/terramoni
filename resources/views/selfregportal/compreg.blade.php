@@ -161,14 +161,14 @@
                             
                             <div class="form-group">
                                 <label for="location" class="form-label">Business Type</label>
-                                    <select name="doc_type" id="doc_type" class="custom-select">
+                                    <select name="agent_type" id="agent_type" class="custom-select">
                                         <option selected disabled value="">Choose...</option>
-                                        <option value="1">Private Limited Liability </option>
-                                        <option value="2">Public Limited Liability </option>
-                                        <option value="3">Non-Government Organization </option>
-                                        <option value="4">Proprietor/Partnership</option>
-                                        <option value="5">General Collection </option>
-                                        <option value="6">Starter Business/SMEs</option>
+                                        <option value="Private_Limited_Company">Private Limited Liability </option>
+                                        <option value="Public_Limited_Company">Public Limited Liability </option>
+                                        <option value="Public_Company_Limited_by_Guarantee">Non-Government Organization </option>
+                                        <option value="Public_Unlimited_Company">Proprietor/Partnership</option>
+                                        <option value="Private_Unlimited_Company">General Collection </option>
+                                        <option value="Business_Name">Starter Business/SMEs</option>
                                         <option value="7">Betting/Lottery </option>
                                         <option value="8">Payment/Finance</option> 
                                     </select>
