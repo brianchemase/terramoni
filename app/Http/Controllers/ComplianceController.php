@@ -128,7 +128,10 @@ class ComplianceController extends Controller
             //return $response;
             $data = json_decode($response, true);
 
-            if ($data && isset($data['status']) && $data['status'] === 404) {
+           //return $data;
+
+            if ($data && isset($data['status']) && $data['status'] === 404) 
+            {
                     $applicantFirstName="Null";
                     $applicantLastName="Null";
                     $status="Null";
@@ -140,7 +143,7 @@ class ComplianceController extends Controller
                     $ppt="Null";
 
             } 
-            elseif ($data !== null) {
+            else {
                 // Access different fields in the JSON data
                 $applicantFirstName = $data['applicant']['firstname'];
                 $applicantLastName = $data['applicant']['lastname'];
@@ -161,8 +164,6 @@ class ComplianceController extends Controller
                
             
                 // Access and use other fields as needed
-            } else {
-                echo "Failed to decode JSON data.";
             }
 
         }
