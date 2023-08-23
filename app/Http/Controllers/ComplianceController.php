@@ -192,8 +192,34 @@ class ComplianceController extends Controller
             ];
 
             $response = $this->sendRequest($url, 'post', $data);
+            $data = json_decode($response, true);
 
-            return $response;
+            if ($data && isset($data['status']) && $data['status'] === 404) 
+            {
+                    $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
+
+            } else {
+
+                $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
+            }
+
+            //return $response;
             
         }
         elseif($id_type=="voters_card")
@@ -207,8 +233,34 @@ class ComplianceController extends Controller
             ];
 
             $response = $this->sendRequest($url, 'post', $data);
+            $data = json_decode($response, true);
 
-            return $response;
+            //return $response;
+
+            if ($data && isset($data['status']) && $data['status'] === 404) 
+            {
+                    $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
+
+            } else {
+
+                $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
+            }
             
         }
         else
