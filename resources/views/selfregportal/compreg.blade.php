@@ -98,13 +98,14 @@
                                 <div class="form-flex">
 
                                 <div class="form-group">
-                                       
+                                        <span class="form-label"><b>Business Physical Address</b></span>
                                         <input type="text" name="address" id="add" />
-                                        <span class="text-input">Business Physical Address</span>
+                                        
                                        
                                     </div>
                                
                                     <div class="form-group">
+                                    <span class="form-label"><b>Select Business State</b></span>
                                     <select   onchange="toggleLGA(this);" id="state"  name="state" class="custom-select">
                                     <option value="" selected="selected">- Select -</option>
                                         <option value="Abia">Abia</option>
@@ -145,14 +146,15 @@
                                         <option value="Yobe">Yobe</option>
                                         <option value="Zamfara">Zamafara</option>
                                     </select>
-                                        <span class="text-input">Select Bussiness State</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                    <span class="form-label"><b>Select Business LGA</b></span>
                                     <select name="city" id="lga" class="custom-select select-lga">
                                         
                                     </select>
-                                        <span class="text-input">Select Bussiness LGA</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -306,36 +308,41 @@
 
                     <h3>Documents Uploads</h3>
                     <fieldset>
-                        <h2>Upload Your Organization documents</h2>
-                        <p class="desc">Upload your documents from here</p>
+                        <h2>Upload Your Business Documents</h2>
+                        <p class="desc">Upload each of the documents below</p>
                         <div class="fieldset-content">
                         <div class="form-row">
-                                <label class="form-label">Business Documents Uploads</label>
+                                <!-- <label class="form-label">Business Documents Uploads</label> -->
                                 <div class="form-flex">
                                     <div class="form-group">
+                                        <span class="form-label">Certificate of Incooperation</span>
                                         <input type="file"  name="cert_of_coop" id="cert_of_coop" />
-                                        <span class="text-input">Certificate of Incooperation</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                         <span class="form-label">Proof of address(Utility Bill)</span>
                                         <input type="file" name="address_proof" id="address_proof" />
-                                        <span class="text-input">Proof of address(Utility Bill)</span>
+                                        
                                     </div>
                                 </div>
 
                                 <div class="form-flex">
                                     <div class="form-group">
+                                        <span class="form-label">Memorandum & Articles of association</span>
                                         <input type="file" name="memandart" id="memandart" />
-                                        <span class="text-input">Memorandum & Articles of association</span>
+                                        
                                     </div>
                                     
                                     <div class="form-group">
+                                        <span class="form-label">Statement of Return on allotment of shares</span>
                                         <input type="file" name="stateofreturn" id="stateofreturn" />
-                                        <span class="text-input">Statement of Return on allotment of shares</span>
+                                        
                                     </div>
                                     <div class="form-group">
+                                        <span class="form-label">Copy of Operating license</span>
                                         <input type="file" name="operatinglicense" id="stateofreturn" />
-                                        <span class="text-input">Copy of Operating license</span>
+                                        
                                     </div>
                                 </div>
                                     <div class="form-group">
