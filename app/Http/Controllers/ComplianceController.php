@@ -37,6 +37,7 @@ class ComplianceController extends Controller
         $gender = DB::table('tbl_agents')->where('id', $id)->value('gender');
         $status = DB::table('tbl_agents')->where('id', $id)->value('status');
         $BVN = DB::table('tbl_agents')->where('id', $id)->value('BVN');
+        $dob_db = DB::table('tbl_agents')->where('id', $id)->value('dob');
         $doc_no = DB::table('tbl_agents')->where('id', $id)->value('doc_no');
         $doc_type = DB::table('tbl_agents')->where('id', $id)->value('doc_type');
         $location = DB::table('tbl_agents')->where('id', $id)->value('location');
@@ -67,7 +68,7 @@ class ComplianceController extends Controller
 
             $response = $this->sendRequest($url, 'post', $data);
 
-            return $response;
+           // return $response;
 
             $data = json_decode($response, true);
 
@@ -76,7 +77,7 @@ class ComplianceController extends Controller
                 $applicantFirstName = $data['applicant']['firstname'];
                 $applicantLastName = $data['applicant']['lastname'];
                 $status = $data['summary']['drivers_license_check']['status'];
-                $driversLicenseNumber = $data['drivers_license']['driversLicense'];
+                $respid = $data['drivers_license']['driversLicense'];
                 $v_firstname = $data['drivers_license']['firstname'];
                 $v_lastname = $data['drivers_license']['lastname'];
                 $v_middlename = $data['drivers_license']['middlename'];
@@ -85,6 +86,24 @@ class ComplianceController extends Controller
                 $ppt = $data['drivers_license']['photo'];
                 $v_issued_date = $data['drivers_license']['issued_date'];
                 $v_expiry_date = $data['drivers_license']['expiry_date'];
+
+
+                $data = [
+                    'respfirst' => $applicantFirstName,
+                    'resplast' => $applicantLastName,
+                    'respstatus' => $status,
+                    'respid' => $driversLicenseNumber,
+                    'respninfirst' => $v_firstname,
+                    'respninlast' => $v_lastname,
+                    'respninmid' => $v_middlename,
+                    'respnindob' => $v_dob,
+                    'respninphoto' => $ppt,
+                    //'respninaddress' => $v_address,
+                    //'respninlga' => $v_lga,
+                    //'respninstate' => $v_state,
+                ];
+
+              
             
                
             
@@ -114,7 +133,7 @@ class ComplianceController extends Controller
                 $applicantFirstName = $data['applicant']['firstname'];
                 $applicantLastName = $data['applicant']['lastname'];
                 $status = $data['summary']['nin_check']['status'];
-                $nin = $data['nin']['nin'];
+                $respid = $data['nin']['nin'];
                 $v_firstname = $data['nin']['firstname'];
                 $v_lastname = $data['nin']['lastname'];
                 $v_middlename = $data['nin']['middlename'];
@@ -126,7 +145,7 @@ class ComplianceController extends Controller
                 $v_state= $data['nin']['residence']['state'];
 
                // return $state." ".$lga." ".$address;
-            
+
                
             
                 // Access and use other fields as needed
@@ -177,7 +196,16 @@ class ComplianceController extends Controller
 
             $response = $this->sendRequest($url, 'post', $data);
 
-            return $response;
+           // return $response;
+       $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
             
         }
 
@@ -188,6 +216,7 @@ class ComplianceController extends Controller
             'last_name' => $last_name,
             'gender' => $gender,
             'phone' => $phone,
+            'dob' => $dob_db,
             'status' => $status,
             'BVN' => $BVN,
             'doc_no' => $doc_no,
@@ -197,9 +226,19 @@ class ComplianceController extends Controller
             'email' => $email, 
             'passport' => $passport, 
             'address_proff' => $address_proff,
-            'agent_id' => $id,         
+            'agent_id' => $id,  
+            // from responce
+                    'respfirst' => $applicantFirstName,
+                    'resplast' => $applicantLastName,
+                    'respstatus' => $status,
+                    'respid' => $respid,
+                    'respninfirst' => $v_firstname,
+                    'respninlast' => $v_lastname,
+                    'respninmid' => $v_middlename,
+                    'respnindob' => $v_dob,
+                    'respninphoto' => $ppt,
         ];
-        
+       // return $data; 
 
         return view ('agents.agentscomplianceform')->with($data);
 
