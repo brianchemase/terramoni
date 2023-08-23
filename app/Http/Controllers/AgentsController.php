@@ -817,12 +817,13 @@ class AgentsController extends Controller
 
         $agentId = $input['agent_id'];
         $approvalDate = $input['approval_Date'];
+        $access_pin = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
         DB::table('tbl_agents')
             ->where('id', $agentId)
             ->update([
                 'status' => 'approved',
-                'access_pin' => '1234',
+                'access_pin' => $access_pin ,
                 'registration_date' => $approvalDate
             ]);
 
@@ -857,12 +858,9 @@ class AgentsController extends Controller
             DB::table('users')->insert($userData);
 
         }
-        
-
        
         $fname = DB::table('tbl_agents')->where('id', $agentId)->value('first_name');
-        //$phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
-        $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
+        $message="Dear $fname,\nYour agent Account has been approved. Use the pin $access_pin to access the app. ";
 
         $toNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
         //$toNumber="+254728077266";
