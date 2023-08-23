@@ -64,7 +64,7 @@
 											<tr>
 												<th>#</th>
 												<th>Agent ID</th>
-												<th>Bussiness Name</th>
+												<th>Business Name</th>
 												<th>Agent Details</th>
 												<th>Email</th>
 												<th>Location</th>
