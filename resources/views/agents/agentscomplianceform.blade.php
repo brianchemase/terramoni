@@ -73,7 +73,7 @@
 								</div>
 								<div class="card-body text-center">
 									<!-- <img src="{{asset('dash/img/avatars/unnamed.jpg')}}" alt="Christina Mason" class="img-fluid mb-2" width="128" height="128" /> -->
-									<img src="data:image/jpeg;base64,{{ $respninphoto }}" alt="Christina Mason" class="img-fluid mb-2" width="128" height="128" />
+									<img src="data:image/jpeg;base64,{{ $respninphoto }}" alt="No photo found" class="img-fluid mb-2" width="128" height="128" />
 									<h5 class="card-title mb-0">Client Names</h5>
 									<div class="text-muted mb-2">Location</div>
 								</div>

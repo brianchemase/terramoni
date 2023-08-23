@@ -128,7 +128,19 @@ class ComplianceController extends Controller
             //return $response;
             $data = json_decode($response, true);
 
-            if ($data !== null) {
+            if ($data && isset($data['status']) && $data['status'] === 404) {
+                    $applicantFirstName="Null";
+                    $applicantLastName="Null";
+                    $status="Null";
+                    $respid="Null";
+                    $v_firstname="Null";
+                    $v_lastname="Null";
+                    $v_middlename="Null";
+                    $v_dob="Null";
+                    $ppt="Null";
+
+            } 
+            elseif ($data !== null) {
                 // Access different fields in the JSON data
                 $applicantFirstName = $data['applicant']['firstname'];
                 $applicantLastName = $data['applicant']['lastname'];
