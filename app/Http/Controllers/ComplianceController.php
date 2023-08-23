@@ -197,7 +197,7 @@ class ComplianceController extends Controller
             $response = $this->sendRequest($url, 'post', $data);
 
            // return $response;
-       $applicantFirstName="Null";
+                 $applicantFirstName="Null";
                     $applicantLastName="Null";
                     $status="Null";
                     $respid="Null";
