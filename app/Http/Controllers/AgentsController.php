@@ -850,9 +850,16 @@ class AgentsController extends Controller
         ];
 
         
+        $user = DB::table('users')->where('mobile_no', $agent->phone)->first();
+        if ( !$user ){
 
-        // Insert the user data into the users table using the DB facade
-        DB::table('users')->insert($userData);
+          // Insert the user data into the users table using the DB facade
+            DB::table('users')->insert($userData);
+
+        }
+        
+
+       
         $fname = DB::table('tbl_agents')->where('id', $agentId)->value('first_name');
         //$phoneNumber = DB::table('tbl_agents')->where('id', $agentId)->value('phone');
         $message="Dear $fname,\nYour agent Account has been approved. Use the pin 1234 to access the app. ";
