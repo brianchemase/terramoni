@@ -61,7 +61,7 @@
 								<label for="validationDefault04" class="form-label">POS Available for assignment</label>
 									<select name="posid[]"class="form-control choices-multiple" multiple>
 										@forelse ($pos_terminals as $data)		
-											<option value="{{ $data->id }}">{{ $data->device_name }} - {{ $data->serial_no }} - {{ $data->device_os }} </option>
+											<option value="{{ $data->id }}">{{ $data->device_name }} - {{ $data->serial_no }} - {{ $data->device_model }} </option>
 										@empty
 											<option value="" disabled>No Available POS</option>
 										@endforelse
