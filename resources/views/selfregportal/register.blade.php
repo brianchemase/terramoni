@@ -172,16 +172,7 @@
             <input type="text" name="bvn" id="bvn" required>
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group">
-            <label for="taxid"> Business Name (optional): </label>
-            <input type="text" name="bname" id="bname">
-        </div>
-        <div class="form-group">
-            <label for="email">Business Address :</label>
-            <input type="text" name="baddress" id="baddress" required/>
-        </div>
-    </div>
+   
     
     
     <div class="form-row">
@@ -259,6 +250,16 @@
             <input type="file" name="address_proof" id="address_proof" accept="image/*" required />
         </div>
         
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="taxid"> Business Name (optional): </label>
+            <input type="text" name="bname" id="bname">
+        </div>
+        <div class="form-group">
+            <label for="email">Business Address :</label>
+            <input type="text" name="baddress" id="baddress" required/>
+        </div>
     </div>
     <div class="form-submit">
         <input type="reset" value="Reset All" class="submit" name="reset" id="reset" />

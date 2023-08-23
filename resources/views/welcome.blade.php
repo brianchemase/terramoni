@@ -315,16 +315,16 @@ https://templatemo.com/tm-570-chain-app-dev
       <div class="row">
         <div class="col-lg-8 offset-lg-2">
           <div class="section-heading">
-            <h4>Register as an <em>Agent</em></h4>
+            <h4>Sign-up <em>Below</em></h4>
             <img src="landing/assets/images/heading-line-dec.png" alt="">
             <p>Select the appropriate link for your account registration</p>
           </div>
         </div>
        
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="pricing-item-pro">
             <span class="price"></span>
-            <h4>Individual Agent Registration</h4>
+            <h4>Individual Agent/Sole-Proprietor Registration</h4>
             <div class="icon">
               <img src="landing/assets/images/personal.png" alt="">
             </div>
@@ -335,7 +335,7 @@ https://templatemo.com/tm-570-chain-app-dev
           </div>
         </div>
 
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <div class="pricing-item-pro">
             <span class="price"></span>
             <h4>Sole Proprietor Registration</h4>
@@ -347,9 +347,9 @@ https://templatemo.com/tm-570-chain-app-dev
               <a href="{{ route('SelfRegister') }}">Sole Proprietor Agent</a>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="pricing-item-pro">
             <span class="price"></span>
             <h4>Corporate  </h4>
