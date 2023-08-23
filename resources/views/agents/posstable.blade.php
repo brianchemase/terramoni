@@ -69,7 +69,7 @@
 												<th>#</th>
 												<th>Device ID</th>
 												<th>Device S/N</th>
-												<th>Device OS</th>
+												<th>Device Model</th>
 												<th>Owner</th>
 												<th>Status</th>
 												<th>Action</th>
@@ -81,7 +81,7 @@
 											<td>{{ $loop->iteration }} </td>
 										
 												<td>{{ $data->device_name }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
-												<td>{{ $data->serial_no }} <br> {{ $data->device_model }}</td>
+												<td>{{ $data->serial_no }} </td>
 												<td>{{ $data->device_model }}</td>
 												<td>{{ $data->owner_name }} <br> {{ $data->owner_type }}</td>
 
