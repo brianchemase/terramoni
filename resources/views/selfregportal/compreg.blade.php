@@ -53,43 +53,46 @@
             <form method="POST" id="signup-form" class="signup-form" action="{{ route('compagentsselfregister') }}" enctype="multipart/form-data">
             @csrf    
             <div>
-                    <h3>Business info</h3>
+                    <h3>Business Information</h3>
                     <fieldset>
                         <h2>Business Information</h2>
-                        <p class="desc">Please enter your infomation and proceed to next step so we can build your account</p>
+                        <p class="desc">Please enter your infomation and proceed to the next step so we can build your account</p>
                         <div class="fieldset-content">
                              <div class="form-group">
                                 <label for="cname" class="form-label">Business Name</label>
-                                <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Business name as registered" />
+                                <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Business Name as registered" />
                                 <span class="text-input">Enter your business name as registered with the authorities</span>
                             </div>
                             <div class="form-group">
-                                <label for="taxid" class="form-label">Business Registration No</label>
-                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business registration No" />
-                                <span class="text-input">Enter Your Business Registration No</span>
+                                <label for="taxid" class="form-label">Business Registration Number</label>
+                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Registration Number" />
+                                <!-- <span class="text-input">Enter Your Business Registration No</span> -->
                             </div>
                             <div class="form-group">
-                                <label for="taxid" class="form-label">TAX ID</label>
-                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business TAX ID" />
-                                <span class="text-input">Enter Your Business Tax ID</span>
+                                <label for="taxid" class="form-label">Business TAX ID Number</label>
+                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business TAX ID Number" />
+                                <!-- <span class="text-input">Enter Your Business Tax ID</span> -->
                             </div>
                             
                             <div class="form-row">
                                 <label class="form-label">Business Contact details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <input type="text" name="phone" id="cphone" />
                                         <span class="text-input">Enter Business Phone</span>
+                                        <input type="text" name="phone" id="cphone" />
+                                        
                                     </div>
                                     
                                     <div class="form-group">
-                                        <input type="text" name="email" id="cemail" />
                                         <span class="text-input">Enter Business Email</span>
+                                        <input type="text" name="email" id="cemail" />
+                                        
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" name="address" id="add" />
                                         <span class="text-input">Enter Business Physical address</span>
+                                        <input type="text" name="address" id="add" />
+                                       
                                     </div>
                                 </div>
                             </div>

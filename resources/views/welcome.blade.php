@@ -330,7 +330,7 @@ https://templatemo.com/tm-570-chain-app-dev
             </div>
             
             <div class="border-button">
-              <a href="{{ route('SelfRegister') }}">Individual Agent</a>
+              <a href="{{ route('SelfRegister') }}">Register</a>
             </div>
           </div>
         </div>
@@ -358,7 +358,7 @@ https://templatemo.com/tm-570-chain-app-dev
             </div>
            
             <div class="border-button">
-              <a href="{{ route('CompSelfRegister') }}">Non Individual Agent</a>
+              <a href="{{ route('CompSelfRegister') }}">Register</a>
             </div>
           </div>
         </div>
