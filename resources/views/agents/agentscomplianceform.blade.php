@@ -57,6 +57,10 @@
 
 									<div class="card-body" >
 
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#defaultModalPrimary">
+										<i class="fa fa-check" aria-hidden="true"></i> Reject Agent
+									</button>
+
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
 										<i class="fa fa-check" aria-hidden="true"></i> Approve Agent
 										</button>
