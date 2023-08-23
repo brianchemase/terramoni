@@ -75,31 +75,34 @@
                             </div>
                             
                             <div class="form-row">
-                                <label class="form-label">Business Contact details</label>
+                                <label class="form-label">Business Contact Details</label>
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <span class="text-input">Enter Business Phone</span>
-                                        <input type="text" name="phone" id="cphone" />
+                                        <span class="form-label">Business Phone</span>
+                                        <input type="text" name="phone" id="cphone"  />
                                         
                                     </div>
                                     
                                     <div class="form-group">
-                                        <span class="text-input">Enter Business Email</span>
+                                        <span class="form-label">Business Email</span>
                                         <input type="text" name="email" id="cemail" />
                                         
                                     </div>
 
-                                    <div class="form-group">
-                                        <span class="text-input">Enter Business Physical address</span>
-                                        <input type="text" name="address" id="add" />
-                                       
-                                    </div>
+                                  
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <label class="form-label">Business Location</label>
                                 <div class="form-flex">
+
+                                <div class="form-group">
+                                       
+                                        <input type="text" name="address" id="add" />
+                                        <span class="text-input">Business Physical Address</span>
+                                       
+                                    </div>
                                
                                     <div class="form-group">
                                     <select   onchange="toggleLGA(this);" id="state"  name="state" class="custom-select">
