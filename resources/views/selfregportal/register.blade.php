@@ -47,14 +47,9 @@
                     </script>
                     @endif
 
-                    <div class="alert alert-success"  id="b2">
-                    
-                 
-                    </div>
-
-
-                <div class="signup-form">
-                <form method="POST" class="register-form" id="register-form" action="{{ route('agentsselfregister') }}" enctype="multipart/form-data">
+                   
+<div class="signup-form">
+    <form method="POST" class="register-form" id="register-form" action="{{ route('agentsselfregister') }}" enctype="multipart/form-data">
     @csrf
     <h2>Agent Self Registration - Individual </h2>
    
@@ -86,11 +81,16 @@
     <div class="form-row">
         <div class="form-group">
             <label for="birth_date">Date of Birth :</label>
-            <input type="date" name="birth_date" id="birth_date">
+            <input type="date" name="birth_date" id="birth_date" requied>
         </div>
         <div class="form-group">
             <label for="taxid">TAX ID</label>
-            <input type="text" name="taxid" id="taxid">
+            <input type="text" name="taxid" id="taxid" requied>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City/Town</label>
+            <input type="text" name="city" id="city" requied>
         </div>
         
     </div>

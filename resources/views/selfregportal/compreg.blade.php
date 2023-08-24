@@ -184,7 +184,34 @@
                         <p class="desc">Please enter your infomation and proceed to next step so we can build your account (For all directors with 5% or more shareholding)</p>
                     
                             <div class="form-row" id="directorSection">
-                                <label class="form-label">1st Business Director Contact details</label>
+                                <label class="form-label"><strong>1st Director Details</strong></label>
+                                <div class="form-flex">
+
+                                    <div class="form-group">
+                                        <span class="form-label">First Name</span>
+                                        <input type="text" name="d_f_name[]" id="d_f_name" />
+                                        
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="form-label"> Middle Name</span>
+                                        <input type="text" name="d_m_name[]" id="d_m_name" />
+                                        
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="form-label"> Surname</span>
+                                        <input type="text" name="d_s_name[]" id="d_s_name" />
+                                        
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="form-label">BVN Number</span>
+                                        <input type="text" name="directorBVN[]" id="directorBVN" />
+                                        
+                                    </div>
+
+                                </div>
                                 <div class="form-flex">
                                     <div class="form-group">
                                     <span class="form-label">Select ID Document</span>
@@ -198,13 +225,13 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <span class="form-label">Enter Document Number</span>
+                                        <span class="form-label">ID Document Number</span>
                                         <input type="text" name="directordoc[]" id="directordoc" />
                                         
                                     </div>
 
                                     <div class="form-group">
-                                        <span class="form-label">Upload Director Doc</span>
+                                        <span class="form-label">Upload ID Document</span>
                                         <input type="file" name="directordocimage[]" id="directordocimage" />
                                         
                                     </div>
@@ -221,49 +248,19 @@
                                     </div>
                                     
                                 </div>
-
-                                <div class="form-flex">
-
-                                     <div class="form-group">
-                                        <span class="form-label">Enter Director BVN No</span>
-                                        <input type="text" name="directorBVN[]" id="directorBVN" />
-                                        
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <span class="form-label">Director First Name</span>
-                                        <input type="text" name="d_f_name[]" id="d_f_name" />
-                                        
-                                    </div>
-
-                                    <div class="form-group">
-                                        <span class="form-label">Director Middle Name</span>
-                                        <input type="text" name="d_m_name[]" id="d_m_name" />
-                                        
-                                    </div>
-
-                                    <div class="form-group">
-                                        <span class="form-label">Director SurName</span>
-                                        <input type="text" name="d_s_name[]" id="d_s_name" />
-                                        
-                                    </div>
-                                    
-
-                                </div>
-
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <span class="form-label">Upload Director Passport</span>
+                                        <span class="form-label">Upload Passport photo</span>
                                         <input type="file" name="dir_passimg[]" id="d_s_name" />
                                         
                                     </div>
                                     <div class="form-group">
-                                        <span class="form-label">Director Phone</span>
+                                        <span class="form-label">Phone</span>
                                         <input type="text" name="dir_phone[]" id="dir_phone" />
                                         
                                     </div>
                                     <div class="form-group">
-                                        <span class="form-label">Director Tax ID</span>
+                                        <span class="form-label">Tax ID</span>
                                         <input type="text" name="dir_tax_it[]" id="dir_tax_it" />
                                         
                                     </div>
@@ -274,7 +271,7 @@
                             <button type="button" class="custom-btn" onclick="addDirectorForm()">Add Director</button>
                         </div>
 
-                <br>
+                             <br>
 
                             
                            
@@ -335,80 +332,92 @@
     <!-- JS -->
     <script src="wizard/js/lga.min.js"></script>
     <script>
-        let directorCounter = 1;
+    let directorCounter = 1;
 
-        function addDirectorForm() {
-            directorCounter++;
+    function addDirectorForm() {
+        directorCounter++;
 
-            let newDirectorForm = document.createElement("div");
-            newDirectorForm.className = "form-row";
-            newDirectorForm.innerHTML = `
-                <label class="form-label">${directorCounter} Business Director Contact details</label>
-                <div class="form-flex">
-                    <div class="form-group">
-                        <span class="form-label">Select ID Document</span>
-                        <select name="doc_type_${directorCounter}[]" id="doc_type_${directorCounter}" class="custom-select">
-                            <option value="NIN">NIN</option>
-                            <option value="DL">Driving Licence</option>
-                            <option value="VotingCard">Voters Card</option>
-                            <option value="Passport">International Passport</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Enter Document Number</span>
-                        <input type="text" name="directordoc_${directorCounter}[]" id="directordoc_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Upload Director Doc</span>
-                        <input type="file" name="directordocimage_${directorCounter}[]" id="directordocimage_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Issue Date</span>
-                        <input type="date" name="Docissuedate_${directorCounter}[]" id="Docissuedate_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Expiry Date</span>
-                        <input type="date" name="Docexpirydate_${directorCounter}[]" id="Docexpirydate_${directorCounter}" />
-                    </div>
+        let newDirectorForm = document.createElement("div");
+        newDirectorForm.className = "form-row";
+        newDirectorForm.innerHTML = `
+            <label class="form-label"><strong>${directorCounter} Director Details</strong></label>
+            <div class="form-flex">
+                <div class="form-group">
+                    <span class="form-label">First Name</span>
+                    <input type="text" name="d_f_name_${directorCounter}[]" class="d_f_name" />
                 </div>
-                <div class="form-flex">
-                    <div class="form-group">
-                        <span class="form-label">Enter Director BVN No</span>
-                        <input type="text" name="directorBVN_${directorCounter}[]" id="directorBVN_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Director First Name</span>
-                        <input type="text" name="d_f_name_${directorCounter}[]" id="d_f_name_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Director Middle Name</span>
-                        <input type="text" name="d_m_name_${directorCounter}[]" id="d_m_name_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Director SurName</span>
-                        <input type="text" name="d_s_name_${directorCounter}[]" id="d_s_name_${directorCounter}" />
-                    </div>
-                </div>
-                <div class="form-flex">
-                    <div class="form-group">
-                        <span class="form-label">Upload Director Passport</span>
-                        <input type="file" name="dir_passimg_${directorCounter}[]" id="d_s_name_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Director Phone</span>
-                        <input type="text" name="dir_phone_${directorCounter}[]" id="dir_phone_${directorCounter}" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-label">Director Tax ID</span>
-                        <input type="text" name="dir_tax_it_${directorCounter}[]" id="dir_tax_it_${directorCounter}" />
-                    </div>
-                </div>
-            `;
 
-            let directorSection = document.getElementById("directorSection");
-            directorSection.appendChild(newDirectorForm);
-        }
-    </script>
+                <div class="form-group">
+                    <span class="form-label">Middle Name</span>
+                    <input type="text" name="d_m_name_${directorCounter}[]" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Surname</span>
+                    <input type="text" name="d_s_name_${directorCounter}[]" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">BVN Number</span>
+                    <input type="text" name="directorBVN_${directorCounter}[]" />
+                </div>
+            </div>
+
+            <div class="form-flex">
+                <div class="form-group">
+                    <span class="form-label">Select ID Document</span>
+                    <select name="doc_type_${directorCounter}[]" class="doc_type custom-select">
+                        <option value="NIN">NIN</option>
+                        <option value="DL">Driving Licence</option>
+                        <option value="VotingCard">Voters Card</option>
+                        <option value="Passport">International Passport</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">ID Document Number</span>
+                    <input type="text" name="directordoc_${directorCounter}[]" class="directordoc" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Upload ID Document</span>
+                    <input type="file" name="directordocimage_${directorCounter}[]" class="directordocimage" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Issue Date</span>
+                    <input type="date" name="Docissuedate_${directorCounter}[]" class="Docissuedate" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Expiry Date</span>
+                    <input type="date" name="Docexpirydate_${directorCounter}[]" class="Docexpirydate" />
+                </div>
+            </div>
+
+            <div class="form-flex">
+                <div class="form-group">
+                    <span class="form-label">Upload Passport photo</span>
+                    <input type="file" name="dir_passimg_${directorCounter}[]" class="dir_passimg" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Phone</span>
+                    <input type="text" name="dir_phone_${directorCounter}[]" class="dir_phone" />
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label">Tax ID</span>
+                    <input type="text" name="dir_tax_it_${directorCounter}[]" class="dir_tax_it" />
+                </div>
+            </div>
+        `;
+
+        let directorSection = document.getElementById("directorSection");
+        directorSection.appendChild(newDirectorForm);
+    }
+</script>
+
     <!-- <script src="wizard/js/lga.js"></script> -->
    
     <script src="wizard/vendor/jquery/jquery.min.js"></script>
