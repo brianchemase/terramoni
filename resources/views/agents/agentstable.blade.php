@@ -108,6 +108,11 @@
 													<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
 														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Client</a>
 														
+														
+														@if($data->status != 'approved')
+														<a class="dropdown-item" href="{{ route('complianceagentformpage', ['id' => $data->id]) }}">Approve Agent</a>
+														
+														@endif
 														<a class="dropdown-item" href="#">Wallet History</a>
 														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
