@@ -57,8 +57,8 @@
 
 					<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Aggregators List</h5>
-									<h6 class="card-subtitle text-muted">List showing all the aggregators registered </h6>
+									<h5 class="card-title"><b>Aggregators List</b></h5>
+									
 								</div>
 								<div class="card-body">
 								<table id="datatables-buttons" class="table table-striped" style="width:100%">
@@ -115,9 +115,9 @@
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
-														<a class="dropdown-item" href="#">Transactions Rate</a>
+														<!-- <a class="dropdown-item" href="#">Transactions Rate</a> -->
 														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Aggegator details</a>
-														<a class="dropdown-item" href="#">Reset Password</a>
+														<!-- <a class="dropdown-item" href="#">Reset Password</a> -->
 														<a class="dropdown-item" href="{{ route('suspend_agent', ['agent_id' => $data->id]) }}" style="color: red;">Suspend Aggegator</a>
 													</div>
 												</div>

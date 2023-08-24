@@ -39,7 +39,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Agents Registration Tab</h5>
+									<h5 class="card-title mb-0">Agents Registration</h5>
 								</div>
 								<div class="card-body">
 								
@@ -113,9 +113,9 @@
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
-														<a class="dropdown-item" href="#">Transactions Rate</a>
+														<!-- <a class="dropdown-item" href="#">Transactions Rate</a> -->
 														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Agent details</a>
-														<a class="dropdown-item" href="#">Reset Password</a>
+														<!-- <a class="dropdown-item" href="#">Reset Password</a> -->
 														<a class="dropdown-item" href="{{ route('suspend_agent', ['agent_id' => $data->id]) }}" style="color: red;">Suspend Agent</a>
 													</div>
 												</div>
