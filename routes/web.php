@@ -11,6 +11,7 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
+use App\Http\Controllers\AggregatorsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -132,6 +133,11 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
      // user profile
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+     Route::post('/register-user', [UsersController::class, 'registerUser'])->name('register_user');
+     Route::post('/update-user', [UsersController::class, 'updateUser'])->name('update_user');
+    
+     Route::any('/users/{user}/change-password', [UsersController::class, 'changePassword'])->name('change_password');
+     
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
 
@@ -157,6 +163,30 @@ Route::middleware(['auth','user-role:agent'])->group(function()
 
          // user change password
          Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
+
+
+    });
+
+});
+
+
+Auth::routes();
+
+Route::middleware(['auth','user-role:aggregators'])->group(function()
+ {
+
+    Route::group(['prefix' => 'aggregators'], function() {
+
+        Route::get('/', [AggregatorsController::class, 'dashboard'])->name('aggregatordash');
+        // Route::get('/tables', [AggregatorsController::class, 'tables'])->name('agentsmusictable');
+        // Route::get('/blank', [AggregatorsController::class, 'blank'])->name('agentsblankpage');
+        // Route::get('/forms', [AggregatorsController::class, 'form'])->name('agentsformpage');
+
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AggregatorsController::class, 'allocatedterminals'])->name('aggregatorallocatedterminals');
+
+         // user change password
+       //  Route::get('/ChangeAgentPass', [AggregatorsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
 
 
     });
