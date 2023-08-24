@@ -82,6 +82,7 @@ class AgentsController extends Controller
         $topEarningAgents = DB::table('tbl_agents AS a')
         ->select('a.first_name', 'a.last_name', 'a.email', 'a.location','a.passport','a.status', DB::raw('SUM(c.commission) AS earnings'))
         ->join('tbl_commissions AS c', 'a.id', '=', 'c.agent_id')
+        ->where('a.agent_role', '=', 'agent') // Adding the condition
         ->groupBy('a.id')
         ->orderByDesc('earnings')
         ->limit(5)
