@@ -14,7 +14,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
-	<title>TerraMoni || Agents</title>
+	<title>TerraMoni || Aggregators Portal</title>
 
 	<!-- <link href="css/app.css" rel="stylesheet"> -->
     <link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
@@ -32,14 +32,14 @@
 	<div class="wrapper">
 
         <!-- side bar start -->
-              @include('agents_portal.inc.sidebar')
+              @include('aggregators_portal.inc.sidebar')
          <!-- side bar end -->
 
 		<div class="main">
 
             <!-- top bar link -->
 
-            @include('agents_portal.inc.header')
+            @include('aggregators_portal.inc.header')
 			
             <!-- end of top bar -->
 
@@ -47,7 +47,7 @@
 
 			
 
-            @include('agents_portal.inc.footer')
+            @include('aggregators_portal.inc.footer')
             
 		</div>
 	</div>

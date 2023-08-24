@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="{{route('agentsdash')}}">
+				<a class="sidebar-brand" href="{{route('aggregatordash')}}">
                     <img src="{{asset('logo/tsp-logo.png')}}" alt="TeraLogo" width="50" height="60">
                     <span class="align-middle">TerraMoni </span>
                 </a>
@@ -11,7 +11,7 @@
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentsdash' ? 'active' : '' }}">
 					<!-- <li class="sidebar-item "> -->
-						<a class="sidebar-link" href="{{route('agentsdash')}}">
+						<a class="sidebar-link" href="{{route('aggregatordash')}}">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                         </a>
 					</li>

@@ -172,7 +172,7 @@ Route::middleware(['auth','user-role:agent'])->group(function()
 
 Auth::routes();
 
-Route::middleware(['auth','user-role:aggregators'])->group(function()
+Route::middleware(['auth','user-role:aggregator'])->group(function()
  {
 
     Route::group(['prefix' => 'aggregators'], function() {

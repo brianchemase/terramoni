@@ -1,4 +1,4 @@
-@extends('agents_portal.inc.master')
+@extends('aggregators_portal.inc.master')
 
 @section('title','Agents Dashboard')
 
@@ -7,8 +7,8 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>{{$salutation}}! </strong> Dashboard</h1>
-					<h4 class="h4 mb-3"><strong>Hi {{ Auth::user()->name }}, </strong> Welcome to TerraMoni Agents Portal</h4>
+					<h1 class="h3 mb-3"><strong>{{$salutation}}! </strong> </h1>
+					<h4 class="h4 mb-3"><strong>Hi {{ Auth::user()->name }}, </strong> Welcome to TerraMoni Aggregators Portal Dashboard</h4>
 					
 					
 					<div class="col-md-12">
