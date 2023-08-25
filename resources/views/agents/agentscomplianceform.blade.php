@@ -58,7 +58,7 @@
 									<br>
 									<div class="col-6 col-md-4 col-lg-4 col-xl-12">
 									
-													<img src="{{ asset('storage/address/'.$doc_image) }}" width="550" height="50" class="img-fluid pr-2" alt="Address Not Uploaded">
+													<img src="{{ asset('storage/address/'.$doc_image) }}" width="550" height="50" class="img-fluid pr-2" alt="file Not Uploaded">
 									</div>
 									<br>
 
