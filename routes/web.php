@@ -11,6 +11,8 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
+use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\CommissionMatrixController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,6 +136,21 @@ Route::middleware(['auth','user-role:admin'])->group(function()
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
+
+     //Commissions
+     Route::get('/Commissions', [CommissionController::class, 'manageCommissions'])->name('allcommissions');
+
+
+     //Commission Matrix
+     Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
+     Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
+     Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
+     Route::get('/commissionmatrix/{id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit');
+     Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
+     Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
+
+
+
 
 
     });
