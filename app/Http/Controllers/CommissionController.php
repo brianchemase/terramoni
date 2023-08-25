@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class CommissionController extends Controller
 {
-    public function showCommission($agent_id)
+    public function manageCommissions()
     {
-        $totalCommission = DB::table('tbl_commissions')
-            ->where('agent_id', $agent_id)
-            ->sum('commission');
+        // Fetch all commission data from the tbl_commissions table
+        $commissions = DB::table('tbl_commissions')->get();
 
-            $bankWallet="0";
-
-        return response()->json(['total_commission' => $totalCommission, 'bankWallet' => $bankWallet]);
+        return view('agents.commissionstable', ['commissions' => $commissions]);
     }
 }
