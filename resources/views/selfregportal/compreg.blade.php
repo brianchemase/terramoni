@@ -69,8 +69,8 @@
                                 <!-- <span class="text-input">Enter Your Business Registration No</span> -->
                             </div>
                             <div class="form-group">
-                                <label for="taxid" class="form-label">Business TAX ID Number</label>
-                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business TAX ID Number" />
+                                <label for="taxid" class="form-label">Business Tax ID Number</label>
+                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Tax ID Number" />
                                 <!-- <span class="text-input">Enter Your Business Tax ID</span> -->
                             </div>
                             

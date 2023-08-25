@@ -84,7 +84,7 @@
             <input type="date" name="birth_date" id="birth_date" requied>
         </div>
         <div class="form-group">
-            <label for="taxid">TAX ID</label>
+            <label for="taxid">Tax ID</label>
             <input type="text" name="taxid" id="taxid" requied>
         </div>
 
