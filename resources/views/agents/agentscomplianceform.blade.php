@@ -37,7 +37,8 @@
 									<ul class="list-unstyled mb-0">
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Name : {{$first_name}} {{$mid_name}} {{$last_name}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Birth Date : @if ($dob)
-																														{{ $dob->format('d-m-Y') }}
+																														
+																														{{ \Carbon\Carbon::parse($dob)->format('jS M Y') }}
 																													@else
 																														Date of Birth Not provided
 																													@endif
