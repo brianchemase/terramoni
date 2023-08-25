@@ -11,13 +11,13 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\RoleBasedAccessController;
 
-=======
+
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
->>>>>>> 6ab077208ff9138dd45d7ccc6ff3f04302a0589b
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -142,13 +142,13 @@ Route::middleware(['auth'])->group(function()
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
 
-<<<<<<< HEAD
+
      //Role based management
      Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles');
      Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole');
      Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');
      Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission');
-=======
+
      //Commissions
      Route::get('/Commissions', [CommissionController::class, 'manageCommissions'])->name('allcommissions');
 
@@ -161,9 +161,6 @@ Route::middleware(['auth'])->group(function()
      Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
      Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
-
-
->>>>>>> 6ab077208ff9138dd45d7ccc6ff3f04302a0589b
 
 
     });
