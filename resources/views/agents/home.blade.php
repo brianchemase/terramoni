@@ -14,7 +14,7 @@
 					<div class="col-md-12">
 						<div class="row ">
 							<div class="col-xl-6 col-lg-6" data-tilt>
-								<a href="#">
+								<a href="#" style="text-decoration: none;">
 								<div class="card l-bg-tera-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-concierge-bell"></i></div>
@@ -38,7 +38,7 @@
 								</a>
 							</div>
 							<div class="col-xl-6 col-lg-6" data-tilt>
-								<a href="#">
+								<a href="#" style="text-decoration: none;">
 								<div class="card l-bg-cherry">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
@@ -62,7 +62,7 @@
 								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
-								<a href="{{ route('agentstab') }}">
+								<a href="{{ route('agentstab') }}" style="text-decoration: none;">
 								<div class="card l-bg-blue-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
@@ -89,7 +89,7 @@
 								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
-								<a href="{{ route('aggregatorslist') }}">
+								<a href="{{ route('aggregatorslist') }}" style="text-decoration: none;">
 									<div class="card l-bg-green-dark">
 										<div class="card-statistic-3 p-4">
 											<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
@@ -117,7 +117,7 @@
 								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
-							<a href="{{ route('posterminalslist') }}">
+							<a href="{{ route('posterminalslist') }}" style="text-decoration: none;">
 								<div class="card l-bg-orange-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-mobile-alt"></i></div>
