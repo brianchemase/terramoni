@@ -69,3 +69,8 @@
     background: linear-gradient(135deg, #8A038C , #c816cb ) !important;
     color: #fff;
 }
+
+a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the text color from the parent */
+  }

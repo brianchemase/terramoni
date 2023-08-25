@@ -14,6 +14,7 @@
 					<div class="col-md-12">
 						<div class="row ">
 							<div class="col-xl-6 col-lg-6" data-tilt>
+								<a href="#">
 								<div class="card l-bg-tera-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-concierge-bell"></i></div>
@@ -22,42 +23,46 @@
 										</div>
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-12">
-												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												<h4 class="d-flex align-items-center mb-0" style="color: yellow;">
 												Balance	NGN {{ number_format($walletBalance) }}
 												</h4>
 											</div>
 											<div class="col-12">
-												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												<h4 class="d-flex align-items-center mb-0" style="color: yellow;">
 												Earnings NGN {{ number_format($walletearningBalance) }}
 												</h4>
 											</div>
 										</div>
 									</div>
 								</div>
+								</a>
 							</div>
 							<div class="col-xl-6 col-lg-6" data-tilt>
+								<a href="#">
 								<div class="card l-bg-cherry">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
 										<div class="mb-4">
 											<h5 class="card-title mb-0" style="color: white;">Master Transaction Summary</h5>
 										</div>
-										<div class="row align-items-center mb-2 d-flex">
+										<div class="row align-items-center mb-2 d-flex ">
 											<div class="col-12">
 												<h4 class="d-flex align-items-center mb-0" style="color: white;">
 												Total Count {{ number_format($totalTransactioncount) }}
 												</h4>
 											</div>
 											<div class="col-12">
-												<h4 class="d-flex align-items-center mb-0" style="color: white;">
+												<h4 class="d-flex align-items-center mb-0 text-start text-left" style="color: yellow;">
 												Total Value NGN {{ number_format($totalTransactionValue) }}
 												</h4>
 											</div>
 										</div>
 									</div>
 								</div>
+								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
+								<a href="{{ route('agentstab') }}">
 								<div class="card l-bg-blue-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
@@ -81,34 +86,38 @@
 										
 									</div>
 								</div>
+								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
-								<div class="card l-bg-green-dark">
-									<div class="card-statistic-3 p-4">
-										<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
-										<div class="mb-4">
-											<h5 class="card-title mb-0" style="color: white;">Aggregators</h5>
-										</div>
-										<div class="row align-items-center mb-2 d-flex">
-											<div class="col-8">
-												<h2 class="d-flex align-items-center mb-1" style="color: white;">
-												Total {{ number_format($totalaggregators) }}
-												</h2>
+								<a href="{{ route('aggregatorslist') }}">
+									<div class="card l-bg-green-dark">
+										<div class="card-statistic-3 p-4">
+											<div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+											<div class="mb-4">
+												<h5 class="card-title mb-0" style="color: white;">Aggregators</h5>
 											</div>
+											<div class="row align-items-center mb-2 d-flex">
+												<div class="col-8">
+													<h2 class="d-flex align-items-center mb-1" style="color: white;">
+													Total {{ number_format($totalaggregators) }}
+													</h2>
+												</div>
 
-											<div class="col-12">
-												<h5 class="d-flex align-items-center mb-0" style="color: white;">
-												Active {{ number_format($activeaggregators) }} || Inactive {{ number_format($inactiveaggregators) }} 
-												</h5>
+												<div class="col-12">
+													<h5 class="d-flex align-items-center mb-0" style="color: white;">
+													Active {{ number_format($activeaggregators) }} || Inactive {{ number_format($inactiveaggregators) }} 
+													</h5>
+												</div>
+												
+												
 											</div>
 											
-											
 										</div>
-										
 									</div>
-								</div>
+								</a>
 							</div>
 							<div class="col-xl-4 col-lg-6" data-tilt data-tilt-reverse="true">
+							<a href="{{ route('posterminalslist') }}">
 								<div class="card l-bg-orange-dark">
 									<div class="card-statistic-3 p-4">
 										<div class="card-icon card-icon-large"><i class="fas fa-mobile-alt"></i></div>
@@ -132,6 +141,7 @@
 										
 									</div>
 								</div>
+							</a>
 							</div>
 						</div>
 					</div>
