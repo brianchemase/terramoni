@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class CommissionController extends Controller
 {
-    //
     public function showCommission($agent_id)
     {
         $totalCommission = DB::table('tbl_commissions')

@@ -12,15 +12,17 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 
 class AgentsController extends Controller
 {
-    //
     public function dashboard()
-    {
+    { 
         $currentHour = Carbon::now()->hour;
         $salutation = '';
 
@@ -82,7 +84,7 @@ class AgentsController extends Controller
         $topEarningAgents = DB::table('tbl_agents AS a')
         ->select('a.first_name', 'a.last_name', 'a.email', 'a.location','a.passport','a.status', DB::raw('SUM(c.commission) AS earnings'))
         ->join('tbl_commissions AS c', 'a.id', '=', 'c.agent_id')
-        ->groupBy('a.id')
+        ->groupBy('a.id','a.first_name', 'a.last_name', 'a.email', 'a.location','a.passport','a.status')
         ->orderByDesc('earnings')
         ->limit(5)
         ->get();

@@ -11,6 +11,8 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
+use App\Http\Controllers\RoleBasedAccessController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,12 +60,12 @@ Route::post('/RegisterSelfCompanyAgent', [AgentsController::class, 'storecompany
 Route::post('/ChangePasswordFunction', [ChangePasswordController::class, 'changePassword'])->name('change.password');
 
 Auth::routes();
-Route::middleware(['auth','user-role:admin'])->group(function()
+Route::middleware(['auth'])->group(function()
  {
     Route::group(['prefix' => 'admins'], function() {
     //Route::group(['prefix' => 'admins'], function() {
 
-    Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
+    Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash')->middleware('permission:commission-create');
     Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
     Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
     Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
@@ -134,6 +136,12 @@ Route::middleware(['auth','user-role:admin'])->group(function()
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
+
+     //Role based management
+     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles');
+     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole');
+     Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');
+     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission');
 
 
     });
