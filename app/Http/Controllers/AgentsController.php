@@ -309,6 +309,15 @@ class AgentsController extends Controller
 
     }
 
+    public function allocatedPOS($agent_id)
+    {
+
+        $pos_terminals = DB::table('tbl_pos_terminals')->where('agent_id', $agent_id)->get();
+        return $pos_terminals;
+
+
+    }
+
 
 
 

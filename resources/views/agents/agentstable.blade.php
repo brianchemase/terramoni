@@ -118,6 +118,7 @@
 														@endif
 														<a class="dropdown-item" href="#">Wallet History</a>
 														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
+														<a class="dropdown-item"href="{{ route('allocatedpos', ['id' => $data->id]) }}">Allocated POS</a>
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Debit Agent Wallet</a>

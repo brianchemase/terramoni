@@ -106,6 +106,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
     Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
 
+
+    Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
+
     // import terminals
     Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
 
