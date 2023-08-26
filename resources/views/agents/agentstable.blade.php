@@ -92,7 +92,7 @@
 														<span class="badge bg-danger">Suspended</span>
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
-													@else
+													
 													@elseif($data->status == 'escalated')
 														<span class="badge bg-warning">Escalated</span>
 													@else
