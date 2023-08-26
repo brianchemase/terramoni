@@ -186,7 +186,7 @@
         </div>
         <div class="form-group">
             <label for="city">City/Town</label>
-            <input type="text" name="city" id="city" requied>
+            <input type="text" name="Clientcity" id="city" requied>
         </div>
         </div>
         <div class="form-row">
@@ -290,6 +290,20 @@
             <label for="taxid"> Business Address: </label>
             <input type="text" name="bizaddress" id="bizaddress">
         </div>
+        <div class="form-group">
+            <label for="building">Building</label>
+            <input type="text" name="buzbuilding" id="building" >
+        </div>
+        <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" name="buzStreet" id="Street" >
+        </div>
+        <div class="form-group">
+            <label for="city">City/Town</label>
+            <input type="text" name="buzcity" id="city" requied>
+        </div>
+    </div>
+    <div class="form-row">
        
         <div class="form-group">
             <label for="state">State :</label>
