@@ -278,8 +278,34 @@ class AgentsController extends Controller
        else{
         return Redirect::route('complianceaggregatorsstab')->with('error', $message . ' successfully!');
        }
-     
 
+    }
+
+    public function escalate_agent($agent_id)
+    {
+
+       // Get agent's information
+       $agent = DB::table('tbl_agents')->where('id', $agent_id)->first();
+
+       if (!$agent) {
+           return back()->with('error', 'Agent not found!');
+       }
+
+       $agentRole = $agent->agent_role;
+
+       // Update agent's status to "suspended"
+       DB::table('tbl_agents')->where('id', $agent_id)->update(['status' => 'escalated']);
+
+       $message = ($agentRole === 'agent') ? 'Agent Application Escalated' : 'Aggregator Application Escalated';
+
+       if ($agentRole=="agent"){
+
+         // return back()->with('success', $message . ' successfully!');
+       return Redirect::route('complianceagentstab')->with('error', $message . ' successfully!');
+       }
+       else{
+        return Redirect::route('complianceaggregatorsstab')->with('error', $message . ' successfully!');
+       }
 
     }
 

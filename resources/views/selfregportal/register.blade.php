@@ -272,7 +272,7 @@
         </div>
         <div class="form-group">
             <label for="email">Business Registration Number :</label>
-            <input type="text" name="baddress" id="baddress" required/>
+            <input type="text" name="baddress" id="baddress" />
         </div>
     </div>
 
@@ -333,7 +333,7 @@
         <div class="form-group">
             <label for="city">LGA :</label>
             <div class="form-select">
-                <select name="bizlga" id="lga" class="form-control select-lga" required>
+                <select name="bizlga" id="lga" class="form-control select-lga" >
                     
                 </select>
                 <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>

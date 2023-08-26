@@ -93,6 +93,9 @@
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
 													@else
+													@elseif($data->status == 'escalated')
+														<span class="badge bg-warning">Escalated</span>
+													@else
 														<span class="badge bg-info">Unknown</span>
 													@endif
 												</td>

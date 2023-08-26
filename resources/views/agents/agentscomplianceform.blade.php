@@ -75,6 +75,10 @@
 											<i class="fa fa-times" aria-hidden="true"></i> Reject Agent
 										</a>
 
+										<a href="{{ route('escalate_agent', ['agent_id' => $agent_id]) }}" class="btn btn-info">
+											<i class="fa fa-times" aria-hidden="true"></i> Escalate Application
+										</a>
+
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
 										<i class="fa fa-check" aria-hidden="true"></i> Approve Agent
 										</button>

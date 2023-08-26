@@ -82,6 +82,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
     Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
     Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent');//reject agent
+    Route::any('/Escalateagent/{agent_id}', [AgentsController::class, 'escalate_agent'])->name('escalate_agent');//escalate agent
 
 
     //pending agents table
