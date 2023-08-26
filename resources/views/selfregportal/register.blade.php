@@ -87,11 +87,6 @@
             <label for="taxid">Tax ID</label>
             <input type="text" name="taxid" id="taxid" requied>
         </div>
-
-        <div class="form-group">
-            <label for="city">City/Town</label>
-            <input type="text" name="city" id="city" requied>
-        </div>
         
     </div>
     <div class="form-radio">
@@ -181,6 +176,20 @@
         <label for="location">Residential Address :</label>
             <input type="text" name="location" id="location" >
         </div>
+        <div class="form-group">
+            <label for="building">Building</label>
+            <input type="text" name="building" id="building" >
+        </div>
+        <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" name="Street" id="Street" >
+        </div>
+        <div class="form-group">
+            <label for="city">City/Town</label>
+            <input type="text" name="city" id="city" requied>
+        </div>
+        </div>
+        <div class="form-row">
         <div class="form-group">
             <label for="state">State :</label>
             <div class="form-select">
