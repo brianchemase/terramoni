@@ -272,7 +272,7 @@
         </div>
     </div>
     <hr>
-    <h3>For Sole Proprietor Registration  </h3>
+    <h3>For Sole-Proprietor Registration  </h3>
 
     <div class="form-row">
         <div class="form-group">
