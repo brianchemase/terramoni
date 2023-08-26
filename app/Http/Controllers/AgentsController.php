@@ -313,7 +313,15 @@ class AgentsController extends Controller
     {
 
         $pos_terminals = DB::table('tbl_pos_terminals')->where('agent_id', $agent_id)->get();
-        return $pos_terminals;
+        //return $pos_terminals;
+
+        $first_name = DB::table('tbl_agents')->where('id', $agent_id)->value('first_name');
+        $mid_name = DB::table('tbl_agents')->where('id', $agent_id)->value('mid_name');
+        $last_name = DB::table('tbl_agents')->where('id', $agent_id)->value('last_name');
+
+        $agentnames=$first_name." ".$last_name;
+
+        return view ('agents.allocatedposstable', compact('pos_terminals','agentnames'));
 
 
     }
