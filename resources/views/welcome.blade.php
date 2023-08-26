@@ -324,7 +324,7 @@ https://templatemo.com/tm-570-chain-app-dev
         <div class="col-lg-6">
           <div class="pricing-item-pro">
             <span class="price"></span>
-            <h4>Individual Agent/Sole-Proprietor Registration</h4>
+            <h4>Individual Agent/Sole-Proprietor</h4>
             <div class="icon">
               <img src="landing/assets/images/personal.png" alt="">
             </div>
