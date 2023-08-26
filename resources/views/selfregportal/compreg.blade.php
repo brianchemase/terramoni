@@ -59,105 +59,121 @@
                         <p class="desc">Please enter your infomation and proceed to the next step so we can build your account</p>
                         <div class="fieldset-content">
                              <div class="form-group">
-                                <label for="cname" class="form-label">Business Name</label>
+                                <label for="cname" class="form-label"><b>Business Name</b></label>
                                 <input type="cname" name="cname" onkeyup="this.value = this.value.toUpperCase();" id="cname" placeholder="Enter your Business Name as registered" />
                                 <span class="text-input">Enter your business name as registered with the authorities</span>
                             </div>
-                            <div class="form-group">
-                                <label for="taxid" class="form-label">Business Registration Number</label>
-                                <input type="taxid" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Registration Number" />
-                                <!-- <span class="text-input">Enter Your Business Registration No</span> -->
-                            </div>
-                            <div class="form-group">
-                                <label for="taxid" class="form-label">Business Tax ID Number</label>
-                                <input type="taxid" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Tax ID Number" />
-                                <!-- <span class="text-input">Enter Your Business Tax ID</span> -->
-                            </div>
+                            
                             
                             <div class="form-row">
-                                <label class="form-label">Business Contact Details</label>
+                               
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <span class="form-label">Business Phone</span>
-                                        <input type="text" name="phone" id="cphone"  />
-                                        
+                                        <span class="form-label"><b>Business Registration Number</b></span>
+                                        <input type="text" name="bvn" id="bvn" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Registration Number" />
                                     </div>
                                     
                                     <div class="form-group">
-                                        <span class="form-label">Business Email</span>
-                                        <input type="text" name="email" id="cemail" />
-                                        
+                                        <span class="form-label"><b>Business Tax ID Number</b></span>
+                                        <input type="text" name="taxid" id="taxid" onkeyup="this.value = this.value.toUpperCase();" placeholder="Enter your Business Tax ID Number" />  
                                     </div>
 
-                                  
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label class="form-label">Business Location</label>
+                                <label class="form-label"><b>Business Contact Details</b></label>
                                 <div class="form-flex">
-
-                                <div class="form-group">
-                                        <span class="form-label"><b>Business Physical Address</b></span>
-                                        <input type="text" name="address" id="add" />
-                                        
-                                       
-                                    </div>
-                               
                                     <div class="form-group">
-                                    <span class="form-label"><b>Select Business State</b></span>
-                                    <select   onchange="toggleLGA(this);" id="state"  name="state" class="custom-select">
-                                    <option value="" selected="selected">- Select -</option>
-                                        <option value="Abia">Abia</option>
-                                        <option value="Adamawa">Adamawa</option>
-                                        <option value="AkwaIbom">AkwaIbom</option>
-                                        <option value="Anambra">Anambra</option>
-                                        <option value="Bauchi">Bauchi</option>
-                                        <option value="Bayelsa">Bayelsa</option>
-                                        <option value="Benue">Benue</option>
-                                        <option value="Borno">Borno</option>
-                                        <option value="Cross River">Cross River</option>
-                                        <option value="Delta">Delta</option>
-                                        <option value="Ebonyi">Ebonyi</option>
-                                        <option value="Edo">Edo</option>
-                                        <option value="Ekiti">Ekiti</option>
-                                        <option value="Enugu">Enugu</option>
-                                        <option value="FCT">FCT</option>
-                                        <option value="Gombe">Gombe</option>
-                                        <option value="Imo">Imo</option>
-                                        <option value="Jigawa">Jigawa</option>
-                                        <option value="Kaduna">Kaduna</option>
-                                        <option value="Kano">Kano</option>
-                                        <option value="Katsina">Katsina</option>
-                                        <option value="Kebbi">Kebbi</option>
-                                        <option value="Kogi">Kogi</option>
-                                        <option value="Kwara">Kwara</option>
-                                        <option value="Lagos">Lagos</option>
-                                        <option value="Nasarawa">Nasarawa</option>
-                                        <option value="Niger">Niger</option>
-                                        <option value="Ogun">Ogun</option>
-                                        <option value="Ondo">Ondo</option>
-                                        <option value="Osun">Osun</option>
-                                        <option value="Oyo">Oyo</option>
-                                        <option value="Plateau">Plateau</option>
-                                        <option value="Rivers">Rivers</option>
-                                        <option value="Sokoto">Sokoto</option>
-                                        <option value="Taraba">Taraba</option>
-                                        <option value="Yobe">Yobe</option>
-                                        <option value="Zamfara">Zamafara</option>
-                                    </select>
-                                        
+                                        <span class="form-label"><b>Business Phone</b></span>
+                                        <input type="text" name="phone" id="cphone"  />
                                     </div>
                                     
                                     <div class="form-group">
-                                    <span class="form-label"><b>Select Business LGA</b></span>
-                                    <select name="city" id="lga" class="custom-select select-lga">
-                                        
-                                    </select>
-                                        
+                                        <span class="form-label"><b>Business Email</b></span>
+                                        <input type="text" name="email" id="cemail" />  
                                     </div>
+
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <label class="form-label"><b>Business Location</b></label>
+                                <div class="form-flex">
+
+                                    <div class="form-group">
+                                            <span class="form-label"><b> Physical Address</b></span>
+                                            <input type="text" name="address" id="add" />  
+                                    </div>
+                                    <div class="form-group">
+                                            <span class="form-label"><b> Building </b></span>
+                                            <input type="text" name="building" id="add" />  
+                                    </div>
+                                    <div class="form-group">
+                                            <span class="form-label"><b>Street</b></span>
+                                            <input type="text" name="street" id="street" />  
+                                    </div>
+                                    <div class="form-group">
+                                            <span class="form-label"><b>City/Town</b></span>
+                                            <input type="text" name="town" id="town" />  
+                                    </div>
+                               
+                                   
+                                </div>
+                                <div class="form-flex">
+                                <div class="form-group">
+                                        <span class="form-label"><b>Select Business State</b></span>
+                                        <select   onchange="toggleLGA(this);" id="state"  name="state" class="custom-select">
+                                        <option value="" selected="selected">- Select -</option>
+                                            <option value="Abia">Abia</option>
+                                            <option value="Adamawa">Adamawa</option>
+                                            <option value="AkwaIbom">AkwaIbom</option>
+                                            <option value="Anambra">Anambra</option>
+                                            <option value="Bauchi">Bauchi</option>
+                                            <option value="Bayelsa">Bayelsa</option>
+                                            <option value="Benue">Benue</option>
+                                            <option value="Borno">Borno</option>
+                                            <option value="Cross River">Cross River</option>
+                                            <option value="Delta">Delta</option>
+                                            <option value="Ebonyi">Ebonyi</option>
+                                            <option value="Edo">Edo</option>
+                                            <option value="Ekiti">Ekiti</option>
+                                            <option value="Enugu">Enugu</option>
+                                            <option value="FCT">FCT</option>
+                                            <option value="Gombe">Gombe</option>
+                                            <option value="Imo">Imo</option>
+                                            <option value="Jigawa">Jigawa</option>
+                                            <option value="Kaduna">Kaduna</option>
+                                            <option value="Kano">Kano</option>
+                                            <option value="Katsina">Katsina</option>
+                                            <option value="Kebbi">Kebbi</option>
+                                            <option value="Kogi">Kogi</option>
+                                            <option value="Kwara">Kwara</option>
+                                            <option value="Lagos">Lagos</option>
+                                            <option value="Nasarawa">Nasarawa</option>
+                                            <option value="Niger">Niger</option>
+                                            <option value="Ogun">Ogun</option>
+                                            <option value="Ondo">Ondo</option>
+                                            <option value="Osun">Osun</option>
+                                            <option value="Oyo">Oyo</option>
+                                            <option value="Plateau">Plateau</option>
+                                            <option value="Rivers">Rivers</option>
+                                            <option value="Sokoto">Sokoto</option>
+                                            <option value="Taraba">Taraba</option>
+                                            <option value="Yobe">Yobe</option>
+                                            <option value="Zamfara">Zamafara</option>
+                                            </select>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <span class="form-label"><b>Select Business LGA</b></span>
+                                            <select name="city" id="lga" class="custom-select select-lga">
+                                            
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             
                             <div class="form-group">
                                 <label for="location" class="form-label">Business Type</label>
