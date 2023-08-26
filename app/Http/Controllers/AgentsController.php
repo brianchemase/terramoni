@@ -708,7 +708,7 @@ class AgentsController extends Controller
         DB::table('tbl_pos_terminals')->insert([
             'device_name' => $deviceName,
             'serial_no' => $serialNo,
-            'device_os' => $deviceOS,
+            'device_model' => $deviceOS,
             'status' => $status,
             'owner_type' => $owner_type,
             'registration_date' => $registration_date,
