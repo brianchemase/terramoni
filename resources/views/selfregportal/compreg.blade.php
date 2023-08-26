@@ -176,7 +176,7 @@
                                 </div>
                             
                             <div class="form-group">
-                                <label for="location" class="form-label">Business Type</label>
+                                <label for="location" class="form-label"><b>Business Type</b></label>
                                     <select name="agent_type" id="agent_type" class="custom-select">
                                         <option selected disabled value="">Choose...</option>
                                         <option value="Private_Limited_Company">Private Limited Liability </option>
