@@ -8,7 +8,7 @@
 				<div class="container-fluid p-0">
 
 				<h1 class="h3 mb-3"><strong>Agents</strong> List</h1>
-				<p>This is a list of all agents</p>
+				<p>This is a list of all pending agents</p>
 
 				@if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -39,7 +39,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Agents Registration</h5>
+									<h5 class="card-title mb-0">Agents Registration Tab</h5>
 								</div>
 								<div class="card-body">
 								
@@ -64,11 +64,9 @@
 											<tr>
 												<th>#</th>
 												<th>Agent ID</th>
-												<th>Business Name</th>
 												<th>Agent Details</th>
-												<th>Email</th>
 												<th>Location</th>
-											
+												<th>POS</th>
 												<th>Status</th>
 												<th>Action</th>
 											</tr>
@@ -79,12 +77,9 @@
 										
 												<td>{{ $loop->iteration }} </td>
 												<td>{{ $data->doc_no }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
-												<td>{{ $data->first_name }} {{ $data->last_name }}</td>
 												<td>{{ $data->first_name }} {{ $data->last_name }}<br> {{ $data->phone }}</td>
-												<td>{{ $data->email }}</td>
 												<td>{{ $data->location }}, {{ $data->country }}</td>
-												
-												
+												<td>Samsung <br> SRN</td>
 												<td>
 													@if($data->status == 'approved')
 														<span class="badge bg-success">Active</span>
@@ -92,43 +87,14 @@
 														<span class="badge bg-danger">Suspended</span>
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
-													
-													@elseif($data->status == 'escalated')
-														<span class="badge bg-warning">Escalated</span>
-													@else
-														<span class="badge bg-info">Unknown</span>
 													@endif
 												</td>
 												<td>
-											
+												<a href="#viewAgentModal{{$data->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
 												
-												
-												<div class="dropdown dropleft">
-													<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<i class="align-middle" data-feather="menu"></i>
-													</a>
-
-													<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
-														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Client</a>
-														
-														
-														@if($data->status != 'approved')
-														<a class="dropdown-item" href="{{ route('complianceagentformpage', ['id' => $data->id]) }}">Approve Agent</a>
-														
-														@endif
-														<a class="dropdown-item" href="#">Wallet History</a>
-														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
-														<a class="dropdown-item"href="{{ route('allocatedpos', ['id' => $data->id]) }}">Allocated POS</a>
-														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
-														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
-														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
-														<!-- <a class="dropdown-item" href="#">Transactions Rate</a> -->
-														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Agent details</a>
-														<!-- <a class="dropdown-item" href="#">Reset Password</a> -->
-														<a class="dropdown-item" href="{{ route('suspend_agent', ['agent_id' => $data->id]) }}" style="color: red;">Suspend Agent</a>
-													</div>
-												</div>
-												@include('agents.modals.agentView')
+                                                @include('agents.modals.agentView')
+												<a href="{{ url('admins/KYCagentscompliance/' . $data->id) }}" class="btn btn-warning"> <i class="fa fa-check"></i></a>
+												<a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
 												</td>
 											</tr>
 											@endforeach

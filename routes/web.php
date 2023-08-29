@@ -11,8 +11,12 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
+
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
+
+use App\Http\Controllers\AggregatorsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,6 +87,7 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
     Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
     Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent');//reject agent
+    Route::any('/Escalateagent/{agent_id}', [AgentsController::class, 'escalate_agent'])->name('escalate_agent');//escalate agent
 
 
     //pending agents table
@@ -105,6 +110,9 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
     Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
     Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+
+
+    Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
 
     // import terminals
     Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
@@ -134,6 +142,11 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
      // user profile
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+     Route::post('/register-user', [UsersController::class, 'registerUser'])->name('register_user');
+     Route::post('/update-user', [UsersController::class, 'updateUser'])->name('update_user');
+    
+     Route::any('/users/{user}/change-password', [UsersController::class, 'changePassword'])->name('change_password');
+     
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
 
@@ -180,4 +193,28 @@ Route::middleware(['auth','user-role:agent'])->group(function()
 
 });
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::middleware(['auth','user-role:aggregator'])->group(function()
+ {
+
+    Route::group(['prefix' => 'aggregators'], function() {
+
+        Route::get('/', [AggregatorsController::class, 'dashboard'])->name('aggregatordash');
+        // Route::get('/tables', [AggregatorsController::class, 'tables'])->name('agentsmusictable');
+        // Route::get('/blank', [AggregatorsController::class, 'blank'])->name('agentsblankpage');
+        // Route::get('/forms', [AggregatorsController::class, 'form'])->name('agentsformpage');
+
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AggregatorsController::class, 'allocatedterminals'])->name('aggregatorallocatedterminals');
+
+         // user change password
+       //  Route::get('/ChangeAgentPass', [AggregatorsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
+
+
+    });
+
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

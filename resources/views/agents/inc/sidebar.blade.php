@@ -47,7 +47,7 @@
 							<li class="sidebar-item"><a class="sidebar-link" href="#">State Count Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Charge Back Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Terminal Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('posterminalslist')}}">Terminal Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
@@ -108,10 +108,10 @@
 						</a>
 					</li>
 
+
 					<li class="sidebar-item {{ Route::currentRouteName() === 'allcommissions' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('allcommissions')}}">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>
-							
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>				
 						</a>
 					</li>
 

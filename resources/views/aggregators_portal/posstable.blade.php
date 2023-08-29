@@ -62,8 +62,8 @@
 											<td>{{ $loop->iteration }} </td>
 										
 												<td>{{ $data->device_name }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
-												<td>{{ $data->serial_no }} <br> {{ $data->device_model }}</td>
-												<td>{{ $data->device_model }}</td>
+												<td>{{ $data->serial_no }} <br> {{ $data->device_os }}</td>
+												<td>{{ $data->device_os }}</td>
 												<td>{{ $data->owner_name }} <br> {{ $data->owner_type }}</td>
 												<td>{{ \Carbon\Carbon::parse($data->assignment_date)->format('jS M Y') }}</td>
 

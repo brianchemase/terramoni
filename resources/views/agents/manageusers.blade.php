@@ -9,13 +9,43 @@
 
 				<h1 class="h3 mb-3"><strong>Users Management</strong> Tab</h1>
 
+				@if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>{{ $message }}</strong> 
+					</div>
+				</div>
+				@endif
+
+				@if (count($errors) > 0)
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+					<div class="alert-message">
+						<strong>
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+						</strong> 
+					</div>
+				</div>	
+				
+				@endif
+
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Register TerraMoni User</h5>
 								</div>
 								<div class="card-body">
+
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">
+									<i class="fa fa-users" aria-hidden="true"></i> Register Portal User
+									</button>
+									@include('agents.modals.registeruserportal')
 								</div>
 							</div>
 						</div>
@@ -59,8 +89,12 @@
 												</td>
 												<td>
 												<a href="#viewAgentModal{{$user->id}}" title="View Client" data-toggle="modal" class="btn btn-success"><i class="fa fa-eye"></i> </a> 
-												
-                                                @include('agents.modals.manageusers')
+												<a href="#editUserModal{{$user->id}}" title="Edit User" data-toggle="modal" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="#changePasswordModal{{$user->id}}" title="Change Password" data-toggle="modal" class="btn btn-primary"><i class="fa fa-key"></i></a>
+
+												@include('agents.modals.manageusers')
+
+
 												</td>
 											</tr>
 										@endforeach
