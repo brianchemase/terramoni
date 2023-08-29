@@ -108,16 +108,16 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="#">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions</span>
-							
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'allcommissions' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('allcommissions')}}">
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>				
 						</a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="#">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commission Matrix</span>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'commissionmatrix' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('commissionmatrix')}}">
+							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Commission Matrix</span>
 							
 						</a>
 					</li>
