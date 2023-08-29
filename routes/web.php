@@ -16,6 +16,8 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
 
 use App\Http\Controllers\AggregatorsController;
+use App\Http\Controllers\RoleBasedAccessController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -161,7 +163,7 @@ Route::middleware(['auth'])->group(function()
      //Role based management
      Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles')->middleware('permission:admin-view-roles');
      Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole')->middleware('permission:admin-create-role');
-     Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');//->middleware('permission:admin-view-permissions');
+     Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions')->middleware('permission:admin-view-permissions');
      Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission')->middleware('permission:admin-create-permission');
      Route::get('/roles-permissions', [RoleBasedAccessController::class, 'getAssignableRole'])->name('AssignRole');//
      Route::post('/get-permissions-role/{id}', [RoleBasedAccessController::class, 'getAssignablePermissions'])->name('AssignPermissionsToRolesTest');
