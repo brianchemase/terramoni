@@ -31,28 +31,28 @@
                     
                     
                     <div class="col-md-4">
-                        <label for="state_id" class="form-label">State ID</label>
+                        <label for="state_id" class="form-label">State</label>
                         <input type="number" class="form-control" id="state_id" name="state_id" placeholder="Enter State ID">
                     </div>
                     <div class="col-md-4">
-                        <label for="lga_id" class="form-label">LGA ID</label>
+                        <label for="lga_id" class="form-label">LGA</label>
                         <input type="number" class="form-control" id="lga_id" name="lga_id" placeholder="Enter LGA ID">
                     </div>
                     <div class="col-md-4">
-                        <label for="biller_id" class="form-label">Biller ID</label>
-                        <input type="number" class="form-control" id="biller_id" name="biller_id" placeholder="Enter Biller ID" required>
+                        <label for="biller_id" class="form-label">Biller</label>
+                        <input type="number" class="form-control" id="biller_id" name="biller_id" placeholder="Enter Biller" required>
                     </div>
                     <div class="col-md-4">
                         <label for="transaction_type" class="form-label">Transaction Type</label>
                         <input type="number" class="form-control" id="transaction_type" name="transaction_type" placeholder="Enter Transaction Type">
                     </div>
                     <div class="col-md-4">
-                        <label for="customer_segment_id" class="form-label">Customer Segment ID</label>
-                        <input type="number" class="form-control" id="customer_segment_id" name="customer_segment_id" placeholder="Enter Customer Segment ID" required>
+                        <label for="customer_segment_id" class="form-label">Customer Segment</label>
+                        <input type="number" class="form-control" id="customer_segment_id" name="customer_segment_id" placeholder="Enter Customer Segment" required>
                     </div>
                     <div class="col-md-4">
-                        <label for="special_promotion_id" class="form-label">Special Promotion ID</label>
-                        <input type="number" class="form-control" id="special_promotion_id" name="special_promotion_id" placeholder="Enter Special Promotion ID" required>
+                        <label for="special_promotion_id" class="form-label">Special Promotion</label>
+                        <input type="number" class="form-control" id="special_promotion_id" name="special_promotion_id" placeholder="Enter Special Promotion" required>
                     </div>
                     <div class="col-md-4">
                         <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>

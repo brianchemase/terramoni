@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -45,14 +46,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    /**
-     * @param  integer  $value
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    protected function role(): Attribute
+    // /**
+    //  * @param  integer  $value
+    //  * @return \Illuminate\Database\Eloquent\Casts\Attribute
+    //  */
+    // protected function role(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn ($value) =>  ["agent", "aggregator", "admin"][$value],
+    //     );
+    // }
+
+    public function getRedirectRoute()
     {
-        return new Attribute(
-            get: fn ($value) =>  ["agent", "aggregator", "admin"][$value],
-        );
+        //Log::info((int)$this->role);
+        return match((int)$this->role) {
+            9 => 'agentsdash',
+            2 => 'teacher.dashboard',
+        };
     }
 }

@@ -8,7 +8,7 @@
 					</div>
 				<div class="modal-body m-3">
 						
-				<form class="row g-3" action="{{route('CreateRole')}}" method="post" enctype="multipart/form-data" autocomplete="off">
+				<form class="row g-3" action="{{route('CreatePermission')}}" method="post"autocomplete="off">
 				@csrf
 					<div class="col-md-4">
 						<label for="validationDefault01" class="form-label">Permission Name</label>

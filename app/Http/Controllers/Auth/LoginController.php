@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,7 @@ class LoginController extends Controller
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
+          Log::info(auth()->user()->role);
             if (auth()->user()->role == 'admin') 
             {
               return redirect()->route('admindash');
@@ -60,7 +62,8 @@ class LoginController extends Controller
             }
             else
             {
-              return redirect()->route('agentsdash');
+              return redirect()->route($this->getRedirectRoute());
+              //return redirect()->route('agentsdash');
             }
         }
         else
@@ -69,5 +72,14 @@ class LoginController extends Controller
             ->route('login')
             ->with('error','Incorrect email or password!.');
         }
+    }
+
+    public function getRedirectRoute()
+    {
+        //Log::info((int)$this->role);
+        return match((int)auth()->user()->role) {
+            9 => 'admindash',
+            2 => 'teacher.dashboard',
+        };
     }
 }
