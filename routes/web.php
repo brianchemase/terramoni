@@ -201,7 +201,7 @@ Route::middleware(['auth'])->group(function()
         Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');
 
          // view list of all POS Terminals
-        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
+        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals')->middleware('permission:view-agents-allocatedterminals');
 
          // user change password
          Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
