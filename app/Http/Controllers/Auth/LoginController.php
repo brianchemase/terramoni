@@ -58,7 +58,7 @@ class LoginController extends Controller
             }
             else if (auth()->user()->role == 'aggregator') 
             {
-              return redirect()->route('editor.home');
+              return redirect()->route('aggregatordash');
             }
             else
             {

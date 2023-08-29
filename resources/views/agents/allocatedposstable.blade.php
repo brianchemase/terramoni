@@ -1,4 +1,4 @@
-@extends('agents_portal.inc.master')
+@extends('agents.inc.master')
 
 @section('title','Dashboard')
 
@@ -7,8 +7,8 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-				<h1 class="h3 mb-3"><strong>POS Terminals</strong> List</h1>
-				<p>This is a list of all POS Terminals assigned to you</p>
+				<h1 class="h3 mb-3"><strong>{{$agentnames}}'s POS Terminals</strong> List</h1>
+				<p>This is a list of all POS Terminals assigned the agent</p>
 
 				@if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -49,8 +49,8 @@
 												<th>#</th>
 												<th>Device ID</th>
 												<th>Device S/N</th>
-												<th>Device OS</th>
-												<th>Owner</th>
+												<th>Device Make</th>
+												<th>Owner Role</th>
 												<th>Allocation Date</th>
 												<th>Status</th>
 												
@@ -64,7 +64,7 @@
 												<td>{{ $data->device_name }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
 												<td>{{ $data->serial_no }} <br> {{ $data->device_model }}</td>
 												<td>{{ $data->device_model }}</td>
-												<td>{{ $data->owner_name }} <br> {{ $data->owner_type }}</td>
+												<td>{{ $agentnames }} <br> {{ $data->owner_type }}</td>
 												<td>{{ \Carbon\Carbon::parse($data->assignment_date)->format('jS M Y') }}</td>
 
 

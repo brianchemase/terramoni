@@ -12,11 +12,10 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
 
-use App\Http\Controllers\RoleBasedAccessController;
-
-
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
+
+use App\Http\Controllers\AggregatorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +87,13 @@ Route::middleware(['auth'])->group(function()
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent')->middleware('permission:admin-update-agent');//up
     Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent')->middleware('permission:admin-suspend-agent');//suspend agent
     Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent')->middleware('permission:admin-reject-agent');//reject agent
+    Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
+    Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
+    Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit');
+    Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
+    Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
+    Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent');//reject agent
+    Route::any('/Escalateagent/{agent_id}', [AgentsController::class, 'escalate_agent'])->name('escalate_agent');//escalate agent
 
 
     //pending agents table
@@ -107,9 +113,12 @@ Route::middleware(['auth'])->group(function()
 
 
     // view list of all POS Terminals
-    Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist')->middleware('permission:admin-view-pos-terminals');
-    Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal')->middleware('permission:admin-register-pos-terminal');
-    Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata')->middleware('permission:admin-save-pos-terminal');// save pos data
+    Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
+    Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
+    Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+
+
+    Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
 
     // import terminals
     Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals')->middleware('permission:admin-import-pos-terminal');// save pos data
@@ -138,6 +147,12 @@ Route::middleware(['auth'])->group(function()
 
 
      // user profile
+     Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+     Route::post('/register-user', [UsersController::class, 'registerUser'])->name('register_user');
+     Route::post('/update-user', [UsersController::class, 'updateUser'])->name('update_user');
+    
+     Route::any('/users/{user}/change-password', [UsersController::class, 'changePassword'])->name('change_password');
+     
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers')->middleware('permission:admin-user-profile');
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
@@ -184,10 +199,10 @@ Route::middleware(['auth'])->group(function()
         Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');
 
          // view list of all POS Terminals
-        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals')->middleware('permission:view-agents-allocated-terminals');
+        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
 
          // user change password
-         Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage')->middleware('permission:agents-change-password');
+         Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
 
 
     });
