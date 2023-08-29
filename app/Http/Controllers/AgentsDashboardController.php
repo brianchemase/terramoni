@@ -10,9 +10,6 @@ use Auth;
 
 class AgentsDashboardController extends Controller
 {
-    //
-
-
 
     public function dashboard()
     {

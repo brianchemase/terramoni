@@ -12,15 +12,30 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 class AgentsController extends Controller
 {
-    //
     public function dashboard()
-    {
+    { 
+
+        // Permission::create(['name' => 'view-admin-dashboard','guard_name'=>'web']);
+        // $adminRole = Role::findByName('Admin01');
+
+        // $adminRole->givePermissionTo([
+        //     'view-admin-dashboard',
+        // ]);
+
+        
+
+    
+
         $currentHour = Carbon::now()->hour;
         $salutation = '';
 

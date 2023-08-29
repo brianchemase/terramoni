@@ -18,11 +18,12 @@ class UserRoleMiddleware
     public function handle(Request $request, Closure $next, $role)
     {
         // Check & verify with route, you will more understand
-        if(Auth::check() && Auth::user()->role == $role)
-        {
-            return $next($request);
-        }
+        // if(Auth::check() && Auth::user()->role == $role)
+        // {
+        //     return $next($request);
+        // }
         
-        return response()->json(['You do not have permission to access for this page.']);
+        //return response()->json(['You do not have permission to access for this page.']);
+        return $next($request);
     }
 }
