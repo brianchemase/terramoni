@@ -63,6 +63,9 @@ Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']
 //list electricity services
 Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
 
+//list TV  services
+Route::get('/PayTvList', [BillPaymentController::class, 'gettVData']);
+
 //get agents' commission earned
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
 

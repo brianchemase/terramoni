@@ -211,4 +211,23 @@ Route::middleware(['auth'])->group(function()
 
 });
 
+
+Route::middleware(['auth'])->group(function()
+ {
+
+    Route::group(['prefix' => 'aggregators'], function() {
+
+        Route::get('/', [AggregatorsController::class, 'dashboard'])->name('aggregatordash');
+      
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AggregatorsController::class, 'allocatedterminals'])->name('aggregatorallocatedterminals');
+
+         // user change password
+       //  Route::get('/ChangeAgentPass', [AggregatorsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
+
+
+    });
+
+ });
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
