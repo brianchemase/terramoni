@@ -217,6 +217,42 @@ class BillPaymentController extends Controller
         return response()->json($response);
 
     }
+
+    public function List_TVs_products(Request $request)
+    {
+
+        $request->validate([
+            //'meter' => 'required',
+            'product_id' => 'required',
+            //'prepaid' => 'required',
+           // 'denomination' => 'required',
+           // 'agent_id' => 'required',
+           // 'client_phone' => 'required',
+        ]);
+
+        $input = request()->all();
+        
+    
+        $product_id = $request->input('product_id');
+      
+
+        //return $meter;
+
+
+
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+
+        $url = "https:/clients.primeairtime.com/api/billpay/electricity/$meter";
+        $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
+        
+    }
+
+
+
+
+
     private function sendSMS(string $toNumber, string $message)
     {
         // Replace these with your actual credentials
