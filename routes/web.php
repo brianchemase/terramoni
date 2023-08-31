@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function()
 
     Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
     // view available music
-    Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
+   // Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
 
     //
     // my view agents list

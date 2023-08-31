@@ -63,8 +63,12 @@ Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']
 //list electricity services
 Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
 
-//list electricity services
+//get agents' commission earned
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
+
+
+
+
 
 
 //nibs apis
