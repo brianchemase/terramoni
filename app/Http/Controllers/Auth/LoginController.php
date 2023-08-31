@@ -80,6 +80,7 @@ class LoginController extends Controller
         return match((int)auth()->user()->role) {
             9 => 'admindash',
             2 => 'teacher.dashboard',
+            1 => 'admins',
         };
     }
 }
