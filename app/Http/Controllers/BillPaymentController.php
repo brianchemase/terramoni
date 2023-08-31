@@ -231,19 +231,13 @@ class BillPaymentController extends Controller
         ]);
 
         $input = request()->all();
-        
-    
+            
         $product_id = $request->input('product_id');
-      
-
-        //return $meter;
-
-
 
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
-        $apiUrl = "https:/clients.primeairtime.com/api/billpay/dstv/$product_id";
+        $apiUrl = "https://clients.primeairtime.com/api/billpay/dstv/$product_id";
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
         //$authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
         // Initialize cURL session
@@ -274,6 +268,61 @@ class BillPaymentController extends Controller
         return response()->json($response);
 
         
+    }
+
+
+    public function payforTv(Request $request)
+    {
+        $request->validate([
+            'accno' => 'required',
+            'amount' => 'required',
+           // 'agent_id' => 'required',
+        ]);
+        $input = request()->all();     
+        $accno = $request->input('accno');
+        $amount = $request->input('amount');
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+        // URL to send the POST request to
+       // $url = "https://clients.primeairtime.com/api/billpay/dstvnew/8063831361";
+        $url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
+
+        // Replace this with your Bearer token
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Data to send in the POST request
+        $data = array(
+            'amount' => $amount
+            // Add more parameters as needed
+        );
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization, // Add the Bearer token to the request headers
+        ]);
+
+        // Execute cURL session and get the response
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return 'cURL Error: ' . curl_error($ch);
+        }
+
+        // Close cURL session
+        curl_close($ch);
+
+        // You can handle the response as needed, such as returning it or saving it to a database
+        return $response;
     }
 
 
