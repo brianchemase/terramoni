@@ -276,11 +276,12 @@ class BillPaymentController extends Controller
         $request->validate([
             'accno' => 'required',
             'amount' => 'required',
-           // 'agent_id' => 'required',
+            'agent_id' => 'required',
         ]);
         $input = request()->all();     
         $accno = $request->input('accno');
         $amount = $request->input('amount');
+        $agent_id = $request->input('agent_id');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
         // URL to send the POST request to
@@ -289,6 +290,15 @@ class BillPaymentController extends Controller
 
         // Replace this with your Bearer token
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $agent = DB::table('tbl_agents')
+        ->select('first_name', 'last_name')
+        ->where('id', $agent_id)
+        ->first();
+
+    $agent_names = null;
+    if ($agent) {
+        $agent_names = $agent->first_name . ' ' . $agent->last_name;
+    }
 
         // Data to send in the POST request
         $data = array(
@@ -310,6 +320,47 @@ class BillPaymentController extends Controller
 
         // Execute cURL session and get the response
         $response = curl_exec($ch);
+      
+        // Assuming $response contains the JSON response received from the API
+        $responseData = json_decode($response, true);
+
+        $productId = $responseData['product_id'];
+        $target = $responseData['target'];
+        //$agent_names = 'your_agent_name'; // Replace with your agent's name
+        //$agent_id = 'your_agent_id'; // Replace with your agent's ID
+        $customer_reference = $responseData['reference'];
+        $topupAmount = $responseData['topup_amount'];
+        $paidCurrency = $responseData['paid_currency'];
+
+        $todayDate = now(); // You can adjust this according to your date format needs
+
+        // Store the data into the tbl_transactions table using the DB facade
+        DB::table('tbl_transactions')->insert([
+            'Name' => $productId,
+            'BillerName' => $target,
+            'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
+            'customer_reference' => $customer_reference,
+            'ItemFee' => $topupAmount,
+            'CurrencySymbol' => $paidCurrency,
+            'BillerType' => 'TV Payment Bill',
+           // 'created_at' => $todayDate,
+           // 'updated_at' => $todayDate,
+        ]);
+
+        // Calculate commission
+        $commission = $topupAmount * 0.015;
+
+        DB::table('tbl_commissions')->insert([
+            'transaction_id' => $customer_reference,
+            'agent_id' => $agent_id,
+            'amount' => $topupAmount,
+            'commission' => $commission,
+            'date' => $todayDate,
+            'type' => 'Debit',
+            //'created_at' => $todayDate,
+            //'updated_at' => $todayDate,
+        ]);
 
         return $response;
 
