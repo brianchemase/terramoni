@@ -69,6 +69,10 @@ Route::get('/PayTvList', [BillPaymentController::class, 'gettVData']);
 //list product ids
 Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products']);
 
+//pay for TV
+Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
+
+
 //get agents' commission earned
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
 
