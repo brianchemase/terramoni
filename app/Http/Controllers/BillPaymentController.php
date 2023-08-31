@@ -244,8 +244,8 @@ class BillPaymentController extends Controller
         $refnumber = $todayDate . rand(1, 50000);
 
         $apiUrl = "https:/clients.primeairtime.com/api/billpay/dstv/$product_id";
-        $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
-        $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        //$authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
         // Initialize cURL session
         $ch = curl_init();
 
