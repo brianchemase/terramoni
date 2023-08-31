@@ -8,6 +8,7 @@
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="Brian Anikayi">
 	<meta name="keywords" content="Sisdo Intranet System">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="{{asset('dash/img/icons/icon-48x48.png')}}" />
@@ -17,7 +18,7 @@
 	<title>TerraMoni</title>
 
 	<!-- <link href="css/app.css" rel="stylesheet"> -->
-    <link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
+	<link href="{{asset('dash/css/app.css')}}" rel="stylesheet">
 	<link href="{{asset('dash/css/dash.css')}}" rel="stylesheet">
 	<!-- BEGIN SETTINGS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -29,35 +30,117 @@
 </head>
 
 <body>
-	
+
 	<div class="wrapper">
 
-        <!-- side bar start -->
-              @include('agents.inc.sidebar')
-         <!-- side bar end -->
+		<!-- side bar start -->
+		@include('agents.inc.sidebar')
+		<!-- side bar end -->
 
 		<div class="main">
 
-            <!-- top bar link -->
+			<!-- top bar link -->
 
-            @include('agents.inc.header')
-			
-            <!-- end of top bar -->
+			@include('agents.inc.header')
 
-            @yield('content')
+			<!-- end of top bar -->
 
-			
+			@yield('content')
 
-            @include('agents.inc.footer')
-            
+
+
+			@include('agents.inc.footer')
+
 		</div>
 	</div>
 
-	
-    <script src="{{asset('dash/js/app.js')}}"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{{asset('dash/js/app.js')}}"></script>
 	<script src="{{asset('dash/js/datatables.js')}}"></script>
-	<script type="text/javascript" src="auth/js/vanilla-tilt.js"></script>
 	<script src="{{asset('registration/js/lga.min.js')}}"></script>
+
+
+
+
+	<script>
+		$(document).ready(function() {
+			$('#validationDefault04').on('change', function() {
+				var selectedValue = $(this).val();
+				//alert('Selected value: ' + selectedValue);
+
+				// Get the CSRF token value from the meta tag
+				var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+				// Set the CSRF token in the default AJAX headers
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': csrfToken
+					}
+				});
+
+				var url = '/admins/get-permissions-role/' + selectedValue;
+
+				$.ajax({
+					url: url,
+					method: 'POST',
+					dataType: 'JSON',
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function(response) {
+						console.log(response);
+						$('#checkboxContainer').empty();
+						// Assuming the response is an array of selected values
+						var selectedValues = response.selectedValues;
+
+						// Create checkboxes dynamically based on the selected values
+						var checkboxContainer = $('#checkboxContainer');
+					
+						$.each(response.Permissions, function(index, option) {
+							var isChecked = $.inArray(option.id, selectedValues) !== -1;
+							var checkbox = '<div- class="form-group col-sm-4">';
+							checkbox += '<input class="form-check-input" type="checkbox" name="permissions[]" value="' + option.name + '" ' + (isChecked ? 'checked' : '') + '>';
+							checkbox += '<label class="form-check-label">' + option.name + '</label>';
+							checkbox += '</div>';
+							$('#checkboxContainer').append(checkbox);
+						});
+
+						// $("#update-user-form").trigger("reset");
+						// $("error").hide();
+						// $("#success").empty();
+						// errorsHtml = '<div>' + response.message + '</div>'
+						// $(errorsHtml).appendTo('#success');
+						// $("#success").show();
+					},
+					error: function(response) {
+						console.log(response);
+						if (response.status === 422) {
+							//process validation errors here.
+							var errors = response.responseJSON.errors;
+							// $("#error").empty();
+							// errorsHtml = '<ul>';
+							// $.each(errors, function(key, value) {
+							// 	errorsHtml += '<li>' + value[0] + '</li>';
+							// });
+							// errorsHtml += '</ul>';
+							// $(errorsHtml).appendTo('#error');
+							// $("#success").hide();
+							// $("#error").show();
+						}
+					}
+				});
+			});
+		});
+	</script>
+
+<script>
+document.querySelectorAll('.menu-drop').forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent dropdown from closing
+    });
+});
+</script>
+
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -102,6 +185,20 @@
 			datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
 		});
 	</script>
+
+	<!--Start of Tawk.to Script-->
+		<script type="text/javascript">
+		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+		(function(){
+		var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+		s1.async=true;
+		s1.src='https://embed.tawk.to/64e712fe94cf5d49dc6c38e7/1h8ja4d62';
+		s1.charset='UTF-8';
+		s1.setAttribute('crossorigin','*');
+		s0.parentNode.insertBefore(s1,s0);
+		})();
+		</script>
+		<!--End of Tawk.to Script-->
 
 	
 	

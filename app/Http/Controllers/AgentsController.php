@@ -12,15 +12,30 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Response;
 use App\Mail\DemoMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 
 class AgentsController extends Controller
 {
-    //
     public function dashboard()
-    {
+    { 
+
+        // Permission::create(['name' => 'view-admin-dashboard','guard_name'=>'web']);
+        // $adminRole = Role::findByName('Admin01');
+
+        // $adminRole->givePermissionTo([
+        //     'view-admin-dashboard',
+        // ]);
+
+        
+
+    
+
         $currentHour = Carbon::now()->hour;
         $salutation = '';
 
@@ -82,7 +97,11 @@ class AgentsController extends Controller
         $topEarningAgents = DB::table('tbl_agents AS a')
         ->select('a.first_name', 'a.last_name', 'a.email', 'a.location','a.passport','a.status', DB::raw('SUM(c.commission) AS earnings'))
         ->join('tbl_commissions AS c', 'a.id', '=', 'c.agent_id')
+
         ->groupBy('a.id', 'a.first_name', 'a.last_name', 'a.email', 'a.location', 'a.passport', 'a.status')
+
+        ->where('a.agent_role', '=', 'agent') // Adding the condition
+
         ->orderByDesc('earnings')
         ->limit(5)
         ->get();
@@ -277,7 +296,50 @@ class AgentsController extends Controller
        else{
         return Redirect::route('complianceaggregatorsstab')->with('error', $message . ' successfully!');
        }
-     
+
+    }
+
+    public function escalate_agent($agent_id)
+    {
+
+       // Get agent's information
+       $agent = DB::table('tbl_agents')->where('id', $agent_id)->first();
+
+       if (!$agent) {
+           return back()->with('error', 'Agent not found!');
+       }
+
+       $agentRole = $agent->agent_role;
+
+       // Update agent's status to "suspended"
+       DB::table('tbl_agents')->where('id', $agent_id)->update(['status' => 'escalated']);
+
+       $message = ($agentRole === 'agent') ? 'Agent Application Escalated' : 'Aggregator Application Escalated';
+
+       if ($agentRole=="agent"){
+
+         // return back()->with('success', $message . ' successfully!');
+       return Redirect::route('complianceagentstab')->with('error', $message . ' successfully!');
+       }
+       else{
+        return Redirect::route('complianceaggregatorsstab')->with('error', $message . ' successfully!');
+       }
+
+    }
+
+    public function allocatedPOS($agent_id)
+    {
+
+        $pos_terminals = DB::table('tbl_pos_terminals')->where('agent_id', $agent_id)->get();
+        //return $pos_terminals;
+
+        $first_name = DB::table('tbl_agents')->where('id', $agent_id)->value('first_name');
+        $mid_name = DB::table('tbl_agents')->where('id', $agent_id)->value('mid_name');
+        $last_name = DB::table('tbl_agents')->where('id', $agent_id)->value('last_name');
+
+        $agentnames=$first_name." ".$last_name;
+
+        return view ('agents.allocatedposstable', compact('pos_terminals','agentnames'));
 
 
     }
@@ -664,7 +726,7 @@ class AgentsController extends Controller
         DB::table('tbl_pos_terminals')->insert([
             'device_name' => $deviceName,
             'serial_no' => $serialNo,
-            'device_os' => $deviceOS,
+            'device_model' => $deviceOS,
             'status' => $status,
             'owner_type' => $owner_type,
             'registration_date' => $registration_date,

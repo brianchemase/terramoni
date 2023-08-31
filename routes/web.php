@@ -11,8 +11,12 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ComplianceController;
 use App\Http\Controllers\NibbsController;
+
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
+
+use App\Http\Controllers\AggregatorsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,12 +64,12 @@ Route::post('/RegisterSelfCompanyAgent', [AgentsController::class, 'storecompany
 Route::post('/ChangePasswordFunction', [ChangePasswordController::class, 'changePassword'])->name('change.password');
 
 Auth::routes();
-Route::middleware(['auth','user-role:admin'])->group(function()
+Route::middleware(['auth'])->group(function()
  {
     Route::group(['prefix' => 'admins'], function() {
     //Route::group(['prefix' => 'admins'], function() {
 
-    Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash');
+    Route::get('/', [AgentsController::class, 'dashboard'])->name('admindash')->middleware('permission:view-admin-dashboard');
     Route::get('/tables', [AgentsController::class, 'tables'])->name('musictable');
     Route::get('/blank', [AgentsController::class, 'blank'])->name('blankpage');
     Route::get('/forms', [AgentsController::class, 'form'])->name('formpage');
@@ -77,28 +81,35 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
     //
     // my view agents list
+    Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab')->middleware('permission:admin-view-agents-dashboard');
+    Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata')->middleware('permission:admin-create-agent');// save agent data
+    Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit')->middleware('permission:admin-edit-agent');
+    Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent')->middleware('permission:admin-update-agent');//up
+    Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent')->middleware('permission:admin-suspend-agent');//suspend agent
+    Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent')->middleware('permission:admin-reject-agent');//reject agent
     Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');
     Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata');// save agent data
     Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit');
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent');//up
     Route::any('/Suspendagent/{agent_id}', [AgentsController::class, 'suspend_agent'])->name('suspend_agent');//suspend agent
     Route::any('/rejectagent/{agent_id}', [AgentsController::class, 'reject_agent'])->name('reject_agent');//reject agent
+    Route::any('/Escalateagent/{agent_id}', [AgentsController::class, 'escalate_agent'])->name('escalate_agent');//escalate agent
 
 
     //pending agents table
-    Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab');
+    Route::get('/ViewmypendingagentsList', [AgentsController::class, 'compliance_agentstab'])->name('complianceagentstab')->middleware('permission:admin-view-pending-agents');
 
     //pending aggregators table
-    Route::get('/ViewmypendingaggregatorsList', [AgentsController::class, 'compliance_aggregatorstab'])->name('complianceaggregatorsstab');
+    Route::get('/ViewmypendingaggregatorsList', [AgentsController::class, 'compliance_aggregatorstab'])->name('complianceaggregatorsstab')->middleware('permission:admin-view-pending-aggregators');
     // kyc form
-    Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage');
+    Route::get('/KYCagents', [AgentsController::class, 'complianceform'])->name('complianceformpage')->middleware('permission:admin-view-agents-kyc');
 
    // Route::get('/KYCagentscompliance/{id}', [AgentsController::class, 'complianceformcheck'])->name('complianceagentformpage');
-    Route::get('/KYCagentscompliance/{id}', [ComplianceController::class, 'queryIdentity'])->name('complianceagentformpage');
-    Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent');
+    Route::get('/KYCagentscompliance/{id}', [ComplianceController::class, 'queryIdentity'])->name('complianceagentformpage')->middleware('permission:admin-edit-agents-kyc');
+    Route::post('/agentapprovalcompliance', [AgentsController::class, 'approveagent'])->name('approveagent')->middleware('permission:admin-approve-agents');
 
     // view aggregators list
-    Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist');
+    Route::get('/ViewAggregatorsList', [AgentsController::class, 'aggregatorstab'])->name('aggregatorslist')->middleware('permission:admin-view-aggregators');
 
 
     // view list of all POS Terminals
@@ -106,27 +117,30 @@ Route::middleware(['auth','user-role:admin'])->group(function()
     Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
     Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
 
+
+    Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
+
     // import terminals
-    Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals');// save pos data
+    Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals')->middleware('permission:admin-import-pos-terminal');// save pos data
 
     // POS Allocation to agents t
-    Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation');
-    Route::get('/giveAllocationToAgents', [AgentsController::class, 'updateagentposallocation'])->name('assignagentspos');
+    Route::get('/AllocationToAgents', [AgentsController::class, 'agentsposallocation'])->name('agentsposallocation')->middleware('permission:admin-pos-terminal-allocation');
+    Route::get('/giveAllocationToAgents', [AgentsController::class, 'updateagentposallocation'])->name('assignagentspos')->middleware('permission:admin-update-pos-terminal-allocation');
 
     // user profile
-    Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage');
+    Route::get('/UserProfile', [AgentsController::class, 'user_profile'])->name('userprofilepage')->middleware('permission:admin-user-profile');
 
     // user change password
-    Route::get('/ChangeAdminPass', [AgentsController::class, 'ChangeAdminPass'])->name('changepasspage');
+    Route::get('/ChangeAdminPass', [AgentsController::class, 'ChangeAdminPass'])->name('changepasspage')->middleware('permission:admin-change-password');
 
-    Route::get('/TransactionTable', [TransactionsController::class, 'getTransactions'])->name('primetransactions');
-    Route::get('/TransactionData/{trans_id}', [TransactionsController::class, 'retreiveTrans'])->name('retreiveTrans');
+    Route::get('/TransactionTable', [TransactionsController::class, 'getTransactions'])->name('primetransactions')->middleware('permission:admin-get-transactions');
+    Route::get('/TransactionData/{trans_id}', [TransactionsController::class, 'retreiveTrans'])->name('retreiveTrans')->middleware('permission:admin-retrieve-transactions');
 
     // agent transaction history
-    Route::get('/AgentTransaction/{id}', [TransactionsController::class, 'agentTransactions'])->name('agenttrans');
+    Route::get('/AgentTransaction/{id}', [TransactionsController::class, 'agentTransactions'])->name('agenttrans')->middleware('permission:admin-agent-transactions-history');
 
     // full transaction history
-    Route::get('/TotalTransaction', [TransactionsController::class, 'FullTransactions'])->name('totaltrans');
+    Route::get('/TotalTransaction', [TransactionsController::class, 'FullTransactions'])->name('totaltrans')->middleware('permission:admin-transactions-history');
 
     // user profile
     Route::get('/ViewMusicPage', [AgentsController::class, 'musicpage'])->name('musicpage');
@@ -134,14 +148,31 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
      // user profile
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+     Route::post('/register-user', [UsersController::class, 'registerUser'])->name('register_user');
+     Route::post('/update-user', [UsersController::class, 'updateUser'])->name('update_user');
+    
+     Route::any('/users/{user}/change-password', [UsersController::class, 'changePassword'])->name('change_password');
+     
+     Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers')->middleware('permission:admin-user-profile');
         // permissions matrix
      Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
+
+
+     //Role based management
+     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles')->middleware('permission:admin-view-roles');
+     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole')->middleware('permission:admin-create-role');
+     Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');//->middleware('permission:admin-view-permissions');
+     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission')->middleware('permission:admin-create-permission');
+     Route::get('/roles-permissions', [RoleBasedAccessController::class, 'getAssignableRole'])->name('AssignRole');//
+     Route::post('/get-permissions-role/{id}', [RoleBasedAccessController::class, 'getAssignablePermissions'])->name('AssignPermissionsToRolesTest');
+     Route::post('/assign-permissions-role', [RoleBasedAccessController::class, 'AssignPermissionsToRoles'])->name('AssignPermissionsToRoles');
 
      //Commissions
      Route::get('/Commissions', [CommissionController::class, 'manageCommissions'])->name('allcommissions');
 
 
      //Commission Matrix
+
      Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
      Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
      Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
@@ -149,6 +180,15 @@ Route::middleware(['auth','user-role:admin'])->group(function()
      Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
      Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
+
+
+     Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix')->middleware('permission:admin-view-commission-matrix');
+     Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create')->middleware('permission:admin-create-commission-matrix');
+     Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store')->middleware('permission:admin-view-commission-matrix');
+     Route::get('/commissionmatrix/{id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit')->middleware('permission:admin-edit-commission-matrix');
+     Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update')->middleware('permission:admin-update-commission-matrix');
+     Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy')->middleware('permission:admin-delete-commission-matrix');
+     
 
 
 
@@ -159,12 +199,12 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 
 Auth::routes();
 
-Route::middleware(['auth','user-role:agent'])->group(function()
+Route::middleware(['auth'])->group(function()
  {
 
     Route::group(['prefix' => 'agents'], function() {
 
-        Route::get('/', [AgentsDashboardController::class, 'dashboard'])->name('agentsdash');
+        Route::get('/', [AgentsDashboardController::class, 'dashboard'])->name('agentsdash')->middleware('permission:view-agents-dashboard');
         Route::get('/tables', [AgentsDashboardController::class, 'tables'])->name('agentsmusictable');
         Route::get('/blank', [AgentsDashboardController::class, 'blank'])->name('agentsblankpage');
         Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');

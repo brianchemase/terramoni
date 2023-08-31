@@ -39,7 +39,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Agents Registration Tab</h5>
+									<h5 class="card-title mb-0">Agents Registration</h5>
 								</div>
 								<div class="card-body">
 								
@@ -92,6 +92,9 @@
 														<span class="badge bg-danger">Suspended</span>
 													@elseif($data->status == 'pending')
 														<span class="badge bg-warning">Pending</span>
+													
+													@elseif($data->status == 'escalated')
+														<span class="badge bg-warning">Escalated</span>
 													@else
 														<span class="badge bg-info">Unknown</span>
 													@endif
@@ -108,14 +111,20 @@
 													<div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
 														<a class="dropdown-item" href="#viewAgentModal{{$data->id}}" data-toggle="modal">View Client</a>
 														
+														
+														@if($data->status != 'approved')
+														<a class="dropdown-item" href="{{ route('complianceagentformpage', ['id' => $data->id]) }}">Approve Agent</a>
+														
+														@endif
 														<a class="dropdown-item" href="#">Wallet History</a>
 														<a class="dropdown-item" href="#">Assign Acct Mgrs</a>
+														<a class="dropdown-item"href="{{ route('allocatedpos', ['id' => $data->id]) }}">Allocated POS</a>
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
-														<a class="dropdown-item" href="#">Transactions Rate</a>
+														<!-- <a class="dropdown-item" href="#">Transactions Rate</a> -->
 														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Agent details</a>
-														<a class="dropdown-item" href="#">Reset Password</a>
+														<!-- <a class="dropdown-item" href="#">Reset Password</a> -->
 														<a class="dropdown-item" href="{{ route('suspend_agent', ['agent_id' => $data->id]) }}" style="color: red;">Suspend Agent</a>
 													</div>
 												</div>

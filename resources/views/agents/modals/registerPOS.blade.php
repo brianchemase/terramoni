@@ -81,7 +81,7 @@
 					<tr>
 					<th scope="col">Device_name</th>
 					<th scope="col">serial_no</th>
-					<th scope="col">device_no</th>
+					<th scope="col">device_model</th>
 					
 					</tr>
 				</thead>
@@ -89,19 +89,19 @@
 							<tr>
 							<th scope="row">Name 1</th>
 							<td>S1234567</td>
-							<td>Samsung</td>
+							<td>SamsungGTM</td>
 							
 							</tr>
 							<tr>
 							<th scope="row">Name 2</th>
 							<td>S1234567</td>
-							<td>Techno</td>
+							<td>TechnoPOK758</td>
 							
 							</tr>
 							<tr>
 							<th scope="row">Name 3</th>
 							<td>S1234567</td>
-							<td>Motorola</td>
+							<td>Motorola110</td>
 							
 							</tr>
 						</tbody>

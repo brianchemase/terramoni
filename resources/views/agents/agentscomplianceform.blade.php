@@ -36,7 +36,13 @@
 									
 									<ul class="list-unstyled mb-0">
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Name : {{$first_name}} {{$mid_name}} {{$last_name}}</li>
-										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Birth Date : {{$dob }}</li>
+										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Birth Date : @if ($dob)
+																														
+																														{{ \Carbon\Carbon::parse($dob)->format('jS M Y') }}
+																													@else
+																														Date of Birth Not provided
+																													@endif
+																													</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> BVN No : {{$BVN }}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Contact :{{$phone}}</li>
 										<li class="mb-1"><span data-feather="play" class="feather-sm mr-1"></span> Location : {{$location}}</li>
@@ -52,7 +58,7 @@
 									<br>
 									<div class="col-6 col-md-4 col-lg-4 col-xl-12">
 									
-													<img src="{{ asset('storage/address/'.$doc_image) }}" width="550" height="50" class="img-fluid pr-2" alt="Address Not Uploaded">
+													<img src="{{ asset('storage/address/'.$doc_image) }}" width="550" height="50" class="img-fluid pr-2" alt="file Not Uploaded">
 									</div>
 									<br>
 
@@ -67,6 +73,10 @@
 
 									<a href="{{ route('reject_agent', ['agent_id' => $agent_id]) }}" class="btn btn-danger">
 											<i class="fa fa-times" aria-hidden="true"></i> Reject Agent
+										</a>
+
+										<a href="{{ route('escalate_agent', ['agent_id' => $agent_id]) }}" class="btn btn-info">
+											<i class="fa fa-times" aria-hidden="true"></i> Escalate Application
 										</a>
 
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModalPrimary">

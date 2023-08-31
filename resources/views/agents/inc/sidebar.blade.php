@@ -9,14 +9,16 @@
 						MAIN
 					</li>
 
+					
+
+					@can('view-admin-dashboard')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'admindash' ? 'active' : '' }}">
 					<!-- <li class="sidebar-item "> -->
 						<a class="sidebar-link" href="{{route('admindash')}}">
                             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                         </a>
 					</li>
-
-					
+					@endcan					
 					
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentstab' ? 'active' : '' }}">
@@ -47,7 +49,7 @@
 							<li class="sidebar-item"><a class="sidebar-link" href="#">State Count Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Charge Back Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Terminal Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('posterminalslist')}}">Terminal Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
@@ -108,10 +110,10 @@
 						</a>
 					</li>
 
+
 					<li class="sidebar-item {{ Route::currentRouteName() === 'allcommissions' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('allcommissions')}}">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>
-							
+							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>				
 						</a>
 					</li>
 
@@ -127,6 +129,24 @@
 							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Access Matrix</span>
 							
 						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a data-target="#roles" data-toggle="collapse" class="sidebar-link collapsed">
+							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access Matrix</span>
+						</a>
+						<ul id="roles" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+							<li class="sidebar-item menu-drop {{ Route::currentRouteName() === 'AllRoles' ? 'active' : ''}}"><a class="sidebar-link" href="{{route('AllRoles')}}">Roles</a></li>
+							<li class="sidebar-item menu-drop {{ Route::currentRouteName() === 'AllPermissions' ? 'active' : ''}}"><a class="sidebar-link" href="{{route('AllPermissions')}}">Permissions</a></li>
+							<li class="sidebar-item menu-drop {{ Route::currentRouteName() === 'AssignRole' ? 'active' : ''}}"><a class="sidebar-link" href="{{route('AssignRole')}}">Assign permission(s) to role</a></li>
+							<!-- <li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Terminal Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="{{route('totaltrans')}}">Transaction Summary </a></li> -->
+													
+						</ul>
 					</li>
 
 					

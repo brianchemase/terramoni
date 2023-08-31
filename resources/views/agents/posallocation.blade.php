@@ -7,7 +7,7 @@
 <main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Agents POS Assignment</h1>
+					<h1 class="h3 mb-3"><strong>Agents POS </strong>Assignment</h1>
 
 					@if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">

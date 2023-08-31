@@ -157,7 +157,7 @@ class NibbsController extends Controller
             //'originAccName' => 'required',
             'destinationInstitutionCode' => 'required',
             'destAccNo' => 'required',
-            //'destAccName' => 'required',
+            'amount' => 'required',
            'agent_id' => 'required',
         ]);
 
@@ -166,6 +166,8 @@ class NibbsController extends Controller
         //$originAccName=$request->input('originAccName');
         $destinationInstitutionCode=$request->input('destinationInstitutionCode');
         $destAccNo=$request->input('destAccNo');
+
+        $transferamount=$request->input('amount');
         //$destAccName=$request->input('destAccName');
         $agent_id = $request->input('agent_id');
 
@@ -211,7 +213,7 @@ class NibbsController extends Controller
         // Prepare the request data
         $requestData = array(
             "sourceInstitutionCode" => $sourceInstitutionCode,
-            "amount" => 100,
+            "amount" => $transferamount,
             "beneficiaryAccountName" => $destAccName,
             "beneficiaryAccountNumber" => $destAccNo,
             "beneficiaryBankVerificationNumber" => $destinationBankVerificationNumber,
