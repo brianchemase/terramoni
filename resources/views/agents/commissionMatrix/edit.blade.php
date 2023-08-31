@@ -84,12 +84,6 @@
                                 <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $commissionMatrix->end_date }}">
                             </div>
 
-                            
-                            <div class="col-md-4">
-                                <label for="captured_by" class="form-label">Captured By</label>
-                                <input type="number" class="form-control" id="captured_by" name="captured_by" value="{{ $commissionMatrix->captured_by }}" required>
-                            </div>
-
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Update Commission Matrix</button>
                             </div>
