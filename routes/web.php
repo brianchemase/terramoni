@@ -175,12 +175,12 @@ Route::middleware(['auth'])->group(function()
 
      //Commission Matrix
 
-     Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
-     Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
-     Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
-     Route::get('/commissionmatrix/{cr_id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit');
-     Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
-     Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
+   //   Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
+   //   Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
+   //   Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
+   //   Route::get('/commissionmatrix/{cr_id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit');
+   //   Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
+   //   Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
 
 
