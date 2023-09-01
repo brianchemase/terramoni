@@ -33,7 +33,7 @@ class TransactionsController extends Controller
         }
         // Perform the database query to fetch the transaction history for the given agent_id and transaction_date
         $transactionHistory = DB::table('tbl_transactions')
-            ->select('transaction_type', DB::raw('SUM(amount) as total'))
+            ->select('transaction_type', DB::raw('SUM(ItemFee) as total'))
             ->where('agent_id', $agent_id)
             ->whereDate('transaction_date', $transaction_date)
             ->groupBy('transaction_type')
