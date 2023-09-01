@@ -18,7 +18,8 @@
                     <div class="card-body">
                         <form class="row g-3" method="POST" action="{{ route('commissionmatrix.update', [$commissionMatrix->cr_id]) }}">
                             @csrf
-                            
+
+                            <!-- ROW 1 -->
                             <div class="col-md-4">
                                 <label for="agent_type" class="form-label">Agent Type</label>
                                 <input type="text" class="form-control" id="agent_type" name="agent_type" value="{{ $commissionMatrix->agent_type }}" required>
@@ -31,6 +32,8 @@
                                 <label for="agent_id" class="form-label">Agent ID</label>
                                 <input type="number" class="form-control" id="agent_id" name="agent_id" value="{{ $commissionMatrix->agent_id }}">
                             </div>
+
+                            <!-- ROW 2 -->
                             <div class="col-md-4">
                                 <label for="state_id" class="form-label">State ID</label>
                                 <input type="number" class="form-control" id="state_id" name="state_id" value="{{ $commissionMatrix->state_id }}">
@@ -43,6 +46,8 @@
                                 <label for="biller_id" class="form-label">Biller ID</label>
                                 <input type="number" class="form-control" id="biller_id" name="biller_id" value="{{ $commissionMatrix->biller_id }}" required>
                             </div>
+
+                            <!-- ROW 3 -->
                             <div class="col-md-4">
                                 <label for="transaction_type" class="form-label">Transaction Type</label>
                                 <input type="number" class="form-control" id="transaction_type" name="transaction_type" value="{{ $commissionMatrix->transaction_type }}">
@@ -55,6 +60,8 @@
                                 <label for="special_promotion_id" class="form-label">Special Promotion ID</label>
                                 <input type="number" class="form-control" id="special_promotion_id" name="special_promotion_id" value="{{ $commissionMatrix->special_promotion_id }}" required>
                             </div>
+
+                            <!-- ROW 4 -->
                             <div class="col-md-4">
                                 <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>
                                 <input type="number" class="form-control" id="min_trans_amount" name="min_trans_amount" value="{{ $commissionMatrix->min_trans_amount }}" required>
@@ -65,23 +72,25 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="commission_rate" class="form-label">Commission Rate</label>
-                                <input type="number" class="form-control" id="commission_rate" name="commission_rate" value="{{ $commissionMatrix->commission_rate }}" required>
+                                <input type="number" step="0.01" class="form-control" id="commission_rate" name="commission_rate" value="{{ $commissionMatrix->commission_rate }}" required>
                             </div>
-                            <div class="col-md-4">
-                                <label for="start_time" class="form-label">Start Time</label>
-                                <input type="time" class="form-control" id="start_time" name="start_time" value="{{ $commissionMatrix->start_time }}">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="end_time" class="form-label">End Time</label>
-                                <input type="time" class="form-control" id="end_time" name="end_time" value="{{ $commissionMatrix->end_time }}">
-                            </div>
-                            <div class="col-md-4">
+
+                            <!-- ROW 5 -->
+                            <div class="col-md-3">
                                 <label for="start_date" class="form-label">Start Date</label>
                                 <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $commissionMatrix->start_date }}">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <label for="start_time" class="form-label">Start Time</label>
+                                <input type="time" class="form-control" id="start_time" name="start_time" value="{{ $commissionMatrix->start_time }}">
+                            </div>
+                            <div class="col-md-3">
                                 <label for="end_date" class="form-label">End Date</label>
                                 <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $commissionMatrix->end_date }}">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="end_time" class="form-label">End Time</label>
+                                <input type="time" class="form-control" id="end_time" name="end_time" value="{{ $commissionMatrix->end_time }}">
                             </div>
 
                             <div class="col-12">
