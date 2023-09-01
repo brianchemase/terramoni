@@ -26,7 +26,7 @@ class CommissionController extends Controller
             ->where('agent_id', $agent_id)
             ->sum('ItemFee');
 
-            $walletvalue="10000";
+            $walletvalue="100000";
 
             $bankWallet=$walletvalue-$totaltransAmount;
 
