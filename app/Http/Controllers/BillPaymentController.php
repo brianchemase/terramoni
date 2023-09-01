@@ -417,10 +417,6 @@ class BillPaymentController extends Controller
 
                 // Close the cURL session
                 curl_close($ch);
-
-                //echo $response;
-                   // Return the API response
-                 //return response()->json($response);
                     // Parse the JSON response
                     $responseData = json_decode($response, true);
 
@@ -428,9 +424,6 @@ class BillPaymentController extends Controller
                     if ($responseData === null) {
                         return response('Error: Unable to parse JSON response', 500);
                     }
-
-                    // Now you can work with the $responseData array
-                    // For example, you can return it as JSON
                     return response()->json($responseData);
 
         
