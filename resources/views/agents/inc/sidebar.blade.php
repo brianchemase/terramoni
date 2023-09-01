@@ -123,6 +123,36 @@
 							
 						</a>
 					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'transactionTypes' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('transactionTypes')}}">
+							<i class="align-middle" data-feather="transaction"></i> <span class="align-middle">Transaction Types</span>
+							
+						</a>
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTypes' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('agentTypes')}}">
+							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Agent Types</span>
+							
+						</a>
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTiers' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('agentTiers')}}">
+							<i class="align-middle" data-feather="tiers"></i> <span class="align-middle">Agent Tiers</span>
+							
+						</a>
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'customerSegments' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('customerSegments')}}">
+							<i class="align-middle" data-feather="customers"></i> <span class="align-middle">Customer Segments</span>
+							
+						</a>
+					</li>
+					<li class="sidebar-item {{ Route::currentRouteName() === 'billers' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('billers')}}">
+							<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Biller</span>
+							
+						</a>
+					</li>
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'permissionsmatrix' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('permissionsmatrix')}}">
