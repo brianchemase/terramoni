@@ -20,18 +20,21 @@
 					</li>
 					@endcan					
 					
-
+					@can('admin-view-agents-dashboard')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentstab')}}">
                             <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
                         </a>
 					</li>
+					@endcan
+
+					@can('admin-view-aggregators')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'aggregatorslist' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('aggregatorslist')}}">
                             <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Aggregators</span>
                         </a>
 					</li>
-
+					@endcan
                     
 
 					<!-- <li class="sidebar-item {{ Route::currentRouteName() === 'blankpage' ? 'active' : '' }}">
@@ -63,33 +66,42 @@
 					<li class="sidebar-header">
 						POS DEVICES
 					</li>
+					@can('admin-view-pos-terminals')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'posterminalslist' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('posterminalslist')}}">
                             <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">Inventory</span>
                         </a>
 					</li>
+					@endcan
 
+					@can('admin-pos-terminal-allocation')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentsposallocation' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentsposallocation')}}">
                             <i class="align-middle" data-feather="airplay"></i> <span class="align-middle">Allocations</span>
                         </a>
 					</li>
+					@endcan
 
 
 					<li class="sidebar-header">
 						COMPLIANCE
 					</li>
+
+					@can('admin-view-pending-agents')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceagentstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('complianceagentstab')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Agents Pending</span>
                         </a>
 					</li>
+					@endcan
 
+					@can('admin-view-pending-aggregators')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'complianceaggregatorsstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('complianceaggregatorsstab')}}">
                             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Aggregators Pending</span>
                         </a>
 					</li>
+					@endcan
 
 					<!-- <li class="sidebar-item {{ Route::currentRouteName() === 'complianceformpage' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('complianceformpage')}}">
@@ -103,56 +115,78 @@
 						Settings
 					</li>
 
+					@can('admin-user-profile')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'AllUsers' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('AllUsers')}}">
 							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Manage Users</span>
 							
 						</a>
 					</li>
+					@endcan
 
-
+					@can('admin-manage-commissions')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'allcommissions' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('allcommissions')}}">
 							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Commissions </span>				
 						</a>
 					</li>
+					@endcan
 
+					@can('admin-view-commission-matrix')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'commissionmatrix' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('commissionmatrix')}}">
 							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Commission Matrix</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-transaction-types')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'transactionTypes' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('transactionTypes')}}">
 							<i class="align-middle" data-feather="transaction"></i> <span class="align-middle">Transaction Types</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-agent-types')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTypes' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentTypes')}}">
 							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Agent Types</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-agent-tiers')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTiers' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentTiers')}}">
 							<i class="align-middle" data-feather="tiers"></i> <span class="align-middle">Agent Tiers</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-customer-segments')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'customerSegments' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('customerSegments')}}">
 							<i class="align-middle" data-feather="customers"></i> <span class="align-middle">Customer Segments</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-billers')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'billers' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('billers')}}">
 							<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Biller</span>
 							
 						</a>
 					</li>
+					@endcan
+
+					@can('admin-view-permission-matrix')
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'permissionsmatrix' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('permissionsmatrix')}}">
@@ -160,7 +194,9 @@
 							
 						</a>
 					</li>
+					@endcan
 
+					@can('admin-view-roles','admin-view-permissions')
 					<li class="sidebar-item">
 						<a data-target="#roles" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access</span>
@@ -178,6 +214,7 @@
 													
 						</ul>
 					</li>
+					@endcan
 
 					
 					
