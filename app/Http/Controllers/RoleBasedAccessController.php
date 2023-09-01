@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role as ModelsRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role as ContractsRole;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\Role as Roles;
 use Illuminate\Support\Str;
 
 class RoleBasedAccessController extends Controller
@@ -108,6 +110,15 @@ class RoleBasedAccessController extends Controller
         return response()->json(['Permissions' => $permissions, 'Roles' => $roles, 'selectedValues' => $selectedValues]);
     }
 
+    public function deleteRole($id)
+    {       
+        
+        $role = Role::findOrFail($id); 
+        $role->delete();       
+
+        return response()->json(['success' => 'Role deteled successfully.']);
+    }
+
     public function AssignPermissionsToRoles(Request $request){
 
         $role = Role::findByName($request->role_name);
@@ -125,5 +136,16 @@ class RoleBasedAccessController extends Controller
             return redirect()->back()->with('error', "Failed to assign permissions. Reason: " . $th->getMessage());
         }
 
+    }
+
+    public function updateRole(Request $request)
+    {
+        $role = Roles::findOrFail($request->input('role_id'));
+
+        $role->name = $request->input('name');
+
+        $role->save();
+
+        return redirect()->back()->with('success',  $request->input('name') .' edited successfully.');
     }
 }

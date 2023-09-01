@@ -81,6 +81,7 @@ class LoginController extends Controller
             9 => 'admindash',
             2 => 'teacher.dashboard',
             1 => 'admindash',
+            default => 'admindash'
         };
     }
 }

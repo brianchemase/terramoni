@@ -36,10 +36,12 @@
 					<div class="col-md-6">
 						<label for="validationDefault04" class="form-label">Role</label>
 						<select class="form-select" id="validationDefault04" name="role" required>
-							<option selected disabled value="">Choose...</option>
-							<option value="0">Agent</option>
-							<option value="1">Aggregator</option>
-							<option value="2">Admin</option>
+						<option selected disabled value="">Choose...</option>
+						@foreach ($roles as $role)
+							<option value="{{ $role->id }}">
+								{{ $role->name }}
+							</option>
+						@endforeach
 						</select>
 					</div>
 					
