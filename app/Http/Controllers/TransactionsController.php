@@ -19,6 +19,51 @@ class TransactionsController extends Controller
      // Return the JSON response with the results
      return response()->json($transactionHistory);
     }
+    public function eodtransactions($agent_id)
+
+    {
+        $transaction_date = null;
+        // If $transaction_date is not provided, use the current date
+        if (is_null($transaction_date)) {
+            $transaction_date = Carbon::now()->toDateString();
+        } else {
+            // Parse and format the provided date as "YYYY-MM-DD"
+            $transaction_date = Carbon::parse($transaction_date)->toDateString();
+        }
+        // Perform the database query to fetch the transaction history for the given agent_id and transaction_date
+        $transactionHistory = DB::table('tbl_transactions')
+            ->select('transaction_type', DB::raw('SUM(amount) as total'))
+            ->where('agent_id', $agent_id)
+            ->whereDate('transaction_date', $transaction_date)
+            ->groupBy('transaction_type')
+            ->get();
+
+        // Initialize an array to store the daily totals
+        $dailyTotals = [
+            'billpayments' => 0,
+            'withdrawals' => 0,
+            'transfers' => 0,
+        ];
+
+        // Calculate the daily totals for each transaction type
+        foreach ($transactionHistory as $transaction) {
+            switch ($transaction->transaction_type) {
+                case 'billpayment':
+                    $dailyTotals['billpayments'] = $transaction->total;
+                    break;
+                case 'withdrawals':
+                    $dailyTotals['withdrawals'] = $transaction->total;
+                    break;
+                case 'fundtransfer':
+                    $dailyTotals['transfers'] = $transaction->total;
+                    break;
+            }
+        }
+
+        // Return the JSON response with the daily totals
+        return response()->json($dailyTotals);
+    }
+
 
     public function agentTransactions(Request $request, $id)
     {
@@ -155,3 +200,4 @@ class TransactionsController extends Controller
 
     }
 }
+
