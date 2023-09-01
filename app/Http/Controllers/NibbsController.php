@@ -293,7 +293,7 @@ class NibbsController extends Controller
             'agent_id' => $agent_id,
             'transaction_type' => 'fundtransfer',
             'customer_reference' => $transactionId,
-            'ItemFee' => "10",//customer_reference
+            'ItemFee' => $transferamount,//customer_reference
             'CurrencySymbol' => 'NRN',
             'BillerType' => 'Fund Transfer',
         ]);
