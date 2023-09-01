@@ -26,13 +26,13 @@ class CommissionMatrixController extends Controller
 
     public function store(Request $request)
     {
-        // 
+        //dd($request);
         $request->validate([
             'agent_type' => 'required|string',
             'agent_tier_level' => 'nullable|integer',
             'agent_id' => 'nullable|integer',
-            'state_id' => 'nullable|integer',
-            'lga_id' => 'nullable|integer',
+            'state_id' => 'nullable|string',
+            'lga_id' => 'nullable|string',
             'biller_id' => 'required|integer',
             'transaction_type' => 'nullable|integer',
             'customer_segment_id' => 'required|integer',
@@ -43,12 +43,9 @@ class CommissionMatrixController extends Controller
     'end_time' => 'nullable|date_format:H:i',
     'start_date' => 'nullable|date',
     'end_date' => 'nullable|date',
-
-   
             
             
-        ]);
-        
+        ]);        
     
         CommMatrix::create($request->all());
        

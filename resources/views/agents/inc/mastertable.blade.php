@@ -55,6 +55,7 @@
 	
     <script src="{{asset('dash/js/app.js')}}"></script>
 	<script src="{{asset('dash/js/datatables.js')}}"></script>
+	<script src="{{asset('dash/js/lga.js')}}"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
