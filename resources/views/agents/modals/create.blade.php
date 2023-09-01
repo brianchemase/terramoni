@@ -104,11 +104,11 @@
                     <!-- ROW 3 -->
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>
+                            <label for="min_trans_amount" class="form-label">Min Commission Amount</label>
                             <input type="number" class="form-control" id="min_trans_amount" name="min_trans_amount" placeholder="Enter Min Transaction Amount" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="max_trans_amount" class="form-label">Max Transaction Amount</label>
+                            <label for="max_trans_amount" class="form-label">Max Commission Amount</label>
                             <input type="number" class="form-control" id="max_trans_amount" name="max_trans_amount" placeholder="Enter Max Transaction Amount">
                         </div>
                         <div class="col-md-4">

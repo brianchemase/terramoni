@@ -70,10 +70,14 @@
                     <div class="col-md-6">
                         <label for="editRole" class="form-label">Role</label>
                         <select class="form-select" id="editRole" name="role" required>
-                            <option value="0" {{ $user->role == 0 ? 'selected' : '' }}>Agent</option>
-                            <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Aggregator</option>
-                            <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Admin</option>
-                        </select>
+						<option selected disabled value="">Choose...</option>
+						@foreach ($roles as $role)
+							<option value="{{ $role->id }}" @if ($role->id == $user->role) selected @endif>
+								{{ $role->name }}
+							</option>
+						@endforeach
+						</select>
+                       
                     </div>
 
                     
@@ -87,6 +91,7 @@
     </div>
 </div>
 <!-- END edit user modal -->
+
 
 
 

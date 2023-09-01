@@ -52,10 +52,21 @@
 		</div>
 	</div>
 
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="{{asset('dash/js/app.js')}}"></script>
 	<script src="{{asset('dash/js/datatables.js')}}"></script>
 	<script src="{{asset('dash/js/lga.js')}}"></script>
+	<script>
+		$(document).ready(function() {
+        // Add a click event listener to the menu item
+        $('.sidebar-link').click(function() {
+            // Collapse all submenus except the one that was clicked
+            $('.sidebar-dropdown').not($(this).data('target')).removeClass('show');
+        });
+    });
+
+	</script>
+
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
