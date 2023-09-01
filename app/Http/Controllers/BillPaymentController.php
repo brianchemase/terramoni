@@ -295,10 +295,10 @@ class BillPaymentController extends Controller
         ->where('id', $agent_id)
         ->first();
 
-    $agent_names = null;
-    if ($agent) {
-        $agent_names = $agent->first_name . ' ' . $agent->last_name;
-    }
+            $agent_names = null;
+            if ($agent) {
+                $agent_names = $agent->first_name . ' ' . $agent->last_name;
+            }
 
         // Data to send in the POST request
         $data = array(
@@ -374,6 +374,59 @@ class BillPaymentController extends Controller
 
         // You can handle the response as needed, such as returning it or saving it to a database
         return $response;
+    }
+
+    public function checkTvAccount(Request $request)
+    {
+        $request->validate([
+            'accno' => 'required',
+            //'amount' => 'required',
+            //'agent_id' => 'required',
+        ]);
+        $input = request()->all();     
+        $accno = $request->input('accno');
+        //$amount = $request->input('amount');
+        //$agent_id = $request->input('agent_id');
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+        // URL to send the get request to
+       
+        $url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
+
+        // Replace this with your Bearer token
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+     
+                // Initialize cURL session
+                $ch = curl_init();
+
+                // Set the cURL options
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HTTPGET, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $authorization, // Add the Bearer token to the request headers
+                ]);
+
+                // Execute the cURL request
+                $response = curl_exec($ch);
+
+                // Check for cURL errors
+                if (curl_errno($ch)) {
+                    echo 'cURL error: ' . curl_error($ch);
+                }
+
+                // Close the cURL session
+                curl_close($ch);
+                    // Parse the JSON response
+                    $responseData = json_decode($response, true);
+
+                    // Check if parsing was successful
+                    if ($responseData === null) {
+                        return response('Error: Unable to parse JSON response', 500);
+                    }
+                    return response()->json($responseData);
+
+        
     }
 
 

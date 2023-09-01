@@ -44,7 +44,8 @@ Route::post('/BillersList', [BillersController::class, 'billers_data']);//biller
 
 //agents registration api
 Route::get('/getAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
-
+//get agent transactionssammary
+Route::get('/getAgentsTransactionsSummary/{agent_id}', [TransactionsController::class, 'eodtransactions']);//agents EOD transactions API
 
 
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
@@ -71,6 +72,9 @@ Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products
 
 //pay for TV
 Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
+
+//check for TV aCcount
+Route::post('/ConfirmTvAccount', [BillPaymentController::class, 'checkTvAccount']);
 
 
 //get agents' commission earned
