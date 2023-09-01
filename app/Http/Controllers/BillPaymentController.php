@@ -418,7 +418,9 @@ class BillPaymentController extends Controller
                 // Close the cURL session
                 curl_close($ch);
 
-                echo $response;
+                //echo $response;
+                   // Return the API response
+                 return response()->json($response);
 
         
     }
