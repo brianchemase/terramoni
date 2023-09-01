@@ -44,7 +44,7 @@ class AgentTypeController extends Controller
     public function update(Request $request, AgentType $agentType)
     {
         $request->validate([
-            'name' => 'required|unique:agent_type,name,' . $agentType->id . '|max:255',
+            'name' => 'required|unique:agent_type,name,' . $agentType->id .',id'. '|max:255',
             // Add validation rules for other fields as needed
         ]);
 
