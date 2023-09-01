@@ -22,7 +22,13 @@ class CommissionController extends Controller
             ->where('agent_id', $agent_id)
             ->sum('commission');
 
-            $bankWallet="0";
+            $totaltransAmount = DB::table('tbl_transactions')
+            ->where('agent_id', $agent_id)
+            ->sum('ItemFee');
+
+            $walletvalue="10000";
+
+            $bankWallet=$walletvalue-$totaltransAmount;
 
         return response()->json(['total_commission' => $totalCommission, 'bankWallet' => $bankWallet]);
     }
