@@ -16,6 +16,8 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\CommissionMatrixController;
 
 use App\Http\Controllers\AggregatorsController;
+use App\Http\Controllers\RoleBasedAccessController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +79,7 @@ Route::middleware(['auth'])->group(function()
 
     Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
     // view available music
-    Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
+   // Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
 
     //
     // my view agents list
@@ -159,10 +161,10 @@ Route::middleware(['auth'])->group(function()
 
 
      //Role based management
-     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles')->middleware('permission:admin-view-roles');
-     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole')->middleware('permission:admin-create-role');
+     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles');//->middleware('permission:admin-view-roles');
+     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole');//->middleware('permission:admin-create-role');
      Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');//->middleware('permission:admin-view-permissions');
-     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission')->middleware('permission:admin-create-permission');
+     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission');//->middleware('permission:admin-create-permission');
      Route::get('/roles-permissions', [RoleBasedAccessController::class, 'getAssignableRole'])->name('AssignRole');//
      Route::post('/get-permissions-role/{id}', [RoleBasedAccessController::class, 'getAssignablePermissions'])->name('AssignPermissionsToRolesTest');
      Route::post('/assign-permissions-role', [RoleBasedAccessController::class, 'AssignPermissionsToRoles'])->name('AssignPermissionsToRoles');
@@ -210,7 +212,7 @@ Route::middleware(['auth'])->group(function()
         Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');
 
          // view list of all POS Terminals
-        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
+        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals')->middleware('permission:view-agents-allocatedterminals');
 
          // user change password
          Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
@@ -219,5 +221,24 @@ Route::middleware(['auth'])->group(function()
     });
 
 });
+
+
+Route::middleware(['auth'])->group(function()
+ {
+
+    Route::group(['prefix' => 'aggregators'], function() {
+
+        Route::get('/', [AggregatorsController::class, 'dashboard'])->name('aggregatordash');
+      
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AggregatorsController::class, 'allocatedterminals'])->name('aggregatorallocatedterminals');
+
+         // user change password
+       //  Route::get('/ChangeAgentPass', [AggregatorsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
+
+
+    });
+
+ });
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
