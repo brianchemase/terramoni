@@ -43,24 +43,27 @@ class CommissionMatrixController extends Controller
     'end_time' => 'nullable|date_format:H:i',
     'start_date' => 'nullable|date',
     'end_date' => 'nullable|date',
+
+   
             
             
         ]);
+        
     
         CommMatrix::create($request->all());
        
         return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry created successfully.');
     }
 
-    public function edit($id)
+    public function edit($cr_id)
     {
-        $commissionMatrix = CommMatrix::findOrFail($id);
+        $commissionMatrix = CommMatrix::findOrFail($cr_id);
         return view('agents.commissionMatrix.edit', compact('commissionMatrix'));
     }
 
-    public function update(Request $request, $matrix_id)
+    public function update(Request $request, $cr_id)
     {
-        $commissionMatrix = CommMatrix::findOrFail($matrix_id);
+        $commissionMatrix = CommMatrix::findOrFail($cr_id);
 
     $request->validate([
         'agent_type' => 'required|string',
@@ -87,9 +90,9 @@ class CommissionMatrixController extends Controller
     return redirect()->route('commissionmatrix')->with('success', 'Commission Matrix updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy($cr_id)
     {
-        $commissionMatrix = CommMatrix::findOrFail($id);
+        $commissionMatrix = CommMatrix::findOrFail($cr_id);
         $commissionMatrix->delete();
 
         return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry deleted successfully.');
