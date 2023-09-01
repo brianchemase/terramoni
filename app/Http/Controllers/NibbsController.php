@@ -291,6 +291,7 @@ class NibbsController extends Controller
             'BillerName' => $originAccName,
             'ConsumerIdField' => $agent_names,
             'agent_id' => $agent_id,
+            'transaction_type' => 'fundtransfer',
             'customer_reference' => $transactionId,
             'ItemFee' => "10",//customer_reference
             'CurrencySymbol' => 'NRN',
