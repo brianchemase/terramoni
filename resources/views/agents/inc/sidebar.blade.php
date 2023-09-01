@@ -133,7 +133,7 @@
 
 					<li class="sidebar-item">
 						<a data-target="#roles" data-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access Matrix</span>
+							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access</span>
 						</a>
 						<ul id="roles" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
 							<li class="sidebar-item menu-drop {{ Route::currentRouteName() === 'AllRoles' ? 'active' : ''}}"><a class="sidebar-link" href="{{route('AllRoles')}}">Roles</a></li>
