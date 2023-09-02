@@ -196,7 +196,7 @@
 					</li>
 					@endcan
 
-					@can('admin-view-roles','admin-view-permissions')
+					<!-- @can('admin-view-roles','admin-view-permissions') -->
 					<li class="sidebar-item">
 						<a data-target="#roles" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access</span>
@@ -214,7 +214,7 @@
 													
 						</ul>
 					</li>
-					@endcan
+					<!-- @endcan -->
 
 					
 					
