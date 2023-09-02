@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biller;
 use App\Models\CommMatrix;
+use App\Models\TransactionType;
+use App\Models\BillerOffering;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -96,6 +99,19 @@ class CommissionMatrixController extends Controller
         $commissionMatrix->delete();
 
         return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry deleted successfully.');
+    }
+    public function basiccommatrix()
+    {
+        // Fetch the necessary data for dropdowns
+        $transactionTypes = TransactionType::all();
+        $billers = Biller::all();
+        $billerOfferings = BillerOffering::all();
+
+        return view('agents.commissionMatrix.basiccomatrix', [
+            'transactionTypes' => $transactionTypes,
+            'billers' => $billers,
+            'billerOfferings' => $billerOfferings,
+        ]);
     }
 }
 

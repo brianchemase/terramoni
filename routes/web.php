@@ -185,7 +185,8 @@ Route::middleware(['auth'])->group(function()
      Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
      Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
-
+     Route::get('/commissionmatrix/basiccommmatrix',[CommissionMatrixController::class,'basiccommatrix'])->name('basiccommatrix');
+     
 
      Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix')->middleware('permission:admin-view-commission-matrix');
      Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create')->middleware('permission:admin-create-commission-matrix');
