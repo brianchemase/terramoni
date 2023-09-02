@@ -102,6 +102,7 @@ class AirtimeController extends Controller
             'agent_id' => $agent_id,
             'customer_reference' => $customer_reference,
             'ItemFee' => $topupAmount,//customer_reference
+            'transaction_type' => 'billpayment',
             'CurrencySymbol' => $paidCurrency,
             'BillerType' => 'Airtime Top up',
         ]);
@@ -204,6 +205,7 @@ class AirtimeController extends Controller
          'agent_id' => $agent_id,
          'customer_reference' => $customer_reference,
          'ItemFee' => $topupAmount,
+         'transaction_type' => 'billpayment',
          'CurrencySymbol' => $paidCurrency,
          'BillerType' => 'Data Top up',
      ]);

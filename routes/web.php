@@ -21,6 +21,8 @@ use App\Http\Controllers\BillerController;
 use App\Http\Controllers\TransactionTypeController;
 
 use App\Http\Controllers\AggregatorsController;
+use App\Http\Controllers\RoleBasedAccessController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +84,7 @@ Route::middleware(['auth'])->group(function()
 
     Route::get('send-mail', [AgentsController::class, 'mailtest']);// mail demo
     // view available music
-    Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
+   // Route::get('/ViewUploadedMusic', [AgentsController::class, 'available_music'])->name('availableMusic');
 
     //
     // my view agents list
@@ -118,7 +120,7 @@ Route::middleware(['auth'])->group(function()
 
 
     // view list of all POS Terminals
-    Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist');
+    Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist')->middleware('permission:admin-view-pos-terminals');
     Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
     Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
 
@@ -152,7 +154,7 @@ Route::middleware(['auth'])->group(function()
 
 
      // user profile
-     Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
+     //Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers');
      Route::post('/register-user', [UsersController::class, 'registerUser'])->name('register_user');
      Route::post('/update-user', [UsersController::class, 'updateUser'])->name('update_user');
     
@@ -160,30 +162,32 @@ Route::middleware(['auth'])->group(function()
      
      Route::get('/UsersManagement', [UsersController::class, 'userslist'])->name('AllUsers')->middleware('permission:admin-user-profile');
         // permissions matrix
-     Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix');
+     Route::get('/PermissionsMatrix', [AgentsController::class, 'permissions'])->name('permissionsmatrix')->middleware('permission:admin-view-permission-matrix');
 
 
      //Role based management
-     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles')->middleware('permission:admin-view-roles');
-     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole')->middleware('permission:admin-create-role');
+     Route::get('/roles', [RoleBasedAccessController::class, 'getAllRoles'])->name('AllRoles');//->middleware('permission:admin-view-roles');
+     Route::post('/update-role', [RoleBasedAccessController::class, 'updateRole'])->name('admin.update.role');
+     Route::post('/create-role', [RoleBasedAccessController::class, 'createRole'])->name('CreateRole');//->middleware('permission:admin-create-role');
      Route::get('/permissions', [RoleBasedAccessController::class, 'getAllPermissions'])->name('AllPermissions');//->middleware('permission:admin-view-permissions');
-     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission')->middleware('permission:admin-create-permission');
+     Route::post('/create-permission', [RoleBasedAccessController::class, 'createPermission'])->name('CreatePermission');//->middleware('permission:admin-create-permission');
      Route::get('/roles-permissions', [RoleBasedAccessController::class, 'getAssignableRole'])->name('AssignRole');//
      Route::post('/get-permissions-role/{id}', [RoleBasedAccessController::class, 'getAssignablePermissions'])->name('AssignPermissionsToRolesTest');
+     Route::post('/delete-role/{id}', [RoleBasedAccessController::class, 'deleteRole'])->name('delete.role');
      Route::post('/assign-permissions-role', [RoleBasedAccessController::class, 'AssignPermissionsToRoles'])->name('AssignPermissionsToRoles');
 
      //Commissions
-     Route::get('/Commissions', [CommissionController::class, 'manageCommissions'])->name('allcommissions');
+     Route::get('/Commissions', [CommissionController::class, 'manageCommissions'])->name('allcommissions')->middleware('permission:admin-manage-commissions');
 
 
      //Commission Matrix
 
-     Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
-     Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
-     Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
-     Route::get('/commissionmatrix/{cr_id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit');
-     Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
-     Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
+   //   Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix');
+   //   Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create');
+   //   Route::post('/commissionmatrix', [CommissionMatrixController::class, 'store'])->name('commissionmatrix.store');
+   //   Route::get('/commissionmatrix/{cr_id}/edit', [CommissionMatrixController::class, 'edit'])->name('commissionmatrix.edit');
+   //   Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
+   //   Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
      Route::get('/commissionmatrix/basiccommmatrix',[CommissionMatrixController::class,'basiccommatrix'])->name('basiccommatrix');
      
@@ -198,11 +202,11 @@ Route::middleware(['auth'])->group(function()
 
 
      //Agent Type
-     Route::get('agentTypes', [AgentTypeController::class,'index'])->name('agentTypes');
+     Route::get('agentTypes', [AgentTypeController::class,'index'])->name('agentTypes')->middleware('permission:admin-view-agent-types');
      Route::post('agentTypes', [AgentTypeController::class,'store'])->name('agentTypes.store');
-     Route::get('agentTypes/{agentType}/edit', [AgentTypeController::class,'edit'])->name('agentTypes.edit');
-     Route::put('agentTypes/{agentType}', [AgentTypeController::class,'update'])->name('agentTypes.update');
-     Route::get('agentTypes/{agentType}', [AgentTypeController::class,'destroy'])->name('agentTypes.destroy');
+     Route::get('agentTypes/{id}/edit', [AgentTypeController::class,'edit'])->name('agentTypes.edit');
+     Route::get('agentTypes/{id}', [AgentTypeController::class,'update'])->name('agentTypes.update');
+     Route::get('agentTypes/{id}', [AgentTypeController::class,'destroy'])->name('agentTypes.destroy');
 
      Route::get('agentTypes/create', [AgentTypeController::class, 'create'])->name('agents.modals.createagenttypes');
 
@@ -210,7 +214,7 @@ Route::middleware(['auth'])->group(function()
 
      //Agent Tier
      
-Route::get('/agentTiers', [AgentTierController::class, 'index'])->name('agentTiers');
+Route::get('/agentTiers', [AgentTierController::class, 'index'])->name('agentTiers')->middleware('permission:admin-view-agent-tiers');
 Route::get('/agentTiers/create', [AgentTierController::class, 'create'])->name('agents.modals.createagenttiers');
 Route::post('/agentTiers', [AgentTierController::class, 'store'])->name('agentTiers.store');
 Route::get('/agentTiers/{agentTier}', [AgentTierController::class, 'show'])->name('agentTiers.show');
@@ -222,7 +226,7 @@ Route::delete('/agentTiers/{agentTier}', [AgentTierController::class, 'destroy']
 
      //Transaction Type
      
-Route::get('/transactionTypes', [TransactionTypeController::class, 'index'])->name('transactionTypes');
+Route::get('/transactionTypes', [TransactionTypeController::class, 'index'])->name('transactionTypes')->middleware('permission:admin-view-transaction-types');
 Route::get('/transactionTypes/create', [TransactionTypeController::class, 'create'])->name('agents.modals.createtransactiontypes');
 Route::post('/transactionTypes', [TransactionTypeController::class, 'store'])->name('transactionTypes.store');
 Route::get('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'show'])->name('transactionTypes.show');
@@ -234,7 +238,7 @@ Route::delete('/transactionTypes/{transactionType}', [TransactionTypeController:
 
 
      //Biller
-     Route::get('/billers', [BillerController::class, 'index'])->name('billers');
+     Route::get('/billers', [BillerController::class, 'index'])->name('billers')->middleware('permission:admin-view-billers');
 Route::get('/billers/create', [BillerController::class, 'create'])->name('agents.modals.createbillers');
 Route::post('/billers', [BillerController::class, 'store'])->name('billers.store');
 Route::get('/billers/{biller}', [BillerController::class, 'show'])->name('billers.show');
@@ -245,7 +249,7 @@ Route::delete('/billers/{biller}', [BillerController::class, 'destroy'])->name('
 
 
      //Customer Segment
-     Route::get('/customerSegments', [CustomerSegmentController::class, 'index'])->name('customerSegments');
+     Route::get('/customerSegments', [CustomerSegmentController::class, 'index'])->name('customerSegments')->middleware('permission:admin-view-customer-segments');
 Route::get('/customerSegments/create', [CustomerSegmentController::class, 'create'])->name('agents.modals.createcustomersegment');
 Route::post('/customerSegments', [CustomerSegmentController::class, 'store'])->name('customerSegments.store');
 Route::get('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'show'])->name('customerSegments.show');
@@ -274,7 +278,7 @@ Route::middleware(['auth'])->group(function()
         Route::get('/forms', [AgentsDashboardController::class, 'form'])->name('agentsformpage');
 
          // view list of all POS Terminals
-        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals');
+        Route::get('/POSTerminalList', [AgentsDashboardController::class, 'allocatedterminals'])->name('allocatedterminals')->middleware('permission:view-agents-allocatedterminals');
 
          // user change password
          Route::get('/ChangeAgentPass', [AgentsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
@@ -283,5 +287,24 @@ Route::middleware(['auth'])->group(function()
     });
 
 });
+
+
+Route::middleware(['auth'])->group(function()
+ {
+
+    Route::group(['prefix' => 'aggregators'], function() {
+
+        Route::get('/', [AggregatorsController::class, 'dashboard'])->name('aggregatordash');
+      
+         // view list of all POS Terminals
+        Route::get('/POSTerminalList', [AggregatorsController::class, 'allocatedterminals'])->name('aggregatorallocatedterminals');
+
+         // user change password
+       //  Route::get('/ChangeAgentPass', [AggregatorsController::class, 'ChangeAgentPass'])->name('Agentchangepasspage');
+
+
+    });
+
+ });
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -52,15 +52,22 @@
 										<tr>
 											<th class="d-none d-xl-table-cell">#</th>
 											<th class="d-none d-xl-table-cell">Role</th>
-											<th class="d-none d-xl-table-cell">Date</th>											
+											<th class="d-none d-xl-table-cell">Date</th>	
+											<th class="d-none d-xl-table-cell">Action</th>										
 										</tr>
 									</thead>
 									<tbody>
-									@foreach($Roles as $data)
+									@foreach($Roles as $role)
 										<tr>
 											<td>{{ $loop->iteration }}</td>											
-											<td>{{ $data->name }} </td>
-											<td>{{ \Carbon\Carbon::parse($data->created_at)->format('jS M Y H:i:s') }} </td>
+											<td>{{ $role->name }} </td>
+											<td>{{ \Carbon\Carbon::parse($role->created_at)->format('jS M Y H:i:s') }} </td>
+											<td><a href="#editRoleModal{{$role->id}}" title="Edit Role" data-toggle="modal" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+											<a href="#" data-id="{{$role->id}}" title="Delete Role" class="btn btn-danger delete-role"><i class="fa fa-trash"></i></a>
+										
+										</td>
+											
+											@include('agents.modals.editrole')
 										</tr>
 										@endforeach							
 										

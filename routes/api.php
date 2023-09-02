@@ -44,7 +44,8 @@ Route::post('/BillersList', [BillersController::class, 'billers_data']);//biller
 
 //agents registration api
 Route::get('/getAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
-
+//get agent transactionssammary
+Route::get('/getAgentsTransactionsSummary/{agent_id}', [TransactionsController::class, 'eodtransactions']);//agents EOD transactions API
 
 
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
@@ -63,8 +64,25 @@ Route::post('/PayElectricity', [BillPaymentController::class, 'pay_electricity']
 //list electricity services
 Route::get('/PayElectricityList', [BillPaymentController::class, 'getElectricityData']);
 
-//list electricity services
+//list TV  services
+Route::get('/PayTvList', [BillPaymentController::class, 'gettVData']);
+
+//list product ids
+Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products']);
+
+//pay for TV
+Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
+
+//check for TV aCcount
+Route::post('/ConfirmTvAccount', [BillPaymentController::class, 'checkTvAccount']);
+
+
+//get agents' commission earned
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
+
+
+
+
 
 
 //nibs apis

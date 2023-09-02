@@ -182,6 +182,257 @@ class BillPaymentController extends Controller
         return response()->json($response);
 
     }
+
+    public function gettVData()
+    {
+        // Replace these variables with your actual values
+        $apiUrl = 'https:/clients.primeairtime.com/api/billpay/country/NG/dstv';
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
+
+    }
+
+    public function List_TVs_products(Request $request)
+    {
+
+        $request->validate([
+            //'meter' => 'required',
+            'product_id' => 'required',
+            //'prepaid' => 'required',
+           // 'denomination' => 'required',
+           // 'agent_id' => 'required',
+           // 'client_phone' => 'required',
+        ]);
+
+        $input = request()->all();
+            
+        $product_id = $request->input('product_id');
+
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+
+        $apiUrl = "https://clients.primeairtime.com/api/billpay/dstv/$product_id";
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        //$authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
+
+        
+    }
+
+
+    public function payforTv(Request $request)
+    {
+        $request->validate([
+            'accno' => 'required',
+            'amount' => 'required',
+            'agent_id' => 'required',
+        ]);
+        $input = request()->all();     
+        $accno = $request->input('accno');
+        $amount = $request->input('amount');
+        $agent_id = $request->input('agent_id');
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+        // URL to send the POST request to
+       // $url = "https://clients.primeairtime.com/api/billpay/dstvnew/8063831361";
+        $url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
+
+        // Replace this with your Bearer token
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        $agent = DB::table('tbl_agents')
+        ->select('first_name', 'last_name')
+        ->where('id', $agent_id)
+        ->first();
+
+            $agent_names = null;
+            if ($agent) {
+                $agent_names = $agent->first_name . ' ' . $agent->last_name;
+            }
+
+        // Data to send in the POST request
+        $data = array(
+            'amount' => $amount
+            // Add more parameters as needed
+        );
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization, // Add the Bearer token to the request headers
+        ]);
+
+        // Execute cURL session and get the response
+        $response = curl_exec($ch);
+      
+        // Assuming $response contains the JSON response received from the API
+        $responseData = json_decode($response, true);
+
+        $productId = $responseData['product_id'];
+        $target = $responseData['target'];
+        //$agent_names = 'your_agent_name'; // Replace with your agent's name
+        //$agent_id = 'your_agent_id'; // Replace with your agent's ID
+        $customer_reference = $responseData['reference'];
+        $topupAmount = $responseData['topup_amount'];
+        $paidCurrency = $responseData['paid_currency'];
+
+        $todayDate = now(); // You can adjust this according to your date format needs
+
+        // Store the data into the tbl_transactions table using the DB facade
+        DB::table('tbl_transactions')->insert([
+            'Name' => $productId,
+            'BillerName' => $target,
+            'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
+            'customer_reference' => $customer_reference,
+            'ItemFee' => $topupAmount,
+            'CurrencySymbol' => $paidCurrency,
+            'BillerType' => 'TV Payment Bill',
+           // 'created_at' => $todayDate,
+           // 'updated_at' => $todayDate,
+        ]);
+
+        // Calculate commission
+        $commission = $topupAmount * 0.015;
+
+        DB::table('tbl_commissions')->insert([
+            'transaction_id' => $customer_reference,
+            'agent_id' => $agent_id,
+            'amount' => $topupAmount,
+            'commission' => $commission,
+            'date' => $todayDate,
+            'type' => 'Debit',
+            //'created_at' => $todayDate,
+            //'updated_at' => $todayDate,
+        ]);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return 'cURL Error: ' . curl_error($ch);
+        }
+
+        // Close cURL session
+        curl_close($ch);
+
+        // You can handle the response as needed, such as returning it or saving it to a database
+        return $response;
+    }
+
+    public function checkTvAccount(Request $request)
+    {
+        $request->validate([
+            'accno' => 'required',
+            //'amount' => 'required',
+            //'agent_id' => 'required',
+        ]);
+        $input = request()->all();     
+        $accno = $request->input('accno');
+        //$amount = $request->input('amount');
+        //$agent_id = $request->input('agent_id');
+        $todayDate = date("Ymd");
+        $refnumber = $todayDate . rand(1, 50000);
+        // URL to send the get request to
+       
+        $url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
+
+        // Replace this with your Bearer token
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+     
+                // Initialize cURL session
+                $ch = curl_init();
+
+                // Set the cURL options
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HTTPGET, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $authorization, // Add the Bearer token to the request headers
+                ]);
+
+                // Execute the cURL request
+                $response = curl_exec($ch);
+
+                // Check for cURL errors
+                if (curl_errno($ch)) {
+                    echo 'cURL error: ' . curl_error($ch);
+                }
+
+                // Close the cURL session
+                curl_close($ch);
+                    // Parse the JSON response
+                    $responseData = json_decode($response, true);
+
+                    // Check if parsing was successful
+                    if ($responseData === null) {
+                        return response('Error: Unable to parse JSON response', 500);
+                    }
+                    return response()->json($responseData);
+
+        
+    }
+
+
+
+
+
     private function sendSMS(string $toNumber, string $message)
     {
         // Replace these with your actual credentials

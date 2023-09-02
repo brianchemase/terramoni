@@ -15,4 +15,21 @@ class CommissionController extends Controller
 
         return view('agents.commissionstable', ['commissions' => $commissions]);
     }
+
+    public function showCommission($agent_id)
+    {
+        $totalCommission = DB::table('tbl_commissions')
+            ->where('agent_id', $agent_id)
+            ->sum('commission');
+
+            $totaltransAmount = DB::table('tbl_transactions')
+            ->where('agent_id', $agent_id)
+            ->sum('ItemFee');
+
+            $walletvalue="100000";
+
+            $bankWallet=$walletvalue-$totaltransAmount;
+
+        return response()->json(['total_commission' => $totalCommission, 'bankWallet' => $bankWallet]);
+    }
 }
