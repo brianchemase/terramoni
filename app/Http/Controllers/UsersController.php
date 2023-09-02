@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Role;
 use Carbon\Carbon;
 use Mail;
 use App\Models\User;
@@ -17,10 +19,11 @@ class UsersController extends Controller
     {
 
         $users = DB::table('users')->get();
+        $roles = DB::table('roles')->get();
 
        // return $users;
 
-        return view ('agents.manageusers',['users' => $users]);
+        return view ('agents.manageusers',['users' => $users,'roles'=>$roles]);
     }
 
     public function registerUser(Request $request)
@@ -45,6 +48,11 @@ class UsersController extends Controller
         $user->password = bcrypt($validatedData['password']);
         $user->save();
 
+        $role = Role::find($validatedData['role']);
+
+        // Adding permissions via a role
+        $user->assignRole($role->name);
+
         // Redirect back or to a success page
         return redirect()->back()->with('success', 'User registered successfully!');
     }
@@ -60,6 +68,11 @@ class UsersController extends Controller
         $user->role = $request->input('role');
 
         $user->save();
+
+        $role = Role::find($request->input('role'));
+
+        // Adding permissions via a role
+        $user->assignRole($role->name);
 
         return redirect()->back()->with('success', 'User updated successfully.');
     }

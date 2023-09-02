@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -76,10 +77,12 @@ class LoginController extends Controller
 
     public function getRedirectRoute()
     {
-        //Log::info((int)$this->role);
-        return match((int)auth()->user()->role) {
-            9 => 'admindash',
-            2 => 'teacher.dashboard',
+      $role = Role::find((int)auth()->user()->role);
+       
+        return match($role->name) {         
+            "AGGREGATOR" => 'aggregatordash',
+            "AGENT" => 'agentsdash',
+            default => 'admindash'
         };
     }
 }

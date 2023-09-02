@@ -64,6 +64,7 @@ class User extends Authenticatable
         return match((int)$this->role) {
             9 => 'agentsdash',
             2 => 'teacher.dashboard',
+            1 => 'admins',
         };
     }
 }

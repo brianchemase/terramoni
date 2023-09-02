@@ -9,6 +9,31 @@
 
         <h1 class="h3 mb-3">Edit Commission Matrix</h1>
 
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            <div class="alert-message">
+                <strong>{{ $message }}</strong>
+            </div>
+        </div>
+        @endif
+
+        @if (count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            <div class="alert-message">
+                <strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </strong>
+            </div>
+        </div>
+        @endif
+
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -36,11 +61,12 @@
                             <!-- ROW 2 -->
                             <div class="col-md-4">
                                 <label for="state_id" class="form-label">State ID</label>
-                                <input type="number" class="form-control" id="state_id" name="state_id" value="{{ $commissionMatrix->state_id }}">
+                                
+                                <input type="text" class="form-control" id="state_id" name="state_id" value="{{ $commissionMatrix->state_id }}">
                             </div>
                             <div class="col-md-4">
                                 <label for="lga_id" class="form-label">LGA ID</label>
-                                <input type="number" class="form-control" id="lga_id" name="lga_id" value="{{ $commissionMatrix->lga_id }}">
+                                <input type="text" class="form-control" id="lga_id" name="lga_id" value="{{ $commissionMatrix->lga_id }}">
                             </div>
                             <div class="col-md-4">
                                 <label for="biller_id" class="form-label">Biller ID</label>

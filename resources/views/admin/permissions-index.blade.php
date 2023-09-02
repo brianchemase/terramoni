@@ -67,24 +67,5 @@
 
 
 </main>
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const inputField = document.getElementById('permissionid');
 
-		inputField.addEventListener('permissionid', function() {
-			const inputValue = inputField.value;
-			const dashedValue = inputValue.replace(/ /g, '-');
-			inputField.value = dashedValue;
-		});
-	});
-</script>
 @endsection
-<script>
-	const inputField = document.getElementById('inputField');
-
-	inputField.addEventListener('input', function() {
-		const inputValue = inputField.value;
-		const dashedValue = inputValue.replace(/ /g, '-');
-		inputField.value = dashedValue;
-	});
-</script>

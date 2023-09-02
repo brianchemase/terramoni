@@ -12,7 +12,7 @@ class CommMatrix extends Model
     public $timestamps = false;
 
 
-    protected $table = 'commission_matrix1'; 
+    protected $table = 'commission_matrix'; 
 
     protected $fillable = [
         'agent_type',
