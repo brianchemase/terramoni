@@ -20,12 +20,13 @@
 					</li>
 					@endcan					
 					
-					<!-- @can('admin-view-agents-dashboard') -->
+					
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentstab')}}">
                             <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
                         </a>
 					</li>
+					<!-- @can('admin-view-agents-dashboard') -->
 					<!-- @endcan -->
 
 					@can('admin-view-aggregators')
@@ -196,7 +197,7 @@
 					</li>
 					@endcan
 
-					<!-- @can('admin-view-roles','admin-view-permissions') -->
+					
 					<li class="sidebar-item">
 						<a data-target="#roles" data-toggle="collapse" class="sidebar-link collapsed">
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Role Based Access</span>
@@ -214,6 +215,7 @@
 													
 						</ul>
 					</li>
+					<!-- @can('admin-view-roles','admin-view-permissions') -->
 					<!-- @endcan -->
 
 					

@@ -414,6 +414,7 @@ class AgentsController extends Controller
                 'agent_id' => $agentId,
                 'owner_name' => $agentNames,
                 'owner_type' => 'Agent',
+                'assignment_date' => now(),
                 'status' => 'Assigned'
             ]);
 
