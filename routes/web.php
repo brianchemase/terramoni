@@ -88,7 +88,7 @@ Route::middleware(['auth'])->group(function()
 
     //
     // my view agents list
-    Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab')->middleware('permission:admin-view-agents-dashboard');
+    Route::get('/ViewmyagentsList', [AgentsController::class, 'agentstab'])->name('agentstab');//->middleware('permission:admin-view-agents-dashboard');
     Route::post('/SaveAgent', [AgentsController::class, 'savenewagent'])->name('saveagentdata')->middleware('permission:admin-create-agent');// save agent data
     Route::get('/agent/UpdateAgent/{agent_id}', [AgentsController::class, 'edit_agent'])->name('agentedit')->middleware('permission:admin-edit-agent');
     Route::put('/agent/{agent_id}', [AgentsController::class, 'update_agent'])->name('update_agent')->middleware('permission:admin-update-agent');//up
@@ -126,6 +126,8 @@ Route::middleware(['auth'])->group(function()
 
 
     Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
+    Route::post('/update-pos-terminal', [PosTerminalController::class, 'updatePOSStatus'])->name('updatePosTerminal');
+
 
     // import terminals
     Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals')->middleware('permission:admin-import-pos-terminal');// save pos data

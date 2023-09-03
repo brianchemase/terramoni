@@ -53,14 +53,15 @@
 												<th>Owner Role</th>
 												<th>Allocation Date</th>
 												<th>Status</th>
+												<th>Actions</th>
+
 												
 											</tr>
 										</thead>
 										<tbody>
 										@foreach($pos_terminals as $data)
 											<tr>
-											<td>{{ $loop->iteration }} </td>
-										
+												<td>{{ $loop->iteration }} </td>
 												<td>{{ $data->device_name }}  <br> {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</td>
 												<td>{{ $data->serial_no }} <br> {{ $data->device_model }}</td>
 												<td>{{ $data->device_model }}</td>
@@ -80,6 +81,22 @@
 												
 
 												</td>
+												<td> 
+													<!-- Default dropleft button -->
+														<div class="btn-group dropleft">
+														<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<i class="fa fa-tasks" aria-hidden="true"></i>
+														</button>
+														<div class="dropdown-menu">
+															<!-- Dropdown menu links -->
+															<a class="dropdown-item" href="#viewPOS{{$data->id}}" data-toggle="modal">View Details</a>
+															<a class="dropdown-item" href="#suspendpos{{$data->id}}" data-toggle="modal" style="color: red;">Suspend/Reposses</a>		
+														</div>
+														</div>
+
+														
+												</td>
+												@include('agents.modals.viewPos')
 												
 											</tr>
 											@endforeach
