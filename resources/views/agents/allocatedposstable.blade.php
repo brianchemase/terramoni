@@ -75,8 +75,8 @@
 														<span class="badge bg-success">Active</span>
 													@elseif($data->status == 'faulty')
 														<span class="badge bg-danger">Faulty</span>
-													@elseif($data->status == 'available')
-														<span class="badge bg-warning">Inactive</span>
+													@elseif($data->status == 'Deactivated')
+														<span class="badge bg-warning">Deactivated</span>
 													@endif
 												
 
