@@ -133,6 +133,15 @@
 					@endcan
 
 					@can('admin-view-commission-matrix')
+					<li class="sidebar-item {{ Route::currentRouteName() === 'basiccommissionmatrix' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('basiccommissionmatrix')}}">
+							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Basic Commission Matrix</span>
+							
+						</a>
+					</li>
+					@endcan
+
+					@can('admin-view-commission-matrix')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'commissionmatrix' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('commissionmatrix')}}">
 							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Commission Matrix</span>

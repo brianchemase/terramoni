@@ -189,7 +189,6 @@ Route::middleware(['auth'])->group(function()
    //   Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
    //   Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
-     Route::get('/commissionmatrix/basiccommmatrix',[CommissionMatrixController::class,'basiccommatrix'])->name('basiccommatrix');
      
 
      Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix')->middleware('permission:admin-view-commission-matrix');
@@ -199,7 +198,12 @@ Route::middleware(['auth'])->group(function()
      Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update')->middleware('permission:admin-update-commission-matrix');
      Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy')->middleware('permission:admin-delete-commission-matrix');
 
-
+//Basic Commission Matrix
+Route::get('/basiccommissionmatrix', [CommissionMatrixController::class, 'basicCommissionMatrix'])->name('basiccommissionmatrix');
+Route::get('/basiccommissionmatrix/{cr_id}/edit',[CommissionMatrixController::class, 'editbasicCommissionMatrix'])->name('basiccommissionmatrix.edit');
+Route::post('/basiccommissionmatrix', [CommissionMatrixController::class, 'storebasicCommissionMatrix'])->name('basiccommissionmatrix.store');
+Route::put('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'updatebasicCommissionMatrix'])->name('basiccommissionmatrix.update');
+Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroybasicCommissionMatrix'])->name('basiccommissionmatrix.destroy');
 
      //Agent Type
      Route::get('agentTypes', [AgentTypeController::class,'index'])->name('agentTypes')->middleware('permission:admin-view-agent-types');
