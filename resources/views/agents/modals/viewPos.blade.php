@@ -59,6 +59,7 @@
             <select class="form-control" name="action" id="exampleFormControlSelect1">
                 <option value="Suspend">Suspend</option>
                 <option value="Repossess">Repossess</option>
+                <option value="faulty">Faulty</option>
                 <option value="Deactivate">Deactivate</option>
                 <!-- <option value="4">4</option>
                 <option value="5">5</option> -->

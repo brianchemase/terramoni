@@ -20,13 +20,13 @@
 					</li>
 					@endcan					
 					
-					@can('admin-view-agents-dashboard')
+					<!-- @can('admin-view-agents-dashboard') -->
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentstab' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentstab')}}">
                             <i class="align-middle" data-feather="users"></i> <span class="align-middle">Agents</span>
                         </a>
 					</li>
-					@endcan
+					<!-- @endcan -->
 
 					@can('admin-view-aggregators')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'aggregatorslist' ? 'active' : '' }}">

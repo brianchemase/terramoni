@@ -68,6 +68,17 @@ class PosTerminalController extends Controller
                 'comment' => $request->input('comment'),
             ]);
     }  
+    elseif ($request->input('action') === 'faulty') {
+        $affectedRows = DB::table('tbl_pos_terminals')
+            ->where('serial_no', $request->input('serial_no'))
+            ->update([
+                'status' => 'faulty', // Update status to 'suspended'
+                'agent_id' => 'Null',
+                'aggregator_id' => 'Null',
+                'owner_type' => 'store',
+                'comment' => $request->input('comment'),
+            ]);
+    }  
     else {
         // For other actions, update only 'action' and 'comment'
         $affectedRows = DB::table('tbl_pos_terminals')
