@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biller;
 use App\Models\CommMatrix;
+use App\Models\TransactionType;
+use App\Models\BillerOffering;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -120,8 +124,77 @@ class CommissionMatrixController extends Controller
         $commissionMatrix = CommMatrix::findOrFail($cr_id);
         $commissionMatrix->delete();
 
-        
+    
     }
+    public function basicCommissionMatrix()
+{
+    $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount')->get();
+    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices'));
+}
+
+public function editbasicCommissionMatrix($cr_id)
+{
+    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+    return view('agents.basiccommissionmatrix.edit', compact('basicCommissionMatrix'));
+}
+
+public function destroybasicCommissionMatrix($cr_id)
+{
+    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+    $basicCommissionMatrix->delete();
+    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix deleted successfully.');
+}
+
+public function storebasicCommissionMatrix(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        
+        'agent_type' => 'required|string|max:255',
+        'agent_tier_level' => 'nullable|numeric',
+        'transaction_type' => 'nullable|numeric',
+        'min_trans_amount' => 'required|numeric',
+        'max_trans_amount' => 'nullable|numeric',
+        
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    CommMatrix::create($request->all());
+
+    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix created successfully.');
+}
+
+public function updatebasicCommissionMatrix(Request $request, $cr_id)
+{
+    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+
+    $validator = Validator::make($request->all(), [
+        
+        'agent_type' => 'required|string|max:255',
+        'agent_tier_level' => 'nullable|numeric',
+        'transaction_type' => 'nullable|numeric',
+        'min_trans_amount' => 'required|numeric',
+        'max_trans_amount' => 'nullable|numeric',
+        
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()
+            ->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $basicCommissionMatrix->update($request->all());
+
+    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
+}
+
 }
 
 
