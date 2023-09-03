@@ -97,4 +97,28 @@ class PosTerminalController extends Controller
         return redirect()->back()->with('error', 'POS Terminal not found or not updated');
     }
     }
+
+
+    public function ActivatePOS($serial)
+    {
+
+       // Get agent's information
+       $terminal = DB::table('tbl_pos_terminals')->where('serial_no', $serial)->first();
+
+       if (!$terminal) {
+           return back()->with('error', 'Agent not found!');
+       }
+
+      // $agentRole = $agent->agent_role;
+
+       // Update agent's status to "suspended"
+       DB::table('tbl_pos_terminals')->where('serial_no', $serial)->update(['status' => 'available']);
+
+      // $message = ($agentRole === 'agent') ? 'Agent suspended' : 'Aggregator suspended';
+      $message ="POS terminal activated";
+
+       return back()->with('success', $message . ' successfully!');
+
+
+    }
 }

@@ -99,9 +99,25 @@
 
 												</td>
 												<td>
-												<a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
+												<div class="btn-group dropleft">
+															<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="fa fa-tasks" aria-hidden="true"></i>
+															</button>
+															<div class="dropdown-menu">
+																<!-- Dropdown menu links -->
+																<a class="dropdown-item" href="#viewPOS{{$data->id}}" data-toggle="modal">View Details</a>
+																@if($data->status != 'available')
+																<a class="dropdown-item" href="{{ route('activate_pos', ['serial' => $data->serial_no]) }}">Activate POS Agent</a>
+																
+																@endif
+																<a class="dropdown-item" href="#suspendpos{{$data->id}}" data-toggle="modal" style="color: red;">Suspend/Reposses</a>		
+															</div>
+														</div>
+
+												<!-- <a href="#" class="btn btn-success"> <i class="align-middle" data-feather="eye"></i></a>
                                                 <a href="#" class="btn btn-primary"> <i class="align-middle" data-feather="printer"></i></a>
-												
+												 -->
+												 @include('agents.modals.viewPos')
 												</td>
 											</tr>
 											@endforeach

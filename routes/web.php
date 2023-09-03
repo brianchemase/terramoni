@@ -123,6 +123,7 @@ Route::middleware(['auth'])->group(function()
     Route::get('/POSTerminalList', [AgentsController::class, 'postterminalstab'])->name('posterminalslist')->middleware('permission:admin-view-pos-terminals');
     Route::get('/RegisterPOSTerminal', [AgentsController::class, 'savepostterminal'])->name('storeposterminal');
     Route::post('/savePOS', [AgentsController::class, 'savePosData'])->name('saveposdata');// save pos data
+    Route::any('/ActivatePos/{serial}', [PosTerminalController::class, 'ActivatePOS'])->name('activate_pos');//Activate POS
 
 
     Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
