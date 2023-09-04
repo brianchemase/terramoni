@@ -75,7 +75,7 @@ Route::get('/PayTvList', [BillPaymentController::class, 'gettVData']);
 Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products']);
 
 //list product ids
-Route::any('/Tvproducts/{product_id}', [BillPaymentController::class, 'getTvDataListing']);
+Route::any('/Tvproducts', [BillPaymentController::class, 'getTvDataListing']);
 
 //pay for TV
 Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
