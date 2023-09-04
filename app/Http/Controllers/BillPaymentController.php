@@ -465,6 +465,41 @@ class BillPaymentController extends Controller
 
     }
 
+    public function getTvDataListing($product_id)
+    {
+        // Replace these variables with your actual values
+        $apiUrl = 'https://clients.primeairtime.com/api/billpay/country/NG/internet';
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
+
+    }
+
 
 
 

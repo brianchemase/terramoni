@@ -74,6 +74,9 @@ Route::get('/PayTvList', [BillPaymentController::class, 'gettVData']);
 //list product ids
 Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products']);
 
+//list product ids
+Route::any('/Tvproducts/{product_id}', [BillPaymentController::class, 'getTvDataListing']);
+
 //pay for TV
 Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
 
@@ -87,6 +90,8 @@ Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'sho
 //list internet services
 Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
 
+//list  services
+Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
 
 
 
