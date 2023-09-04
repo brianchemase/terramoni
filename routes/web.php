@@ -202,12 +202,12 @@ Route::middleware(['auth'])->group(function()
      Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update')->middleware('permission:admin-update-commission-matrix');
      Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy')->middleware('permission:admin-delete-commission-matrix');
 
-//Basic Commission Matrix
-Route::get('/basiccommissionmatrix', [CommissionMatrixController::class, 'basicCommissionMatrix'])->name('basiccommissionmatrix');
-Route::get('/basiccommissionmatrix/{cr_id}/edit',[CommissionMatrixController::class, 'editbasicCommissionMatrix'])->name('basiccommissionmatrix.edit');
-Route::post('/basiccommissionmatrix', [CommissionMatrixController::class, 'storebasicCommissionMatrix'])->name('basiccommissionmatrix.store');
-Route::put('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'updatebasicCommissionMatrix'])->name('basiccommissionmatrix.update');
-Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroybasicCommissionMatrix'])->name('basiccommissionmatrix.destroy');
+     //Basic Commission Matrix
+     Route::get('/basiccommissionmatrix', [CommissionMatrixController::class, 'basicCommissionMatrix'])->name('basiccommissionmatrix');
+     Route::get('/basiccommissionmatrix/{cr_id}/edit',[CommissionMatrixController::class, 'editbasicCommissionMatrix'])->name('basiccommissionmatrix.edit');
+     Route::post('/basiccommissionmatrix', [CommissionMatrixController::class, 'storebasicCommissionMatrix'])->name('basiccommissionmatrix.store');
+     Route::put('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'updatebasicCommissionMatrix'])->name('basiccommissionmatrix.update');
+     Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroybasicCommissionMatrix'])->name('basiccommissionmatrix.destroy');
 
      //Agent Type
      Route::get('agentTypes', [AgentTypeController::class,'index'])->name('agentTypes')->middleware('permission:admin-view-agent-types');
@@ -222,57 +222,57 @@ Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::cla
 
      //Agent Tier
      
-Route::get('/agentTiers', [AgentTierController::class, 'index'])->name('agentTiers')->middleware('permission:admin-view-agent-tiers');
-Route::get('/agentTiers/create', [AgentTierController::class, 'create'])->name('agents.modals.createagenttiers');
-Route::post('/agentTiers', [AgentTierController::class, 'store'])->name('agentTiers.store');
-Route::get('/agentTiers/{agentTier}', [AgentTierController::class, 'show'])->name('agentTiers.show');
-Route::get('/agentTiers/{agentTier}/edit', [AgentTierController::class, 'edit'])->name('agentTiers.edit');
-Route::put('/agentTiers/{agentTier}', [AgentTierController::class, 'update'])->name('agentTiers.update');
-Route::delete('/agentTiers/{agentTier}', [AgentTierController::class, 'destroy'])->name('agentTiers.destroy');
+     Route::get('/agentTiers', [AgentTierController::class, 'index'])->name('agentTiers')->middleware('permission:admin-view-agent-tiers');
+     Route::get('/agentTiers/create', [AgentTierController::class, 'create'])->name('agents.modals.createagenttiers');
+     Route::post('/agentTiers', [AgentTierController::class, 'store'])->name('agentTiers.store');
+     Route::get('/agentTiers/{agentTier}', [AgentTierController::class, 'show'])->name('agentTiers.show');
+     Route::get('/agentTiers/{agentTier}/edit', [AgentTierController::class, 'edit'])->name('agentTiers.edit');
+     Route::put('/agentTiers/{agentTier}', [AgentTierController::class, 'update'])->name('agentTiers.update');
+     Route::delete('/agentTiers/{agentTier}', [AgentTierController::class, 'destroy'])->name('agentTiers.destroy');
 
 
 
      //Transaction Type
      
-Route::get('/transactionTypes', [TransactionTypeController::class, 'index'])->name('transactionTypes')->middleware('permission:admin-view-transaction-types');
-Route::get('/transactionTypes/create', [TransactionTypeController::class, 'create'])->name('agents.modals.createtransactiontypes');
-Route::post('/transactionTypes', [TransactionTypeController::class, 'store'])->name('transactionTypes.store');
-Route::get('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'show'])->name('transactionTypes.show');
-Route::get('/transactionTypes/{transactionType}/edit', [TransactionTypeController::class, 'edit'])->name('transactionTypes.edit');
-Route::put('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'update'])->name('transactionTypes.update');
-Route::delete('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'destroy'])->name('transactionTypes.destroy');
+     Route::get('/transactionTypes', [TransactionTypeController::class, 'index'])->name('transactionTypes')->middleware('permission:admin-view-transaction-types');
+     Route::get('/transactionTypes/create', [TransactionTypeController::class, 'create'])->name('agents.modals.createtransactiontypes');
+     Route::post('/transactionTypes', [TransactionTypeController::class, 'store'])->name('transactionTypes.store');
+     Route::get('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'show'])->name('transactionTypes.show');
+     Route::get('/transactionTypes/{transactionType}/edit', [TransactionTypeController::class, 'edit'])->name('transactionTypes.edit');
+     Route::put('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'update'])->name('transactionTypes.update');
+     Route::delete('/transactionTypes/{transactionType}', [TransactionTypeController::class, 'destroy'])->name('transactionTypes.destroy');
 
 
 
 
      //Biller
      Route::get('/billers', [BillerController::class, 'index'])->name('billers')->middleware('permission:admin-view-billers');
-Route::get('/billers/create', [BillerController::class, 'create'])->name('agents.modals.createbillers');
-Route::post('/billers', [BillerController::class, 'store'])->name('billers.store');
-Route::get('/billers/{biller}', [BillerController::class, 'show'])->name('billers.show');
-Route::get('/billers/{biller}/edit', [BillerController::class, 'edit'])->name('billers.edit');
-Route::put('/billers/{biller}', [BillerController::class, 'update'])->name('billers.update');
-Route::delete('/billers/{biller}', [BillerController::class, 'destroy'])->name('billers.destroy');
+     Route::get('/billers/create', [BillerController::class, 'create'])->name('agents.modals.createbillers');
+     Route::post('/billers', [BillerController::class, 'store'])->name('billers.store');
+     Route::get('/billers/{biller}', [BillerController::class, 'show'])->name('billers.show');
+     Route::get('/billers/{biller}/edit', [BillerController::class, 'edit'])->name('billers.edit');
+     Route::put('/billers/{biller}', [BillerController::class, 'update'])->name('billers.update');
+     Route::delete('/billers/{biller}', [BillerController::class, 'destroy'])->name('billers.destroy');
 
 
 
      //Customer Segment
      Route::get('/customerSegments', [CustomerSegmentController::class, 'index'])->name('customerSegments')->middleware('permission:admin-view-customer-segments');
-Route::get('/customerSegments/create', [CustomerSegmentController::class, 'create'])->name('agents.modals.createcustomersegment');
-Route::post('/customerSegments', [CustomerSegmentController::class, 'store'])->name('customerSegments.store');
-Route::get('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'show'])->name('customerSegments.show');
-Route::get('/customerSegments/{customerSegment}/edit', [CustomerSegmentController::class, 'edit'])->name('customerSegments.edit');
-Route::put('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'update'])->name('customerSegments.update');
-Route::delete('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'destroy'])->name('customerSegments.destroy');
-     
+     Route::get('/customerSegments/create', [CustomerSegmentController::class, 'create'])->name('agents.modals.createcustomersegment');
+     Route::post('/customerSegments', [CustomerSegmentController::class, 'store'])->name('customerSegments.store');
+     Route::get('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'show'])->name('customerSegments.show');
+     Route::get('/customerSegments/{customerSegment}/edit', [CustomerSegmentController::class, 'edit'])->name('customerSegments.edit');
+     Route::put('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'update'])->name('customerSegments.update');
+     Route::delete('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'destroy'])->name('customerSegments.destroy');
+          
 
-//Promotion
-Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions');
-Route::get('/promotions/create', [PromotionController::class, 'create'])->name('agents.modals.createpromotion');
-Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
-Route::post('/promotions', [PromotionController::class, 'store'])->name('promotions.store');
-Route::put('/promotions/{id}', [PromotionController::class, 'update'])->name('promotions.update');
-Route::delete('/promotions/{id}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
+     //Promotion
+     Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions');
+     Route::get('/promotions/create', [PromotionController::class, 'create'])->name('agents.modals.createpromotion');
+     Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+     Route::post('/promotions', [PromotionController::class, 'store'])->name('promotions.store');
+     Route::put('/promotions/{id}', [PromotionController::class, 'update'])->name('promotions.update');
+     Route::delete('/promotions/{id}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
 
 
     });
