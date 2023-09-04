@@ -51,12 +51,14 @@ Route::get('/getAgentsTransactionsSummary/{agent_id}', [TransactionsController::
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
 Route::post('/smstransactions', [AgentsController::class, 'storeSms']);
 
+//get providers for Airtime
+Route::get('/CheckAirtimeProvider/{phone}', [AirtimeController::class, 'getAirtimeProviders']);
 
 Route::post('/AirtimeTopup', [AirtimeController::class, 'topup']);
-
-Route::post('/DataTopup', [AirtimeController::class, 'datatopup']);
-//list electricity services
+//get providers for Data
 Route::get('/checkDataProvider/{phone}', [AirtimeController::class, 'getDataProviders']);
+Route::post('/DataTopup', [AirtimeController::class, 'datatopup']);
+
 
 
 //bill payments
