@@ -47,13 +47,31 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>
-                        <input type="number" class="form-control" id="min_trans_amount" name="min_trans_amount" placeholder="Enter Min Transaction Amount" required>
+                    <div class="col-md-4">
+                        <label for="biller_id" class="form-label">Biller</label>
+                        <!-- <input type="number" class="form-control" id="biller_id" name="biller_id" placeholder="Enter Biller" required> -->
+                        <select class="form-select" id="biller_id" name="biller_id" required>
+                        <option value="" selected disabled>Select Biller</option>
+                        @foreach($billers as $biller)
+                        <option value="{{ $biller->biller_id }}">{{ $biller->biller_name }}</option>
+                        @endforeach
+                    </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="max_trans_amount" class="form-label">Max Transaction Amount</label>
-                        <input type="number" class="form-control" id="max_trans_amount" name="max_trans_amount" placeholder="Enter Max Transaction Amount">
+                   
+                    <!-- ROW 3 -->
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="min_trans_amount" class="form-label">Min Commission Amount</label>
+                            <input type="number" class="form-control" id="min_trans_amount" name="min_trans_amount" placeholder="Enter Min Transaction Amount" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="max_trans_amount" class="form-label">Max Commission Amount</label>
+                            <input type="number" class="form-control" id="max_trans_amount" name="max_trans_amount" placeholder="Enter Max Transaction Amount">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="commission_rate" class="form-label">Commission Rate</label>
+                            <input type="number" step="0.01" class="form-control" id="commission_rate" name="commission_rate" placeholder="Enter Commission Rate" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

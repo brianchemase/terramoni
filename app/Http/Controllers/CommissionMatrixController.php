@@ -136,15 +136,16 @@ class CommissionMatrixController extends Controller
     }
     public function basicCommissionMatrix()
 {
-    $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount')->get();
+    $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount','biller_id')->get();
 
     $agentTypes = AgentType::all();
 
     $agentTier = AgentTier::all();
 
     $transactionTypes = TransactionType::all();
+    $billers = Biller::all();
 
-    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes'));
+    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes','billers'));
 }
 
 public function editbasicCommissionMatrix($cr_id)

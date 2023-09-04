@@ -63,6 +63,7 @@
                             <th>Agent Type</th>
                             <th>Agent Tier Level</th>
                             <th>Transaction Type</th>
+                            <th>Biller ID</th>
                             <th>Min Transaction Amount</th>
                             <th>Max Transaction Amount</th>
                             <th>Action</th>
@@ -77,6 +78,7 @@
                             <td>{{ $matrix->agent_type }}</td>
                             <td>{{ $matrix->agent_tier_level }}</td>
                             <td>{{ $matrix->transaction_type }}</td>
+                            <td>{{ $matrix->biller_id }}</td>
                             <td>{{ $matrix->min_trans_amount }}</td>
                             <td>{{ $matrix->max_trans_amount }}</td>
                             
