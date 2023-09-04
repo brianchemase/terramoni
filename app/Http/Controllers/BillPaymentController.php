@@ -467,13 +467,14 @@ class BillPaymentController extends Controller
 
     public function getTvDataListing(Request $request)
     {
-        $request->validate([
-            'product_id' => 'required',
-            //'amount' => 'required',
-            //'agent_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'product_id' => 'required',
+        //     //'amount' => 'required',
+        //     //'agent_id' => 'required',
+        // ]);
 
         $product_id = $request->input('product_id');
+        return $product_id;
         // Replace these variables with your actual values
         $apiUrl = "https://clients.primeairtime.com/api/billpay/dstv/$product_id";
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
