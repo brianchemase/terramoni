@@ -19,6 +19,7 @@ use App\Http\Controllers\AgentTierController;
 use App\Http\Controllers\CustomerSegmentController;
 use App\Http\Controllers\BillerController;
 use App\Http\Controllers\TransactionTypeController;
+use App\Http\Controllers\PromotionController;
 
 use App\Http\Controllers\AggregatorsController;
 use App\Http\Controllers\RoleBasedAccessController;
@@ -192,7 +193,7 @@ Route::middleware(['auth'])->group(function()
    //   Route::post('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update');
    //   Route::delete('/commissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy');
 
-
+     
 
      Route::get('/commissionmatrix', [CommissionMatrixController::class, 'index'])->name('commissionmatrix')->middleware('permission:admin-view-commission-matrix');
      Route::get('/commissionmatrix/create', [CommissionMatrixController::class, 'create'])->name('agents.modals.create')->middleware('permission:admin-create-commission-matrix');
@@ -201,7 +202,12 @@ Route::middleware(['auth'])->group(function()
      Route::post('/commissionmatrix/{id}', [CommissionMatrixController::class, 'update'])->name('commissionmatrix.update')->middleware('permission:admin-update-commission-matrix');
      Route::delete('/commissionmatrix/{id}', [CommissionMatrixController::class, 'destroy'])->name('commissionmatrix.destroy')->middleware('permission:admin-delete-commission-matrix');
 
-
+//Basic Commission Matrix
+Route::get('/basiccommissionmatrix', [CommissionMatrixController::class, 'basicCommissionMatrix'])->name('basiccommissionmatrix');
+Route::get('/basiccommissionmatrix/{cr_id}/edit',[CommissionMatrixController::class, 'editbasicCommissionMatrix'])->name('basiccommissionmatrix.edit');
+Route::post('/basiccommissionmatrix', [CommissionMatrixController::class, 'storebasicCommissionMatrix'])->name('basiccommissionmatrix.store');
+Route::put('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'updatebasicCommissionMatrix'])->name('basiccommissionmatrix.update');
+Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::class, 'destroybasicCommissionMatrix'])->name('basiccommissionmatrix.destroy');
 
      //Agent Type
      Route::get('agentTypes', [AgentTypeController::class,'index'])->name('agentTypes')->middleware('permission:admin-view-agent-types');
@@ -260,7 +266,13 @@ Route::put('/customerSegments/{customerSegment}', [CustomerSegmentController::cl
 Route::delete('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'destroy'])->name('customerSegments.destroy');
      
 
-
+//Promotion
+Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions');
+Route::get('/promotions/create', [PromotionController::class, 'create'])->name('agents.modals.createpromotion');
+Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+Route::post('/promotions', [PromotionController::class, 'store'])->name('promotions.store');
+Route::put('/promotions/{id}', [PromotionController::class, 'update'])->name('promotions.update');
+Route::delete('/promotions/{id}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
 
 
     });
