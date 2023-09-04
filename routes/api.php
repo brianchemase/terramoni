@@ -84,6 +84,9 @@ Route::post('/ConfirmTvAccount', [BillPaymentController::class, 'checkTvAccount'
 //get agents' commission earned
 Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'showCommission']);
 
+//list internet services
+Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
+
 
 
 
