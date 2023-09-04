@@ -150,6 +150,15 @@
 					</li>
 					@endcan
 
+					@can('admin-view-agent-tiers')
+					<li class="sidebar-item {{ Route::currentRouteName() === 'promotions' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('promotions')}}">
+							<i class="align-middle" data-feather="tiers"></i> <span class="align-middle">Promotions</span>
+							
+						</a>
+					</li>
+					@endcan
+
 					@can('admin-view-transaction-types')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'transactionTypes' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('transactionTypes')}}">
