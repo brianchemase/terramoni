@@ -19,6 +19,7 @@ use App\Http\Controllers\AgentTierController;
 use App\Http\Controllers\CustomerSegmentController;
 use App\Http\Controllers\BillerController;
 use App\Http\Controllers\TransactionTypeController;
+use App\Http\Controllers\PromotionController;
 
 use App\Http\Controllers\AggregatorsController;
 use App\Http\Controllers\RoleBasedAccessController;
@@ -262,7 +263,13 @@ Route::put('/customerSegments/{customerSegment}', [CustomerSegmentController::cl
 Route::delete('/customerSegments/{customerSegment}', [CustomerSegmentController::class, 'destroy'])->name('customerSegments.destroy');
      
 
-
+//Promotion
+Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions');
+Route::get('/promotions/create', [PromotionController::class, 'create'])->name('agents.modals.createpromotion');
+Route::get('/promotions/{id}/edit', [PromotionController::class, 'edit'])->name('promotions.edit');
+Route::post('/promotions', [PromotionController::class, 'store'])->name('promotions.store');
+Route::put('/promotions/{id}', [PromotionController::class, 'update'])->name('promotions.update');
+Route::delete('/promotions/{id}', [PromotionController::class, 'destroy'])->name('promotions.destroy');
 
 
     });
