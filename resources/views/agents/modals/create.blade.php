@@ -13,11 +13,21 @@
                     @csrf
                     <div class="col-md-6">
                         <label for="agent_type" class="form-label">Agent Type</label>
-                        <input type="text" class="form-control" id="agent_type" name="agent_type" placeholder="Enter Agent Type" required>
+                        <select class="form-select" id="agent_type" name="agent_type" required>
+                            <option value="" selected disabled>Select Agent Type</option>
+                            @foreach($agentTypes as $agenttype)
+                            <option value="{{ $agenttype->id }}">{{ $agenttype->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="agent_tier_level" class="form-label">Agent Tier Level</label>
-                        <input type="number" class="form-control" id="agent_tier_level" name="agent_tier_level" placeholder="Enter Agent Tier Level">
+                        <select class="form-select" id="agent_tier_level" name="agent_tier_level" required>
+                            <option value="" selected disabled>Select Agent Tier</option>
+                            @foreach($agentTier as $agentier)
+                            <option value="{{ $agentier->tier_id }}">{{ $agentier->tier_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="agent_id" class="form-label">Agent</label>
@@ -83,18 +93,36 @@
                         </div>
                         <div class="col-md-4">
                             <label for="biller_id" class="form-label">Biller</label>
-                            <input type="number" class="form-control" id="biller_id" name="biller_id" placeholder="Enter Biller" required>
+                            <!-- <input type="number" class="form-control" id="biller_id" name="biller_id" placeholder="Enter Biller" required> -->
+                            <select class="form-select" id="biller_id" name="biller_id" required>
+                            <option value="" selected disabled>Select Biller</option>
+                            @foreach($billers as $biller)
+                            <option value="{{ $biller->biller_id }}">{{ $biller->biller_name }}</option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
                     <!-- ROW 2 -->
                     <div class="row g-3">
                         <div class="col-md-4">
                             <label for="transaction_type" class="form-label">Transaction Type</label>
-                            <input type="number" class="form-control" id="transaction_type" name="transaction_type" placeholder="Enter Transaction Type">
+
+                            <select class="form-select" id="transaction_type" name="transaction_type" required>
+                                <option value="" selected disabled>Select Transaction Type</option>
+                                @foreach($transactionTypes as $transactiontype)
+                                <option value="{{ $transactiontype->tt_id }}">{{ $transactiontype->tt_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="customer_segment_id" class="form-label">Customer Segment</label>
-                            <input type="number" class="form-control" id="customer_segment_id" name="customer_segment_id" placeholder="Enter Customer Segment" required>
+                            <!-- <input type="number" class="form-control" id="customer_segment_id" name="customer_segment_id" placeholder="Enter Customer Segment" required> -->
+                            <select class="form-select" id="customer_segment_id" name="customer_segment_id" required>
+                            <option value="" selected disabled>Select Customer Segment</option>
+                            @foreach($custSegments as $custsegment)
+                            <option value="{{ $custsegment->cs_id }}">{{ $custsegment->cs_name }}</option>
+                            @endforeach
+                        </select>
                         </div>
                         <div class="col-md-4">
                             <label for="special_promotion_id" class="form-label">Special Promotion</label>
