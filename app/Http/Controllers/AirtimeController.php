@@ -122,10 +122,45 @@ class AirtimeController extends Controller
         return response()->json($responseData, 200);
         
     }
-    public function getDataProviders($phone)
+
+    public function getAirtimeProviders($phone)
     {
         // Replace these variables with your actual values
         $apiUrl = "https://clients.primeairtime.com/api/topup/info/$phone";
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
+
+    }
+    public function getDataProviders($phone)
+    {
+        // Replace these variables with your actual values
+        $apiUrl = "https://clients.primeairtime.com/api/datatopup/info/$phone";
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
 
         // Initialize cURL session
@@ -162,12 +197,14 @@ class AirtimeController extends Controller
 
         $request->validate([
             'phone_number' => 'required',
+            'product_id' => 'required',
             'denomination' => 'required',
             'agent_id' => 'required',
         ]);
         
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
+        $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
@@ -179,7 +216,7 @@ class AirtimeController extends Controller
         $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
         //return $authorization;
         $data = [
-            "product_id" => "D-MFIN-5-50",
+            "product_id" => $product_id,
             "denomination" => $denomination,
             "send_sms" => false,
             "sms_text" => "",
