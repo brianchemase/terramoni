@@ -77,6 +77,8 @@ Route::any('/TvproductsLists', [BillPaymentController::class, 'List_TVs_products
 //list product ids
 Route::post('/Tvproducts', [BillPaymentController::class, 'getTvDataListing']);
 
+
+
 //pay for TV
 Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
 
@@ -92,6 +94,8 @@ Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetDa
 
 //list  services
 Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
+
+Route::post('/PayInternetBill', [BillPaymentController::class, 'pay_internet']);
 
 
 
