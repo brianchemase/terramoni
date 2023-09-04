@@ -14,18 +14,38 @@
                     {{-- <div class="col-md-6">
                         <label for="agent_role" class="form-label">Agent Role</label>
                         <input type="text" class="form-control" id="agent_role" name="agent_role" placeholder="Enter Agent Role" required>
+                        
                     </div> --}}
                     <div class="col-md-6">
                         <label for="agent_type" class="form-label">Agent Type</label>
-                        <input type="text" class="form-control" id="agent_type" name="agent_type" placeholder="Enter Agent Type" required>
+                        <!-- <input type="text" class="form-control" id="agent_type" name="agent_type" placeholder="Enter Agent Type" required> -->
+                        <select class="form-select" id="agent_type" name="agent_type" required>
+                        <option value="" selected  disabled>Select Agent Type</option>
+                            @foreach($agentTypes as $agenttype)
+                            <option value="{{ $agenttype->id }}">{{ $agenttype->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="agent_tier_level" class="form-label">Agent Tier Level</label>
-                        <input type="number" class="form-control" id="agent_tier_level" name="agent_tier_level" placeholder="Enter Agent Tier Level">
+                        <!-- <input type="number" class="form-control" id="agent_tier_level" name="agent_tier_level" placeholder="Enter Agent Tier Level"> -->
+
+                        <select class="form-select" id="agent_tier_level" name="agent_tier_level" required>
+                        <option value="" selected  disabled>Select Agent Tier</option>
+                            @foreach($agentTier as $agentier)
+                            <option value="{{ $agentier->tier_id }}">{{ $agentier->tier_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="transaction_type" class="form-label">Transaction Type</label>
-                        <input type="number" class="form-control" id="transaction_type" name="transaction_type" placeholder="Enter Transaction Type">
+                        <!-- <input type="number" class="form-control" id="transaction_type" name="transaction_type" placeholder="Enter Transaction Type"> -->
+                        <select class="form-select" id="transaction_type" name="transaction_type" required>
+                        <option value="" selected  disabled>Select Transaction Type</option>
+                            @foreach($transactionTypes as $transactiontype)
+                            <option value="{{ $transactiontype->tt_id }}">{{ $transactiontype->tt_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>

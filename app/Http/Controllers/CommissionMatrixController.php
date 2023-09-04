@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AgentTier;
+use App\Models\AgentType;
 use App\Models\Biller;
 use App\Models\CommMatrix;
 use App\Models\TransactionType;
 use App\Models\BillerOffering;
+use App\Models\CustomerSegment;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +21,12 @@ class CommissionMatrixController extends Controller
     {
         $commissionMatrix = CommMatrix::all();
         $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
-        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents]);
+        $agentTypes = AgentType::all();
+        $agentTier = AgentTier::all();
+        $transactionTypes = TransactionType::all();
+        $billers = Biller::all();
+        $custSegments = CustomerSegment::all();
+        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments]);
     }
 
     public function create()
@@ -129,7 +137,14 @@ class CommissionMatrixController extends Controller
     public function basicCommissionMatrix()
 {
     $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount')->get();
-    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices'));
+
+    $agentTypes = AgentType::all();
+
+    $agentTier = AgentTier::all();
+
+    $transactionTypes = TransactionType::all();
+
+    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes'));
 }
 
 public function editbasicCommissionMatrix($cr_id)
