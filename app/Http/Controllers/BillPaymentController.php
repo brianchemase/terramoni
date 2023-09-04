@@ -468,7 +468,7 @@ class BillPaymentController extends Controller
     public function getTvDataListing($product_id)
     {
         // Replace these variables with your actual values
-        $apiUrl = 'https://clients.primeairtime.com/api/billpay/country/NG/internet';
+        $apiUrl = 'https://clients.primeairtime.com/api/billpay/dstv'.$product_id;
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
 
         // Initialize cURL session
