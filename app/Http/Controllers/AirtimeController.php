@@ -25,11 +25,13 @@ class AirtimeController extends Controller
         $request->validate([
             'phone_number' => 'required',
             'denomination' => 'required',
+            'product_id' => 'required',
             'agent_id' => 'required',
         ]);
 
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
+        $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
@@ -42,7 +44,7 @@ class AirtimeController extends Controller
         //$authorization = $this->authorization;
         //return $authorization;
         $data = [
-            "product_id" => "MFIN-5-OR",
+            "product_id" => $product_id,
             "denomination" => $denomination,
             "send_sms" => false,
             "sms_text" => "",
