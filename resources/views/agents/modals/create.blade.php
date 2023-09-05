@@ -29,7 +29,38 @@
                             <option value="{{ $agentier->tier_id }}">{{ $agentier->tier_name }}</option>
                             @endforeach
                         </select>
+
                     </div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                    <script>
+                        // Add an event listener to the "Agent Type" dropdown
+                        $('#agent_type').on('change', function() {
+                            // Get the selected text
+                            var selectedAgentType = $(this).find('option:selected').text();
+                            var agentTierField = $('#agent_tier_level');
+                            var agentIdField = $('#agent_id');
+                            // Check if "Agent" is selected
+                            if (selectedAgentType === 'Agent') {
+                                // Show the "Agent Tier" field
+                                agentTierField.show();
+                                agentTierField.attr('required', 'required');
+                            } else {
+                                agentTierField.hide();
+                                // Remove the 'required' attribute
+                                agentTierField.removeAttr('required');
+                            }
+                            if (selectedAgentType ==='Aggregator'){
+                                agentIdField.hide();
+                                agentIdField.removeAttr('required');
+                            }else{
+                                agentIdField.show();
+                                agentIdField.attr('required','required')
+                            }
+
+                            
+                        });
+                    </script>
                     <div class="col-md-4">
                         <label for="agent_id" class="form-label">Agent</label>
                         <select class="form-select" id="agent_id" name="agent_id" required>
@@ -86,12 +117,12 @@
                                 <option value="Yobe">Yobe</option>
                                 <option value="Zamfara">Zamafara</option>
                             </select>
-                            <!-- <input type="number" class="form-control" id="state" name="state_id" placeholder="Enter State ID"> -->
+                             <input type="text" class="form-control" id="state" name="state_id" placeholder="Enter State ID"> 
                         </div>
                         <div class="col-md-4">
                             <label for="lga_id" class="form-label">LGA</label>
                             <select id="lga" class="form-control select-lga" name="lga_id" required></select>
-                            <!-- <input type="number" class="form-control" id="lga" name="lga_id" placeholder="Enter LGA ID"> -->
+                            <input type="text" class="form-control" id="lga" name="lga_id" placeholder="Enter LGA ID">
                         </div>
                         
                     </div>
@@ -133,8 +164,14 @@
                         </div>
                         <div class="col-md-4">
                             <label for="special_promotion_id" class="form-label">Special Promotion</label>
-                            <input type="number" class="form-control" id="special_promotion_id" name="special_promotion_id" placeholder="Enter Special Promotion" required>
+                            <select class="form-select" id="special_promotion_id" name="special_promotion_id" required>
+                                <option value="" selected disabled>Select Special Promotion</option>
+                                @foreach($promotions as $promotion)
+                                    <option value="{{ $promotion->promo_id }}">{{ $promotion->promo_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        
                         
                     </div>
                     <!-- ROW 5 -->

@@ -37,6 +37,36 @@
                             @endforeach
                         </select>
                     </div>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                    <script>
+                        // Add an event listener to the "Agent Type" dropdown
+                        $('#agent_type').on('change', function() {
+                            // Get the selected text
+                            var selectedAgentType = $(this).find('option:selected').text();
+                            var agentTierField = $('#agent_tier_level');
+                            var agentIdField = $('#agent_id');
+                            // Check if "Agent" is selected
+                            if (selectedAgentType === 'Agent') {
+                                // Show the "Agent Tier" field
+                                agentTierField.show();
+                                agentTierField.attr('required', 'required');
+                            } else {
+                                agentTierField.hide();
+                                // Remove the 'required' attribute
+                                agentTierField.removeAttr('required');
+                            }
+                            if (selectedAgentType ==='Aggregator'){
+                                agentIdField.hide();
+                                agentIdField.removeAttr('required');
+                            }else{
+                                agentIdField.show();
+                                agentIdField.attr('required','required')
+                            }
+
+                            
+                        });
+                    </script>
                     <div class="col-md-6">
                         <label for="transaction_type" class="form-label">Transaction Type</label>
                         <!-- <input type="number" class="form-control" id="transaction_type" name="transaction_type" placeholder="Enter Transaction Type"> -->
