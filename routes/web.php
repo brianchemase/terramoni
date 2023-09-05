@@ -211,7 +211,7 @@ Route::delete('/basiccommissionmatrix/{cr_id}', [CommissionMatrixController::cla
      Route::post('agentTypes', [AgentTypeController::class,'store'])->name('agentTypes.store');
      Route::get('agentTypes/{id}/edit', [AgentTypeController::class,'edit'])->name('agentTypes.edit');
      Route::get('agentTypes/{id}', [AgentTypeController::class,'update'])->name('agentTypes.update');
-     Route::get('agentTypes/{id}', [AgentTypeController::class,'destroy'])->name('agentTypes.destroy');
+     Route::delete('agentTypes/{id}', [AgentTypeController::class,'destroy'])->name('agentTypes.destroy');
 
      Route::get('agentTypes/create', [AgentTypeController::class, 'create'])->name('agents.modals.createagenttypes');
 

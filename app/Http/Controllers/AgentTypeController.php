@@ -54,10 +54,10 @@ class AgentTypeController extends Controller
             ->with('success', 'Agent type updated successfully');
     }
 
-    public function destroy(AgentType $agentType)
+    public function destroy($id)
     {
+        $agentType = AgentType::find($id);
         $agentType->delete();
-
         return redirect()->route('agentTypes')
             ->with('success', 'Agent type deleted successfully');
     }
