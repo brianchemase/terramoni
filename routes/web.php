@@ -130,6 +130,11 @@ Route::middleware(['auth'])->group(function()
     Route::get('/ViewAgentPOS/{id}', [AgentsController::class, 'allocatedPOS'])->name('allocatedpos');
     Route::post('/update-pos-terminal', [PosTerminalController::class, 'updatePOSStatus'])->name('updatePosTerminal');
 
+    //assign aggregators to agent
+    Route::get('/AssignAggregatos/{id}', [AggregatorsController::class, 'assignaggregators'])->name('assigaggregators');
+    Route::any('/Assignmanagers', [AggregatorsController::class, 'assignAgents'])->name('assignmanagers');
+
+
 
     // import terminals
     Route::post('/import-terminals', [PosTerminalController::class, 'import'])->name('import.terminals')->middleware('permission:admin-import-pos-terminal');// save pos data

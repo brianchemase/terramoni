@@ -79,5 +79,47 @@ class AggregatorsController extends Controller
 
     }
 
+    public function assignaggregators($agent_id)
+    {
+
+        $first_name = DB::table('tbl_agents')->where('id', $agent_id)->value('first_name');
+        $mid_name = DB::table('tbl_agents')->where('id', $agent_id)->value('mid_name');
+        $last_name = DB::table('tbl_agents')->where('id', $agent_id)->value('last_name');
+
+        $agentnames=$first_name." ".$last_name;
+
+        $pos_terminals="";
+
+        $agents = DB::table('tbl_agents')
+        ->where('status', 'approved')
+        ->where('agent_role', 'aggregators')
+        ->get();
+
+
+        return view ('agents.AssignManager', compact('pos_terminals','agentnames','agents', 'agent_id'));
+
+    }
+
+    public function assignAgents(Request $request)
+    {
+        // Validate the incoming request data, if needed
+        $validatedData = $request->validate([
+            'agent_id' => 'required',
+            'aggregatorid' => 'required',
+        ]);
+
+        // Retrieve the form data
+        $agentId = $request->input('agent_id');
+        $aggregatorId = $request->input('aggregatorid');
+
+        // Use the DB facade to update the tbl_agents table
+        DB::table('tbl_agents')
+            ->where('id', $agentId)
+            ->update(['aggregator_id' => $aggregatorId]);
+
+        // Redirect to another page
+        return redirect()->route('agentstab')->with('success', 'Agent assigned to aggregator successfully');
+    }
+
 
 }
