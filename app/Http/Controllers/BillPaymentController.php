@@ -428,43 +428,7 @@ class BillPaymentController extends Controller
 
         
     }
-
-
-    public function getInternetData()
-    {
-        // Replace these variables with your actual values
-        $apiUrl = 'https://clients.primeairtime.com/api/billpay/country/NG/internet';
-        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
-
-        // Initialize cURL session
-        $ch = curl_init();
-
-        // Set the cURL options
-        curl_setopt($ch, CURLOPT_URL, $apiUrl);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer ' . $authorization,
-        ]);
-
-        // Execute the cURL request
-        $response = curl_exec($ch);
-
-        return $response;
-
-        // Check for cURL errors
-        if (curl_errno($ch)) {
-            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
-        }
-
-        // Close the cURL session
-        curl_close($ch);
-
-        // Output the response as JSON
-        return response()->json($response);
-
-    }
-
+   
     public function getTvDataListing(Request $request)
     {
         $request->validate([
@@ -507,6 +471,40 @@ class BillPaymentController extends Controller
         return response()->json($response);
 
     }
+    public function getInternetData()
+    {
+        // Replace these variables with your actual values
+        $apiUrl = 'https://clients.primeairtime.com/api/billpay/country/NG/internet';
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+        // Initialize cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        return $response;
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        // Output the response as JSON
+        return response()->json($response);
+
+    }
 
     public function pay_internet(Request $request)
     {
@@ -516,6 +514,7 @@ class BillPaymentController extends Controller
             'product_id' => 'required',
             'prepaid' => 'required',
             'denomination' => 'required',
+            'product_code' => 'required',
             'agent_id' => 'required',
             //'client_phone' => 'required',
         ]);
@@ -526,22 +525,17 @@ class BillPaymentController extends Controller
         $denomination = $request->input('denomination');
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
+        $product_code = $request->input('product_code');
         $agent_id = $request->input('agent_id');
         $toNumber = $request->input('client_phone');
-
-        //return $meter;
-
-
 
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
-        $url = "https:/clients.primeairtime.com/api/billpay/internet/$product_id";
+        $url = "https:/clients.primeairtime.com/api/billpay/internet/$product_id/$denomination";
         $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
         $authorization = "Bearer " .$token; // Retrieve the bearer token from the construct
-        //$authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI2NGFmZjZhOTkyNTE4YTFjNjViOGM3YTciLCJleHAiOjE2OTA3MjAyMDMxNzl9.mBhCclvX7-1oS-cMonOZlxJ2PGOAV0yN5CsKy5zn_KA";
-        //$authorization = $this->authorization;
-        //return $authorization;
+
         $data = [
             "product_id" => $product_id,
             "prepaid" => $prepaid,
@@ -550,8 +544,6 @@ class BillPaymentController extends Controller
            
             "customer_reference" => $refnumber
         ];
-
-
 
         $ch = curl_init();
 
@@ -572,11 +564,9 @@ class BillPaymentController extends Controller
         if ($response === false) {
             
             return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
-           // return response()->json(['error' => 'API Request Failed'], 500);
+           
         }
 
-
-       // $agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
             ->select('first_name', 'last_name')
             ->where('id', $agent_id)
@@ -607,7 +597,7 @@ class BillPaymentController extends Controller
             'customer_reference' => $customer_reference,
             'ItemFee' => $topupAmount,
             'CurrencySymbol' => $paidCurrency,
-            'BillerType' => 'Electrical Bill',
+            'BillerType' => 'Internet Bill',
         ]);
 
         DB::table('tbl_commissions')->insert([
