@@ -514,7 +514,7 @@ class BillPaymentController extends Controller
             'product_id' => 'required',
             'prepaid' => 'required',
             'denomination' => 'required',
-            'product_code' => 'required',
+            //'product_code' => 'required',
             'agent_id' => 'required',
             //'client_phone' => 'required',
         ]);
@@ -525,7 +525,7 @@ class BillPaymentController extends Controller
         $denomination = $request->input('denomination');
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
-        $product_code = $request->input('product_code');
+       // $product_code = $request->input('product_code');
         $agent_id = $request->input('agent_id');
         $toNumber = $request->input('client_phone');
 
