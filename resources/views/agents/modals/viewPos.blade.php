@@ -57,10 +57,10 @@
         <div class="form-group">
             <label for="actionselection">Select Action</label>
             <select class="form-control" name="action" id="exampleFormControlSelect1">
-                <option value="Suspend">Suspend</option>
+                <option value="Suspend">Suspend/Suspect Fraud</option>
                 <option value="Repossess">Repossess</option>
-                <option value="faulty">Faulty</option>
-                <option value="Deactivate">Deactivate</option>
+                <option value="faulty">Faulty/Damaged</option>
+                <option value="Deactivate">Inactivity</option>
                 <!-- <option value="4">4</option>
                 <option value="5">5</option> -->
             </select>
