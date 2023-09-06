@@ -311,6 +311,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             'location' => 'required',
             'country' => 'required',
             'BVN' => 'required',
+            'tax_id' => 'required',
             'doc_type' => 'required',
             'doc_no' => 'required',
             'docimage' => 'required',
@@ -319,7 +320,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             'bank_name' => 'required',
             'bank_acc_no' => 'required',
             'agent_code' => 'required',
-            'access_pin' => 'required',
+            //'access_pin' => 'required',
             'registration_date' => 'required',
             //'validation_date' => 'nullable|date',
         ]);
@@ -355,6 +356,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         }
 
         $validatedData['status']="pending";
+        $validatedData['access_pin']="0002";
 
            // return $validatedData;
         //'address_proff' => $request->address_proof->hashName(),
