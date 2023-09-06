@@ -118,7 +118,11 @@ class AirtimeController extends Controller
             'date' => $todayDate,
             'type' => 'Debit',
         ]);
+        // Access the value of topup_amount
+        $topupAmount = $responseData['topup_amount'];
 
+        // Set the value of paid_amount to topup_amount
+        $responseData['paid_amount'] = $topupAmount;
 
         // Return the API response in a well-structured manner
         return response()->json($responseData, 200);
