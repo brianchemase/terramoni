@@ -86,7 +86,7 @@
 													@elseif($user->role == '1')
 														<span class="badge bg-warning">Admin</span>
 													@else
-														<span class="badge bg-warning">Unknown</span>
+														<span class="badge bg-info">Unknown</span>
 													@endif
 												</td>
 												<td>
