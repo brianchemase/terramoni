@@ -6,6 +6,7 @@ use App\Models\AgentTier;
 use App\Models\AgentType;
 use App\Models\Biller;
 use App\Models\CommMatrix;
+use App\Models\Promotion;
 use App\Models\TransactionType;
 use App\Models\BillerOffering;
 use App\Models\CustomerSegment;
@@ -26,7 +27,8 @@ class CommissionMatrixController extends Controller
         $transactionTypes = TransactionType::all();
         $billers = Biller::all();
         $custSegments = CustomerSegment::all();
-        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments]);
+        $promotions= Promotion::all();
+        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments,'promotions'=>$promotions]);
     }
 
     public function create()
@@ -39,9 +41,11 @@ class CommissionMatrixController extends Controller
     public function store(Request $request)
     {
         //dd($request);
+        //dd($request->all());
+
         $request->validate([
             'agent_type' => 'required|string',
-            'agent_tier_level' => 'nullable|integer',
+            
             'agent_id' => 'nullable|integer',
             'state_id' => 'nullable|string',
             'lga_id' => 'nullable|string',
@@ -75,7 +79,7 @@ class CommissionMatrixController extends Controller
 
         $request->validate([
             'agent_type' => 'required|string',
-            'agent_tier_level' => 'nullable|integer',
+            
             'agent_id' => 'nullable|integer',
             'state_id' => 'nullable|string',
             'lga_id' => 'nullable|string',
@@ -166,7 +170,6 @@ public function storebasicCommissionMatrix(Request $request)
     $validator = Validator::make($request->all(), [
         
         'agent_type' => 'required|string|max:255',
-        'agent_tier_level' => 'nullable|numeric',
         'transaction_type' => 'nullable|numeric',
         'min_trans_amount' => 'required|numeric',
         'max_trans_amount' => 'nullable|numeric',
@@ -192,7 +195,6 @@ public function updatebasicCommissionMatrix(Request $request, $cr_id)
     $validator = Validator::make($request->all(), [
         
         'agent_type' => 'required|string|max:255',
-        'agent_tier_level' => 'nullable|numeric',
         'transaction_type' => 'nullable|numeric',
         'min_trans_amount' => 'required|numeric',
         'max_trans_amount' => 'nullable|numeric',
