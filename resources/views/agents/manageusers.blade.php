@@ -79,11 +79,11 @@
 												<td>{{ $user->username }}</td>
 																								
 												<td>
-												@if($user->role == '0')
+												@if($user->role == '2')
 														<span class="badge bg-success">Agent</span>
-													@elseif($user->role == '1')
+													@elseif($user->role == '3')
 														<span class="badge bg-danger">Aggregators</span>
-													@elseif($user->role == '2')
+													@elseif($user->role == '1')
 														<span class="badge bg-warning">Admin</span>
 													@endif
 												</td>
