@@ -306,12 +306,14 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             'phone' => 'required|unique:tbl_agents|max:50',
             'email' => 'required|email|unique:tbl_agents|max:50',
             'gender' => 'required',
+            'agent_type' => 'required',// agent type
+            'agent_role' => 'required',// agent role
             'location' => 'required',
             'country' => 'required',
-           // 'status' => ['nullable', 'string', 'max:9', Rule::in(['active', 'pending'])],
             'BVN' => 'required',
             'doc_type' => 'required',
             'doc_no' => 'required',
+            'docimage' => 'required',
             'passport' => 'required',
             'address_proff' => 'required',
             'bank_name' => 'required',
@@ -322,8 +324,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             //'validation_date' => 'nullable|date',
         ]);
 
-        //$image_path = $request->file('image')->store('image', 'public');
-
+   
 
         if ($request->hasFile('passport')) {
             $request->validate([
@@ -344,6 +345,15 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
              // Add the passport path to the validated data
             $validatedData['address_proff'] = $request->address_proff->hashName();
         }
+         // Process the other_attachment
+         if ($request->hasFile('docimage')) {
+            $request->validate([
+                'docimage' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->docimage->store('address', 'public');
+            $validatedData['docimage'] = $request->docimage->hashName();
+        }
+
         $validatedData['status']="pending";
 
            // return $validatedData;
