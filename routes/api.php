@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
 use App\Http\Controllers\AirtimeController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillersController;
 use App\Http\Controllers\BillPaymentController;
 use App\Http\Controllers\AuthOtpController;
@@ -97,3 +98,14 @@ Route::post('/nip/TrasfterFund', [NibbsController::class, 'fundstransfer']);
 
 // query the name
 Route::post('/nip/NameEnquery', [NibbsController::class, 'nameEnquiry']);
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+});
