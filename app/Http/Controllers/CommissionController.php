@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class CommissionController extends Controller
 {
+    /**
+     * Create a new CommissionController instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => ['manageCommissions', 'showCommission']]);
+    }
     public function manageCommissions()
     {
         // Fetch all commission data from the tbl_commissions table
