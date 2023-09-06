@@ -16,7 +16,7 @@
             <h5 >Doc Number: {{$data->doc_no}}</h5>
             <h5 >Phone: {{$data->phone}}</h5>
             <h5 >Gender: {{$data->gender}}</h5> 
-            <h5 >Location: {{$data->location}}</h5>
+            <h5 >Residence: {{$data->location}}</h5>
             <h5 >Location: {{$data->country}}</h5>
             <h5 >Registration Date: {{ \Carbon\Carbon::parse($data->registration_date)->format('jS M Y') }}</h5>
 
