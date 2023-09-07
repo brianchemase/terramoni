@@ -44,22 +44,48 @@
                             @csrf
                             @method('PUT')
 
-                            <!-- Basic Commission Matrix Fields -->
+                            
                             {{-- <div class="col-md-6">
                                 <label for="agent_role" class="form-label">Agent Role</label>
                                 <input type="text" class="form-control" id="agent_role" name="agent_role" value="{{ $basicCommissionMatrix->agent_role }}" required>
                             </div> --}}
                             <div class="col-md-6">
                                 <label for="agent_type" class="form-label">Agent Type</label>
-                                <input type="text" class="form-control" id="agent_type" name="agent_type" value="{{ $basicCommissionMatrix->agent_type }}" required>
+                                <select class="form-select" id="agent_type" name="agent_type" required>
+                                    <option value="" selected disabled>Select Agent Type</option>
+                                    @foreach($agentTypes as $agenttype)
+                                        <option value="{{ $agenttype->id }}" @if($agenttype->id == $basicCommissionMatrix->agent_type) selected @endif>{{ $agenttype->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label for="agent_tier_level" class="form-label">Agent Tier Level</label>
-                                <input type="number" class="form-control" id="agent_tier_level" name="agent_tier_level" value="{{ $basicCommissionMatrix->agent_tier_level }}">
+                                <select class="form-select" id="agent_tier_level" name="agent_tier_level" required>
+                                    <option value="" selected disabled>Select Agent Tier</option>
+                                    @foreach($agentTier as $agentier)
+                                        <option value="{{ $agentier->tier_id }}" @if($agentier->tier_id == $basicCommissionMatrix->agent_tier_level) selected @endif>{{ $agentier->tier_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            
                             <div class="col-md-6">
                                 <label for="transaction_type" class="form-label">Transaction Type</label>
-                                <input type="number" class="form-control" id="transaction_type" name="transaction_type" value="{{ $basicCommissionMatrix->transaction_type }}">
+                                <select class="form-select" id="transaction_type" name="transaction_type" required>
+                                    <option value="" selected disabled>Select Transaction Type</option>
+                                    @foreach($transactionTypes as $transactiontype)
+                                        <option value="{{ $transactiontype->tt_id }}" @if($transactiontype->tt_id == $basicCommissionMatrix->transaction_type) selected @endif>{{ $transactiontype->tt_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="biller_id" class="form-label">Biller</label>
+                                <select class="form-select" id="biller_id" name="biller_id" required>
+                                    <option value="" selected disabled>Select Biller</option>
+                                    @foreach($billers as $biller)
+                                        <option value="{{ $biller->biller_id }}" @if($biller->biller_id == $basicCommissionMatrix->biller_id) selected @endif>{{ $biller->biller_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="min_trans_amount" class="form-label">Min Transaction Amount</label>
@@ -69,7 +95,7 @@
                                 <label for="max_trans_amount" class="form-label">Max Transaction Amount</label>
                                 <input type="number" class="form-control" id="max_trans_amount" name="max_trans_amount" value="{{ $basicCommissionMatrix->max_trans_amount }}">
                             </div>
-                            <!-- Additional fields specific to the basic commission matrix can be added here -->
+                            
 
                             <!-- ROW 5 -->
                             <div class="col-md-3">

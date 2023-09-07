@@ -72,6 +72,11 @@ class User extends Authenticatable implements JWTSubject
     public function getRedirectRoute()
     {
       $role = Role::find((int)auth()->user()->role);
+
+      if ($role === null) {
+        
+        return 'admindash';
+    }
        
         return match($role->name) {         
             "AGGREGATOR" => 'aggregatordash',
