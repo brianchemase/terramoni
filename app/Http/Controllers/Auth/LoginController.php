@@ -22,7 +22,13 @@ class LoginController extends Controller
     |
     */
 
+  //   public function __construct() {
+  //     $this->middleware('auth:api', ['except' => ['login', 'register']]);
+  // }
+
     use AuthenticatesUsers;
+
+
 
     /**
      * Where to redirect users after login.
