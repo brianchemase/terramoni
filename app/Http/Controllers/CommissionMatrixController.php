@@ -28,7 +28,10 @@ class CommissionMatrixController extends Controller
         $billers = Biller::all();
         $custSegments = CustomerSegment::all();
         $promotions= Promotion::all();
-        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments,'promotions'=>$promotions]);
+
+        $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount','biller_id')->get();
+
+        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments,'promotions'=>$promotions, 'basicCommissionMatrices'=>$basicCommissionMatrices]);
     }
 
     public function create()
@@ -71,7 +74,17 @@ class CommissionMatrixController extends Controller
     public function edit($cr_id)
     {
         $commissionMatrix = CommMatrix::findOrFail($cr_id);
-        return view('agents.commissionMatrix.edit', compact('commissionMatrix'));
+
+        
+        $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
+        $agentTypes = AgentType::all();
+        $agentTier = AgentTier::all();
+        $transactionTypes = TransactionType::all();
+        $billers = Biller::all();
+        $custSegments = CustomerSegment::all();
+        $promotions= Promotion::all();
+
+        return view('agents.commissionMatrix.edit', compact('commissionMatrix','agents', 'agentTypes','agentTier','transactionTypes','billers','custSegments','promotions'));
     }
 
     public function update(Request $request, $cr_id)
@@ -89,11 +102,10 @@ class CommissionMatrixController extends Controller
             'special_promotion_id' => 'required|integer',
             'min_trans_amount' => 'required|numeric',
             'max_trans_amount' => 'nullable|numeric',
-            'commission_rate' => 'required|numeric',
-            //'start_time' => 'nullable|date_format:H:i',
-        //'end_time' => 'nullable|date_format:H:i',
-        'start_date' => 'nullable|date',
-        'end_date' => 'nullable|date',
+            'start_time' => 'nullable|date_format:H:i',
+    'end_time' => 'nullable|date_format:H:i',
+    'start_date' => 'nullable|date',
+    'end_date' => 'nullable|date',
             
         ]);
         
@@ -123,7 +135,7 @@ class CommissionMatrixController extends Controller
             //dd( $commissionMatrix);
             $commissionMatrix->save();
 
-            return redirect()->back()->with('success', 'Commission matrix entry updated successfully.');
+            return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry updated successfully.');
 
         }else{
             //dd( $commissionMatrix);
@@ -147,15 +159,28 @@ class CommissionMatrixController extends Controller
     $agentTier = AgentTier::all();
 
     $transactionTypes = TransactionType::all();
+
     $billers = Biller::all();
 
-    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes','billers'));
+    $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
+
+    $custSegments = CustomerSegment::all();
+
+    $promotions= Promotion::all();
+
+    $commissionMatrix = CommMatrix::all();
+
+    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes','billers','agents','custSegments','promotions','commissionMatrix'));
 }
 
 public function editbasicCommissionMatrix($cr_id)
 {
     $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
-    return view('agents.basiccommissionmatrix.edit', compact('basicCommissionMatrix'));
+    $agentTypes = AgentType::all();
+    $agentTier = AgentTier::all();
+    $transactionTypes = TransactionType::all();
+    $billers = Biller::all();
+    return view('agents.basiccommissionmatrix.edit', compact('basicCommissionMatrix','agentTypes','agentTier','transactionTypes','billers'));
 }
 
 public function destroybasicCommissionMatrix($cr_id)
@@ -212,6 +237,7 @@ public function updatebasicCommissionMatrix(Request $request, $cr_id)
 
     return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
 }
+
 
 }
 

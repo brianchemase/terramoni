@@ -46,6 +46,12 @@
                         </button>
                         @include('agents.modals.createbasiccommatrix')
                     </div>
+                    <div>
+                        <!-- Button to toggle between the switch to Advanced Table -->
+                        <button id="toggleButton" class="btn btn-primary">
+                            Show Advanced Commission Matrices
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,4 +106,23 @@
         </div>
     </div>
 </main>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    
+    $(document).ready(function() {
+        
+        function toggleTables() {
+            // Redirect to the commissionMatrix page
+            window.location.href = '{{ route("commissionmatrix") }}';
+        }
+        
+        // Add a click event listener to the toggle button
+        document.getElementById('toggleButton').addEventListener('click', toggleTables);
+    });
+</script>
+
 @endsection
