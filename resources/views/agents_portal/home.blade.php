@@ -40,7 +40,7 @@
 										<div class="row align-items-center mb-2 d-flex">
 											<div class="col-8">
 												<h2 class="d-flex align-items-center mb-0" style="color: white;">
-													NGN {{ number_format($CommisionEarned) }}
+													NGN {{ number_format($CommisionEarned, 2) }}
 												</h2>
 											</div>
 											
