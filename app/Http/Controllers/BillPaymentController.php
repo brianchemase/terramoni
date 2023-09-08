@@ -320,6 +320,7 @@ class BillPaymentController extends Controller
 
         // Execute cURL session and get the response
         $response = curl_exec($ch);
+        return $response;
       
         // Assuming $response contains the JSON response received from the API
         $responseData = json_decode($response, true);
