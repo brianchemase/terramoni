@@ -321,6 +321,16 @@ class BillPaymentController extends Controller
         // Execute cURL session and get the response
         $response = curl_exec($ch);
         //return $response;
+
+        // Check if there is a response
+        if ($response === false) {
+            // Handle the error here
+            $error = curl_error($ch); // Get the error message
+            curl_close($ch); // Close the cURL session
+            
+            // Return an error response or log the error as needed
+            return response()->json(['error' => $error], 500); // Example JSON error response
+        }
       
         // Assuming $response contains the JSON response received from the API
         $responseData = json_decode($response, true);
