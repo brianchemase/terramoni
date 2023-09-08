@@ -46,6 +46,13 @@ class AgentsDashboardController extends Controller
 
        $walletBalance=rand(1, 100000);
        //$CommisionEarned=rand(1, 10000);
+       $totaltransAmount = DB::table('tbl_transactions')
+            ->where('agent_id', $agent_id)
+            ->sum('ItemFee');
+
+            $walletvalue="100000";
+
+            $walletBalance=$walletvalue-$totaltransAmount;
 
 
         $data = [
