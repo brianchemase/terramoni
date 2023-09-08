@@ -46,6 +46,12 @@
                             </button>
                             @include('agents.modals.create')
                     </div>
+                    <div>
+                        <!-- Button to switch to basic table -->
+                        <button id="toggleButton" class="btn btn-primary">
+                            Show Basic Commission Matrices
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,4 +121,20 @@
         </div>
     </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    
+    $(document).ready(function() {
+        
+        function toggleTables() {
+            // Redirect to the commissionMatrix page
+            window.location.href = '{{ route("basiccommissionmatrix") }}';
+        }
+        
+        // Add a click event listener to the toggle button
+        document.getElementById('toggleButton').addEventListener('click', toggleTables);
+    });
+</script>
 @endsection
