@@ -323,7 +323,7 @@ class BillPaymentController extends Controller
         //return $response;
 
         // Check if there is a response
-        if ($response === false) {
+        if (empty($response)) {
             // Handle the error here
             $error = curl_error($ch); // Get the error message
             curl_close($ch); // Close the cURL session
