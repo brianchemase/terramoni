@@ -300,7 +300,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         // Validate the incoming registration data
         $validatedData = $request->validate([
             'first_name' => 'required',
-            'mid_name' => 'required',
+            //'mid_name' => 'required',
             'last_name' => 'required',
             'dob' => 'required',
             'phone' => 'required|unique:tbl_agents|max:50',
