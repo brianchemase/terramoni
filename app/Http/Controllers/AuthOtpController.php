@@ -319,6 +319,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             'doc_issue_date' => 'required',
             'doc_exp_date' => 'required',
             'docimage' => 'required',
+            'biz_address' => 'required',
             'passport' => 'required',
             'address_proff' => 'required',
             'bank_name' => 'required',
@@ -334,6 +335,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         $validatedData['access_pin']="0002";
         //optional values
         $validatedData['mid_name']= $request->input('mid_name', null);
+        $validatedData['biz_name']= $request->input('biz_name', null);
         $validatedData['agent_code']= $request->input('agent_code', null);
    
 
