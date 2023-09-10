@@ -319,12 +319,18 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             'address_proff' => 'required',
             'bank_name' => 'required',
             'bank_acc_no' => 'required',
-            'agent_code' => 'required',
+            //'agent_code' => 'required',
             //'access_pin' => 'required',
             'registration_date' => 'required',
             //'validation_date' => 'nullable|date',
         ]);
 
+
+        $validatedData['status']="pending";
+        $validatedData['access_pin']="0002";
+        //optional values
+        $validatedData['mid_name']= $request->input('mid_name', null);
+        $validatedData['agent_code']= $request->input('agent_code', null);
    
 
         if ($request->hasFile('passport')) {
@@ -355,8 +361,7 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
             $validatedData['docimage'] = $request->docimage->hashName();
         }
 
-        $validatedData['status']="pending";
-        $validatedData['access_pin']="0002";
+       
 
            // return $validatedData;
         //'address_proff' => $request->address_proof->hashName(),
