@@ -302,7 +302,8 @@ class BillPaymentController extends Controller
 
         // Data to send in the POST request
         $data = array(
-            'amount' => $amount
+            'amount' => $amount,
+            "customer_reference" => $refnumber
             // Add more parameters as needed
         );
 
