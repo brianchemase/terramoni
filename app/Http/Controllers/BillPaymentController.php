@@ -26,6 +26,7 @@ class BillPaymentController extends Controller
             'denomination' => 'required',
             'agent_id' => 'required',
             'client_phone' => 'required',
+            'access_pin' => 'required',
         ]);
 
         $input = request()->all();
@@ -35,6 +36,7 @@ class BillPaymentController extends Controller
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
+        $access_pin = $request->input('access_pin');
         $toNumber = $request->input('client_phone');
 
         //return $meter;
@@ -43,6 +45,17 @@ class BillPaymentController extends Controller
 
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
+
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        // check system pin
+        if($access_pin != $System_pin)
+        {
+            return response()->json([
+                'status_code'=> 401,
+                'message' => "Invalid Transaction Pin",
+            ]);
+
+        }
 
         $url = "https:/clients.primeairtime.com/api/billpay/electricity/$meter";
         $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
@@ -277,13 +290,28 @@ class BillPaymentController extends Controller
             'accno' => 'required',
             'amount' => 'required',
             'agent_id' => 'required',
+            'access_pin' => 'required',
         ]);
         $input = request()->all();     
         $accno = $request->input('accno');
         $amount = $request->input('amount');
         $agent_id = $request->input('agent_id');
+        $access_pin = $request->input('access_pin');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
+
+
+
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        // check system pin
+        if($access_pin != $System_pin)
+        {
+            return response()->json([
+                'status_code'=> 401,
+                'message' => "Invalid Transaction Pin",
+            ]);
+
+        }
         // URL to send the POST request to
        // $url = "https://clients.primeairtime.com/api/billpay/dstvnew/8063831361";
         $url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
@@ -528,6 +556,7 @@ class BillPaymentController extends Controller
             'denomination' => 'required',
             //'product_code' => 'required',
             'agent_id' => 'required',
+            'access_pin' => 'required',
             //'client_phone' => 'required',
         ]);
 
@@ -537,12 +566,22 @@ class BillPaymentController extends Controller
         $denomination = $request->input('denomination');
         $prepaid = $request->input('prepaid');
         $product_id = $request->input('product_id');
-       // $product_code = $request->input('product_code');
+        $access_pin = $request->input('access_pin');
         $agent_id = $request->input('agent_id');
         $toNumber = $request->input('client_phone');
 
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        // check system pin
+        if($access_pin != $System_pin)
+        {
+            return response()->json([
+                'status_code'=> 401,
+                'message' => "Invalid Transaction Pin",
+            ]);
+
+        }
 
         $url = "https:/clients.primeairtime.com/api/billpay/internet/$product_id/$denomination";
         $token = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');

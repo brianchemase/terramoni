@@ -27,14 +27,27 @@ class AirtimeController extends Controller
             'denomination' => 'required',
             'product_id' => 'required',
             'agent_id' => 'required',
+            'acess_pin' => 'required',
         ]);
 
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
+        $acess_pin = $request->input('acess_pin');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
+
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+                    // check system pin
+                    if($access_pin != $System_pin)
+                    {
+                        return response()->json([
+                            'status_code'=> 401,
+                            'message' => "Invalid Transaction Pin",
+                        ]);
+
+                    }
 
         $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
        // $authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
@@ -206,14 +219,28 @@ class AirtimeController extends Controller
             'product_id' => 'required',
             'denomination' => 'required',
             'agent_id' => 'required',
+            'access_pin' => 'required',
         ]);
         
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
+        $access_pin = $request->input('access_pin');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
+
+
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        // check system pin
+        if($access_pin != $System_pin)
+        {
+            return response()->json([
+                'status_code'=> 401,
+                'message' => "Invalid Transaction Pin",
+            ]);
+
+        }
 
         $url = "https:/clients.primeairtime.com/api/datatopup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
@@ -264,39 +291,39 @@ class AirtimeController extends Controller
         
 
        // Process the API response
-    $responseData = json_decode($response, true);
+        $responseData = json_decode($response, true);
 
-     // Extract the desired data from the API response
-     $productId = $responseData['product_id'];
-     $target = $responseData['target'];
-     $topupAmount = $responseData['topup_amount'];
-     $paidCurrency = $responseData['paid_currency'];
-     $customer_reference = $responseData['customer_reference'];
-     $responseData['paid_amount'] = (int)$responseData['paid_amount'];
-     $responseData['topup_amount'] = (int)$responseData['topup_amount'];
+        // Extract the desired data from the API response
+        $productId = $responseData['product_id'];
+        $target = $responseData['target'];
+        $topupAmount = $responseData['topup_amount'];
+        $paidCurrency = $responseData['paid_currency'];
+        $customer_reference = $responseData['customer_reference'];
+        $responseData['paid_amount'] = (int)$responseData['paid_amount'];
+        $responseData['topup_amount'] = (int)$responseData['topup_amount'];
 
    
-     // Store the data into the tbl_transactions table using the DB facade
-     DB::table('tbl_transactions')->insert([
-         'Name' => $productId,
-         'BillerName' => $target,
-         'ConsumerIdField' => $agent_names,
-         'agent_id' => $agent_id,
-         'customer_reference' => $customer_reference,
-         'ItemFee' => $topupAmount,
-         'transaction_type' => 'billpayment',
-         'CurrencySymbol' => $paidCurrency,
-         'BillerType' => 'Data Top up',
-     ]);
+        // Store the data into the tbl_transactions table using the DB facade
+        DB::table('tbl_transactions')->insert([
+            'Name' => $productId,
+            'BillerName' => $target,
+            'ConsumerIdField' => $agent_names,
+            'agent_id' => $agent_id,
+            'customer_reference' => $customer_reference,
+            'ItemFee' => $topupAmount,
+            'transaction_type' => 'billpayment',
+            'CurrencySymbol' => $paidCurrency,
+            'BillerType' => 'Data Top up',
+        ]);
 
-     DB::table('tbl_commissions')->insert([
-        'transaction_id' => $customer_reference,
-        'agent_id' => $agent_id,
-        'amount' => $topupAmount,
-        'commission' => $topupAmount*0.015,
-        'date' => $todayDate,
-        'type' => 'Debit',
-    ]);
+        DB::table('tbl_commissions')->insert([
+            'transaction_id' => $customer_reference,
+            'agent_id' => $agent_id,
+            'amount' => $topupAmount,
+            'commission' => $topupAmount*0.015,
+            'date' => $todayDate,
+            'type' => 'Debit',
+        ]);
 
 
     // Return the API response in a well-structured manner
