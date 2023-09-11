@@ -50,13 +50,13 @@ class TransactionsController extends Controller
         foreach ($transactionHistory as $transaction) {
             switch ($transaction->transaction_type) {
                 case 'billpayment':
-                    $dailyTotals['billpayments'] = $transaction->total;
+                    $dailyTotals['billpayments'] = (int)$transaction->total;
                     break;
                 case 'withdrawals':
-                    $dailyTotals['withdrawals'] = $transaction->total;
+                    $dailyTotals['withdrawals'] = (int)$transaction->total;
                     break;
                 case 'fundtransfer':
-                    $dailyTotals['transfers'] = $transaction->total;
+                    $dailyTotals['transfers'] = (int)$transaction->total;
                     break;
             }
         }
