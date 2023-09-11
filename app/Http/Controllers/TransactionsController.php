@@ -18,7 +18,7 @@ class TransactionsController extends Controller
          ->get();
 
          //$transactionHistory=
-         $transactionHistory['Id'] =$transactionHistory['customer_reference'];
+         //$transactionHistory['Id'] =$transactionHistory['customer_reference'];
 
      // Return the JSON response with the results
      return response()->json($transactionHistory);
