@@ -273,6 +273,15 @@ class AirtimeController extends Controller
      $paidCurrency = $responseData['paid_currency'];
      $customer_reference = $responseData['customer_reference'];
     // $responseData['paid_amount'] = (int)$response['paid_amount'];
+
+    //value round off
+        $originalValue = $response['paid_amount'];
+
+        // Using intval
+        $truncatedValue = intval($originalValue);
+
+        // Using type casting
+        $responseData['paid_amount'] = (int)$originalValue;
  
      // Store the data into the tbl_transactions table using the DB facade
      DB::table('tbl_transactions')->insert([
