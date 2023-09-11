@@ -273,6 +273,7 @@ class AirtimeController extends Controller
      $paidCurrency = $responseData['paid_currency'];
      $customer_reference = $responseData['customer_reference'];
      $responseData['paid_amount'] = (int)$responseData['paid_amount'];
+     $responseData['topup_amount'] = (int)$responseData['topup_amount'];
 
    
      // Store the data into the tbl_transactions table using the DB facade
