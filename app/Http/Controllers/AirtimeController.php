@@ -38,7 +38,7 @@ class AirtimeController extends Controller
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
                     // check system pin
                     if($access_pin != $System_pin)
                     {
@@ -231,7 +231,7 @@ class AirtimeController extends Controller
         $refnumber = $todayDate . rand(1, 50000);
 
 
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
         // check system pin
         if($access_pin != $System_pin)
         {
@@ -326,8 +326,8 @@ class AirtimeController extends Controller
         ]);
 
 
-    // Return the API response in a well-structured manner
-    return response()->json($responseData, 200);
+        // Return the API response in a well-structured manner
+        return response()->json($responseData, 200);
         
     }
 }

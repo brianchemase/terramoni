@@ -39,14 +39,10 @@ class BillPaymentController extends Controller
         $access_pin = $request->input('access_pin');
         $toNumber = $request->input('client_phone');
 
-        //return $meter;
-
-
-
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
         // check system pin
         if($access_pin != $System_pin)
         {
@@ -302,7 +298,7 @@ class BillPaymentController extends Controller
 
 
 
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
         // check system pin
         if($access_pin != $System_pin)
         {
@@ -572,7 +568,7 @@ class BillPaymentController extends Controller
 
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('agent_id', $agent_id)->select('access_pin')->first()->access_pin;
+        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
         // check system pin
         if($access_pin != $System_pin)
         {
