@@ -27,27 +27,27 @@ class AirtimeController extends Controller
             'denomination' => 'required',
             'product_id' => 'required',
             'agent_id' => 'required',
-            'acess_pin' => 'required',
+           // 'acess_pin' => 'required',
         ]);
 
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
-        $acess_pin = $request->input('acess_pin');
+       // $acess_pin = $request->input('acess_pin');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
         $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
                     // check system pin
-                    if($access_pin != $System_pin)
-                    {
-                        return response()->json([
-                            'status_code'=> 401,
-                            'message' => "Invalid Transaction Pin",
-                        ]);
+                    // if($access_pin != $System_pin)
+                    // {
+                    //     return response()->json([
+                    //         'status_code'=> 401,
+                    //         'message' => "Invalid Transaction Pin",
+                    //     ]);
 
-                    }
+                    // }
 
         $url = "https:/clients.primeairtime.com/api/topup/exec/$phoneNumber";
        // $authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
@@ -82,7 +82,11 @@ class AirtimeController extends Controller
 
         if ($response === false) {
             
-            return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
+            //return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
+            return response()->json([
+                'status_code'=> 500,
+                'message' => "Internal System Error",
+            ]);
            // return response()->json(['error' => 'API Request Failed'], 500);
         }
 
@@ -138,7 +142,12 @@ class AirtimeController extends Controller
         $responseData['paid_amount'] = $topupAmount;
 
         // Return the API response in a well-structured manner
-        return response()->json($responseData, 200);
+       // return response()->json($responseData, 200);
+        return response()->json([
+            'status_code'=> 200,
+            'message' => "Payment made successfull",
+            'ResponceData' => $responseData,
+        ]);
         
     }
 
@@ -219,28 +228,28 @@ class AirtimeController extends Controller
             'product_id' => 'required',
             'denomination' => 'required',
             'agent_id' => 'required',
-            'access_pin' => 'required',
+            //'access_pin' => 'required',
         ]);
         
         $phoneNumber = $request->input('phone_number');
         $denomination = $request->input('denomination');
         $product_id = $request->input('product_id');
         $agent_id = $request->input('agent_id');
-        $access_pin = $request->input('access_pin');
+        //$access_pin = $request->input('access_pin');
         $todayDate = date("Ymd");
         $refnumber = $todayDate . rand(1, 50000);
 
 
-        $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
-        // check system pin
-        if($access_pin != $System_pin)
-        {
-            return response()->json([
-                'status_code'=> 401,
-                'message' => "Invalid Transaction Pin",
-            ]);
+        // $System_pin = DB::table('tbl_agents')->orderBy('id', 'desc')->where('id', $agent_id)->select('access_pin')->first()->access_pin;
+        // // check system pin
+        // if($access_pin != $System_pin)
+        // {
+        //     return response()->json([
+        //         'status_code'=> 401,
+        //         'message' => "Invalid Transaction Pin",
+        //     ]);
 
-        }
+        // }
 
         $url = "https:/clients.primeairtime.com/api/datatopup/exec/$phoneNumber";
         //$authorization = "Bearer " . env('PRIME_BEARER_TOKEN'); // Retrieve the bearer token from the .env file
@@ -273,8 +282,12 @@ class AirtimeController extends Controller
 
         if ($response === false) {
             
-            return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
+            //return response()->json(['error' => 'cURL Error: ' . curl_error($ch)], 500);
            // return response()->json(['error' => 'API Request Failed'], 500);
+           return response()->json([
+            'status_code'=> 500,
+            'message' => "Internal System Error",
+                                 ]);
         }
 
 
