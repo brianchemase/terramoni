@@ -17,6 +17,9 @@ class TransactionsController extends Controller
          ->orderBy('id', 'desc') 
          ->get();
 
+         //$transactionHistory=
+         $transactionHistory['Id'] = (int)$transactionHistory['customer_reference'];
+
      // Return the JSON response with the results
      return response()->json($transactionHistory);
     }
