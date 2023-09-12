@@ -441,7 +441,7 @@ class BillPaymentController extends Controller
 
         // }
         // URL to send the POST request to
-       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AQC";
+       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA";
         //$url = "https://clients.primeairtime.com/api/billpay/dstvnew/$accno";
 
         // Replace this with your Bearer token
