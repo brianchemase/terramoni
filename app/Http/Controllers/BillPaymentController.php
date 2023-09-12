@@ -604,7 +604,7 @@ class BillPaymentController extends Controller
 
         $response = curl_exec($ch);
 
-        return $response;
+       // return $response;
         
 
         if ($response === false) {
@@ -655,19 +655,19 @@ class BillPaymentController extends Controller
             'type' => 'Debit',
         ]);
         // Extract required values
-        $target = $responseData['target'];
-        $pin_code = $responseData['pin_code'];
-        $units = '';
-        if (preg_match('/Units\s*:\s*([\d.]+)/i', $responseData['pin_option1'], $matches)) {
-            $units = $matches[1];
-        }
-        $topup_amount = $responseData['topup_amount'];
-        $date = substr($responseData['time'], 0, 10); // Extract date part from the ISO 8601 timestamp
+        // $target = $responseData['target'];
+        // $pin_code = $responseData['pin_code'];
+        // $units = '';
+        // if (preg_match('/Units\s*:\s*([\d.]+)/i', $responseData['pin_option1'], $matches)) {
+        //     $units = $matches[1];
+        // }
+        // $topup_amount = $responseData['topup_amount'];
+        // $date = substr($responseData['time'], 0, 10); // Extract date part from the ISO 8601 timestamp
 
-        // Create the message
-        $message = "mtr:{$target}, Token:{$pin_code}, Units:{$units}, TknAmt: {$topup_amount}, Date: {$date}";
+        // // Create the message
+        // $message = "mtr:{$target}, Token:{$pin_code}, Units:{$units}, TknAmt: {$topup_amount}, Date: {$date}";
 
-        $response = $this->sendSMS($toNumber, $message);
+        // $response = $this->sendSMS($toNumber, $message);
 
 
         // Return the API response in a well-structured manner
