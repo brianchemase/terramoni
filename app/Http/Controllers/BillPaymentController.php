@@ -588,7 +588,6 @@ class BillPaymentController extends Controller
             "prepaid" => $prepaid,
             "denomination" => $denomination,
             "meter" => $meter,
-           
             "customer_reference" => $refnumber
         ];
 

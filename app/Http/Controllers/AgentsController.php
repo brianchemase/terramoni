@@ -906,6 +906,7 @@ class AgentsController extends Controller
             ->where('id', $agentId)
             ->update([
                 'status' => 'approved',
+                'agent_tier_id' => '1',
                 'access_pin' => $access_pin ,
                 'registration_date' => $approvalDate
             ]);
