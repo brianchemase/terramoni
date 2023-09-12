@@ -477,7 +477,7 @@ class BillPaymentController extends Controller
 
         // Execute cURL session and get the response
         $response = curl_exec($ch);
-        //return $response;
+        return $response;
 
         // Check if there is a response
         if (empty($response)) {
