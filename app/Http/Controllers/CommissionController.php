@@ -37,7 +37,9 @@ class CommissionController extends Controller
             $walletvalue="100000";
 
             $bankWallet=$walletvalue-$totaltransAmount;
+            $bankWallet = number_format((float)$bankWallet, 2, '.', '');
 
-        return response()->json(['total_commission' => $totalCommission, 'bankWallet' => (int)$bankWallet]);
+
+        return response()->json(['total_commission' => $totalCommission, 'bankWallet' => $bankWallet]);
     }
 }
