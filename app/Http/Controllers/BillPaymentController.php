@@ -542,6 +542,37 @@ class BillPaymentController extends Controller
 
     }
 
+    public function internetproductlist($product_id)
+    {
+        $apiUrl = "https:/clients.primeairtime.com/api/billpay/internet/$product_id";
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        
+            // Initialize cURL session
+            $ch = curl_init();
+
+            // Set the cURL options
+            curl_setopt($ch, CURLOPT_URL, $apiUrl);
+            curl_setopt($ch, CURLOPT_HTTPGET, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $authorization, // Add the Bearer token to the request headers
+            ]);
+
+            // Execute the cURL request
+            $response = curl_exec($ch);
+
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL error: ' . curl_error($ch);
+            }
+
+            // Close the cURL session
+            curl_close($ch);
+
+            return $response;
+
+    }
+
     public function pay_internet(Request $request)
     {
 

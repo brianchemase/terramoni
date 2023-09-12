@@ -93,6 +93,9 @@ Route::get('/GetAgentsCommission/{agent_id}', [CommissionController::class, 'sho
 //list internet services
 Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
 
+//get list of products per product id
+Route::get('/GetInternetProducts/{product_id}', [BillPaymentController::class, 'internetproductlist']);
+
 //list  services
 Route::get('/InternetServiceList', [BillPaymentController::class, 'getInternetData']);
 
