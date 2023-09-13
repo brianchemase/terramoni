@@ -282,23 +282,6 @@ class CommissionMatrixController extends Controller
                 
             }
 
-           
-
-           
-         
-            
-            //Log::error($commissionAmount);
-        }
-        // } elseif ($agentCommission) {
-
-        //     // Agent-specific commission 
-        //     //$commissionAmount= ;
-
-        // } elseif ($billerCommission) {
-
-        //     //calculating commission based on Biller ID 
-        //    //$commissionAmount= ;
-        // }
         $currentWalletBalance = Wallet::where('agent_id',$agentTierId->agent_tier_id)->select('wallet_balance')->first();
 
         if($currentWalletBalance==null){
