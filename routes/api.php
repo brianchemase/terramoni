@@ -48,6 +48,9 @@ Route::get('/getAgentsTransactions/{agent_id}', [TransactionsController::class, 
 //get agent transactionssammary
 Route::get('/getAgentsTransactionsSummary/{agent_id}', [TransactionsController::class, 'eodtransactions']);//agents EOD transactions API
 
+//agents transaction for reprint api
+Route::get('/getTransactionReprint/{trans_id}', [TransactionsController::class, 'retrieveTransReprint']);//agents transactions API
+
 
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
 Route::post('/smstransactions', [AgentsController::class, 'storeSms']);

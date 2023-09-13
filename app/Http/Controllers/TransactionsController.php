@@ -203,5 +203,60 @@ class TransactionsController extends Controller
 
 
     }
+
+        public function retrieveTransReprint($trans_id)
+        {
+            $apiUrl = "https:/clients.primeairtime.com/api/topup/log/byref/$trans_id"; // The API endpoint URL
+
+            $accessToken = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+
+            // Initialize cURL session
+            $ch = curl_init();
+
+            // Set the cURL options
+            curl_setopt($ch, CURLOPT_URL, $apiUrl);
+            curl_setopt($ch, CURLOPT_HTTPGET, true);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Authorization: Bearer ' . $accessToken, // Add the Bearer token to the request headers
+            ]);
+
+            // Execute the cURL request
+            $response = curl_exec($ch);
+
+            // Check for cURL errors
+            if (curl_errno($ch)) {
+                echo 'cURL error: ' . curl_error($ch);
+            }
+
+            // Close the cURL session
+            curl_close($ch);
+
+            // Decode the JSON response
+            $data = json_decode($response, true);
+            //return $data;
+
+            if ($data === null) {
+                // Handle JSON decoding error
+                echo 'Error decoding JSON response';
+            } else {
+                // Access the values in client_apiresponse
+                $clientApiResponse = json_decode($data['client_apiresponse'], true);
+
+                if ($clientApiResponse === null) {
+                    // Handle JSON decoding error for client_apiresponse
+                    echo 'Error decoding JSON in client_apiresponse';
+                } else {
+                    // Now you can access the values within client_apiresponse as an associative array
+                    $status = $clientApiResponse['status'];
+                    $message = $clientApiResponse['message'];
+                    // ... and so on
+                    // You can use these values as needed in your code
+
+                    return $clientApiResponse;
+                }
+            }
+        }
+
 }
 
