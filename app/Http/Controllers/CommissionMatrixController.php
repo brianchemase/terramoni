@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agent;
 use App\Models\AgentTier;
 use App\Models\AgentType;
 use App\Models\Biller;
@@ -10,6 +11,7 @@ use App\Models\Promotion;
 use App\Models\TransactionType;
 use App\Models\BillerOffering;
 use App\Models\CustomerSegment;
+use App\Wallet;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -237,6 +239,57 @@ public function updatebasicCommissionMatrix(Request $request, $cr_id)
 
     return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
 }
+public function applyCommissions(Request $request)
+{
+    // Retrieve transaction details from the request
+    $agentType = $request->input('agent_type');
+    $transactionType = $request->input('transaction_type');
+    $agentId = $request->input('agent_id');
+    $agentTier = $request->input('agent_tier');
+    $billerId = $request->input('biller_id');
+    $walletId = $request->input('wallet_id');
+$transactionAmount= $request->input('transaction_amount');
+ $agentTierId = Agent::find($agentId)->select('agent_tier_id');
+
+    $commissionAmount = 0;
+
+    // Apply commissions logic based on business rules
+    if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
+        // No commission 
+        $commissionAmount = 0;
+    } elseif ($agentType === 'Aggregator') {
+
+        //$commissionAmount= ;
+    } elseif ($agentType === 'Agent') {
+
+        $commissionRate = CommMatrix::where('agent_tier_level',$agentTierId)->select('commission_rate');
+       $commissionAmount= ($commissionRate * $transactionAmount)/100;
+    }
+    // } elseif ($agentCommission) {
+
+    //     // Agent-specific commission 
+    //     //$commissionAmount= ;
+
+    // } elseif ($billerCommission) {
+        
+    //     //calculating commission based on Biller ID 
+    //    //$commissionAmount= ;
+    // }
+    $currentWalletBalance= Wallet::where('agent_id',$agentId)->select('wallet_balance');
+    $newBalance = $currentWalletBalance + $commissionAmount;
+    $wallet = Wallet::firstOrNew([
+        'agent_id'=>$agentId,
+    ]);
+    $wallet-> wallet_balance= $newBalance;
+    
+
+    // Wallet::updateBalance($agentId, $newBalance);
+    
+
+    
+    return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
+}
+
 
 
 }
