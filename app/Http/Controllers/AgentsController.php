@@ -733,7 +733,7 @@ class AgentsController extends Controller
             'serial_no' => $serialNo,
             'imei' => $imei,
             'device_make' => $device_make,
-            'device_os' => $deviceOS,
+            'os_version' => $deviceOS,
             'device_model' => $device_model,
             'status' => $status,
             'owner_type' => $owner_type,
