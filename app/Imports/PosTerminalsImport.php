@@ -19,9 +19,14 @@ class PosTerminalsImport implements ToModel, WithHeadingRow
         $currentDate = Carbon::now();
         return new PosTerminal([
             //
-            'device_name'     => $row['device_name'],
-            'serial_no'    => $row['serial_no'],
-            'device_model'    => $row['device_model'],
+            'device_name' => $row['device_name'],
+            'serial_no'  => $row['serial_no'],
+            'device_model' => $row['device_model'],
+            'imei' => $row['imei'],
+            'mac_addr'=> $row['mac_addr'],
+            'device_make'=> $row['device_make'],
+            'device_mfg'=> $row['device_mfg'],
+            'os_version'=> $row['os_version'],
             'status' => 'available',
             'owner_type' => 'store', 
             'registration_date' => $currentDate, 

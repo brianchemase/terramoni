@@ -719,6 +719,10 @@ class AgentsController extends Controller
         $deviceName = $request->input('device_name');
         $serialNo = $request->input('serialno');
         $deviceOS = $request->input('device_os');
+        $imei = $request->input('imei');
+        $device_make = $request->input('device_make');
+        $device_model = $request->input('device_model');
+
         $status="available";
         $owner_type="Store";
         $registration_date= Carbon::now();
@@ -727,7 +731,10 @@ class AgentsController extends Controller
         DB::table('tbl_pos_terminals')->insert([
             'device_name' => $deviceName,
             'serial_no' => $serialNo,
-            'device_model' => $deviceOS,
+            'imei' => $imei,
+            'device_make' => $device_make,
+            'device_os' => $deviceOS,
+            'device_model' => $device_model,
             'status' => $status,
             'owner_type' => $owner_type,
             'registration_date' => $registration_date,

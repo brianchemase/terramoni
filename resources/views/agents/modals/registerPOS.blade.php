@@ -15,8 +15,22 @@
 					<input type="text" class="form-control" id="validationDefault01" onkeyup="this.value = this.value.toUpperCase();" name="device_name" placeholder="Enter Device Name" required>
 				</div>
 				<div class="col-md-4">
+					<label for="validationDefault02" class="form-label">Device Model No</label>
+					<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="device_model" placeholder="Enter Device Serial No" >
+				</div>
+				<div class="col-md-4">
 					<label for="validationDefault02" class="form-label">Serial No</label>
 					<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="serialno" placeholder="Enter Device Serial No" >
+				</div>
+
+				<div class="col-md-4">
+					<label for="validationDefault02" class="form-label">IMEI No</label>
+					<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="imei" placeholder="Enter Device IMEI No" >
+				</div>
+
+				<div class="col-md-4">
+					<label for="validationDefault02" class="form-label">Device Make</label>
+					<input type="text" class="form-control" id="validationDefault02" onkeyup="this.value = this.value.toUpperCase();" name="device_make" placeholder="Enter Device Make" >
 				</div>
 				
 				<div class="col-md-4">
@@ -82,6 +96,11 @@
 					<th scope="col">Device_name</th>
 					<th scope="col">serial_no</th>
 					<th scope="col">device_model</th>
+					<th scope="col">imei</th>
+					<th scope="col">mac_address</th>
+					<th scope="col">device_make</th>
+					<th scope="col">device_mfg</th>
+					<th scope="col">od_version</th>
 					
 					</tr>
 				</thead>
@@ -90,26 +109,15 @@
 							<th scope="row">Name 1</th>
 							<td>S1234567</td>
 							<td>SamsungGTM</td>
-							
-							</tr>
-							<tr>
-							<th scope="row">Name 2</th>
-							<td>S1234567</td>
-							<td>TechnoPOK758</td>
-							
-							</tr>
-							<tr>
-							<th scope="row">Name 3</th>
-							<td>S1234567</td>
-							<td>Motorola110</td>
-							
+							<td>2542552365521452</td>
+							<td>1253:24521452:526652</td>
+							<td>SamsungGTM</td>
+							<td>Samsung</td>
+							<td>Android 4.4</td>
 							</tr>
 						</tbody>
 				</table>
 				</div>
-				
-				
-						
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
