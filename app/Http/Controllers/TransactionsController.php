@@ -250,10 +250,13 @@ class TransactionsController extends Controller
                     // Now you can access the values within client_apiresponse as an associative array
                     $status = $clientApiResponse['status'];
                     $message = $clientApiResponse['message'];
+                    $clientApiResponse['paid_amount'] = (int)$clientApiResponse['paid_amount'];
+                    $clientApiResponse['topup_amount'] = (int)$clientApiResponse['topup_amount'];
                     // ... and so on
                     // You can use these values as needed in your code
 
-                    return $clientApiResponse;
+                   // return $clientApiResponse;
+                    return response()->json($clientApiResponse, 200);
                 }
             }
         }
