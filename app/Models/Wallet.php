@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,15 +11,20 @@ class Wallet extends Model
     use HasFactory;
 
     protected $table='wallet';
-
     protected $primaryKey = 'wallet_id';
     public $timestamps = false;
 
+    protected $fillable=[
+        'wallet_id',
+        'agent_id',
+        'pos_id',
+        'wallet_name',
+        'wallet_balance',
+        'wallet_locked',
+        'wallet_active',
+        'wallet_code',
+        'wallet_crypt',
+        'wallet_narrative'
 
-    public static function updateBalance($walletId, $newBalance)
-    {
-        DB::table('wallets')
-            ->where('wallet_id', $walletId)
-            ->update(['wallet_balance' => $newBalance]);
-    }
+    ];
 }

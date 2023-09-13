@@ -112,4 +112,4 @@ Route::group([
 });
 
 //Commission Matrix logic
-Route::post('/calculate-commission', [CommissionController::class, 'calculateCommission']);
+Route::post('/calculate-commission', [CommissionMatrixController::class, 'applyCommissions']);
