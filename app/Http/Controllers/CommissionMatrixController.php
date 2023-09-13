@@ -11,15 +11,18 @@ use App\Models\Promotion;
 use App\Models\TransactionType;
 use App\Models\BillerOffering;
 use App\Models\CustomerSegment;
-use App\Wallet;
+use App\Models\Wallet;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
 
 class CommissionMatrixController extends Controller
 {
-    
+
     public function index()
     {
         $commissionMatrix = CommMatrix::all();
@@ -29,18 +32,17 @@ class CommissionMatrixController extends Controller
         $transactionTypes = TransactionType::all();
         $billers = Biller::all();
         $custSegments = CustomerSegment::all();
-        $promotions= Promotion::all();
+        $promotions = Promotion::all();
 
-        $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount','biller_id')->get();
+        $basicCommissionMatrices = CommMatrix::select('cr_id', 'agent_type', 'agent_tier_level', 'transaction_type', 'min_trans_amount', 'max_trans_amount', 'biller_id')->get();
 
-        return view('agents.commissionMatrix.index', ['commissionMatrix'=>$commissionMatrix, 'agents'=>$agents, 'agentTypes'=> $agentTypes, 'agentTier'=> $agentTier, 'transactionTypes'=> $transactionTypes, 'billers'=> $billers, 'custSegments'=> $custSegments,'promotions'=>$promotions, 'basicCommissionMatrices'=>$basicCommissionMatrices]);
+        return view('agents.commissionMatrix.index', ['commissionMatrix' => $commissionMatrix, 'agents' => $agents, 'agentTypes' => $agentTypes, 'agentTier' => $agentTier, 'transactionTypes' => $transactionTypes, 'billers' => $billers, 'custSegments' => $custSegments, 'promotions' => $promotions, 'basicCommissionMatrices' => $basicCommissionMatrices]);
     }
 
     public function create()
     {
         $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
-    return view('agents.modals.create', compact('agents'));
-        
+        return view('agents.modals.create', compact('agents'));
     }
 
     public function store(Request $request)
@@ -50,7 +52,7 @@ class CommissionMatrixController extends Controller
 
         $request->validate([
             'agent_type' => 'required|string',
-            
+
             'agent_id' => 'nullable|integer',
             'state_id' => 'nullable|string',
             'lga_id' => 'nullable|string',
@@ -61,15 +63,15 @@ class CommissionMatrixController extends Controller
             'min_trans_amount' => 'required|numeric',
             'max_trans_amount' => 'nullable|numeric',
             'start_time' => 'nullable|date_format:H:i',
-    'end_time' => 'nullable|date_format:H:i',
-    'start_date' => 'nullable|date',
-    'end_date' => 'nullable|date',
-            
-            
-        ]);        
-    
+            'end_time' => 'nullable|date_format:H:i',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+
+
+        ]);
+
         CommMatrix::create($request->all());
-       
+
         return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry created successfully.');
     }
 
@@ -77,16 +79,16 @@ class CommissionMatrixController extends Controller
     {
         $commissionMatrix = CommMatrix::findOrFail($cr_id);
 
-        
+
         $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
         $agentTypes = AgentType::all();
         $agentTier = AgentTier::all();
         $transactionTypes = TransactionType::all();
         $billers = Biller::all();
         $custSegments = CustomerSegment::all();
-        $promotions= Promotion::all();
+        $promotions = Promotion::all();
 
-        return view('agents.commissionMatrix.edit', compact('commissionMatrix','agents', 'agentTypes','agentTier','transactionTypes','billers','custSegments','promotions'));
+        return view('agents.commissionMatrix.edit', compact('commissionMatrix', 'agents', 'agentTypes', 'agentTier', 'transactionTypes', 'billers', 'custSegments', 'promotions'));
     }
 
     public function update(Request $request, $cr_id)
@@ -94,7 +96,7 @@ class CommissionMatrixController extends Controller
 
         $request->validate([
             'agent_type' => 'required|string',
-            
+
             'agent_id' => 'nullable|integer',
             'state_id' => 'nullable|string',
             'lga_id' => 'nullable|string',
@@ -105,12 +107,12 @@ class CommissionMatrixController extends Controller
             'min_trans_amount' => 'required|numeric',
             'max_trans_amount' => 'nullable|numeric',
             'start_time' => 'nullable|date_format:H:i',
-    'end_time' => 'nullable|date_format:H:i',
-    'start_date' => 'nullable|date',
-    'end_date' => 'nullable|date',
-            
+            'end_time' => 'nullable|date_format:H:i',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+
         ]);
-        
+
         $commissionMatrix = CommMatrix::find($cr_id);
 
         //dd( $commissionMatrix);
@@ -138,8 +140,7 @@ class CommissionMatrixController extends Controller
             $commissionMatrix->save();
 
             return redirect()->route('commissionmatrix')->with('success', 'Commission matrix entry updated successfully.');
-
-        }else{
+        } else {
             //dd( $commissionMatrix);
             return redirect()->back()->with('error', 'Commission matrix entry failed. No records found to update');
         }
@@ -149,149 +150,159 @@ class CommissionMatrixController extends Controller
     {
         $commissionMatrix = CommMatrix::findOrFail($cr_id);
         $commissionMatrix->delete();
-
-    
     }
     public function basicCommissionMatrix()
-{
-    $basicCommissionMatrices = CommMatrix::select('cr_id','agent_type', 'agent_tier_level','transaction_type', 'min_trans_amount', 'max_trans_amount','biller_id')->get();
+    {
+        $basicCommissionMatrices = CommMatrix::select('cr_id', 'agent_type', 'agent_tier_level', 'transaction_type', 'min_trans_amount', 'max_trans_amount', 'biller_id')->get();
 
-    $agentTypes = AgentType::all();
+        $agentTypes = AgentType::all();
 
-    $agentTier = AgentTier::all();
+        $agentTier = AgentTier::all();
 
-    $transactionTypes = TransactionType::all();
+        $transactionTypes = TransactionType::all();
 
-    $billers = Biller::all();
+        $billers = Biller::all();
 
-    $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
+        $agents = DB::table('tbl_agents')->where('status', 'approved')->get();
 
-    $custSegments = CustomerSegment::all();
+        $custSegments = CustomerSegment::all();
 
-    $promotions= Promotion::all();
+        $promotions = Promotion::all();
 
-    $commissionMatrix = CommMatrix::all();
+        $commissionMatrix = CommMatrix::all();
 
-    return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices','agentTypes','agentTier','transactionTypes','billers','agents','custSegments','promotions','commissionMatrix'));
-}
-
-public function editbasicCommissionMatrix($cr_id)
-{
-    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
-    $agentTypes = AgentType::all();
-    $agentTier = AgentTier::all();
-    $transactionTypes = TransactionType::all();
-    $billers = Biller::all();
-    return view('agents.basiccommissionmatrix.edit', compact('basicCommissionMatrix','agentTypes','agentTier','transactionTypes','billers'));
-}
-
-public function destroybasicCommissionMatrix($cr_id)
-{
-    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
-    $basicCommissionMatrix->delete();
-    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix deleted successfully.');
-}
-
-public function storebasicCommissionMatrix(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        
-        'agent_type' => 'required|string|max:255',
-        'transaction_type' => 'nullable|numeric',
-        'min_trans_amount' => 'required|numeric',
-        'max_trans_amount' => 'nullable|numeric',
-        
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()
-            ->back()
-            ->withErrors($validator)
-            ->withInput();
+        return view('agents.basiccommissionmatrix.index', compact('basicCommissionMatrices', 'agentTypes', 'agentTier', 'transactionTypes', 'billers', 'agents', 'custSegments', 'promotions', 'commissionMatrix'));
     }
 
-    CommMatrix::create($request->all());
-
-    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix created successfully.');
-}
-
-public function updatebasicCommissionMatrix(Request $request, $cr_id)
-{
-    $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
-
-    $validator = Validator::make($request->all(), [
-        
-        'agent_type' => 'required|string|max:255',
-        'transaction_type' => 'nullable|numeric',
-        'min_trans_amount' => 'required|numeric',
-        'max_trans_amount' => 'nullable|numeric',
-        
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()
-            ->back()
-            ->withErrors($validator)
-            ->withInput();
+    public function editbasicCommissionMatrix($cr_id)
+    {
+        $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+        $agentTypes = AgentType::all();
+        $agentTier = AgentTier::all();
+        $transactionTypes = TransactionType::all();
+        $billers = Biller::all();
+        return view('agents.basiccommissionmatrix.edit', compact('basicCommissionMatrix', 'agentTypes', 'agentTier', 'transactionTypes', 'billers'));
     }
 
-    $basicCommissionMatrix->update($request->all());
+    public function destroybasicCommissionMatrix($cr_id)
+    {
+        $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+        $basicCommissionMatrix->delete();
+        return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix deleted successfully.');
+    }
 
-    return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
-}
-public function applyCommissions(Request $request)
-{
-    // Retrieve transaction details from the request
-    $agentType = $request->input('agent_type');
-    $transactionType = $request->input('transaction_type');
-    $agentId = $request->input('agent_id');
-    $agentTier = $request->input('agent_tier');
-    $billerId = $request->input('biller_id');
-    $walletId = $request->input('wallet_id');
-$transactionAmount= $request->input('transaction_amount');
- $agentTierId = Agent::find($agentId)->select('agent_tier_id');
+    public function storebasicCommissionMatrix(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
 
-    $commissionAmount = 0;
+            'agent_type' => 'required|string|max:255',
+            'transaction_type' => 'nullable|numeric',
+            'min_trans_amount' => 'required|numeric',
+            'max_trans_amount' => 'nullable|numeric',
 
-    // Apply commissions logic based on business rules
-    if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
-        // No commission 
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        CommMatrix::create($request->all());
+
+        return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix created successfully.');
+    }
+
+    public function updatebasicCommissionMatrix(Request $request, $cr_id)
+    {
+        $basicCommissionMatrix = CommMatrix::findOrFail($cr_id);
+
+        $validator = Validator::make($request->all(), [
+
+            'agent_type' => 'required|string|max:255',
+            'transaction_type' => 'nullable|numeric',
+            'min_trans_amount' => 'required|numeric',
+            'max_trans_amount' => 'nullable|numeric',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $basicCommissionMatrix->update($request->all());
+
+        return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
+    }
+    public function applyCommissions(Request $request)
+    {
+        // Retrieve transaction details from the request
+        $agentType = $request->input('agent_type');
+        $transactionType = $request->input('transaction_type');
+        $agentId = $request->input('agent_id');
+        $agentTier = $request->input('agent_tier');
+        $billerId = $request->input('biller_id');
+        $walletId = $request->input('wallet_id');
+        $transactionAmount = $request->input('transaction_amount');
+        $posId = $request->input('pos_id');
+        $walletName = $request->input('wallte_name');
+
+        $agentTierId = Agent::find($agentId);
+
+       // return response()->json(['message' => $agentTierId->agent_tier_id]);
+
+        if($agentTierId->agent_tier_id==null || $agentTierId->agent_tier_id=="" ){
+            return response()->json(['message' => 'No agent tier set for agent.']);
+        }
+
         $commissionAmount = 0;
-    } elseif ($agentType === 'Aggregator') {
 
-        //$commissionAmount= ;
-    } elseif ($agentType === 'Agent') {
+        // Apply commissions logic based on business rules
+        if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
+            // No commission 
+            $commissionAmount = 0;
+        } elseif ($agentType === 'Aggregator') {
 
-        $commissionRate = CommMatrix::where('agent_tier_level',$agentTierId)->select('commission_rate');
-       $commissionAmount= ($commissionRate * $transactionAmount)/100;
+            //$commissionAmount= ;
+        } elseif ($agentType === 'Agent') {
+
+            $commissionRate = CommMatrix::where('agent_tier_level',  $agentTierId->agent_tier_id)->first();    
+
+            //return response()->json(['message' =>  $commissionRate]);
+
+            if(empty($commissionRate)){
+                return response()->json(['message' => 'Commission has not been set for this tier']);
+            }else{               
+               
+                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;               
+                
+            }
+
+        $currentWalletBalance = Wallet::where('agent_id',$agentTierId->agent_tier_id)->select('wallet_balance')->first();
+
+        if($currentWalletBalance==null){
+            $currentWalletBalance = 0;
+        }
+
+        $newBalance = $currentWalletBalance + $commissionAmount;
+        $wallet = Wallet::firstOrNew([
+            'agent_id' => $agentId,
+        ]);
+        $wallet->wallet_balance = $newBalance;
+        $wallet->pos_id = $posId;
+        $wallet->wallet_name = $walletName;
+
+        $wallet->save();
+
+
+        // Wallet::updateBalance($agentId, $newBalance);
+
+
+
+        return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
     }
-    // } elseif ($agentCommission) {
-
-    //     // Agent-specific commission 
-    //     //$commissionAmount= ;
-
-    // } elseif ($billerCommission) {
-        
-    //     //calculating commission based on Biller ID 
-    //    //$commissionAmount= ;
-    // }
-    $currentWalletBalance= Wallet::where('agent_id',$agentId)->select('wallet_balance');
-    $newBalance = $currentWalletBalance + $commissionAmount;
-    $wallet = Wallet::firstOrNew([
-        'agent_id'=>$agentId,
-    ]);
-    $wallet-> wallet_balance= $newBalance;
-    
-
-    // Wallet::updateBalance($agentId, $newBalance);
-    
-
-    
-    return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
 }
-
-
-
-}
-
-
