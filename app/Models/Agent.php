@@ -9,10 +9,10 @@ class Agent extends Model
 {
     use HasFactory;
 
-    protected $table='tbl_agents';
+    protected $table = 'tbl_agents';
 
     public function agentType()
-{
-    return $this->belongsTo(AgentType::class, 'agent_type');
-}
+    {
+        return $this->belongsTo(AgentType::class, 'agent_type');
+    }
 }
