@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commission;
 use App\Models\Agent;
 use App\Models\AgentTier;
 use App\Models\AgentType;
@@ -248,8 +249,8 @@ class CommissionMatrixController extends Controller
         $billerId = $request->input('biller_id');
         $walletId = $request->input('wallet_id');
         $transactionAmount = $request->input('transaction_amount');
-        $posId = $request->input('pos_id');
-        $walletName = $request->input('wallte_name');
+        $transactionId = $request->input('transaction_id');
+        
 
         $agentTierId = Agent::find($agentId);
 
@@ -265,7 +266,7 @@ class CommissionMatrixController extends Controller
         if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
             // No commission 
             $commissionAmount = 0;
-        } elseif ($agentType === 'Aggregator' && $transactionType === 'Airtime') {
+        
 
          
         } elseif ($agentType === 'Agent') {
@@ -277,22 +278,43 @@ class CommissionMatrixController extends Controller
             } else {
                 $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
             }
+        }elseif ($agentType === 'Aggregator' ) {
+            
+            $commissionRate = CommMatrix::where('agent_type', $agentType)
+                                          ->where('transaction_type', $transactionType)
+                                          ->select('commission_rate')
+                                          ->first();
+            
+            if (empty($commissionRate)) {
+                return response()->json(['message' => 'Commission rate not found for Aggregator']);
+            } else {
+                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
+            }
+        } elseif( $agentType === 'Terra'){
+             $commissionRate = CommMatrix::where('agent_type', $agentType)
+                                          ->where('transaction_type', $transactionType)
+                                          ->select('commission_rate')
+                                          ->first();
+            
+            if (empty($commissionRate)) {
+                return response()->json(['message' => 'Commission rate not found for  Terra']);
+            } else {
+                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
+            }
         }
-        $currentWalletBalance = Wallet::where('agent_id', $agentTierId->agent_tier_id)->first();
 
-        if ($currentWalletBalance->wallet_balance == null) {
-            $currentWalletBalance = 0;
-        }
+        
 
-        $newBalance = (float)$currentWalletBalance->wallet_balance + $commissionAmount;
-        $wallet = Wallet::firstOrNew([
-            'agent_id' => $agentId,
-        ]);
-        $wallet->wallet_balance = $newBalance;
-        $wallet->pos_id = $posId;
-        $wallet->wallet_name = $walletName;
+       
 
-        $wallet->save();
+        $commission = new Commission();
+        $commission->transaction_id = $transactionId;
+        $commission->amount = $transactionAmount;
+        $commission->commission = $commissionAmount;
+        $commission->type = $agentType;
+        $commission->date = now();
+        $commission->agent_id = $agentId;
+        $commission->save();
 
         return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
     }
