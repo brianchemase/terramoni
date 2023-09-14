@@ -253,9 +253,9 @@ class CommissionMatrixController extends Controller
 
         $agentTierId = Agent::find($agentId);
 
-       // return response()->json(['message' => $agentTierId->agent_tier_id]);
+        //return response()->json(['message' => $agentTierId->agent_tier_id]);
 
-        if($agentTierId->agent_tier_id==null || $agentTierId->agent_tier_id=="" ){
+        if ($agentTierId->agent_tier_id == null || $agentTierId->agent_tier_id == "") {
             return response()->json(['message' => 'No agent tier set for agent.']);
         }
 
@@ -265,30 +265,26 @@ class CommissionMatrixController extends Controller
         if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
             // No commission 
             $commissionAmount = 0;
-        } elseif ($agentType === 'Aggregator') {
+        } elseif ($agentType === 'Aggregator' && $transactionType === 'Airtime') {
 
-            //$commissionAmount= ;
+         
         } elseif ($agentType === 'Agent') {
 
-            $commissionRate = CommMatrix::where('agent_tier_level',  $agentTierId->agent_tier_id)->first();    
+            $commissionRate = CommMatrix::where('agent_tier_level',  $agentTierId->agent_tier_id)->select('commission_rate')->first();
 
-            //return response()->json(['message' =>  $commissionRate]);
-
-            if(empty($commissionRate)){
+            if (empty($commissionRate)) {
                 return response()->json(['message' => 'Commission has not been set for this tier']);
-            }else{               
-               
-                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;               
-                
+            } else {
+                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
             }
+        }
+        $currentWalletBalance = Wallet::where('agent_id', $agentTierId->agent_tier_id)->first();
 
-        $currentWalletBalance = Wallet::where('agent_id',$agentTierId->agent_tier_id)->select('wallet_balance')->first();
-
-        if($currentWalletBalance==null){
+        if ($currentWalletBalance->wallet_balance == null) {
             $currentWalletBalance = 0;
         }
 
-        $newBalance = $currentWalletBalance + $commissionAmount;
+        $newBalance = (float)$currentWalletBalance->wallet_balance + $commissionAmount;
         $wallet = Wallet::firstOrNew([
             'agent_id' => $agentId,
         ]);
@@ -297,11 +293,6 @@ class CommissionMatrixController extends Controller
         $wallet->wallet_name = $walletName;
 
         $wallet->save();
-
-
-        // Wallet::updateBalance($agentId, $newBalance);
-
-
 
         return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
     }

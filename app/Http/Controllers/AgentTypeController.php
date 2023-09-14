@@ -37,7 +37,7 @@ class AgentTypeController extends Controller
     }
 
     public function edit(AgentType $agentType)
-    {
+    {        
         return view('agents.agentTypes.edit', compact('agentType'));
     }
 
