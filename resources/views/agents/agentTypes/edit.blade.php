@@ -16,7 +16,7 @@
                         <h5 class="card-title mb-0"><b>Edit Agent Type</b></h5>
                     </div>
                     <div class="card-body">
-                        <form class="row g-3" method="POST" action="{{ route('agentTypes.update', [$agentType->id]) }}">
+                        <form class="row g-3" method="POST" action="{{ route('agentTypes.update', $agentType) }}">
                             @csrf
                             @method('PUT')
 
