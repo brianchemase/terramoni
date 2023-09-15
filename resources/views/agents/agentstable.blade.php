@@ -122,7 +122,7 @@
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
 														@if($data->status == 'approved')
-														<a class="dropdown-item" href="{{ route('fundallocations', ['q' => 14]) }}">Debit Agent Wallet</a>
+														<a class="dropdown-item" href="{{ route('fundallocations', ['q' => $data->id]) }}">Debit Agent Wallet</a>
 														
 														@endif
 														<!-- <a class="dropdown-item" href="#">Debit Agent Wallet</a> -->
