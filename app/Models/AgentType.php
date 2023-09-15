@@ -9,18 +9,20 @@ class AgentType extends Model
 {
     use HasFactory;
 
-    protected $table= 'agent_type';
+    protected $table = 'agent_type';
 
     public $timestamps = false;
 
-    protected $fillable= [
-'name',
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'name',
     ];
 
-    
 
     public function agents()
     {
         return $this->hasMany(Agent::class, 'agent_type');
     }
+
 }

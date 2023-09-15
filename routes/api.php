@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthOtpController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\NibbsController;
+use App\Http\Controllers\CommissionMatrixController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,3 +135,6 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
+
+//Commission Matrix logic
+Route::post('/calculate-commission', [CommissionMatrixController::class, 'applyCommissions']);

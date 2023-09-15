@@ -39,6 +39,7 @@ class AgentTierController extends Controller
 
     public function edit(AgentTier $agentTier)
     {
+        //dd( $agentTier);
         return view('agents.agentTiers.edit', compact('agentTier'));
     }
 

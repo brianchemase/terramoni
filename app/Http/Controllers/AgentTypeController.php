@@ -37,7 +37,7 @@ class AgentTypeController extends Controller
     }
 
     public function edit(AgentType $agentType)
-    {
+    {        
         return view('agents.agentTypes.edit', compact('agentType'));
     }
 
@@ -45,7 +45,7 @@ class AgentTypeController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:agent_type,name,' . $agentType->id .',id'. '|max:255',
-            // Add validation rules for other fields as needed
+            
         ]);
 
         $agentType->update($request->all());
