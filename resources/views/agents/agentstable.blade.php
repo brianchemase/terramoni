@@ -121,7 +121,11 @@
 														<a class="dropdown-item"href="{{ route('allocatedpos', ['id' => $data->id]) }}">Allocated POS</a>
 														<a class="dropdown-item" href="{{ route('agenttrans', ['id' => $data->id]) }}" target="_blank">Transaction History</a>
 														<a class="dropdown-item" href="#">Credit Agent Wallet</a>
-														<a class="dropdown-item" href="#">Debit Agent Wallet</a>
+														@if($data->status == 'approved')
+														<a class="dropdown-item" href="{{ route('fundallocations', ['q' => 14]) }}">Debit Agent Wallet</a>
+														
+														@endif
+														<!-- <a class="dropdown-item" href="#">Debit Agent Wallet</a> -->
 														<!-- <a class="dropdown-item" href="#">Transactions Rate</a> -->
 														<a class="dropdown-item" href="{{ route('agentedit', ['agent_id' => $data->id]) }}" target="_blank">Edit Agent details</a>
 														<!-- <a class="dropdown-item" href="#">Reset Password</a> -->

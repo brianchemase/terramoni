@@ -941,13 +941,32 @@ class AgentsController extends Controller
             // Add any other relevant fields here (e.g., role, status, etc.)
         ];
 
+
+         // Create a new user record in users table using agent details
+         $WalletData = [
+            
+            'agent_id' => $agentId,
+            'wallet_name' => $agent->first_name." ".$agent->mid_name." ".$agent->last_name,
+            'wallet_balance' => '0',
+            //'created_at' => $approvalDate,
+            //'updated_at' => $approvalDate,
+        ];
+
         
         $user = DB::table('users')->where('mobile_no', $agent->phone)->first();
         if ( !$user ){
 
           // Insert the user data into the users table using the DB facade
             DB::table('users')->insert($userData);
+          
 
+        }
+
+        $WalletInfor = DB::table('wallet')->where('agent_id', $agentId)->first();
+
+        if(!$WalletInfor)
+        {
+            $wallletFormation=DB::table('wallet')->insert($WalletData);
         }
        
         $fname = DB::table('tbl_agents')->where('id', $agentId)->value('first_name');
