@@ -69,6 +69,24 @@ class AgentsDashboardController extends Controller
             //$walletBalance=$walletvalue-$totaltransAmount;
             //$walletBalance = number_format((float)$bankWallet, 2, '.', '');
 
+            // Retrieve data and sum up ItemFee
+            $monthlySum = DB::table('tbl_transactions')
+            ->where('agent_id', $agent_id) // Add this line to filter by agent_id
+            ->selectRaw('MONTH(transaction_date) AS month, SUM(ItemFee) AS total_fee')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Format data for the chart
+        $Monthlabels = [];
+        $Monthlydata = [];
+
+        foreach ($monthlySum as $entry) {
+            $Monthlabels[] = date("M", mktime(0, 0, 0, $entry->month, 1));
+            $Monthlydata[] = $entry->total_fee;
+        }
+
+
 
         $data = [
             'salutation' => $salutation,// salutations
@@ -77,6 +95,8 @@ class AgentsDashboardController extends Controller
             'walletBalance' => $walletBalance,// Balance
             'CommisionEarned' => $CommisionEarned,// commision
             'transactions' => $transactions,// Transactions lists
+            'Monthlabels' => $Monthlabels,//monthly data
+            'Monthlydata' => $Monthlydata,//monthly data
             // Add more data to the array as needed
         ];
 
