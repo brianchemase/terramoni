@@ -61,6 +61,15 @@
 													
 						</ul>
 					</li>
+					<li class="sidebar-header">
+						Wallet History
+					</li>
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'WalletFunding' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('WalletFunding')}}">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Fund Agent Wallet</span>
+                        </a>
+					</li>
 
 					
 
@@ -119,7 +128,7 @@
 					@can('admin-user-profile')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'AllUsers' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('AllUsers')}}">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Manage Users</span>
+							<i class="align-middle" data-feather="shield"></i> <span class="align-middle">Manage Users</span>
 							
 						</a>
 					</li>
@@ -147,7 +156,7 @@
 					@can('admin-view-agent-tiers')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'promotions' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('promotions')}}">
-							<i class="align-middle" data-feather="tiers"></i> <span class="align-middle">Promotions</span>
+							<i class="align-middle" data-feather="cast"></i> <span class="align-middle">Promotions</span>
 							
 						</a>
 					</li>
@@ -156,7 +165,7 @@
 					@can('admin-view-transaction-types')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'transactionTypes' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('transactionTypes')}}">
-							<i class="align-middle" data-feather="transaction"></i> <span class="align-middle">Transaction Types</span>
+							<i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Transaction Types</span>
 							
 						</a>
 					</li>
@@ -174,7 +183,7 @@
 					@can('admin-view-agent-tiers')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTiers' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('agentTiers')}}">
-							<i class="align-middle" data-feather="tiers"></i> <span class="align-middle">Agent Tiers</span>
+							<i class="align-middle" data-feather="disc"></i> <span class="align-middle">Agent Tiers</span>
 							
 						</a>
 					</li>
@@ -183,7 +192,7 @@
 					@can('admin-view-customer-segments')
 					<li class="sidebar-item {{ Route::currentRouteName() === 'customerSegments' ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{route('customerSegments')}}">
-							<i class="align-middle" data-feather="customers"></i> <span class="align-middle">Customer Segments</span>
+							<i class="align-middle" data-feather="menu"></i> <span class="align-middle">Customer Segments</span>
 							
 						</a>
 					</li>
@@ -259,24 +268,24 @@
 
 
                    
-
-					<!-- <li class="sidebar-item">
+<!-- 
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="#">
                             <i class="align-middle" data-feather="power"></i> <span class="align-middle">Signout</span>
                         </a>
 					</li> -->
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{ route('logout') }}"
+							<a class="sidebar-link" href="{{ route('logout') }}"
 										onclick="event.preventDefault();
-														document.getElementById('logout-form').submit();">
+										document.getElementById('logout-form').submit();">
 										<i class="align-middle" data-feather="power"></i>	{{ __('Signout') }}
-										</a>
+							</a>
 
-										<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-											@csrf
-										</form>
-						</li>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+								@csrf
+							</form>
+					</li>
 
 				</ul>
 
