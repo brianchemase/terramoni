@@ -46,7 +46,13 @@ class CommissionController extends Controller
                 $bankWallet = number_format((float)$bankWallet, 2, '.', '');
             }
             else {
-                $walletBalance = 0.00;
+                $bankWallet = 0.00;
+                return response()->json([
+                    'status_code'=> 200,
+                    'message' => "Wallet history not found",
+                    'total_commission' => $totalCommission, 
+                    'bankWallet' => $bankWallet
+                ]);
             }
 
             return response()->json([
