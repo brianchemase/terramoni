@@ -51,8 +51,10 @@ class AgentsDashboardController extends Controller
             ->sum('ItemFee');
 
             $walletvalue="100000";
+            $bankWallet = DB::table('wallet')->orderBy('wallet_id', 'desc')->where('agent_id', $agent_id)->select('wallet_balance')->first()->wallet_balance;
 
-            $walletBalance=$walletvalue-$totaltransAmount;
+            //$walletBalance=$walletvalue-$totaltransAmount;
+            $walletBalance = number_format((float)$bankWallet, 2, '.', '');
 
 
         $data = [

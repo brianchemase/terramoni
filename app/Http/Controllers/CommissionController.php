@@ -36,7 +36,9 @@ class CommissionController extends Controller
 
             $walletvalue="100000";
 
-            $bankWallet=$walletvalue-$totaltransAmount;
+            $bankWallet = DB::table('wallet')->orderBy('wallet_id', 'desc')->where('agent_id', $agent_id)->select('wallet_balance')->first()->wallet_balance;
+
+            //$bankWallet=$walletvalue-$totaltransAmount;
             $bankWallet = number_format((float)$bankWallet, 2, '.', '');
 
             return response()->json([

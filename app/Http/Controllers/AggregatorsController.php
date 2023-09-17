@@ -43,7 +43,9 @@ class AggregatorsController extends Controller
             ->where('agent_id', $agent_id)
             ->sum('commission');
 
-       $walletBalance=rand(1, 100000);
+      // $walletBalance=rand(1, 100000);
+       $bankWallet = DB::table('wallet')->orderBy('wallet_id', 'desc')->where('agent_id', $agent_id)->select('wallet_balance')->first()->wallet_balance;
+       $walletBalance = number_format((float)$bankWallet, 2, '.', '');
        //$CommisionEarned=rand(1, 10000);
 
 
