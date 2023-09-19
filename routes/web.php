@@ -24,6 +24,7 @@ use App\Http\Controllers\WalletTransactionController;
 
 use App\Http\Controllers\AggregatorsController;
 use App\Http\Controllers\RoleBasedAccessController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -40,6 +41,8 @@ use App\Http\Controllers\RoleBasedAccessController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('my-demo-mail', [NotificationController::class, 'myDemoMail']);
 
 // Route::controller(AuthOtpController::class)->group(function(){
 //     Route::get('/otp/login', 'login')->name('otp.login');
