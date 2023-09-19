@@ -11,7 +11,7 @@ class NotificationController extends Controller
     //
     public function myDemoMail()
     {
-        $myEmail = 'aatmaninfotech@gmail.com';
+        $myEmail = 'brianchemo@gmail.com';
 
         $access_code="1235";
         $access_code = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
