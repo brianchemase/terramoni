@@ -51,6 +51,7 @@ class MyDemoMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.myDemoMail')
+                    ->from("noreply@tera.com")
                     ->with('details', $this->details);
     }
 

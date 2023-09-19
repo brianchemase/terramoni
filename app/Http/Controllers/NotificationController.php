@@ -14,6 +14,7 @@ class NotificationController extends Controller
         $myEmail = 'aatmaninfotech@gmail.com';
 
         $access_code="1235";
+        $access_code = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
         $phone="0725670606";
 
         $message="Your account has beed registered successfully. Use the access code: $access_code. ";

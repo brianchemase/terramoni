@@ -2,7 +2,7 @@
 # {{ $details['title'] }}
 
   
-Your Account has been successfully approved. Use the phone number {{ $details['phone'] }} and access code  {{ $details['access'] }} to login to the TerraMoni Apps
+Your account has been successfully approved. Use the phone number {{ $details['phone'] }} and access code <b> {{ $details['access'] }}</b> to login to the TerraMoni Apps
 
 Login to the Dashboard portal using your default password <b>123456</b>
    
