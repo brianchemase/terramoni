@@ -62,7 +62,7 @@
 						</ul>
 					</li>
 					<li class="sidebar-header">
-						Wallet History
+						WALLET MANAGEMENT
 					</li>
 
 					<li class="sidebar-item {{ Route::currentRouteName() === 'WalletFunding' ? 'active' : '' }}">
@@ -151,71 +151,42 @@
 					</li>
 					@endcan
 
+
+				
+
+					<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['promotions', 'transactionTypes', 'agentTypes', 'agentTiers', 'customerSegments', 'billers']) ? 'active' : '' }}">
+					<a data-target="#basedata" data-toggle="collapse" class="sidebar-link collapsed">
+						<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Setup Base Data</span>
+					</a>
+					<ul id="basedata" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+						@can('admin-view-agent-tiers')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['promotions', 'transactionTypes', 'agentTypes', 'agentTiers', 'customerSegments', 'billers']) && !in_array(Route::currentRouteName(), ['transactionTypes', 'agentTypes', 'customerSegments', 'billers']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('promotions') }}">Promotions</a></li>
+						@endcan
+
+						@can('admin-view-transaction-types')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['transactionTypes']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('transactionTypes') }}">Transaction Types</a></li>
+						@endcan
+
+						@can('admin-view-agent-types')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['agentTypes']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('agentTypes') }}">Agent Types</a></li>
+						@endcan
+
+						@can('admin-view-agent-tiers')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['agentTiers']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('agentTiers') }}">Agent Tiers</a></li>
+						@endcan
+
+						@can('admin-view-customer-segments')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['customerSegments']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('customerSegments') }}">Customer Segments</a></li>
+						@endcan
+
+						@can('admin-view-billers')
+							<li class="sidebar-item {{ in_array(Route::currentRouteName(), ['billers']) ? 'active' : '' }}"><a class="sidebar-link" href="{{ route('billers') }}">Billers</a></li>
+						@endcan
+					</ul>
+				</li>
+
+
 					
-
-					@can('admin-view-agent-tiers')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'promotions' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('promotions')}}">
-							<i class="align-middle" data-feather="cast"></i> <span class="align-middle">Promotions</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-transaction-types')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'transactionTypes' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('transactionTypes')}}">
-							<i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Transaction Types</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-agent-types')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTypes' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('agentTypes')}}">
-							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Agent Types</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-agent-tiers')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'agentTiers' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('agentTiers')}}">
-							<i class="align-middle" data-feather="disc"></i> <span class="align-middle">Agent Tiers</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-customer-segments')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'customerSegments' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('customerSegments')}}">
-							<i class="align-middle" data-feather="menu"></i> <span class="align-middle">Customer Segments</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-billers')
-					<li class="sidebar-item {{ Route::currentRouteName() === 'billers' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('billers')}}">
-							<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Biller</span>
-							
-						</a>
-					</li>
-					@endcan
-
-					@can('admin-view-permission-matrix')
-
-					<li class="sidebar-item {{ Route::currentRouteName() === 'permissionsmatrix' ? 'active' : '' }}">
-						<a class="sidebar-link" href="{{route('permissionsmatrix')}}">
-							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Access Matrix</span>
-							
-						</a>
-					</li>
-					@endcan
 
 					
 					<li class="sidebar-item">
@@ -237,6 +208,21 @@
 					</li>
 					<!-- @can('admin-view-roles','admin-view-permissions') -->
 					<!-- @endcan -->
+
+					
+
+					
+
+					@can('admin-view-permission-matrix')
+
+					<li class="sidebar-item {{ Route::currentRouteName() === 'permissionsmatrix' ? 'active' : '' }}">
+						<a class="sidebar-link" href="{{route('permissionsmatrix')}}">
+							<i class="align-middle" data-feather="key"></i> <span class="align-middle">Access Matrix</span>
+							
+						</a>
+					</li>
+					@endcan
+
 
 					
 					

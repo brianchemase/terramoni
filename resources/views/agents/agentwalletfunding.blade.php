@@ -39,8 +39,8 @@
 					<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Get Staff To Topup</h5>
-									<h6 class="card-subtitle text-muted">Select Client for Fund allocation.</h6>
+									<h5 class="card-title">Get Agent To Topup</h5>
+									<h6 class="card-subtitle text-muted">Select Agent for Fund allocation.</h6>
 								</div>
 								<div class="card-body">
 									<form class="row row-cols-md-auto align-items-center" action="{{route('fundallocations')}}" method="GET" autocomplete="off">
@@ -49,9 +49,9 @@
 										<div class="col-12">
 											<label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
 											<div class="input-group mb-2 mr-sm-6">
-												<div class="input-group-text">Get Agent Data</div>
+												<div class="input-group-text">Select Agent</div>
 												<select class="form-select" id="validationDefault04" name="q" required>
-													<option selected disabled value="">Choose...</option>
+													<option selected disabled value="">Select...</option>
 													@forelse ($active_agents as $data)
 													<option value="{{ $data->id }}">{{ $data->first_name }}  {{ $data->last_name }}- {{ $data->doc_no }}</option>
 													@empty
@@ -65,7 +65,7 @@
 										
 
 										<div class="col-12">
-											<button type="submit" class="btn btn-primary mb-2">Fetch Agent</button>
+											<button type="submit" class="btn btn-primary mb-2">Fetch Agent Details</button>
 										</div>
 									</form>
 								</div>
@@ -80,7 +80,7 @@
 							
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Topup Fund to <strong>{{$staff_names}}</strong></h5>
+									<h5 class="card-title">Credit Funds To Agent <strong>{{$staff_names}}</strong></h5>
 									
 								</div>
 								<div class="card-body">
@@ -88,7 +88,7 @@
                                         @csrf
 										<div class="col-md-4">
 											<label for="validationDefault01" class="form-label">Current Balance</label>
-											<input type="number" class="form-control" id="validationDefault01" value="{{$fund_balance}}" required>
+											<input type="number" class="form-control" id="validationDefault01" value="{{$fund_balance}}" disabled>
                                             <input type="hidden" class="form-control" id="validationDefault01" name="balance" value="{{$fund_balance}}">
                                             <input type="hidden" class="form-control" id="validationDefault01" name="agent_id" value="{{$agent_id}}">
                                             <input type="hidden" class="form-control" id="validationDefault01" name="staff_names" value="{{$staff_names}}">
@@ -99,7 +99,7 @@
 										</div>
 										
 										<div class="col-md-4">
-											<label for="validationDefaultUsername" class="form-label">Agent ID</label>
+											<label for="validationDefaultUsername" class="form-label">Agent/Aggregator/Account Manager ID</label>
 											<div class="input-group">
 												<span class="input-group-text" id="inputGroupPrepend2">@</span>
 												<input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" value="{{$agent_id}}" required>
