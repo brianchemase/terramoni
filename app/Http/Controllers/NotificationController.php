@@ -21,14 +21,15 @@ class NotificationController extends Controller
    
         $details = [
             'title' => 'Account Successfully Approved',
-            'url' => 'https://www.itsolutionstuff.com',
             'access'=> $access_code,
             'phone'=> $phone,
             'message'=> $message,
         ];
   
         Mail::to($myEmail)->send(new MyDemoMail($details));
-   
+        
+
+        return $details;
         dd("Mail Send Successfully");
     }
 

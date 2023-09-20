@@ -8,7 +8,7 @@
 				</div>
 				<div class="modal-body m-3">
 					
-			<form class="row g-3" action="{{ route('')}}" method="POST" enctype="multipart/form-data">
+			<form class="row g-3" action="{{ route('saveagentdata')}}" method="POST" enctype="multipart/form-data">
 			@csrf
 				<div class="col-md-6">
 					<label for="validationDefault01" class="form-label">Company name</label>
