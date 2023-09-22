@@ -95,7 +95,7 @@ class BillPaymentController extends Controller
 
        // $agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
-            ->select('first_name', 'last_name')
+            //->select('first_name', 'last_name')
             ->where('id', $agent_id)
             ->first();
 
@@ -127,14 +127,28 @@ class BillPaymentController extends Controller
             'BillerType' => 'Electrical Bill',
         ]);
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $topupAmount*0.015,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        // ]);
+
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $topupAmount*0.015,
-            'date' => $todayDate,
-            'type' => 'Debit',
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission = $this->ApplyCommission($data);
         // Extract required values
         $target = $responseData['target'];
         $pin_code = $responseData['pin_code'];
@@ -315,7 +329,7 @@ class BillPaymentController extends Controller
         // Replace this with your Bearer token
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
         $agent = DB::table('tbl_agents')
-        ->select('first_name', 'last_name')
+        //->select('first_name', 'last_name')
         ->where('id', $agent_id)
         ->first();
 
@@ -387,16 +401,30 @@ class BillPaymentController extends Controller
         // Calculate commission
         $commission = $topupAmount * 0.015;
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $commission,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        //     //'created_at' => $todayDate,
+        //     //'updated_at' => $todayDate,
+        // ]);
+
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $commission,
-            'date' => $todayDate,
-            'type' => 'Debit',
-            //'created_at' => $todayDate,
-            //'updated_at' => $todayDate,
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission_value = $this->ApplyCommission($data);
 
         return $response;
 
@@ -447,7 +475,7 @@ class BillPaymentController extends Controller
         // Replace this with your Bearer token
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
         $agent = DB::table('tbl_agents')
-        ->select('first_name', 'last_name')
+        //->select('first_name', 'last_name')
         ->where('id', $agent_id)
         ->first();
 
@@ -519,16 +547,29 @@ class BillPaymentController extends Controller
         // Calculate commission
         $commission = $topupAmount * 0.015;
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $commission,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        //     //'created_at' => $todayDate,
+        //     //'updated_at' => $todayDate,
+        // ]);
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $commission,
-            'date' => $todayDate,
-            'type' => 'Debit',
-            //'created_at' => $todayDate,
-            //'updated_at' => $todayDate,
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission_value = $this->ApplyCommission($data);
 
         return $response;
 
@@ -777,7 +818,7 @@ class BillPaymentController extends Controller
         }
 
         $agent = DB::table('tbl_agents')
-            ->select('first_name', 'last_name')
+            //->select('first_name', 'last_name')
             ->where('id', $agent_id)
             ->first();
 
@@ -809,14 +850,28 @@ class BillPaymentController extends Controller
             'BillerType' => 'Internet Bill',
         ]);
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $topupAmount*0.015,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        // ]);
+
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $topupAmount*0.015,
-            'date' => $todayDate,
-            'type' => 'Debit',
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission = $this->ApplyCommission($data);
         // Extract required values
         // $target = $responseData['target'];
         // $pin_code = $responseData['pin_code'];
@@ -837,6 +892,35 @@ class BillPaymentController extends Controller
         return response()->json($responseData, 200);
 
 
+    }
+
+    // $commission = $this->ApplyCommission($data);
+    private function ApplyCommission($data)
+    {
+
+        $url = "https://portal.datacraftgarage.com/api/calculate-commission";
+
+       
+        // Initialize cURL session
+        $ch = curl_init($url);
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+        // Execute the cURL session
+        $response = curl_exec($ch);
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return false; // Request failed
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        return $response; // Return the response
     }
 
 

@@ -313,7 +313,7 @@ class AirtimeController extends Controller
 
        // $agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
-            ->select('first_name', 'last_name')
+           // ->select('first_name', 'last_name')
             ->where('id', $agent_id)
             ->first();
 
@@ -349,14 +349,28 @@ class AirtimeController extends Controller
             'BillerType' => 'Data Top up',
         ]);
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $topupAmount*0.015,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        // ]);
+
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $topupAmount*0.015,
-            'date' => $todayDate,
-            'type' => 'Debit',
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission = $this->ApplyCommission($data);
 
 
         // Return the API response in a well-structured manner
