@@ -239,7 +239,7 @@ class CommissionMatrixController extends Controller
 
         return redirect()->route('basiccommissionmatrix')->with('success', 'Basic Commission Matrix updated successfully.');
     }
-    public function applyCommissions(Request $request)
+    public function applyCommissions1(Request $request)
     {
         // Retrieve transaction details from the request
         $agentType = $request->input('agent_type');
@@ -316,6 +316,101 @@ class CommissionMatrixController extends Controller
         $commission->date = now();
         $commission->agent_id = $agentId;
         $commission->save();
+
+        return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
+    }
+
+    public function applyCommissions(Request $request)
+    {
+        // Retrieve transaction details from the request
+        $agentType = $request->input('agent_type');
+        $transactionType = $request->input('transaction_type');
+        $agentId = $request->input('agent_id');
+        $agentTier = $request->input('agent_tier');
+        $billerId = $request->input('biller_id');
+        $walletId = $request->input('wallet_id');
+        $transactionAmount = $request->input('transaction_amount');
+        $transactionId = $request->input('transaction_id');
+
+
+        $agentTierId = Agent::find($agentId);
+
+        //return response()->json(['message' => $agentTierId->agent_tier_id]);
+
+        if ($agentTierId->agent_tier_id == null || $agentTierId->agent_tier_id == "") {
+            return response()->json(['message' => 'No agent tier set for agent.']);
+        }
+
+        $commissionAmount = 0;
+        $commissionAmountAggregator = 0;
+        $commissionAmountTerra = 0;
+
+        // Apply commissions logic based on business rules
+        if ($agentType === 'Agent' && ($transactionType === 'Withdrawal' || $transactionType === 'Checkout' || $transactionType === 'Funds Transfer')) {
+            // No commission 
+            $commissionAmount = 0;
+        } elseif ($agentType === 'Agent') {
+
+            $commissionRate = CommMatrix::where('agent_tier_level', $agentTierId->agent_tier_id)->select('commission_rate')->first();
+            //return response()->json(['Rate' => $commissionRate]);
+            if (empty($commissionRate)) {
+                return response()->json(['message' => 'Commission has not been set for this tier']);
+            } else {
+                $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
+                //dd($commissionAmount);
+
+                $commission = new Commission();
+                $commission->transaction_id = $transactionId;
+                $commission->amount = $transactionAmount;
+                $commission->commission = $commissionAmount;
+                $commission->type = $agentType;
+                $commission->date = now();
+                $commission->agent_id = $agentId;
+                $commission->save();
+
+                $commissionRateAggregator = CommMatrix::where('agent_type', '2')
+                    ->where('transaction_type', $transactionType)
+                    ->select('commission_rate')
+                    ->first();
+                if (empty($commissionRateAggregator)) {
+                    return response()->json(['message' => 'Commission rate not found for Aggregator']);
+                } else {
+                    $commissionAmountAggregator = ($commissionRate->commission_rate * $transactionAmount) / 100;
+
+                    $commission = new Commission();
+                    $commission->transaction_id = $transactionId;
+                    $commission->amount = $transactionAmount;
+                    $commission->commission = $commissionAmountAggregator;
+                    $commission->type = "Aggregator";
+                    $commission->date = now();
+                    $commission->agent_id = $agentTierId->aggregator_id;
+                    $commission->save();
+                }
+
+                $commissionRateTerra = CommMatrix::where('agent_type', '3')
+                    ->where('transaction_type', $transactionType)
+                    ->select('commission_rate')
+                    ->first();
+                if (empty($commissionRateTerra)) {
+                    return response()->json(['message' => 'Commission rate not found for Terra']);
+                } else {
+                    $commissionAmountTerra = ($commissionRate->commission_rate * $transactionAmount) / 100;
+
+                    $commission = new Commission();
+                    $commission->transaction_id = $transactionId;
+                    $commission->amount = $transactionAmount;
+                    $commission->commission = $commissionAmount;
+                    $commission->type = $agentType;
+                    $commission->date = now();
+                    $commission->agent_id = '0';
+                    $commission->save();
+                }
+            }
+        } 
+        
+
+
+        
 
         return response()->json(['message' => 'Commissions applied successfully', 'commission_amount' => $commissionAmount]);
     }
