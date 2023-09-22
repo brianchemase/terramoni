@@ -138,7 +138,7 @@ class BillPaymentController extends Controller
 
         $data = [
             'agent_type' => 'Agent',
-            'transaction_type' => '1',
+            'transaction_type' => '3',
             'agent_id' => $agent_id,
             'agent_tier' => $agent->agent_tier_id,
             'biller_id' => '1',
@@ -399,7 +399,7 @@ class BillPaymentController extends Controller
         ]);
 
         // Calculate commission
-        $commission = $topupAmount * 0.015;
+       // $commission = $topupAmount * 0.015;
 
         // DB::table('tbl_commissions')->insert([
         //     'transaction_id' => $customer_reference,
@@ -414,7 +414,7 @@ class BillPaymentController extends Controller
 
         $data = [
             'agent_type' => 'Agent',
-            'transaction_type' => '1',
+            'transaction_type' => '4',
             'agent_id' => $agent_id,
             'agent_tier' => $agent->agent_tier_id,
             'biller_id' => '1',
@@ -559,7 +559,7 @@ class BillPaymentController extends Controller
         // ]);
         $data = [
             'agent_type' => 'Agent',
-            'transaction_type' => '1',
+            'transaction_type' => '4',
             'agent_id' => $agent_id,
             'agent_tier' => $agent->agent_tier_id,
             'biller_id' => '1',
@@ -861,7 +861,7 @@ class BillPaymentController extends Controller
 
         $data = [
             'agent_type' => 'Agent',
-            'transaction_type' => '1',
+            'transaction_type' => '5',
             'agent_id' => $agent_id,
             'agent_tier' => $agent->agent_tier_id,
             'biller_id' => '1',
@@ -922,9 +922,6 @@ class BillPaymentController extends Controller
 
         return $response; // Return the response
     }
-
-
-
 
 
     private function sendSMS(string $toNumber, string $message)

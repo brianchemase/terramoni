@@ -360,7 +360,7 @@ class AirtimeController extends Controller
 
         $data = [
             'agent_type' => 'Agent',
-            'transaction_type' => '1',
+            'transaction_type' => '2',
             'agent_id' => $agent_id,
             'agent_tier' => $agent->agent_tier_id,
             'biller_id' => '1',
