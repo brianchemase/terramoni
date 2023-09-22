@@ -376,7 +376,7 @@ class CommissionMatrixController extends Controller
                 if (empty($commissionRateAggregator)) {
                     return response()->json(['message' => 'Commission rate not found for Aggregator']);
                 } else {
-                    $commissionAmountAggregator = ($commissionRate->commission_rate * $transactionAmount) / 100;
+                    $commissionAmountAggregator = ($commissionRateAggregator->commission_rate * $transactionAmount) / 100;
 
                     $commission = new Commission();
                     $commission->transaction_id = $transactionId;
@@ -396,13 +396,13 @@ class CommissionMatrixController extends Controller
                 if (empty($commissionRateTerra)) {
                     return response()->json(['message' => 'Commission rate not found for Terra']);
                 } else {
-                    $commissionAmountTerra = ($commissionRate->commission_rate * $transactionAmount) / 100;
+                    $commissionAmountTerra = ($commissionRateTerra->commission_rate * $transactionAmount) / 100;
 
                     $commission = new Commission();
                     $commission->transaction_id = $transactionId;
                     $commission->amount = $transactionAmount;
-                    $commission->commission = $commissionAmount;
-                    $commission->type = $agentType;
+                    $commission->commission = $commissionAmountTerra;
+                    $commission->type = "Terra";
                     $commission->date = now();
                     $commission->agent_id = '0';
                     $commission->save();
