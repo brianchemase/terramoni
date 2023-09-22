@@ -277,6 +277,7 @@ class CommissionMatrixController extends Controller
                 return response()->json(['message' => 'Commission has not been set for this tier']);
             } else {
                 $commissionAmount = ($commissionRate->commission_rate * $transactionAmount) / 100;
+                dd($commissionAmount);
             }
         }elseif ($agentType === 'Aggregator' ) {
             
