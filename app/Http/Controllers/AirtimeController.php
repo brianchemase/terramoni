@@ -93,7 +93,7 @@ class AirtimeController extends Controller
 
         //$agent_id = rand(1, 899);
         $agent = DB::table('tbl_agents')
-            ->select('first_name', 'last_name')
+            //->select('first_name', 'last_name', 'agent_tier_id', '')
             ->where('id', $agent_id)
             ->first();
 
