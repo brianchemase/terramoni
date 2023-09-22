@@ -272,7 +272,7 @@ class CommissionMatrixController extends Controller
         } elseif ($agentType === 'Agent') {
 
             $commissionRate = CommMatrix::where('agent_tier_level',  $agentTierId->agent_tier_id)->select('commission_rate')->first();
-            return response()->json(['Rate' => $commissionRate]);
+            //return response()->json(['Rate' => $commissionRate]);
             if (empty($commissionRate)) {
                 return response()->json(['message' => 'Commission has not been set for this tier']);
             } else {
