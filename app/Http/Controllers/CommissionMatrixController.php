@@ -368,7 +368,8 @@ class CommissionMatrixController extends Controller
                 $commission->agent_id = $agentId;
                 $commission->save();
 
-                $commissionRateAggregator = CommMatrix::where('agent_type', '2')
+                $aggregatorTypeID="2";
+                $commissionRateAggregator = CommMatrix::where('agent_type', $aggregatorTypeID)
                     ->where('transaction_type', $transactionType)
                     ->select('commission_rate')
                     ->first();
@@ -386,8 +387,9 @@ class CommissionMatrixController extends Controller
                     $commission->agent_id = $agentTierId->aggregator_id;
                     $commission->save();
                 }
+                $TerraTypeID="3";
 
-                $commissionRateTerra = CommMatrix::where('agent_type', '3')
+                $commissionRateTerra = CommMatrix::where('agent_type', $TerraTypeID)
                     ->where('transaction_type', $transactionType)
                     ->select('commission_rate')
                     ->first();
