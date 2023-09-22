@@ -127,14 +127,30 @@ class AirtimeController extends Controller
         ]);
 
 
-        DB::table('tbl_commissions')->insert([
-            'transaction_id' => $customer_reference,
+        // DB::table('tbl_commissions')->insert([
+        //     'transaction_id' => $customer_reference,
+        //     'agent_id' => $agent_id,
+        //     'amount' => $topupAmount,
+        //     'commission' => $topupAmount*0.015,
+        //     'date' => $todayDate,
+        //     'type' => 'Debit',
+        // ]);
+
+        $data = [
+            'agent_type' => 'Agent',
+            'transaction_type' => '1',
             'agent_id' => $agent_id,
-            'amount' => $topupAmount,
-            'commission' => $topupAmount*0.015,
-            'date' => $todayDate,
-            'type' => 'Debit',
-        ]);
+            'agent_tier' => $agent->agent_tier_id,
+            'biller_id' => '1',
+            'wallet_id' => $agent->bank_acc_no,//bank_acc_no
+            'transaction_amount' => $topupAmount,
+            'transaction_id' => $customer_reference,
+            // Add other data fields as needed
+        ];
+        //calculate and make commissions
+        $commission = $this->ApplyCommission($data);
+
+
         // Access the value of topup_amount
         $topupAmount = $responseData['topup_amount'];
 
@@ -345,4 +361,35 @@ class AirtimeController extends Controller
         return response()->json($responseData, 200);
         
     }
+
+    // $commission = $this->ApplyCommission($data);
+    private function ApplyCommission($data)
+    {
+
+        $url = "https://portal.datacraftgarage.com/api/calculate-commission";
+
+       
+        // Initialize cURL session
+        $ch = curl_init($url);
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+        // Execute the cURL session
+        $response = curl_exec($ch);
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return false; // Request failed
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+        return $response; // Return the response
+    }
+
+    
 }
