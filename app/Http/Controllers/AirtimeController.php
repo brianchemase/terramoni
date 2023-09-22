@@ -100,6 +100,8 @@ class AirtimeController extends Controller
         $agent_names = null;
         if ($agent) {
             $agent_names = $agent->first_name . ' ' . $agent->last_name;
+            $agent_tier= $agent->agent_tier_id;
+            return $agent_tier;
         }
         
 
