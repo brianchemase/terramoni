@@ -443,8 +443,7 @@ class BillPaymentController extends Controller
     public function checkStartimesMeter(Request $request)
     {
         $request->validate([
-            'meter' => 'required',
-            
+            'meter' => 'required', 
         ]);
 
          // API URL
@@ -484,9 +483,7 @@ class BillPaymentController extends Controller
         curl_close($ch);
 
         // Return the response
-        return response()->json(['response' => json_decode($response)]);
-
-
+        return response()->json([ 'status_code' => 200, 'message' =>'Data available' ,'response' => json_decode($response)]);
 
     }
 
@@ -534,23 +531,18 @@ class BillPaymentController extends Controller
                 $agent_names = $agent->first_name . ' ' . $agent->last_name;
             }
 
-        // Data to send in the POST request
-        // $data = array(
-        //     'meter' => $accno,
-        //     'customer_reference' => $refnumber,
-        //     // Add more parameters as needed
-        // );
-
+       // Data to send in the POST request
         $data = array(
-            'meter' => '02586561538',
+            'meter' => $accno,
             'customer_reference' => $refnumber,
             // Add more parameters as needed
         );
 
+       
+
          // URL to send the POST request to
-      // $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
-       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/900";
-       //return $accno;
+       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
+       
 
         // Initialize cURL session
         $ch = curl_init();
@@ -566,7 +558,7 @@ class BillPaymentController extends Controller
 
         // Execute cURL session and get the response
         $response = curl_exec($ch);
-        return $response;
+        //return $response;
 
         // Check if there is a response
         if (empty($response)) {
@@ -600,13 +592,13 @@ class BillPaymentController extends Controller
             'customer_reference' => $customer_reference,
             'ItemFee' => $topupAmount,
             'CurrencySymbol' => $paidCurrency,
-            'BillerType' => 'TV Payment Bill',
+            'BillerType' => 'Start times TV Payment Bill',
            // 'created_at' => $todayDate,
            // 'updated_at' => $todayDate,
         ]);
 
         // Calculate commission
-        $commission = $topupAmount * 0.015;
+       // $commission = $topupAmount * 0.015;
 
         // DB::table('tbl_commissions')->insert([
         //     'transaction_id' => $customer_reference,
@@ -632,7 +624,7 @@ class BillPaymentController extends Controller
         //calculate and make commissions
         $commission_value = $this->ApplyCommission($data);
 
-        return $response;
+        //return $response;
 
         // Check for cURL errors
         if (curl_errno($ch)) {
@@ -643,7 +635,8 @@ class BillPaymentController extends Controller
         curl_close($ch);
 
         // You can handle the response as needed, such as returning it or saving it to a database
-        return $response;
+        return response()->json(['status_code' => 200, 'message' => 'Payment done successfully', 'data' => $response ], 200); // Example JSON error response
+       // return $response;
     }
 
     public function checkTvAccount(Request $request)
