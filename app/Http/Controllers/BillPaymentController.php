@@ -484,7 +484,7 @@ class BillPaymentController extends Controller
         curl_close($ch);
 
         // Check if the response is null
-        if (!$response)
+        if ($response==null)
         {
             return response()->json(['status_code' => 404, 'message' =>'Data not available, confirm meter number'], 404);
         }
