@@ -538,7 +538,7 @@ class BillPaymentController extends Controller
         $data = array(
             //'amount' => $amount,
             'meter' => $accno,
-            'customer_reference' => $refnumber
+            'customer_reference' => $refnumber,
             // Add more parameters as needed
         );
 
