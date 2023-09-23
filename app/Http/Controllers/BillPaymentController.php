@@ -478,6 +478,10 @@ class BillPaymentController extends Controller
         if (curl_errno($ch)) {
             return response()->json(['status_code' => 500, 'message' =>'Data not available', 'error' => 'cURL error: ' . curl_error($ch)], 500);
         }
+        if (!$response)
+        {
+            return response()->json(['status_code' => 404, 'message' =>'Data not available, confirm meter number'], 404);
+        }
 
         // Close cURL session
         curl_close($ch);
