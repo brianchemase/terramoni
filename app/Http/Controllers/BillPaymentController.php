@@ -544,7 +544,7 @@ class BillPaymentController extends Controller
 
          // URL to send the POST request to
        $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
-      // return $url;
+       return $accno;
 
         // Initialize cURL session
         $ch = curl_init();
