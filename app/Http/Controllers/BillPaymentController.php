@@ -535,16 +535,22 @@ class BillPaymentController extends Controller
             }
 
         // Data to send in the POST request
+        // $data = array(
+        //     'meter' => $accno,
+        //     'customer_reference' => $refnumber,
+        //     // Add more parameters as needed
+        // );
+
         $data = array(
-            //'amount' => $amount,
-            'meter' => $accno,
+            'meter' => '02586561538',
             'customer_reference' => $refnumber,
             // Add more parameters as needed
         );
 
          // URL to send the POST request to
-       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
-       return $accno;
+      // $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
+       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/900";
+       //return $accno;
 
         // Initialize cURL session
         $ch = curl_init();
