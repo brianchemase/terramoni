@@ -495,6 +495,7 @@ class BillPaymentController extends Controller
         $request->validate([
             'accno' => 'required',
             'amount' => 'required',
+            
             'agent_id' => 'required',
             //'access_pin' => 'required',
         ]);
@@ -519,7 +520,8 @@ class BillPaymentController extends Controller
 
         // }
         // URL to send the POST request to
-       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA";
+       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
+
 
         // Replace this with your Bearer token
         $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
@@ -535,9 +537,9 @@ class BillPaymentController extends Controller
 
         // Data to send in the POST request
         $data = array(
-            'amount' => $amount,
+            //'amount' => $amount,
             'meter' => $accno,
-            "customer_reference" => $refnumber
+            'customer_reference' => $refnumber
             // Add more parameters as needed
         );
 
