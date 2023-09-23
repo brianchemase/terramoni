@@ -440,6 +440,56 @@ class BillPaymentController extends Controller
         return $response;
     }
 
+    public function checkStartimesMeter(Request $request)
+    {
+        $request->validate([
+            'meter' => 'required',
+            
+        ]);
+
+         // API URL
+         $url = 'https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/validate';
+
+         // Data to send in the POST request
+         $postData = [
+             'meter' => $request->input('meter'),
+             // Add more key-value pairs as needed
+         ];
+
+         // Bearer token
+        $authorization = DB::table('tbl_prime_token')->select('token')->orderBy('id', 'desc')->value('token');
+        //$token = 'YOUR_BEARER_TOKEN_HERE';
+
+        // Initialize cURL session
+        $ch = curl_init($url);
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData)); // Convert data to JSON format
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $authorization,
+            'Content-Type: application/json', // Set content type to JSON
+        ]);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return response()->json(['error' => 'cURL error: ' . curl_error($ch)], 500);
+        }
+
+        // Close cURL session
+        curl_close($ch);
+
+        // Return the response
+        return response()->json(['response' => json_decode($response)]);
+
+
+
+    }
+
     public function payforStartimesTv(Request $request)
     {
         $request->validate([

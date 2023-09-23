@@ -87,8 +87,13 @@ Route::post('/Tvproducts', [BillPaymentController::class, 'getTvDataListing']);
 //pay for TV
 Route::post('/PayTvSubscription', [BillPaymentController::class, 'payforTv']);
 
+//Check for Startimes TV meter name
+Route::post('/CheckStarTimesTV', [BillPaymentController::class, 'checkStartimesMeter']);
+
+
 //pay for Startimes TV
 Route::post('/PayStarTimesTV', [BillPaymentController::class, 'payforStartimesTv']);
+
 
 //check for TV aCcount
 Route::post('/ConfirmTvAccount', [BillPaymentController::class, 'checkTvAccount']);
