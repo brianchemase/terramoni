@@ -519,8 +519,7 @@ class BillPaymentController extends Controller
         //     ]);
 
         // }
-        // URL to send the POST request to
-       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
+       
 
 
         // Replace this with your Bearer token
@@ -542,6 +541,10 @@ class BillPaymentController extends Controller
             'customer_reference' => $refnumber
             // Add more parameters as needed
         );
+
+         // URL to send the POST request to
+       $url="https://clients.primeairtime.com/api/billpay/dstv/BPD-NGCA-AWA/$amount";
+       return $url;
 
         // Initialize cURL session
         $ch = curl_init();
