@@ -294,6 +294,31 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         return response()->json($responseFields, 200);
     }
 
+    public function agentupdatePin(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'phone' => 'required',
+            'pin1' => 'required',
+            'pin2' => 'required|same:pin1',
+        ]);
+
+        $phone = $request->input('phone');
+        $pin1 = $request->input('pin1');
+
+        // Check if the agent with the given phone number exists in the database
+        $existingAgent = DB::table('tbl_agents')->where('phone', $phone)->first();
+
+        if (!$existingAgent) {
+            return response()->json(['error' => 'Agent with the given phone number does not exist.'], 404);
+        }
+
+        // Update the pin in the database using DB facade
+        DB::table('tbl_agents')->where('phone', $phone)->update(['access_pin' => $pin1]);
+
+        return response()->json(['message' => 'Access PIN updated successfully.'], 200);
+    }
+
 
     public function agentsregister(Request $request)
     {
@@ -389,29 +414,79 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         ], 201);
     }
 
-    public function agentupdatePin(Request $request)
+
+    public function storeCompanySelfReg(Request $request)
     {
-        // Validate the request data
+        // Validate the incoming request data
         $request->validate([
+            'cname' => 'required',
+            'business_registration_no' => 'required',
+            'taxid' => 'required|string|max:255',
+            'email' => 'required|email|unique:tbl_agents',
             'phone' => 'required',
-            'pin1' => 'required',
-            'pin2' => 'required|same:pin1',
+            'business_location' => 'required',
+            'business_street' => 'required',
+            'business_lga' => 'required',
+            'business_state' => 'required',
+            'business_type' => 'required',
+            'state' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
         ]);
 
-        $phone = $request->input('phone');
-        $pin1 = $request->input('pin1');
-
-        // Check if the agent with the given phone number exists in the database
-        $existingAgent = DB::table('tbl_agents')->where('phone', $phone)->first();
-
-        if (!$existingAgent) {
-            return response()->json(['error' => 'Agent with the given phone number does not exist.'], 404);
+        // Process the 'address_proof' file upload
+        if ($request->hasFile('address_proof')) {
+            $request->validate([
+                'address_proof' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->address_proof->store('address', 'public');
         }
 
-        // Update the pin in the database using DB facade
-        DB::table('tbl_agents')->where('phone', $phone)->update(['access_pin' => $pin1]);
+        // Extract data from the request
+        $input = $request->all();
+        $docTypes = $request->input('doc_type');
+        $docNumbers = $request->input('directordoc');
+        $directorBVNs = $request->input('directorBVN');
+        $tax_id = $request->input('taxid');
+        $cname = $request->input('cname');
 
-        return response()->json(['message' => 'Access PIN updated successfully.'], 200);
+        // Store data in the 'tbl_company_directors' table
+        $insertedIds = [];
+        foreach ($docTypes as $key => $docType) {
+            $insertedId = DB::table('tbl_company_directors')->insertGetId([
+                'company_names' => $cname,
+                'tax_id' => $tax_id,
+                'doc_type' => $docType,
+                'doc_no' => $docNumbers[$key],
+                'dir_bvn_no' => $directorBVNs[$key],
+                // Add other fields here as needed
+            ]);
+            $insertedIds[] = $insertedId;
+        }
+
+        // Store data in the 'tbl_agents' table
+        $inserted = DB::table('tbl_agents')->insertGetId([
+            'first_name' => $input['cname'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+            'agent_type' => $input['agent_type'],
+            'agent_role' => 'aggregators',
+            'tax_id' => $input['taxid'],
+            //'bvn' => $input['bvn'],
+            'location' => $input['state'],
+            'country' => $input['city'],
+            'status' => 'pending',
+            'address_proff' => $request->address_proof->hashName(),
+            'registration_date' => now()->toDateString(),
+        ]);
+
+        // Return a JSON response based on the result
+        if ($inserted) {
+            return response()->json(['message' => 'Year Agent data saved successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Something went wrong, try again later or contact system admin'], 500);
+        }
     }
+
+    
     
 }

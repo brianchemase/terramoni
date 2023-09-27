@@ -42,6 +42,10 @@ Route::post('/AgentsUpdatePin', [AuthOtpController::class, 'agentupdatePin']);//
 Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//agents Register API
 
 
+//Cooperates registration api
+Route::post('/RegisterCooperate', [AuthOtpController::class, 'storeCompanySelfReg']);//agents Register API for companies
+
+
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
 
 //agents registration api
