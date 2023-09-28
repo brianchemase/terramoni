@@ -272,7 +272,7 @@ class AuthOtpController extends Controller
          ->select('serial_no', 'status', 'assignment_date') // Specify the columns you want to fetch
          ->get();
 
-$passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
+            $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         // If authentication is successful, return the selected fields as a response
         $responseFields = [
             'agent_id' => $agent->id,
@@ -317,6 +317,61 @@ $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
         DB::table('tbl_agents')->where('phone', $phone)->update(['access_pin' => $pin1]);
 
         return response()->json(['message' => 'Access PIN updated successfully.'], 200);
+    }
+
+    public function ValidateTransaction(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'agent_id' => 'required',
+            'pin' => 'required',
+        ]);
+
+        // Check if the phone and pin combination exist in the database
+        $agent = DB::table('tbl_agents')
+            ->where('id', $request->input('agent_id'))
+            ->where('access_pin', $request->input('pin'))
+            ->first();
+
+        // If no matching record found, return an error response
+        if (!$agent) {
+            return response()->json(['status_code' => '401','error' => 'Invalid credentials'], 401);
+        }
+
+
+
+         // If no matching record found, return an error response
+        // If no matching record found or the account is not active, return an error response
+        if (!$agent || $agent->status !== "approved") {
+            return response()->json(['status_code' => '401','error' => 'Invalid credentials or account not activated'], 401);
+        }
+
+         // If authentication is successful, get the agent's terminals
+         $terminals = DB::table('tbl_pos_terminals')
+         ->where('agent_id', $agent->id)
+         ->select('serial_no', 'status', 'assignment_date') // Specify the columns you want to fetch
+         ->get();
+
+        $passport="https://portal.datacraftgarage.com/storage/ppts/$agent->passport";
+        // If authentication is successful, return the selected fields as a response
+        $responseFields = [
+            'agent_id' => $agent->id,
+            'fname' => $agent->first_name,
+            'mname' => $agent->mid_name,
+            'lname' => $agent->last_name,
+            'email' => $agent->email,
+            'gender' => $agent->gender,
+            'location' => $agent->location,
+            'bvn_no' => $agent->BVN,
+            'doc_type' => $agent->doc_type,
+            'doc_no' => $agent->doc_no,
+            'passport' => $agent->passport,
+            'passport_url' => $passport,
+            'terminals' => $terminals,
+            // Add other fields you want to include in the response
+        ];
+
+        return response()->json(['status_code' => 200, 'Message' => 'Valid credentials', 'response' => $responseFields], 200);
     }
 
 

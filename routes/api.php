@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/AgentsAuth', [AuthOtpController::class, 'Appauthenticate']);//agents Login API
 
+Route::post('/ValidateTransaction', [AuthOtpController::class, 'ValidateTransaction']);//validate transaction
+
 
 //agents change pinauth api
 
