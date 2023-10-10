@@ -479,11 +479,20 @@ class AuthOtpController extends Controller
             'taxid' => 'required|string|max:255',
             'email' => 'required|email|unique:tbl_agents',
             'phone' => 'required',
+            'business_address' => 'required',
+            // 'business_location' => 'required',
+            // 'business_location' => 'required',
+            // 'business_location' => 'required',
+            // 'business_location' => 'required',
+
+
+
             'business_location' => 'required',
             'business_street' => 'required',
             'business_lga' => 'required',
             'business_state' => 'required',
             'business_type' => 'required',
+            'lga' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'city' => 'required|string|max:255',
         ]);

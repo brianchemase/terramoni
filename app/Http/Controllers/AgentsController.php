@@ -606,7 +606,7 @@ class AgentsController extends Controller
     {
 
         $input = $request->all();
-       // return $input;
+       //return $input;
 
         $request->validate([
 			'cname'=>'required',
