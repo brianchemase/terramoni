@@ -495,6 +495,16 @@ class AuthOtpController extends Controller
             'lga' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'city' => 'required|string|max:255',
+
+
+            //attachments
+            'address_proof' => 'required',
+            'business_cert_attachment' => 'required',
+            'business_memorundum' => 'required',
+            'business_statement_of_return' => 'required',
+            'business_license_copy' => 'required',
+            //'business_type' => 'required',
+            //'business_type' => 'required',
         ]);
 
         // Process the 'address_proof' file upload
