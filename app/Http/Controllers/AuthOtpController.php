@@ -492,8 +492,8 @@ class AuthOtpController extends Controller
             'business_lga' => 'required',
             'business_state' => 'required',
             'business_type' => 'required',
-            'lga' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
+            //'lga' => 'required|string|max:255',
+            //'state' => 'required|string|max:255',
             'city' => 'required|string|max:255',
 
 
@@ -548,6 +548,8 @@ class AuthOtpController extends Controller
             //'bvn' => $input['bvn'],
             'location' => $input['state'],
             'country' => $input['city'],
+            'lga' => $input['business_lga'],
+            'state' => $input['business_state'],
             'status' => 'pending',
             'address_proff' => $request->address_proof->hashName(),
             'registration_date' => now()->toDateString(),
