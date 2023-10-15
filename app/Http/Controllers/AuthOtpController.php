@@ -480,13 +480,6 @@ class AuthOtpController extends Controller
             'email' => 'required|email|unique:tbl_agents',
             'phone' => 'required',
             'business_address' => 'required',
-            // 'business_location' => 'required',
-            // 'business_location' => 'required',
-            // 'business_location' => 'required',
-            // 'business_location' => 'required',
-
-
-
             'business_location' => 'required',
             'business_street' => 'required',
             'business_lga' => 'required',
@@ -517,47 +510,101 @@ class AuthOtpController extends Controller
 
         // Extract data from the request
         $input = $request->all();
+       // return $input;
+
+
         $docTypes = $request->input('doc_type');
         $docNumbers = $request->input('directordoc');
         $directorBVNs = $request->input('directorBVN');
         $tax_id = $request->input('taxid');
         $cname = $request->input('cname');
+        //return $cname;
+        $directorNames = $request->input('Dir_f_name');
 
-        // Store data in the 'tbl_company_directors' table
-        $insertedIds = [];
-        foreach ($docTypes as $key => $docType) {
-            $insertedId = DB::table('tbl_company_directors')->insertGetId([
-                'company_names' => $cname,
-                'tax_id' => $tax_id,
-                'doc_type' => $docType,
-                'doc_no' => $docNumbers[$key],
-                'dir_bvn_no' => $directorBVNs[$key],
-                // Add other fields here as needed
+         // Get the agent_id for reference when inserting directors
+         $agentId = DB::getPdo()->lastInsertId();
+
+          // Store director data
+            $directorsData = $request->only([
+                'Dir_f_name',
+                'Dir_m_name',
+                'Dir_l_name',
+                'Dir_bvn_no',
+                'Dir_tax_id',
+                'Dir_doc_type',
+                'Dir_doc_no',
+                'Dir_phone',
+                'Dir_email',
             ]);
-            $insertedIds[] = $insertedId;
-        }
+     
+             $directorsData = $request->input('directors');
+             DB::beginTransaction();
+
+     
+                // Store agent data
+                //$agent = DB::table('tbl_agent')->insertGetId($agentData);
+
+               
+   
 
         // Store data in the 'tbl_agents' table
         $inserted = DB::table('tbl_agents')->insertGetId([
             'first_name' => $input['cname'],
             'phone' => $input['phone'],
             'email' => $input['email'],
-            'agent_type' => $input['agent_type'],
+            'agent_type' => $input['business_type'],
             'agent_role' => 'aggregators',
             'tax_id' => $input['taxid'],
-            //'bvn' => $input['bvn'],
-            'location' => $input['state'],
+            'location' => $input['business_location'],
             'country' => $input['city'],
             'lga' => $input['business_lga'],
             'state' => $input['business_state'],
             'status' => 'pending',
-            'address_proff' => $request->address_proof->hashName(),
+          //  'address_proff' => $request->address_proof->hashName(),
             'registration_date' => now()->toDateString(),
         ]);
 
+
+         // Store director data
+         $directorData = [];
+         $agent=$inserted;
+
+         foreach ($directorsData as $directorInfo) {
+             $directorData[] = [
+                 'agent_id' => $agent,
+                 'company_names' => $cname,
+                 'director_names' => $directorInfo['Dir_f_name']." ".$directorInfo['Dir_m_name']." ".$directorInfo['Dir_l_name'],
+                 'dir_bvn_no' => $directorInfo['Dir_bvn_no'],
+                 'tax_id' => $directorInfo['Dir_tax_id'],
+                 'doc_type' => $directorInfo['Dir_doc_type'],
+                 'doc_no' => $directorInfo['Dir_doc_no'],
+                 'director_phone' => $directorInfo['Dir_phone'],
+                 'email' => $directorInfo['Dir_email'],
+             ];
+             //return $directorData;
+         }
+
+         DB::table('tbl_company_directors')->insert($directorData);
+
+         DB::commit(); // Commit the transaction
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Return a JSON response based on the result
         if ($inserted) {
-            return response()->json(['message' => 'Year Agent data saved successfully'], 200);
+            return response()->json(['message' => 'Your Agent data saved successfully'], 200);
         } else {
             return response()->json(['message' => 'Something went wrong, try again later or contact system admin'], 500);
         }
