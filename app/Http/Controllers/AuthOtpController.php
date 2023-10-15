@@ -559,6 +559,12 @@ class AuthOtpController extends Controller
             'country' => $input['city'],
             'lga' => $input['business_lga'],
             'state' => $input['business_state'],
+
+            'biz_name' => $input['cname'],
+            'biz_address' => $input['business_address'],
+            'biz_reg_no' => $input['business_registration_no'],
+            'biz_state' => $input['business_state'],
+            'biz_lga' => $input['business_lga'],
             'status' => 'pending',
           //  'address_proff' => $request->address_proof->hashName(),
             'registration_date' => now()->toDateString(),
