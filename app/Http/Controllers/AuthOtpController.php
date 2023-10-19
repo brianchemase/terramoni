@@ -508,6 +508,37 @@ class AuthOtpController extends Controller
             $request->address_proof->store('address', 'public');
         }
 
+
+        if ($request->hasFile('business_cert_attachment')) {
+            $request->validate([
+                'business_cert_attachment' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->business_cert_attachment->store('address', 'public');
+        }
+
+
+        if ($request->hasFile('business_memorundum')) {
+            $request->validate([
+                'business_memorundum' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->business_memorundum->store('address', 'public');
+        }
+
+
+        if ($request->hasFile('business_statement_of_return')) {
+            $request->validate([
+                'business_statement_of_return' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->business_statement_of_return->store('address', 'public');
+        }
+
+        if ($request->hasFile('business_license_copy')) {
+            $request->validate([
+                'business_license_copy' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $request->business_license_copy->store('address', 'public');
+        }
+
         // Extract data from the request
         $input = $request->all();
        // return $input;
@@ -540,12 +571,6 @@ class AuthOtpController extends Controller
              $directorsData = $request->input('directors');
              DB::beginTransaction();
 
-     
-                // Store agent data
-                //$agent = DB::table('tbl_agent')->insertGetId($agentData);
-
-               
-   
 
         // Store data in the 'tbl_agents' table
         $inserted = DB::table('tbl_agents')->insertGetId([
@@ -559,14 +584,13 @@ class AuthOtpController extends Controller
             'country' => $input['city'],
             'lga' => $input['business_lga'],
             'state' => $input['business_state'],
-
             'biz_name' => $input['cname'],
             'biz_address' => $input['business_address'],
             'biz_reg_no' => $input['business_registration_no'],
             'biz_state' => $input['business_state'],
             'biz_lga' => $input['business_lga'],
             'status' => 'pending',
-          //  'address_proff' => $request->address_proof->hashName(),
+           'address_proff' => $request->address_proof->hashName(),
             'registration_date' => now()->toDateString(),
         ]);
 
@@ -575,38 +599,75 @@ class AuthOtpController extends Controller
          $directorData = [];
          $agent=$inserted;
 
-         foreach ($directorsData as $directorInfo) {
-             $directorData[] = [
-                 'agent_id' => $agent,
-                 'company_names' => $cname,
-                 'director_names' => $directorInfo['Dir_f_name']." ".$directorInfo['Dir_m_name']." ".$directorInfo['Dir_l_name'],
-                 'dir_bvn_no' => $directorInfo['Dir_bvn_no'],
-                 'tax_id' => $directorInfo['Dir_tax_id'],
-                 'doc_type' => $directorInfo['Dir_doc_type'],
-                 'doc_no' => $directorInfo['Dir_doc_no'],
-                 'director_phone' => $directorInfo['Dir_phone'],
-                 'email' => $directorInfo['Dir_email'],
-             ];
-             //return $directorData;
+        //  foreach ($directorsData as $directorInfo) {
+        //     $attachments = [];
+        //     foreach ($directorInfo['Dir_doc_attachment'] as $attachment) {
+        //         // Store or process each attachment as needed
+        //         return $directorInfo;
+
+        //         $path = $attachment->store('director_attachments');
+        //         $request->Dir_doc_attachment->store('director_attachments', 'public');
+        //         $attachments[] = $path;
+                
+
+        //      $directorData[] = [
+        //          'agent_id' => $agent,
+        //          'company_names' => $cname,
+        //          'director_names' => $directorInfo['Dir_f_name']." ".$directorInfo['Dir_m_name']." ".$directorInfo['Dir_l_name'],
+        //          'dir_bvn_no' => $directorInfo['Dir_bvn_no'],
+        //          'tax_id' => $directorInfo['Dir_tax_id'],
+        //          'doc_type' => $directorInfo['Dir_doc_type'],
+        //          'doc_no' => $directorInfo['Dir_doc_no'],
+        //          'doc_attachment' => $attachments[''],
+        //          'director_phone' => $directorInfo['Dir_phone'],
+        //          'email' => $directorInfo['Dir_email'],
+        //      ];
+        //     }
+        //      //return $directorData;
+        //  }
+
+         //$directorData = [];
+         $attachments = [];
+       
+         // Loop through each director
+         foreach ($directorsData as $index => $directorInfo) {
+            //return $directorInfo;
+           // Loop through each attachment for this director
+           foreach ($directorInfo['Dir_doc_attachment'] as $attachment) {
+       
+             // Store attachment
+             $path = $attachment->store("director_{$index}_attachments");
+       
+             // Add to attachments array
+             $attachments[] = $path;
+             
+       
+           }
+       
+           // Add director data with attachments
+           $directorData[] = [
+             'agent_id' => $agentId,
+             'company_names' => $cname,
+            'director_names' => $directorInfo['Dir_f_name']." ".$directorInfo['Dir_m_name']." ".$directorInfo['Dir_l_name'],
+            'dir_bvn_no' => $directorInfo['Dir_bvn_no'],
+            'tax_id' => $directorInfo['Dir_tax_id'],
+            'doc_type' => $directorInfo['Dir_doc_type'],
+            'doc_no' => $directorInfo['Dir_doc_no'],
+            'doc_attachment' => $attachments[''],
+            'director_phone' => $directorInfo['Dir_phone'],
+            'email' => $directorInfo['Dir_email'], 
+             // other director fields
+             'doc_attachment' => $attachments,
+           ];
+           
+           // Reset attachments array
+           $attachments = [];
+       
          }
 
          DB::table('tbl_company_directors')->insert($directorData);
 
          DB::commit(); // Commit the transaction
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Return a JSON response based on the result
         if ($inserted) {
