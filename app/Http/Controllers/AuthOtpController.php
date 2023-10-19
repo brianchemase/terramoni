@@ -590,7 +590,7 @@ class AuthOtpController extends Controller
             'biz_state' => $input['business_state'],
             'biz_lga' => $input['business_lga'],
             'status' => 'pending',
-           'address_proff' => $request->address_proof->hashName(),
+            //'address_proff' => $request->address_proof->hashName(),
             'registration_date' => now()->toDateString(),
         ]);
 
@@ -640,7 +640,7 @@ class AuthOtpController extends Controller
        
              // Add to attachments array
              $attachments[] = $path;
-             
+
        
            }
        
