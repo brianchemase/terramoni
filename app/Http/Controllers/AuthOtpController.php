@@ -470,7 +470,7 @@ class AuthOtpController extends Controller
     }
 
 
-    public function storeCompanySelfReg(Request $request)
+    public function storeCompanySelfReg_old(Request $request)
     {
         // Validate the incoming request data
         $request->validate([
@@ -596,8 +596,9 @@ class AuthOtpController extends Controller
 
 
          // Store director data
-         $directorData = [];
+       //  $directorData = [];
          $agent=$inserted;
+         return $inserted;
 
         //  foreach ($directorsData as $directorInfo) {
         //     $attachments = [];
@@ -631,7 +632,7 @@ class AuthOtpController extends Controller
        
          // Loop through each director
          foreach ($directorsData as $index => $directorInfo) {
-            //return $directorInfo;
+            //return $index;
            // Loop through each attachment for this director
            foreach ($directorInfo['Dir_doc_attachment'] as $attachment) {
        
@@ -676,6 +677,138 @@ class AuthOtpController extends Controller
             return response()->json(['message' => 'Something went wrong, try again later or contact system admin'], 500);
         }
     }
+
+    public function storeCompanySelfReg(Request $request)
+        {
+            // Validate the incoming request data
+            $request->validate([
+                'cname' => 'required',
+                'business_registration_no' => 'required',
+                'taxid' => 'required|string|max:255',
+                'email' => 'required|email|unique:tbl_agents',
+                'phone' => 'required',
+                'business_address' => 'required',
+                'business_location' => 'required',
+                'business_street' => 'required',
+                'business_lga' => 'required',
+                'business_state' => 'required',
+                'business_type' => 'required',
+                'city' => 'required|string|max:255',
+
+                // Attachments
+                'address_proof' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+                'business_cert_attachment' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+                'business_memorundum' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+                'business_statement_of_return' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+                'business_license_copy' => 'required|file|mimes:png,jpg,jpeg|max:2048',
+            ]);
+
+            // Process and store attachments
+            $attachments = [];
+
+            foreach ([
+                'address_proof', 'business_cert_attachment', 'business_memorundum',
+                'business_statement_of_return', 'business_license_copy'
+            ] as $attachmentField) {
+                if ($request->hasFile($attachmentField)) {
+                    $path = $request->$attachmentField->store('attachments', 'public');
+                    $attachments[$attachmentField] = $path;
+                }
+            }
+
+            // Extract data from the request
+            $input = $request->all();
+
+            DB::beginTransaction();
+
+            // Store data in the 'tbl_agents' table
+            $inserted = DB::table('tbl_agents')->insertGetId([
+                'first_name' => $input['cname'],
+                'phone' => $input['phone'],
+                'email' => $input['email'],
+                'agent_type' => $input['business_type'],
+                'agent_role' => 'aggregators',
+                'tax_id' => $input['taxid'],
+                'location' => $input['business_location'],
+                'country' => $input['city'],
+                'lga' => $input['business_lga'],
+                'state' => $input['business_state'],
+                'biz_name' => $input['cname'],
+                'biz_address' => $input['business_address'],
+                'biz_reg_no' => $input['business_registration_no'],
+                'biz_state' => $input['business_state'],
+                'biz_lga' => $input['business_lga'],
+                'status' => 'pending',
+                'address_proff' => $attachments['address_proof'],
+                'registration_date' => now()->toDateString(),
+            ]);
+
+            if ($inserted) {
+                DB::commit();
+                return response()->json([
+                    'status_code' => 200,
+                    'message' => 'Your Agent data saved successfully',
+                    'CompanyName' => $input['cname'],
+                    'agentID' => $inserted
+                ], 200);
+            } else {
+                DB::rollBack();
+                return response()->json(['message' => 'Something went wrong, try again later or contact the system admin'], 500);
+            }
+        }
+
+        public function registerDirector(Request $request)
+        {
+            // Validate the incoming request data
+            $request->validate([
+                'company_name' => 'required|string',
+                'company_id' => 'required|string',
+                'Dir_f_name' => 'required|string',//first name
+                'Dir_m_name' => 'string|nullable',
+                'Dir_l_name' => 'required|string',
+                'Dir_bvn_no' => 'required|string|max:255',
+                'Dir_tax_id' => 'required|string|max:255',
+                'Dir_doc_type' => 'required|string',
+                'Dir_doc_no' => 'required|string|max:255',
+                'Dir_phone' => 'required|string',
+                'Dir_email' => 'required|email',
+                'Dir_doc_attachment' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            ]);
+
+            // Process and store the director's attachment
+            if ($request->hasFile('Dir_doc_attachment')) {
+                $attachment = $request->file('Dir_doc_attachment');
+                $attachmentPath = $attachment->store('address', 'public');
+                $attachmentStoredName = $attachment->hashName(); // Get the name of the file as it's stored
+            }
+
+            // Use the DB facade to insert data into the database
+            $directorId = DB::table('tbl_company_directors')->insertGetId([
+                'company_names' => $request->company_name,
+                'agent_id' => $request->company_id,
+                'director_names' => $request->Dir_f_name." ".$request->Dir_m_name." ".$request->Dir_l_name,
+                // 'first_name' => $request->Dir_f_name,
+                // 'middle_name' => $request->Dir_m_name,
+                // 'last_name' => $request->Dir_l_name,
+                'dir_bvn_no' => $request->Dir_bvn_no,
+                'tax_id' => $request->Dir_tax_id,
+                'doc_type' => $request->Dir_doc_type,
+                'doc_no' => $request->Dir_doc_no,
+                'director_phone' => $request->Dir_phone,
+                'email' => $request->Dir_email,
+                'doc_attachment' => $attachmentStoredName, // Store the file path
+            ]);
+
+            if ($directorId) {
+                return response()->json(['status_code'=>200,'message' => 'Director registered successfully'], 201);
+            } else {
+                return response()->json(['message' => 'Failed to register director'], 500);
+            }
+        }
+
+
+
+
 
     
     

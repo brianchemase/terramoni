@@ -47,6 +47,9 @@ Route::post('/RegisterAgents', [AuthOtpController::class, 'agentsregister']);//a
 //Cooperates registration api
 Route::post('/RegisterCooperate', [AuthOtpController::class, 'storeCompanySelfReg']);//agents Register API for companies
 
+//Cooperates Director registration api
+Route::post('/RegisterCooperateDirector', [AuthOtpController::class, 'registerDirector']);//Director Register API for companies
+
 
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
 
