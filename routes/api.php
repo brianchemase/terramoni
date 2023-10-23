@@ -12,6 +12,7 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\NibbsController;
 use App\Http\Controllers\CommissionMatrixController;
+use App\Http\Controllers\BusinessTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,10 @@ Route::post('/RegisterCooperate', [AuthOtpController::class, 'storeCompanySelfRe
 Route::post('/RegisterCooperateDirector', [AuthOtpController::class, 'registerDirector']);//Director Register API for companies
 
 
+
 Route::post('/BillersList', [BillersController::class, 'billers_data']);//billers API
+
+Route::get('/BusinessLists', [BusinessTypeController::class, 'getBusinessTypes']);//business types API
 
 //agents registration api
 Route::get('/getAgentsTransactions/{agent_id}', [TransactionsController::class, 'transactions']);//agents transactions API
