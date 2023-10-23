@@ -711,7 +711,7 @@ class AuthOtpController extends Controller
                 'business_statement_of_return', 'business_license_copy'
             ] as $attachmentField) {
                 if ($request->hasFile($attachmentField)) {
-                    $path = $request->$attachmentField->store('attachments', 'public');
+                    $path = $request->$attachmentField->store('address', 'public');
                     $attachments[$attachmentField] = $path;
                 }
             }
