@@ -806,6 +806,18 @@ class AuthOtpController extends Controller
             }
         }
 
+        public function getDirectorsList($agentId)
+        {
+            $directors = DB::table('tbl_company_directors')
+                ->where('agent_id', $agentId)
+                ->select( 'director_names','doc_no', 'director_phone','email') // Add the fields you want to include
+                ->get();
+
+            return response()->json($directors);
+
+
+        }
+
 
 
 
