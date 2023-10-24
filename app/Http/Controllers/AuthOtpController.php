@@ -714,8 +714,10 @@ class AuthOtpController extends Controller
                 'business_license_copy'
             ] as $attachmentField) {
                 if ($request->hasFile($attachmentField)) {
-                    $path = $request->$attachmentField->store('address', 'public');
-                    $attachments[$attachmentField] = $path;
+                    $file = $request->file($attachmentField);
+                    $filename = uniqid() . '_' . $file->getClientOriginalName(); // Generate a unique filename
+                    $path = $file->storeAs('address', $filename, 'public'); // Store the file with a unique name
+                    $attachments[$attachmentField] = $filename; // Store the unique filename in the array
                 }
             }
 
@@ -743,6 +745,9 @@ class AuthOtpController extends Controller
                 'biz_lga' => $input['business_lga'],
                 'status' => 'pending',
                 'biz_cert' => $attachments['business_cert_attachment'],
+                'biz_memo' => $attachments['business_memorundum'],
+                'biz_statement' => $attachments['business_statement_of_return'],
+                'biz_license' => $attachments['business_license_copy'],
                 'address_proff' => $attachments['address_proof'],
                 'registration_date' => now()->toDateString(),
             ]);
