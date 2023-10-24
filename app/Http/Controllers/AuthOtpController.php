@@ -686,7 +686,7 @@ class AuthOtpController extends Controller
                 'business_registration_no' => 'required',
                 'taxid' => 'required|string|max:255',
                 'email' => 'required|email|unique:tbl_agents',
-                'phone' => 'required|phone|unique:tbl_agents',
+                'phone' => 'required',
                 'business_address' => 'required',
                 'business_location' => 'required',
                 'business_street' => 'required',
@@ -707,8 +707,11 @@ class AuthOtpController extends Controller
             $attachments = [];
 
             foreach ([
-                'address_proof', 'business_cert_attachment', 'business_memorundum',
-                'business_statement_of_return', 'business_license_copy'
+                'address_proof',
+                'business_cert_attachment',
+                'business_memorundum',
+                'business_statement_of_return',
+                'business_license_copy'
             ] as $attachmentField) {
                 if ($request->hasFile($attachmentField)) {
                     $path = $request->$attachmentField->store('address', 'public');
