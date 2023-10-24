@@ -686,7 +686,7 @@ class AuthOtpController extends Controller
                 'business_registration_no' => 'required',
                 'taxid' => 'required|string|max:255',
                 'email' => 'required|email|unique:tbl_agents',
-                'phone' => 'required',
+                'phone' => 'required|phone|unique:tbl_agents',
                 'business_address' => 'required',
                 'business_location' => 'required',
                 'business_street' => 'required',
@@ -739,6 +739,7 @@ class AuthOtpController extends Controller
                 'biz_state' => $input['business_state'],
                 'biz_lga' => $input['business_lga'],
                 'status' => 'pending',
+                'biz_cert' => $attachments['business_cert_attachment'],
                 'address_proff' => $attachments['address_proof'],
                 'registration_date' => now()->toDateString(),
             ]);
