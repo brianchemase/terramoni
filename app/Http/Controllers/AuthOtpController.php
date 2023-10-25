@@ -391,7 +391,7 @@ class AuthOtpController extends Controller
             'state' => 'required',
             'lga' => 'required',
             'location' => 'required',
-            'country' => 'required',
+            //'country' => 'required',
             'BVN' => 'required',
             'tax_id' => 'required',
             'doc_type' => 'required',
@@ -413,6 +413,7 @@ class AuthOtpController extends Controller
 
         $validatedData['status']="pending";
         $validatedData['access_pin']="0002";
+        $validatedData['country']="Nigeria";
         //optional values
         $validatedData['mid_name']= $request->input('mid_name', null);
         $validatedData['biz_name']= $request->input('biz_name', null);
@@ -735,7 +736,7 @@ class AuthOtpController extends Controller
                 'agent_role' => 'aggregators',
                 'tax_id' => $input['taxid'],
                 'location' => $input['business_location'],
-                'country' => $input['city'],
+                'country' => 'Nigeria',
                 'lga' => $input['business_lga'],
                 'state' => $input['business_state'],
                 'biz_name' => $input['cname'],
