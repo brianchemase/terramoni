@@ -417,6 +417,7 @@ class AuthOtpController extends Controller
         //optional values
         $validatedData['mid_name']= $request->input('mid_name', null);
         $validatedData['biz_name']= $request->input('biz_name', null);
+        $validatedData['biz_address']= $request->input('biz_address', null);
         $validatedData['agent_code']= $request->input('agent_code', null);
         $validatedData['biz_cert']= $request->input('biz_cert', null);
         $validatedData['biz_reg_no']= $request->input('biz_reg_no', null);
