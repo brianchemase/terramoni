@@ -68,6 +68,9 @@ Route::get('/getAgentsTransactionsSummary/{agent_id}', [TransactionsController::
 Route::get('/getTransactionReprint/{trans_id}', [TransactionsController::class, 'retrieveTransReprint']);//agents transactions API
 
 
+//pos transactions mirror
+Route::post('/POSMirrortransactions', [TransactionsController::class, 'POSTransactions']);
+
 Route::post('/transactions', [AgentsController::class, 'storeTransaction']);
 Route::post('/smstransactions', [AgentsController::class, 'storeSms']);
 

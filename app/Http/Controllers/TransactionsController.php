@@ -261,5 +261,94 @@ class TransactionsController extends Controller
             }
         }
 
+
+    public function POSTransactions(Request $request)
+    {
+
+         // Validate the incoming request data
+         $request->validate([
+            'AGENT_CODE' => 'required',
+            'TERMINAL_NO' => 'required',
+            'requestTime' => 'required',
+            'txnType' => 'required',
+            'responseCode' => 'required',
+            'responseMessage' => 'required',
+            'cardHolderName' => 'required',
+            'cardPAN' => 'required',
+            'amount' => 'required',
+            'stan' => 'required',
+            'reference' => 'required',
+         ]);
+
+        $input = $request->all();
+       //return $input;
+        // Access the data from the request
+        $agentCode = $request->input('AGENT_CODE');
+        $terminalNo = $request->input('TERMINAL_NO');
+        $requestTime = $request->input('requestTime');
+        $txnType = $request->input('txnType');
+        $responseCode = $request->input('responseCode');
+        $responseMessage = $request->input('responseMessage');
+        $cardHolderName = $request->input('cardHolderName');
+        $cardPAN = $request->input('cardPAN');
+        $amount = $request->input('amount');
+        $stan = $request->input('stan');
+        $reference = $request->input('reference');
+
+
+        // Check if the provided agentCode exists in the tbl_agents table
+        $agentExists = DB::table('tbl_agents')->where('id', $agentCode)->exists();
+
+        $agent = DB::table('tbl_agents')
+            //->select('first_name', 'last_name', 'agent_tier_id', '')
+            ->where('id', $agentCode)
+            ->first();
+
+        $agent_names = null;
+        if ($agent) {
+            $agent_names = $agent->first_name . ' ' . $agent->last_name;
+            $agent_tier= $agent->agent_tier_id;
+            //return $agent_tier;
+        }
+
+        if ($agentExists) {
+
+        // Define an associative array with the data you want to insert
+            $dataToInsert = [
+                'agent_id' => $agentCode,
+                //'TERMINAL_NO' => $terminalNo,
+                'BillerName' => $cardHolderName,
+                'name' => $txnType.":".$cardPAN,
+                'transaction_date' => $requestTime,
+                'transaction_type' => 'fundtransfer',
+                'BillerType' => $txnType,
+                //'responseMessage' => $responseMessage,
+                'ConsumerIdField' => $agent_names,
+                //'cardPAN' => $cardPAN,
+                'ItemFee' => $amount,
+                'amount' => $amount,
+                'BillerCategoryId' => $stan,
+                'customer_reference' => $reference,
+            ];
+
+       
+        // Process the data
+        // You can perform your desired logic here
+                    // Insert the data into the database
+            $inserted= DB::table('tbl_transactions')->insert($dataToInsert);
+
+        // Optionally, you can check if the insertion was successful and provide a response
+            if ($inserted) {
+                return response()->json(['status_code'=>200,'message' => 'Data saved successfully']);
+            } else {
+                return response()->json(['status_code'=>500,'message' => 'Data save failed contact Admin'], 500); // 500 Internal Server Error
+            }
+        }
+        else {
+            // AgentCode is not valid or does not exist in the tbl_agents table, return an error response
+            return response()->json(['status_code'=>404,'message' => 'Invalid agentCode'], 400); // 400 Bad Request
+        }
+    }
+
 }
 
