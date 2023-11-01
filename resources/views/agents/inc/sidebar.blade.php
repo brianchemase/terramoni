@@ -49,14 +49,14 @@
 							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Reports</span>
 						</a>
 						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Overview Report</a></li>
+							<!-- <li class="sidebar-item"><a class="sidebar-link" href="#">Overview Report</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">State Count Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Charge Back Report </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">Disputes </a></li> -->
 							<li class="sidebar-item"><a class="sidebar-link" href="{{route('posterminalslist')}}">Terminal Report </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
+							<!-- <li class="sidebar-item"><a class="sidebar-link" href="#">Performance Report </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="#">Tickets </a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="#">System Monitor </a></li> -->
 							<li class="sidebar-item"><a class="sidebar-link" href="{{route('totaltrans')}}">Transaction Summary </a></li>
 													
 						</ul>
